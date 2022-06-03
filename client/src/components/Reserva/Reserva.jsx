@@ -11,10 +11,6 @@ import Swal from "sweetalert2";
 import "./Reserva.css";
 
 const validate = (state) => {
-  //si esta autenticado que se cree la resetva, sino q se vaya a registrar
-  //mensaje arriba q diga " solo pueden hacer reserva usuarios registrados"
-  // isAuth es false ==> solo se puede hacer reserva cuando estas autenticado.
-
   let errors = {};
 
   if (!state.service.length) {
@@ -31,6 +27,8 @@ const validate = (state) => {
 export function Reserva() {
   const dispatch = useDispatch();
 
+  const { user } = useSelector((state) => state);
+
   const allServices = useSelector((state) => state.servicios.services);
   const subBarberos = useSelector((state) => state.barberos);
 
@@ -41,6 +39,7 @@ export function Reserva() {
     service: "",
     idEmployee: "",
     barberos: "",
+    userId: user,
   });
 
   const [errors, setError] = useState({});
@@ -176,8 +175,8 @@ export function Reserva() {
                 name="barberos"
               >
                 <option hidden>Seleccione un barbero</option>
-                {subBarberos?.map((e) => (
-                  <option key={e.id} value={[e.id]}>
+                {subBarberos?.map((e, index) => (
+                  <option key={index} value={[e.id]}>
                     {e.name}
                   </option>
                 ))}

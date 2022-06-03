@@ -15,7 +15,9 @@ export default function CrearProducto() {
     availability: true,
   };
   const [employee, setEmployee] = React.useState(InitialState);
+
   useEffect(() => {}, [dispatch]);
+
   const handleInputChange = (e) => {
     const { name, value } = e.target;
     setEmployee({
@@ -24,6 +26,7 @@ export default function CrearProducto() {
     });
     console.log(employee);
   };
+
   const handleSubmit = (e) => {
     e.preventDefault();
     dispatch(addEmployee(employee));

@@ -78,16 +78,17 @@ export default function NavBar() {
             )}
           </ul>
 
-          <span className="linkReserva">
-            <button
-              onClick={handleLogout}
-              className="btnCita btn btn-warning fw-bold"
-              type="button"
-            >
-              Salir
-            </button>
-          </span>
-
+          {isAuth && (
+            <span className="linkReserva">
+              <button
+                onClick={handleLogout}
+                className="btnCita btn btn-warning fw-bold"
+                type="button"
+              >
+                Salir
+              </button>
+            </span>
+          )}
           {isAuth && isAuth ? (
             <Link to="/reserva" className="linkReserva">
               <button className="btnCita btn btn-warning fw-bold" type="button">

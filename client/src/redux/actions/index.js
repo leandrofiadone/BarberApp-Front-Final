@@ -210,20 +210,17 @@ export function allCitas() {
 }
 
 export function crearCita(payload) {
-  return async (dispatch) => {
-    try {
-      const informacion = await axios.post(
-        "https://barber-app-henry.herokuapp.com/api/date",
-        payload
-      );
+  return async () => {
+    const token = localStorage.getItem("token") || "";
 
-      return dispatch({
-        type: CREAR_CITA,
-        payload: informacion.data,
-      });
-    } catch (error) {
-      console.log(error);
-    }
+    await fetch("https://barber-app-henry.herokuapp.com/api/date", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        "x-token": token,
+      },
+      body: JSON.stringify(payload),
+    });
   };
 }
 
@@ -258,7 +255,7 @@ export function login(user) {
         headers: {
           "Content-Type": "application/json",
         },
-        body: JSON.stringify(user),
+        body: JSON.stringify(),
       }
     );
     const data = await resp.json();
