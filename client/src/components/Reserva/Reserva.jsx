@@ -10,9 +10,11 @@ import Swal from "sweetalert2";
 
 import "./Reserva.css";
 
-import Geolocalizacion from "../Geolocalizacion/Geolocalizacion";
-
 const validate = (state) => {
+  //si esta autenticado que se cree la resetva, sino q se vaya a registrar
+  //mensaje arriba q diga " solo pueden hacer reserva usuarios registrados"
+  // isAuth es false ==> solo se puede hacer reserva cuando estas autenticado.
+
   let errors = {};
 
   if (!state.service.length) {
@@ -50,6 +52,7 @@ export function Reserva() {
 
   const handleChange = (e) => {
     e.preventDefault();
+
     setState({
       ...state,
       [e.target.name]: e.target.value,
@@ -210,8 +213,6 @@ export function Reserva() {
               Reservar!
             </button>
           </div>
-
-          <Geolocalizacion />
 
           <br />
           <br />
