@@ -39,7 +39,7 @@ const SearchBar = () => {
   };
 
   return (
-    <div class="d-flex">
+    <div className="d-flex">
       <Stack>
         <Autocomplete
           id="producto"
@@ -68,10 +68,10 @@ const SearchBar = () => {
           )}
         />
       </Stack>
-      <div class="mx-1">
+      <div className="mx-1">
         <button
           onClick={(e) => handleClick(e)}
-          class="btn btn-warning"
+          className="btn btn-warning"
           type="submit"
           disabled={name === "" ? true : false}
         >

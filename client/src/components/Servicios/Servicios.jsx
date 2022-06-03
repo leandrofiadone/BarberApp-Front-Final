@@ -21,7 +21,7 @@ export function Servicios() {
 
   return (
     <div>
-      <div class="flex justify-center ">
+      <div className="flex justify-center ">
         <div className="serviciosCard">
           {allServices?.map((s) => (
             <ServiciosCard

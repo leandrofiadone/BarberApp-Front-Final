@@ -10,7 +10,6 @@ import "./NavBar.css";
 export default function NavBar() {
 
   const { isAuth, user } = useSelector(state => state);
-  console.log(user.id)
 
   const dispatch = useDispatch();
   const history = useHistory();
@@ -38,20 +37,20 @@ export default function NavBar() {
         <div className="collapse navbar-collapse" id="navbarSupportedContent">
           <ul className="navbar-nav me-auto mb-2 mb-lg-0">
             <li className="nav-item">
-              <Link className="nav-link text-light" aria-current="page" href="#inicio">
+              <a className="nav-link text-light" aria-current="page" href="#inicio">
                 Inicio
-              </Link>
+              </a>
             </li>
             <li>
-              <Link className="nav-link text-light" href="#servicios">
+              <a className="nav-link text-light" href="#servicios">
                 Servicios
-              </Link>
+              </a>
             </li>
 
             <li>
-              <Link className="nav-link text-light" href="#quienesSomos">
+              <a className="nav-link text-light" href="#quienesSomos">
                 Quienes Somos
-              </Link>
+              </a>
             </li>
 
             <li className="nav-item" id="LinkTienda">
@@ -79,7 +78,7 @@ export default function NavBar() {
 
           {
             isAuth &&
-            <Link to={`/profile/${user.id}`}>Profile</Link>
+            <Link to={`/profile`}>Profile</Link>
           }
 
           {

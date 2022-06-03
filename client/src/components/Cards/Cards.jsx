@@ -30,7 +30,7 @@ const Cards = ({ name, stock, price, img, id, category, item }) => {
         <h6>Categoria: {category}</h6>
         <h6>{id}</h6>
         <div className="buttonComprar">
-          <button id="miBoton" type="button" class="btn btn-success bg-dark fw-bold" onClick={() => ambos()}>Comprar</button>
+          <button id="miBoton" type="button" className="btn btn-success bg-dark fw-bold" onClick={() => ambos()}>Comprar</button>
         </div>
       </div>
     </div>

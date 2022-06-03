@@ -69,7 +69,7 @@ export default function Tienda() {
 
       <div className="botonVolver">
       <Link to="/" className="LinkVolver">
-        <button onClick="window.location.reload()" class="btn btn-dark" id="arriba"> Volver</button>
+        <button onClick="window.location.reload()" className="btn btn-dark" id="arriba"> Volver</button>
       </Link>
       </div>
 
@@ -89,14 +89,14 @@ export default function Tienda() {
 
   <div className="navbar navbar-expand bg-dark navbarTienda">
 
-    <div class="dropdown">
-  <button class="botonOrdenar btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
+    <div className="dropdown">
+  <button className="botonOrdenar btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
     Ordenar Por:
   </button>
-  <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+  <ul className="dropdown-menu" aria-labelledby="dropdownMenuButton1">
     
-      <div class="text-dark">
-        <select onChange={(e) => handleCategorias(e)} class="text-dark">
+      <div className="text-dark">
+        <select onChange={(e) => handleCategorias(e)} className="text-dark">
           <option value="All"> Todos </option>
           <option value="tinte"> Tinte</option>
           <option value="cremas">Crema</option>
@@ -109,9 +109,9 @@ export default function Tienda() {
 
 
       
-      <div class="text-dark">
+      <div className="text-dark">
 
-            <select name="select" onChange={onSelectsChange} class="form-select-sm">
+            <select name="select" onChange={onSelectsChange} className="form-select-sm">
                 <option value="Filter"> A-Z:</option>
                 <option value="ASC">Ascendente</option>
                 <option value="DESC">Descendente</option>
@@ -120,10 +120,10 @@ export default function Tienda() {
       <br />
      
 
-      <div class="text-dark">
+      <div className="text-dark">
       {
         productosBarberia? (
-          <select onChange={(e) => handlePrecio(e)} class="form-select-sm">
+          <select onChange={(e) => handlePrecio(e)} className="form-select-sm">
             <option value="All"> Todos</option>
             <option value="max">Mayor precio</option>
             <option value="min"> Menor precio</option>

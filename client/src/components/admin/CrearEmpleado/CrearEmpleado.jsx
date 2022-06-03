@@ -5,7 +5,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { useEffect } from "react";
 import { useHistory } from "react-router-dom";
 
-import { addEmployee, getEmployee } from "../../redux/actions/index";
+import { addEmployee, getEmployee } from "../../../redux/actions/index";
 
 export default function CrearProducto() {
   const dispatch = useDispatch();
@@ -32,27 +32,27 @@ export default function CrearProducto() {
   };
   return (
     <div>
-      <h1 class="mt-5">Registra tus Empleados</h1>
-      <form class="mx-5 mt-2" onSubmit={handleSubmit}>
+      <h1 className="mt-5">Registra tus Empleados</h1>
+      <form className="mx-5 mt-2" onSubmit={handleSubmit}>
         <div>
-          <div class="d-flex">
+          <div className="d-flex">
             <label>Nombre:</label>
           </div>
-          <div class="d-flex max-w-full ">
+          <div className="d-flex max-w-full ">
             <input
-              class="form-control"
+              className="form-control"
               placeholder="Nombre.."
               type="text"
               name="name"
               onChange={handleInputChange}
             />
           </div>
-          <div class="d-flex mt-2">
+          <div className="d-flex mt-2">
             <label>Disponibilidad:</label>
           </div>
-          <div class="d-flex h-1.5">
+          <div className="d-flex h-1.5">
             <select
-              class="form-select"
+              className="form-select"
               name="availability"
               onChange={handleInputChange}
             >
@@ -67,11 +67,11 @@ export default function CrearProducto() {
         </div>
 
         <div className="linksCrearProducto mt-4">
-          <button class="btn btn-warning fw-bold" type="submit">
+          <button className="btn btn-warning fw-bold" type="submit">
             Registrar
           </button>
-          <Link to="/">
-            <button class="btn btn-warning fw-bold"> Volver</button>
+          <Link to="/admin/main">
+            <button className="btn btn-warning fw-bold"> Volver</button>
           </Link>
         </div>
       </form>

@@ -31,13 +31,15 @@ export const CREAR_CITA = "CREAR_CITA";
 
 export const ALL_BARBEROS = "ALL_BARBEROS";
 
+export const DELETE_PRODUCT = "DELETE_PRODUCT";
+export const UPDATE_PRODUCT = "UPDATE_PRODUCT"
+
 export function allProductos() {
   return async (dispatch) => {
     try {
       let informacion = await axios(
         `https://barber-app-henry.herokuapp.com/api/products`
       );
-      console.log(informacion.data.products);
       return dispatch({
         type: ALL_PRODUCTOS,
         payload: informacion.data.products,
@@ -55,7 +57,6 @@ export function buscarProductos(name) {
         `https://barber-app-henry.herokuapp.com/api/products?name=${name}`
       );
 
-      console.log(informacion.data.product);
 
       return dispatch({
         type: BUSCAR_PRODUCTOS,
@@ -113,7 +114,7 @@ export function eliminarInfoDetalle() {
 }
 
 export function getServices() {
-  return async function(dispatch) {
+  return async function (dispatch) {
     let servicios = await axios.get(
       "https://barber-app-henry.herokuapp.com/api/services"
     );
@@ -143,7 +144,7 @@ export function addEmployee(employee) {
 }
 
 export function getEmployee() {
-  return async function(dispatch) {
+  return async function (dispatch) {
     let result = await axios.get(
       "https://barber-app-henry.herokuapp.com/api/employee"
     );
@@ -309,21 +310,56 @@ export function logout() {
 }
 
 export const userActive = (id) => {
-  return async(dispatch) => {
+  return async (dispatch) => {
     const resp = await fetchConToken(`users/${id}`)
     const data = await resp.json();
 
-    if(data.ok){
+    if (data.ok) {
       const payload = {
         id: data.user.id,
         email: data.user.email,
         name: data.user.name,
         rol: data.user.rol.rol
       }
-      dispatch({type: types.userActive, payload})
+      dispatch({ type: types.userActive, payload })
     }
   }
 }
 
 //ACÁ TERMINAN LAS  ACCIONES DE LOGIN !!!
 //-----------------------------------------------------------------------------------
+export function deleteProduct(id) {
+  return async function (dispatch) {
+    let result = await fetchConToken(`products/${id}`, {}, 'DELETE')
+    const data = await result.json();
+    if (data.ok) {
+      Swal.fire('Success', 'Producto eliminado', 'success')
+      return dispatch({
+        type: DELETE_PRODUCT,
+        payload: id
+      });
+    }
+  };
+}
+
+export function updateProductos(product) {
+  return async (dispatch) => {
+    try {
+
+      // const result = await axios.put(`${api}/products/` + product.id, product);
+      const result = await fetchConToken(`products/${product.id}`, product, 'PUT')
+      const data = await result.json();
+
+      if(data.ok){
+        Swal.fire('Success', 'Producto actualizado', 'success')
+        // return dispatch({
+        //   type: UPDATE_PRODUCT,
+        //   payload: data,
+        // });
+      }
+
+    } catch (err) {
+      console.log("error en modificacion:", err);
+    }
+  };
+}

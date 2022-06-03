@@ -133,23 +133,23 @@ export function Reserva() {
     <div>
       <div>
         <Link to="/">
-          <button class="btn btn-warning fw-bold">Home</button>
+          <button className="btn btn-warning fw-bold">Home</button>
         </Link>
       </div>
 
-      <div class="carta">
+      <div className="carta">
         <form
           onSubmit={(e) => handleSubmit(e)}
           data-netlify="true"
-          class="formReserva"
+          className="formReserva"
         >
-          <div class="cardContainer">
+          <div className="cardContainer">
             {/*  -----------------SERVICIOS---------------------------*/}
-            <div class="mb-3">
-              <label class="text-light">Servicio</label>
+            <div className="mb-3">
+              <label className="text-light">Servicio</label>
               <select
                 onChange={(e) => handleChange(e)}
-                class="form-select"
+                className="form-select"
                 name="service"
                 value={state.service}
               >
@@ -165,11 +165,11 @@ export function Reserva() {
 
             {/*  -----------------SERVICIOS---------------------------*/}
             {/*  -----------------BARBERO--------------------------*/}
-            <div class="mb-3">
-              <label class="text-light">Barbero</label>
+            <div className="mb-3">
+              <label className="text-light">Barbero</label>
               <select
                 onChange={(e) => handleChangeBarberia(e)}
-                class="form-select"
+                className="form-select"
                 name="barberos"
               >
                 <option hidden>Seleccione un barbero</option>
@@ -205,8 +205,8 @@ export function Reserva() {
 
           {/*  ------------------CALENDARIO----------------------------*/}
 
-          <div class="mb-3">
-            <button type="submit" class=" btn btn-primary w-100 fs-5">
+          <div className="mb-3">
+            <button type="submit" className=" btn btn-primary w-100 fs-5">
               Reservar!
             </button>
           </div>

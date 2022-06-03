@@ -24,7 +24,6 @@ const initialState = {
 function rootReducer(state = initialState, action) {
   switch (action.type) {
     case ACTIONS.ALL_PRODUCTOS:
-      console.log(action.payload);
       return {
         ...state,
         productos: action.payload,
@@ -47,6 +46,13 @@ function rootReducer(state = initialState, action) {
       return {
         ...state,
       };
+
+    case ACTIONS.DELETE_PRODUCT:
+      return {
+        ...state,
+        productos: state.productos.filter(p => p.id !== action.payload) 
+      }
+
     case ACTIONS.ELIMINAR_INFO_DETALLE:
       return {
         detalle: [],
