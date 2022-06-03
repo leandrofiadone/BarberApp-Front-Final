@@ -16,8 +16,9 @@ const initialState = {
   barberos: [],
   //login
   user: {},
-  isAuth: false,
+  isAuth: false
   //cierra login
+
 };
 
 function rootReducer(state = initialState, action) {
@@ -49,8 +50,8 @@ function rootReducer(state = initialState, action) {
     case ACTIONS.DELETE_PRODUCT:
       return {
         ...state,
-        productos: state.productos.filter((p) => p.id !== action.payload),
-      };
+        productos: state.productos.filter(p => p.id !== action.payload) 
+      }
 
     case ACTIONS.ELIMINAR_INFO_DETALLE:
       return {
@@ -76,14 +77,15 @@ function rootReducer(state = initialState, action) {
       };
 
     case ACTIONS.FILTER_CATEGORIAS:
+      const filterCategorias = state.categorias;
       const filterProductos = state.allProductos;
 
       const infoCategoria =
         action.payload === "All"
           ? filterProductos
           : filterProductos.filter(
-              (e) => e.category.categorie === action.payload
-            );
+            (e) => e.category.categorie === action.payload
+          );
 
       return {
         ...state,
@@ -136,8 +138,8 @@ function rootReducer(state = initialState, action) {
         action.payload === "All"
           ? ordenPrecio
           : action.payload === "max"
-          ? ordenPrecio.sort((a, b) => b.price - a.price)
-          : ordenPrecio.sort((a, b) => a.price - b.price);
+            ? ordenPrecio.sort((a, b) => b.price - a.price)
+            : ordenPrecio.sort((a, b) => a.price - b.price);
 
       return {
         ...state,
@@ -173,26 +175,21 @@ function rootReducer(state = initialState, action) {
         barberos: action.payload,
       };
 
-    case ACTIONS.CREATE_USERS:
-      return {
-        ...state,
-      };
-
     // PARA EL LOGIN!!!!!
 
     case types.login:
       return {
         ...state,
         user: action.payload,
-        isAuth: true,
-      };
+        isAuth: true
+      }
 
     case types.logout:
       return {
         ...state,
         user: {},
-        isAuth: false,
-      };
+        isAuth: false
+      }
 
     // CIERRA EL LOGIN!!!!!
 

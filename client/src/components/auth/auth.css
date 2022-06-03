@@ -1,0 +1,62 @@
+.main{
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  grid-template-areas:  'col-login   col-register'
+                        'btn-volver btn-volver';
+  grid-template-rows: auto;
+  justify-content: center !important; 
+  align-content: center;
+  background-image: url('../../assets/bg-login.avif');
+  width: 100vw;
+  height: 100vh;
+}
+
+.main > div {
+  width: 500px;
+}
+
+.main .col-login{
+  grid-area: col-login;
+  background-color: rgba(255, 172, 42, .50);
+  border-radius: 7px 0 0 7px;
+  justify-self: end;
+  padding: 25px;
+}
+
+.main .col-register{
+  grid-area: col-register;
+  background-color: rgba(0,0,0,.70);
+  border-radius: 0 7px 7px 0;
+  padding: 25px;
+}
+
+.main .btn-volver{
+  background-color: black;
+  grid-area: btn-volver;
+  text-align: center;
+  justify-self: center;
+  padding: 10px;
+  transition: all .3s ease;
+}
+
+.main .btn-volver:hover{
+  background-color: rgba(0, 0, 0, .68);
+}
+
+.main .btn-volver a {
+  text-decoration: none;
+  color: white;
+  padding: 10px;
+  /* background-color: rgba(0, 0, 0, .50); */
+}
+
+
+
+/* media queries */
+@media screen and (max-width: 650px){
+  .main{
+    display: grid;
+    grid-template-columns: 1fr;
+    /* grid-template-rows: 2fr; */
+  }
+}

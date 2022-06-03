@@ -1,6 +1,6 @@
-import React, { useEffect } from "react";
-import { BrowserRouter, Route, Switch } from "react-router-dom";
-import { useDispatch, useSelector } from "react-redux";
+import React, { useEffect } from 'react';
+import { BrowserRouter, Route, Switch } from 'react-router-dom';
+import { useDispatch, useSelector } from 'react-redux';
 import "bootstrap/dist/css/bootstrap.min.css";
 import Home from "../components/Home/Home";
 import Tienda from "../components/Tienda/Tienda";
@@ -21,53 +21,54 @@ import comoReservar from "../components/Chatbot/ComoReservar";
 /* ------------------------------------------------ */
 
 import PrivateRoute from "./PrivateRoute";
-import {
-  allProductos,
-  getCategories,
-  revalidarAuth,
-} from "../redux/actions/index";
+import { allProductos, getCategories, revalidarAuth } from "../redux/actions/index";
 import { PrivateAdmin } from "./PrivateAdmin";
 import { AdminRoute } from "./AdminRoute";
 
 export const AppRouter = () => {
-  const { isAuth, user } = useSelector((state) => state);
 
-  const dispatch = useDispatch();
+    const { isAuth, user } = useSelector((state) => state);
 
-  useEffect(() => {
-    dispatch(revalidarAuth());
-    dispatch(allProductos());
-    dispatch(getCategories());
-  }, [dispatch]);
+    const dispatch = useDispatch();
 
-  return (
-    <BrowserRouter>
-      <div>
-        <Switch>
-          <Route exact path="/" component={Home} />
-          {/* auth */}
-          <Route exact path="/auth/login" component={Login} />
-          <Route exact path="/auth/register" component={Register} />
+    useEffect(() => {
+        dispatch(revalidarAuth());
+        dispatch(allProductos());
+        dispatch(getCategories())
+    }, [dispatch]);
 
-          {/* tienda */}
-          <Route exact path="/tienda" component={Tienda} />
-          <Route exact path="/tienda/:id" component={Detalle} />
+    return (
+        <BrowserRouter>
+            <div>
+                <Switch>
+                    <Route exact path="/" component={Home} />
+                    {/* auth */}
+                    <Route exact path="/auth/login" component={Login} />
+                    <Route exact path="/auth/register" component={Register} />
 
-          <Route exact path="/servicios" component={Servicios} />
-          <Route exact path="/reserva" component={Reserva} />
-          <Route exact path="/comocomprar" component={comoComprar} />
-          <Route exact path="/comoreservar" component={comoReservar} />
+                    {/* tienda */}
+                    <Route exact path="/tienda" component={Tienda} />
+                    <Route exact path="/tienda/:id" component={Detalle} />
 
-          <PrivateAdmin
-            path="/admin"
-            component={AdminRoute}
-            isAuth={isAuth}
-            admin={user.rol}
-          />
+                    <Route exact path="/servicios" component={Servicios} />
+                    <Route exact path="/reserva" component={Reserva} />
+                    <Route exact path="/comocomprar" component={comoComprar} />
+                    <Route exact path="/comoreservar" component={comoReservar} />
 
-          <PrivateRoute path="/profile" component={Profile} isAuth={isAuth} />
-        </Switch>
-      </div>
-    </BrowserRouter>
-  );
-};
+                    <PrivateAdmin
+                        path='/admin'
+                        component={AdminRoute}
+                        isAuth={isAuth}
+                        admin={user.rol}
+                    />
+
+                    <PrivateRoute
+                        path="/profile"
+                        component={Profile}
+                        isAuth={isAuth}
+                    />
+                </Switch>
+            </div>
+        </BrowserRouter>
+    )
+}

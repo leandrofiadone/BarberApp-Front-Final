@@ -10,6 +10,8 @@ import Swal from "sweetalert2";
 
 import "./Reserva.css";
 
+import Geolocalizacion from "../Geolocalizacion/Geolocalizacion";
+
 const validate = (state) => {
   let errors = {};
 
@@ -27,8 +29,6 @@ const validate = (state) => {
 export function Reserva() {
   const dispatch = useDispatch();
 
-  const { user } = useSelector((state) => state);
-
   const allServices = useSelector((state) => state.servicios.services);
   const subBarberos = useSelector((state) => state.barberos);
 
@@ -39,7 +39,6 @@ export function Reserva() {
     service: "",
     idEmployee: "",
     barberos: "",
-    userId: user,
   });
 
   const [errors, setError] = useState({});
@@ -51,7 +50,6 @@ export function Reserva() {
 
   const handleChange = (e) => {
     e.preventDefault();
-
     setState({
       ...state,
       [e.target.name]: e.target.value,
@@ -175,8 +173,8 @@ export function Reserva() {
                 name="barberos"
               >
                 <option hidden>Seleccione un barbero</option>
-                {subBarberos?.map((e, index) => (
-                  <option key={index} value={[e.id]}>
+                {subBarberos?.map((e) => (
+                  <option key={e.id} value={[e.id]}>
                     {e.name}
                   </option>
                 ))}
@@ -212,6 +210,8 @@ export function Reserva() {
               Reservar!
             </button>
           </div>
+
+          <Geolocalizacion />
 
           <br />
           <br />

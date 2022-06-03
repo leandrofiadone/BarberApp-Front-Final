@@ -1,5 +1,5 @@
 import React from "react";
-import { Link, Redirect } from "react-router-dom";
+import { Link } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { useHistory } from "react-router-dom";
 
@@ -8,13 +8,14 @@ import { logout } from "../../redux/actions/index";
 import "./NavBar.css";
 
 export default function NavBar() {
-  const { isAuth, user } = useSelector((state) => state);
+
+  const { isAuth, user } = useSelector(state => state);
 
   const dispatch = useDispatch();
   const history = useHistory();
   const handleLogout = () => {
     dispatch(logout());
-    history.replace("/");
+    history.replace('/')
   };
 
   return (
@@ -36,11 +37,7 @@ export default function NavBar() {
         <div className="collapse navbar-collapse" id="navbarSupportedContent">
           <ul className="navbar-nav me-auto mb-2 mb-lg-0">
             <li className="nav-item">
-              <a
-                className="nav-link text-light"
-                aria-current="page"
-                href="#inicio"
-              >
+              <a className="nav-link text-light" aria-current="page" href="#inicio">
                 Inicio
               </a>
             </li>
@@ -62,46 +59,46 @@ export default function NavBar() {
               </Link>
             </li>
 
-            {!isAuth && (
-              <Link className="nav-item linkReserva" to="/auth/login">
-                <li className="nav-item">
-                  <button className="bg-dark">Registrate</button>
-                </li>
-              </Link>
-            )}
-            {isAuth && (
-              <Link className="nav-item linkReserva" to={`/profile`}>
-                <li className="nav-item">
-                  <button className="bg-dark">Perfil</button>
-                </li>
-              </Link>
-            )}
+            <li className="nav-item">
+              <button className="bg-dark" href="">
+                Registrate
+              </button>
+            </li>
           </ul>
 
-          {isAuth && (
-            <span className="linkReserva">
+          {
+            (!isAuth) &&
+            <Link className="nav-item linkReserva" to="/auth/login">
+              <button className="btnLogin btn btn-warning fw-bold" type="button">
+                Login
+              </button>
+            </Link>
+
+          }
+
+          {
+            isAuth &&
+            <Link to={`/profile`}>Profile</Link>
+          }
+
+          {
+            isAuth &&
+            <div className="nav-item linkReserva">
               <button
-                onClick={handleLogout}
-                className="btnCita btn btn-warning fw-bold"
+                className="btnLogin btn btn-warning fw-bold"
                 type="button"
+                onClick={handleLogout}
               >
-                Salir
+                Logout
               </button>
-            </span>
-          )}
-          {isAuth && isAuth ? (
-            <Link to="/reserva" className="linkReserva">
-              <button className="btnCita btn btn-warning fw-bold" type="button">
-                Reserva tu cita
-              </button>
-            </Link>
-          ) : (
-            <Link to="auth/login" className="linkReserva">
-              <button className="btnCita btn btn-warning fw-bold" type="button">
-                Reserva tu cita
-              </button>
-            </Link>
-          )}
+            </div>
+          }
+
+          <Link to="/reserva" className="linkReserva">
+            <button className="btnCita btn btn-warning fw-bold" type="button">
+              Reserva tu cita
+            </button>
+          </Link>
         </div>
       </div>
     </nav>
