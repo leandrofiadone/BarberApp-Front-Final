@@ -1,0 +1,11 @@
+.imgHelp > button{
+    position: fixed;
+    right: 1rem;
+    bottom: 1rem;
+    background-color: transparent;
+    border: none;
+}
+
+.imgHelp > button > img {
+    width: 4rem;
+}

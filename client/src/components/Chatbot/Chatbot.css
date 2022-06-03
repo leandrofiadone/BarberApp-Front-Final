@@ -1,0 +1,27 @@
+.allContainerChat{
+    width: 25rem;
+    height: 30rem;
+}
+
+
+.botonAyuda{
+    padding: 1rem;
+}
+
+.botonAyuda > button{
+    float: right;
+    padding: 1rem;
+    font-weight: bold;
+    border: none;
+
+}
+
+.containerChat{
+    display: flex;
+    justify-content: center;
+}
+
+.botonAyuda > button > img{
+    width: 7rem;
+    margin-right: -3rem;
+}

@@ -1,0 +1,28 @@
+.containerDetail{
+    display: grid;
+    place-items: center;
+    margin-top: 2rem;
+    text-transform: capitalize;
+}
+
+.containerDetail > img {
+    margin-right: 11rem;
+}
+
+.containerDetail > button{
+    background-color: transparent;
+    color: white;
+    padding: 20px;
+    border: 1px solid rgb(4, 117, 13);
+}
+
+.containerDetail > button:hover{
+    background-color: rgb(13, 100, 6);
+}
+
+.divDesc{
+    display: flex;
+    justify-content: center;
+    margin-left: 26rem;
+    width: 500px;
+}

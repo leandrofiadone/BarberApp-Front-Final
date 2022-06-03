@@ -1,0 +1,12 @@
+
+.form-control{
+    height: 30px;
+}
+
+.btn{
+    height: 30px;
+    text-align: center;
+    align-items: center;
+    display: flex;
+    justify-content: center;
+}

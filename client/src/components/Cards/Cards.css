@@ -1,0 +1,26 @@
+.containerImg{
+    width: 250px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+}
+
+img{
+    height: auto;
+    width: auto;
+    max-height: 300px;
+    max-width: 300px;
+    margin-bottom: 20px;
+    margin-left: 11rem;
+    border-radius: 5px;
+    justify-content: center;
+    align-items: center;
+}
+
+.containerText{
+    display: flex;
+    flex-direction: column;
+    justify-items: center;
+    margin-bottom: -2rem;
+}

@@ -1,0 +1,11 @@
+.botonesCarrito{
+    display: flex;
+    justify-content: center;
+    gap: .7rem;
+    margin-top: 2.4rem;
+    align-items: center;
+}
+
+.menos{
+    width: 1.8rem;
+}

@@ -1,0 +1,19 @@
+.texto-quienes{
+    width: 50rem;
+    margin-left: 16rem;
+}
+
+.tituloQuienes{
+    background-color: black;
+    padding: 1rem;
+    margin-bottom: 2rem;
+    font-weight: bold;
+    text-shadow: rgb(255, 145, 0) 0 0, cyan 0 0;
+    transition: text-shadow 200ms;
+    letter-spacing: 8px;
+    
+}
+
+.tituloQuienes:hover{
+    text-shadow: rgb(255, 145, 0) -8px 0, cyan 6px 0;
+}
