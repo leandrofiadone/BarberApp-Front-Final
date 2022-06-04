@@ -18,8 +18,8 @@ export default function Carrito() {
         emptyCart
     } = useCart();
 
-    //const {user} = useSelector(state => state)
-    const user ={idUser:"c7c27d4c-5e59-4dff-aa6a-9bc366dc8766"};
+    //const {user} = useSelector(state => state) //<-- descomentar cuando haya login
+    const user ={idUser:"c7c27d4c-5e59-4dff-aa6a-9bc366dc8766"};//<-- Harcodeo del usuario 
 
     if (isEmpty) return <h1 className="text-center">El carrito esta vacio</h1>
 
