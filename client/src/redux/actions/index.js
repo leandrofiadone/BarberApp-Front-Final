@@ -363,3 +363,17 @@ export function updateProductos(product) {
     }
   };
 }
+
+export const paymentMP = async(carrito) =>{
+  console.log("Carrito actions paymentMP ->>",carrito)
+  const response = await fetch("https://barber-app-henry.herokuapp.com/api/purchaseOrder", {
+    method: "POST",
+    body: JSON.stringify(carrito),
+    headers: {
+      "Content-Type": "application/json",
+    },
+  });
+  const json = await response.json();
+  console.log("json",json)
+  window.location.assign(json.urlPayment);
+}

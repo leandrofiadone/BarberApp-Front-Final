@@ -69,14 +69,14 @@ export default function Tienda() {
 
       <div className="botonVolver">
       <Link to="/" className="LinkVolver">
-        <button onClick="window.location.reload()" className="btn btn-dark" id="arriba"> Volver</button>
+        <button onClick={()=>window.location.reload()} className="btn btn-dark" id="arriba"> Volver</button>
       </Link>
       </div>
 
       
 
     <Link to="/tienda">
-      <button onClick="window.location.reload()" className="containerTienda"><h1>Tienda Web</h1></button>
+      <button onClick={()=>window.location.reload()} className="containerTienda"><h1>Tienda Web</h1></button>
     </Link>
     <br />
 
@@ -111,7 +111,7 @@ export default function Tienda() {
       
       <div className="text-dark">
 
-            <select name="select" onChange={onSelectsChange} className="form-select-sm">
+            <select name="select" onChange={()=>onSelectsChange()} className="form-select-sm">
                 <option value="Filter"> A-Z:</option>
                 <option value="ASC">Ascendente</option>
                 <option value="DESC">Descendente</option>
@@ -178,7 +178,8 @@ export default function Tienda() {
                     price={e.price}
                     img={e.img}
                     category={e.category.categorie}
-                    item={e}
+                    id={e.id}
+                    idProduct={e.id}
                   />
                 <Link to={`tienda/${e.id}`} className="LinkDetail">
                   <button>+info</button>

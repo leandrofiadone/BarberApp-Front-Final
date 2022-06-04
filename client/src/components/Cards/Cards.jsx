@@ -3,7 +3,7 @@ import {useCart} from 'react-use-cart';
 import Swal from 'sweetalert2'
 
 
-const Cards = ({ name, stock, price, img, id, category, item }) => {
+const Cards = ({ name, stock, price, img,id, category,idProduct}) => {
 
   const {addItem} = useCart()
 
@@ -12,8 +12,11 @@ const Cards = ({ name, stock, price, img, id, category, item }) => {
       icon:'success',
       title:'Producto agregado al carrito!'
     })
-    addItem(item)
+
+    //Falta agregar el id delk usuario logueado
+    addItem({ name, stock, price, img, id , category, idProduct})
   } 
+
 
   return (
 
