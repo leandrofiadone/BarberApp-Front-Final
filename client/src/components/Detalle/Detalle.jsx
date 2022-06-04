@@ -10,30 +10,36 @@ import Swal from 'sweetalert2'
 
 import "./Detalle.css"
 
-const Detalle = ({item}) => {
+const Detalle = () => {
+
   const dispatch = useDispatch();
 
   const { id } = useParams();
 
   const {addItem} = useCart()
 
-  // function ambos(id){
-  //   Swal.fire({
-  //     icon:'success',
-  //     title:'Producto agregado al carrito!'
-  //   })
-  //   addItem(item, id)
-  // } 
+  const {user} = useSelector(state => state)
 
-  useEffect((id) => {
-    dispatch(detalleDeProductos(id));
-  }, [dispatch]);
+   function addCartAlert(){
+    Swal.fire({
+    icon:'success',
+    title:'Producto agregado al carrito!'
+    }) 
+   } 
 
   useEffect(() => {
-    return dispatch(eliminarInfoDetalle());
-  }, [dispatch]);
+    dispatch(detalleDeProductos(id));
+  }, [dispatch, id]);
+
+  const deleteInfoProduct = (id) =>{
+    dispatch(eliminarInfoDetalle(id));
+  }
+
+  
 
   const productosId = useSelector((state) => state.detalle);
+
+
 
   return (
     <div >
@@ -44,7 +50,15 @@ const Detalle = ({item}) => {
           <img src={productosId.img} className="imgDetalle"/>
           <h2><b>$ {productosId.price}</b></h2>
           <p><i>Stock: {productosId.stock}</i></p>
-          <button type="button" class="btn btn-success" onClick={() => addItem(id)}>Comprar</button>
+          <button type="button" class="btn btn-success" onClick={() =>{ addItem({
+            id: productosId,
+            price: productosId.price,
+            stock:productosId.stock,
+            name: productosId.name,
+            idProduct: productosId.id,
+            idUser: user.idUser,
+            quantity:1
+          });addCartAlert()}}>Comprar</button>
         </div>
       ) : (
         <div>Cargando Producto</div>

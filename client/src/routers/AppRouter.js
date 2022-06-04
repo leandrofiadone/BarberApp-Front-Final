@@ -59,7 +59,7 @@ export const AppRouter = () => {
                         path='/admin'
                         component={AdminRoute}
                         isAuth={isAuth}
-                        admin={user.rol}
+                        admin={user.rol}//<--- error
                     />
 
                     <PrivateRoute

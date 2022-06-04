@@ -9,7 +9,7 @@ const initialState = {
   productos: [],
   allProductos: [],
   allServicios: [],
-  detalle: [],
+  detalle: {},
   categorias: [],
   empleados: [],
   citas: [],
