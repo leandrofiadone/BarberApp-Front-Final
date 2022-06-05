@@ -402,7 +402,7 @@ export const getAllUsers = () => {
 
 export const adminGetAllProducts = () => {
   return async (dispatch) => {
-    const resp = await fetchSinToken('products?p=true');
+    const resp = await fetchSinToken('products?all=true');
     const data = await resp.json();
 
     if (data.ok) {
@@ -417,3 +417,15 @@ export const addProductosAdmin = (product) => (
     payload: product
   }
 )
+
+export const activarProducto = (id) => {
+  return async(dispatch) => {
+    const resp = await fetchConToken(`products/${id}`, {}, 'PATCH')
+    const data = await resp.json();
+    console.log(data)
+    if(data.ok){
+      dispatch({type: types.activaProducto, payload: data.producto});
+      dispatch({type: ADD_PRODUCT, payload: data.producto})
+    }
+  }
+}

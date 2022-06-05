@@ -3,7 +3,7 @@ import React, { useEffect } from "react";
 import { Link } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 
-import { adminGetAllProducts, deleteProduct, detalleDeProductos } from "../../../redux/actions";
+import { activarProducto, adminGetAllProducts, deleteProduct, detalleDeProductos } from "../../../redux/actions";
 import './productos.css'
 
 export default function Producto() {
@@ -14,6 +14,11 @@ export default function Producto() {
 
     const handleDelete = (id) => {
         dispatch(deleteProduct(id));
+    }
+
+    const handleActive = (id) => {
+        console.log(id)
+        dispatch(activarProducto(id));
     }
 
     const handleDetailProduct = (id) => {
@@ -69,6 +74,9 @@ export default function Producto() {
                                                 Edit
                                             </Link>
                                         </button>
+                                        {
+                                        (producto.state)
+                                        ?
                                         <button
                                             className="btn btn-outline-danger"
                                             onClick={() =>
@@ -77,6 +85,13 @@ export default function Producto() {
                                         >
                                             Eliminar
                                         </button>
+                                        :
+                                        <button 
+                                            className="btn btn-outline-success"
+                                            onClick={() => handleActive(producto.id)}>
+                                            Activar
+                                        </button>
+                                        }
                                     </div>
                                 </td>
                             </tr>

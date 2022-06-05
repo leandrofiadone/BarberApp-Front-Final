@@ -58,6 +58,14 @@ function rootReducer(state = initialState, action) {
         adminAllProducts: state.adminAllProducts.concat(action.payload)
       };
 
+    case types.activaProducto: 
+      let activarProductoAdmin = state.adminAllProducts.filter(pro => pro.id !== action.payload.id);
+      let productoActivar = action.payload;
+      return {
+        ...state,
+        adminAllProducts: activarProductoAdmin.concat(productoActivar)
+      }
+
     case ACTIONS.DELETE_PRODUCT:
       return {
         ...state,

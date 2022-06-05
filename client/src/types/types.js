@@ -12,6 +12,7 @@ export const types = {
     createUser: '[auth] register user',
 
     crearProducto: '[producto] crear un producto',
+    activaProducto: '[admin => producto] activar un producto',
     getAllProductsAdmin: '[producto] obtener todos los productos sin importar su estado',
     addProductsAdmin: '[admin => product] añadir productos al panel de admin'
  }
