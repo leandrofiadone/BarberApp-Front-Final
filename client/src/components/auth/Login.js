@@ -7,7 +7,7 @@ import Swal from 'sweetalert2'
 import './auth.css';
 import { Google } from './Google'
 import { fetchConToken, fetchSinToken } from '../../helpers/fetch'
-import { adminGetAllProducts, login } from '../../redux/actions'
+import { adminGetAllProducts, getCategories, login } from '../../redux/actions'
 
 
 export const Login = () => {
@@ -55,7 +55,8 @@ export const Login = () => {
         dispatch({ type: types.getAllUsers, payload: data.users })
         dispatch(adminGetAllProducts())
       }
-
+      
+      dispatch(getCategories())
       dispatch(login(payload));
       history.replace('/');
     }

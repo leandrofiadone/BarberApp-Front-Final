@@ -94,15 +94,43 @@ export function detalleDeProductos(id) {
 
 export function addProductos(product) {
   return async (dispatch) => {
-    // `https://barber-app-henry.herokuapp.com/api/products`,
-    const resp = await fetchConToken(`http://localhost:8080/api/products`, product, 'POST');
+    const resp = await fetchConToken('products', product, 'POST');
     const data = await resp.json();
 
-    if (data.ok) {
-      dispatch({
+    if(data.ok){
+
+      Swal.fire('Success', 'producto creado', 'success')
+      dispatch(addProductosAdmin(data.producto))
+      return dispatch({
         type: ADD_PRODUCT,
         payload: data.producto,
       });
+    }
+  };
+}
+
+export function updateProductos(product) {
+  return async (dispatch) => {
+    try {
+      const result = await fetchConToken(
+        `products/${product.id}`,
+        product,
+        "PUT"
+      );
+      const data = await result.json();
+
+      if (data.ok) {
+        console.log(data)
+        Swal.fire('Success', 'Producto actualizado', 'success')
+        return dispatch({
+          type: UPDATE_PRODUCT,
+          payload: data.producto,
+        });
+      } else {
+        console.log(data)
+      }
+    } catch (err) {
+      console.log("error en modificacion:", err);
     }
   };
 }
@@ -160,14 +188,15 @@ export function getEmployee() {
 
 export function getCategories() {
   return async (dispatch) => {
-    let informacion = await axios(
-      // `https://barber-app-henry.herokuapp.com/api/categories`
-      `http://localhost:8080/api/categories`
-    );
-    return dispatch({
-      type: GET_CATEGORIES,
-      payload: informacion.data.categories,
-    });
+    const resp = await fetchSinToken('categories');
+    const data = await resp.json();
+    console.log(data)
+    if (data.ok) {
+      return dispatch({
+        type: GET_CATEGORIES,
+        payload: data.categories,
+      });
+    }
   };
 }
 
@@ -273,7 +302,7 @@ export function revalidarAuth() {
         img: data.img,
         phone: data.phone
       };
-      
+
       dispatch(adminGetAllProducts())
       return dispatch({
         type: types.login,
@@ -323,32 +352,6 @@ export function deleteProduct(id) {
   };
 }
 
-export function updateProductos(product) {
-  return async (dispatch) => {
-    try {
-      // const result = await axios.put(`${api}/products/` + product.id, product);
-      const result = await fetchConToken(
-        `products/${product.id}`,
-        product,
-        "PUT"
-      );
-      const data = await result.json();
-
-      if (data.ok) {
-        console.log(data)
-        Swal.fire('Success', 'Producto actualizado', 'success')
-        return dispatch({
-          type: UPDATE_PRODUCT,
-          payload: data.producto,
-        });
-      } else {
-        console.log(data)
-      }
-    } catch (err) {
-      console.log("error en modificacion:", err);
-    }
-  };
-}
 
 export const paymentMP = async (items, user, navigate, emptyCart) => {
 
@@ -398,12 +401,19 @@ export const getAllUsers = () => {
 }
 
 export const adminGetAllProducts = () => {
-  return async(dispatch) => {
-    const resp = await fetchSinToken('products?all=true');
+  return async (dispatch) => {
+    const resp = await fetchSinToken('products?p=true');
     const data = await resp.json();
 
-    if(data.ok){
-      return dispatch({type: types.getAllProductsAdmin, payload: data.products})
+    if (data.ok) {
+      return dispatch({ type: types.getAllProductsAdmin, payload: data.products })
     }
   }
 }
+
+export const addProductosAdmin = (product) => (
+  {
+    type: types.addProductsAdmin,
+    payload: product
+  }
+)

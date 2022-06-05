@@ -8,7 +8,7 @@ import './productos.css'
 
 export default function Producto() {
 
-    const { productos } = useSelector((state) => state);
+    const { adminAllProducts } = useSelector((state) => state);
 
     const dispatch = useDispatch();
 
@@ -19,6 +19,11 @@ export default function Producto() {
     const handleDetailProduct = (id) => {
         dispatch(detalleDeProductos(id))
     }
+
+    // useEffect(() => {
+    //     console.log('hey')
+    //     dispatch(adminGetAllProducts())
+    // }, [dispatch]);
 
     return (
         <>
@@ -36,7 +41,7 @@ export default function Producto() {
                     </tr>
                 </thead>
                 <tbody>
-                    {productos.map((producto, index) => {
+                    {adminAllProducts.map((producto, index) => {
                         return (
                             <tr key={producto.id}>
                                 <th scope="row">{index + 1}</th>

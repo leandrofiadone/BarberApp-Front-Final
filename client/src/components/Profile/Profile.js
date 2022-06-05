@@ -8,6 +8,7 @@ import './Profile.css';
 import { ReservasPerfil } from "./reservas/ReservasPerfil";
 
 const Profile = () => {
+  
   const { user } = useSelector((state) => state);
   // const { citas } = useSelector((state) => state);
   // const filtrado = citas.filter((e) => e.idUser === user.id);

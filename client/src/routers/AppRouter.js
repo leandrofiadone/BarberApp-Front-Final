@@ -1,5 +1,5 @@
 import React, { useEffect } from 'react';
-import { BrowserRouter, Route, Switch } from 'react-router-dom';
+import { HashRouter, Route, Switch } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import "bootstrap/dist/css/bootstrap.min.css";
 import Home from "../components/Home/Home";
@@ -35,11 +35,11 @@ export const AppRouter = () => {
         dispatch(revalidarAuth());
         dispatch(allProductos());
         dispatch(getCategories());
-        dispatch(getAllUsers());
+        // dispatch(getAllUsers());
     }, [dispatch]);
 
     return (
-        <BrowserRouter>
+        <HashRouter>
             <div>
                 <Switch>
                     <Route exact path="/" component={Home} />
@@ -70,6 +70,6 @@ export const AppRouter = () => {
                     />
                 </Switch>
             </div>
-        </BrowserRouter>
+        </HashRouter>
     )
 }

@@ -31,10 +31,9 @@ export default function Tienda() {
 
   const productosBarberia = useSelector((state) => state.productos);
 
-  useEffect(() => {
-    dispatch(allProductos());
-    dispatch(getCategories());
-  }, [dispatch]);
+  // useEffect(() => {
+  //   dispatch(allProductos());
+  // }, [dispatch]);
 
   // function handleFilterCategorie(e) {
   //   dispatch(filterByCategorie(e.target.value));
