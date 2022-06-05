@@ -29,7 +29,7 @@ export default function Tienda() {
 
   const dispatch = useDispatch();
 
-  const productosBarberia = useSelector((state) => state.productos);
+  const {allProductos} = useSelector((state) => state);
 
   // useEffect(() => {
   //   dispatch(allProductos());
@@ -121,7 +121,7 @@ export default function Tienda() {
 
       <div className="text-dark">
       {
-        productosBarberia? (
+        allProductos? (
           <select onChange={(e) => handlePrecio(e)} className="form-select-sm">
             <option value="All"> Todos</option>
             <option value="max">Mayor precio</option>
@@ -166,8 +166,8 @@ export default function Tienda() {
       <div className="cardsTienda">
 
 
-        {productosBarberia ? (
-          productosBarberia?.map((e) => {
+        {allProductos ? (
+          allProductos?.map((e) => {
             return (
               <div key={e.id}>
                   <Cards

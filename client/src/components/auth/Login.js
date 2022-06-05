@@ -59,6 +59,12 @@ export const Login = () => {
       dispatch(getCategories())
       dispatch(login(payload));
       history.replace('/');
+    }else{
+      if(data.errors.email){
+        Swal.fire('Error', data.errors.email.msg, 'error')
+      }else{
+        Swal.fire('Error', data.msg, 'error')
+      }
     }
 
     resetLogin();

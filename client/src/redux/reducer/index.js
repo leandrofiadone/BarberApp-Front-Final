@@ -49,7 +49,7 @@ function rootReducer(state = initialState, action) {
     case ACTIONS.ADD_PRODUCT:
       return {
         ...state,
-        productos: state.allProductos.concat(action.payload)
+        allProductos: state.allProductos.concat(action.payload)
       };
 
     case types.addProductsAdmin:
@@ -67,9 +67,12 @@ function rootReducer(state = initialState, action) {
       }
 
     case ACTIONS.DELETE_PRODUCT:
+      let arrDeProductos = state.adminAllProducts.filter(p => p.id !== action.payload.id)
+      let productoActualizado = action.payload;
       return {
         ...state,
-        productos: state.productos.filter(p => p.id !== action.payload)
+        allProductos: state.allProductos.filter(p => p.id !== action.payload.id),
+        adminAllProducts: arrDeProductos.concat(productoActualizado)
       }
 
     case ACTIONS.UPDATE_PRODUCT:
@@ -120,7 +123,7 @@ function rootReducer(state = initialState, action) {
 
       return {
         ...state,
-        productos: infoCategoria,
+        allProductos: infoCategoria,
       };
 
     case ACTIONS.GET_CATEGORIES:
@@ -130,7 +133,7 @@ function rootReducer(state = initialState, action) {
       };
 
     case ACTIONS.SORT_NAME:
-      let orderName = [...state.productos];
+      let orderName = [...state.allProductos];
       orderName = orderName.sort((a, b) => {
         if (a.name < b.name) {
           return action.payload === "ASC" ? -1 : 1;
@@ -142,7 +145,7 @@ function rootReducer(state = initialState, action) {
       });
       return {
         ...state,
-        productos: action.payload === "Filter" ? state.allProductos : orderName,
+        allProductos: action.payload === "Filter" ? state.allProductos : orderName,
       };
 
     case ACTIONS.SORT:
@@ -163,7 +166,7 @@ function rootReducer(state = initialState, action) {
       };
 
     case ACTIONS.ORDER_PRECIO:
-      let ordenPrecio = [...state.productos];
+      let ordenPrecio = [...state.allProductos];
 
       const info =
         action.payload === "All"
@@ -174,7 +177,7 @@ function rootReducer(state = initialState, action) {
 
       return {
         ...state,
-        productos: info,
+        allProductos: info,
       };
 
     case ACTIONS.FILTER_RANGO_PRECIO:

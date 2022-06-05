@@ -12,7 +12,8 @@ export const CrearProducto = () => {
     stock: 0,
     price: 0,
     categoria: '',
-    detail: ''
+    detail: '',
+    img: ''
   });
 
   const handleChange = ({target})=> {

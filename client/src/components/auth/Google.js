@@ -4,6 +4,7 @@ import { useDispatch } from 'react-redux';
 import { types } from '../../types/types';
 import { useHistory } from 'react-router-dom'
 import { fetchSinToken } from '../../helpers/fetch';
+import Swal from 'sweetalert2';
 
 export const Google = () => {
 
@@ -31,7 +32,7 @@ export const Google = () => {
       })
       history.replace('/')
     } else {
-      console.log(data)
+      Swal.fire('Error', data.msg, 'error')
     }
 
   }

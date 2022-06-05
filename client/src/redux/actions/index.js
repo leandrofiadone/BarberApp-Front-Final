@@ -52,52 +52,46 @@ export function allProductos() {
 
 export function buscarProductos(name) {
   return async (dispatch) => {
-    try {
-      let informacion = await axios(
-        // `https://barber-app-henry.herokuapp.com/api/products?name=${name}`
-        `http://localhost:8080/api/products?name=${name}`
-      );
+    const resp = await fetchSinToken(`products?name=${name}`)
+    const data = await resp.json();
 
-
+    if (data.ok) {
       return dispatch({
         type: BUSCAR_PRODUCTOS,
-        payload: informacion.data.product,
+        payload: data.product,
       });
-    } catch (error) {
+    } else {
       Swal.fire({
         icon: "error",
         title: "Oops...",
         text: "No encontramos el producto que estas buscando!",
         confirmButtonText: "Aceptar",
       });
-      console.log(error);
     }
   };
 }
 
 export function detalleDeProductos(id) {
   return async (dispatch) => {
-    try {
-      let informacion = await axios(
-        // `https://barber-app-henry.herokuapp.com/api/products/{id}`
-        `http://localhost:8080/api/products/${id}`
-      );
+    const resp = await fetchSinToken(`products/${id}`);
+    const data = await resp.json();
+
+    if (data.ok) {
       return dispatch({
         type: DETALLE_PRODUCTO,
-        payload: informacion.data.product,
+        payload: data.product,
       });
-    } catch (err) {
-      console.log(err);
     }
-  };
-}
+  }
+};
+
 
 export function addProductos(product) {
   return async (dispatch) => {
     const resp = await fetchConToken('products', product, 'POST');
     const data = await resp.json();
 
-    if(data.ok){
+    if (data.ok) {
 
       Swal.fire('Success', 'producto creado', 'success')
       dispatch(addProductosAdmin(data.producto))
@@ -143,46 +137,46 @@ export function eliminarInfoDetalle() {
 
 export function getServices() {
   return async function (dispatch) {
-    let servicios = await axios.get(
-      // "https://barber-app-henry.herokuapp.com/api/services"
-      "http://localhost:8080/api/services"
-    );
 
-    return dispatch({
-      type: GET_SERVICES,
-      payload: servicios.data,
-    });
+    const resp = await fetchSinToken('services');
+    const data = await resp.json();
+
+    if (data.ok) {
+      return dispatch({
+        type: GET_SERVICES,
+        payload: data.services,
+      });
+    }
+
   };
 }
 
 export function addEmployee(employee) {
   return async (dispatch) => {
-    try {
-      const result = await axios.post(
-        // `https://barber-app-henry.herokuapp.com/api/employee`,
-        `http://localhost:8080/api/employee`,
-        employee
-      );
+
+    const resp = await fetchConToken('employee', employee, 'POST')
+    const data = await resp.json()
+
+    if (data.ok) {
       return dispatch({
         type: ADD_EMPLOYEE,
-        payload: result.data,
+        payload: data,
       });
-    } catch (err) {
-      console.log(err);
     }
   };
 }
 
 export function getEmployee() {
   return async function (dispatch) {
-    let result = await axios.get(
-      // "https://barber-app-henry.herokuapp.com/api/employee"
-      "http://localhost:8080/api/employee"
-    );
-    return dispatch({
-      type: GET_EMPLOYEE,
-      payload: result.data,
-    });
+    const resp = await fetchSinToken('employee')
+    const data = await resp.json()
+
+    if (data.ok) {
+      return dispatch({
+        type: GET_EMPLOYEE,
+        payload: data,
+      });
+    }
   };
 }
 
@@ -230,34 +224,31 @@ export function orderByPrecio(payload) {
 
 export function allCitas() {
   return async (dispatch) => {
-    const informacion = await axios(
-      // `https://barber-app-henry.herokuapp.com/api/date`
-      `http://localhost:8080/api/date`
-    );
+    const resp = await fetchSinToken('date');
+    const data = await resp.json();
 
-    return dispatch({
-      type: ALL_CITAS,
-      payload: informacion.data.allDates,
-    });
+    if (data.ok) {
+      return dispatch({
+        type: ALL_CITAS,
+        payload: data.allDates,
+      });
+    }
   };
 }
 
 export function crearCita(payload) {
   return async (dispatch) => {
-    try {
-      const informacion = await axios.post(
-        // "https://barber-app-henry.herokuapp.com/api/date",
-        "http://localhost:8080/api/date",
-        payload
-      );
+    const resp = await fetchSinToken('date'.payload, 'POST');
+    const data = await resp.json();
 
+    if (data.ok) {
       return dispatch({
         type: CREAR_CITA,
-        payload: informacion.data,
+        payload: data,
       });
-    } catch (error) {
-      console.log(error);
     }
+
+
   };
 }
 
@@ -270,15 +261,16 @@ export function filterPorPrecio(payload) {
 
 export function allBarberos() {
   return async (dispatch) => {
-    let informacion = await axios(
-      // `https://barber-app-henry.herokuapp.com/api/employee`
-      `http://localhost:8080/api/employee`
-    );
+    const resp = await fetchSinToken('employe')
+    const data = await resp.json();
 
-    return dispatch({
-      type: ALL_BARBEROS,
-      payload: informacion.data.employees,
-    });
+    if (data.ok) {
+      return dispatch({
+        type: ALL_BARBEROS,
+        payload: data.employees,
+      });
+    }
+
   };
 }
 
@@ -346,7 +338,7 @@ export function deleteProduct(id) {
       Swal.fire('Success', 'Producto eliminado', 'success')
       return dispatch({
         type: DELETE_PRODUCT,
-        payload: id
+        payload: data.producto
       });
     }
   };
@@ -419,13 +411,13 @@ export const addProductosAdmin = (product) => (
 )
 
 export const activarProducto = (id) => {
-  return async(dispatch) => {
+  return async (dispatch) => {
     const resp = await fetchConToken(`products/${id}`, {}, 'PATCH')
     const data = await resp.json();
     console.log(data)
-    if(data.ok){
-      dispatch({type: types.activaProducto, payload: data.producto});
-      dispatch({type: ADD_PRODUCT, payload: data.producto})
+    if (data.ok) {
+      dispatch({ type: types.activaProducto, payload: data.producto });
+      dispatch({ type: ADD_PRODUCT, payload: data.producto })
     }
   }
 }
