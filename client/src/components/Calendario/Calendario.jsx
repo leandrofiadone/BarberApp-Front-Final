@@ -1,18 +1,30 @@
 import DatePicker, { registerLocale } from "react-datepicker";
 import es from "date-fns/locale/es";
-/* import { addDays } from "date-fns"; */
-
 import "react-datepicker/dist/react-datepicker.css";
+import setHours from "date-fns/setHours";
+import setMinutes from "date-fns/setMinutes";
+
+import { useSelector, useDispatch } from "react-redux";
+import { useEffect } from "react";
+
+import { allCitas } from "../../redux/actions/index";
 
 registerLocale("es", es);
 
 function Calendario({ date, setState, state }) {
+  const { citas } = useSelector((state) => state);
+  const { user } = useSelector((state) => state);
+
   const filterPassedTime = (time) => {
     const currentDate = new Date();
     const selectedDate = new Date(time);
 
     return currentDate.getTime() < selectedDate.getTime();
   };
+
+  const filtrado = citas.map((e) => e.date !== date);
+
+  console.log(filtrado);
 
   const handleChange = (e) => {
     setState({
@@ -30,11 +42,9 @@ function Calendario({ date, setState, state }) {
       showTimeSelect //PODER SELECCIONAR UNA HORA
       timeIntervals={15} //CADA CUANTOS MINUTOS QUIERO QUE SE PUEDA RESERVAR
       minDate={new Date()} //CANCELAR LOS DIAS QUE YA PASARON
-      /* maxDate={new Date().setMonth(new Date().getMonth() + 2)} */
       filterTime={filterPassedTime} // CANCELANDO LAS HORAS QUE YA PASARON
-      /*  excludeDates={[addDays(new Date(), 1), addDays(new Date(), 5)]}
-      includeDates={[new Date(), addDays(new Date(), 1)]} */ //excluye la hora, pero cuando yo se la expecifico, deberia intentar una logica que lo maneje directamente con lo que me llega del back
-      placeholderText="This only includes today and tomorrow"
+      minTime={setHours(setMinutes(new Date(), 0), 9)}
+      maxTime={setHours(setMinutes(new Date(), 30), 20)}
       locale="es"
     />
   );
