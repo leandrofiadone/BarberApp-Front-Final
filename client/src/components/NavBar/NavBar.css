@@ -77,11 +77,14 @@ body {
      background-color: #F7DC6F;
      color: black;
      font-weight: bold;
+     color: rgb(0, 0, 0);
+    text-transform: capitalize;
+    font-size: 100px;
+
  }
 
  .btnCita:hover{
-     background-color: #F9E79F;
-     color: black;
+     background-color: #F9E79F;  
  }
 
  .btnLogin{
@@ -126,6 +129,8 @@ body {
 .linkReserva{
     text-decoration: none;
     margin-right: 10px;
+
+    
 }
 
 .linkReserva > button {
