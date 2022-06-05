@@ -163,11 +163,9 @@ function rootReducer(state = initialState, action) {
       };
 
     case ACTIONS.CREAR_CITA:
-      let citas = state.citas.filter((e) => e.id !== action.payload);
-      let cita = action.payload;
       return {
         ...state,
-        citas: citas.concat(cita),
+        citas: state.citas.concat(action.payload),
       };
 
     case ACTIONS.ALL_BARBEROS:

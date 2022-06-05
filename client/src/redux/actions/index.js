@@ -113,7 +113,7 @@ export function eliminarInfoDetalle() {
 }
 
 export function getServices() {
-  return async function (dispatch) {
+  return async function(dispatch) {
     let servicios = await axios.get(
       "https://barber-app-henry.herokuapp.com/api/services"
     );
@@ -143,7 +143,7 @@ export function addEmployee(employee) {
 }
 
 export function getEmployee() {
-  return async function (dispatch) {
+  return async function(dispatch) {
     let result = await axios.get(
       "https://barber-app-henry.herokuapp.com/api/employee"
     );
@@ -210,8 +210,9 @@ export function allCitas() {
 export function crearCita(payload) {
   return async (dispatch) => {
     const respuesta = await fetchConToken("date", payload, "POST");
-
     const data = await respuesta.json();
+
+    console.log(data);
     if (data.ok) {
       dispatch({ type: CREAR_CITA, payload: data });
     }
@@ -321,7 +322,7 @@ export const userActive = (id) => {
 //ACÁ TERMINAN LAS  ACCIONES DE LOGIN !!!
 //-----------------------------------------------------------------------------------
 export function deleteProduct(id) {
-  return async function (dispatch) {
+  return async function(dispatch) {
     let result = await fetchConToken(`products/${id}`, {}, "DELETE");
     const data = await result.json();
     if (data.ok) {

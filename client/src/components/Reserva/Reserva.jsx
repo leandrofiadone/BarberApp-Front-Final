@@ -131,6 +131,7 @@ export function Reserva() {
         history.push("/");
       }, 2000);
     }
+    console.log(state);
   };
 
   return (
