@@ -8,6 +8,7 @@
     background-color: black;
     text-shadow: rgb(255, 145, 0) 0 0, cyan 0 0;
     transition: text-shadow 200ms;
+    margin-left: 17rem;
 }
 
 .containerTienda > h1{
@@ -104,7 +105,7 @@
 .buttonup > a{
     position: fixed;
     right: 1rem;
-    bottom: 1rem;
+    bottom: 4rem;
     background-color: transparent;
     border: none;
 }
