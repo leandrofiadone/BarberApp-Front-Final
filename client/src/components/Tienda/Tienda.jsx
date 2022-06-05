@@ -69,7 +69,7 @@ export default function Tienda() {
 
       <div className="botonVolver">
       <Link to="/" className="LinkVolver">
-        <button onClick={()=>window.location.reload()} className="btn btn-dark" id="arriba"> Volver</button>
+        <button  onClick="location.reload();" className="btn btn-dark" id="arriba"> Volver</button>
       </Link>
       </div>
 
