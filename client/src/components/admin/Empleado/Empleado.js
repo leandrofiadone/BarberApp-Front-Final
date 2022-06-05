@@ -1,18 +1,15 @@
-import React, { useEffect } from "react";
-
 import { Link } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 
 import {
   activarProducto,
-  adminGetAllProducts,
   deleteProduct,
   detalleDeProductos,
 } from "../../../redux/actions";
 import "./productos.css";
 
-export default function Producto() {
-  const { adminAllProducts } = useSelector((state) => state);
+export default function Empleado() {
+  const { adminAllEmpleados } = useSelector((state) => state);
 
   const dispatch = useDispatch();
 
@@ -39,50 +36,42 @@ export default function Producto() {
         <thead>
           <tr>
             <th scope="col">#</th>
-            <th scope="col">Producto</th>
-            <th scope="col">Categoria</th>
-            <th scope="col">Detalle</th>
-            <th scope="col">Precio</th>
-            <th scope="col">Stock</th>
+            <th scope="col">Empleado Barbero</th>
             <th scope="col">Estado</th>
             <th scope="col">Acciones</th>
           </tr>
         </thead>
         <tbody>
-          {adminAllProducts.map((producto, index) => {
-            console.log(producto, index);
+          {adminAllEmpleados.map((empleado, index) => {
+            console.log(empleado, index);
             return (
-              <tr key={producto.id}>
+              <tr key={empleado.id}>
                 <th scope="row">{index + 1}</th>
-                <td className="text-white"> {producto.name}</td>
-                <td className="text-white"> {producto.category.categorie}</td>
-                <td className="text-white"> {producto.detail}</td>
-                <td className="text-white"> $.{producto.price}.00</td>
-                <td className="text-white"> {producto.stock}</td>
+                <td className="text-white"> {empleado.name}</td>
                 <td className="text-white">
-                  {producto.state ? "Activo" : "Desactivo"}
+                  {empleado.state ? "Activo" : "Desactivo"}
                 </td>
                 <td className="text-white">
                   <div className="btn-group" role="group" aria-label="acciones">
                     <button className="btn btn-outline-primary btn-edit">
                       <Link
-                        to={`/admin/product/${producto.id}`}
-                        onClick={() => handleDetailProduct(producto.id)}
+                        to={`/admin/product/${empleado.id}`}
+                        onClick={() => handleDetailProduct(empleado.id)}
                       >
                         Edit
                       </Link>
                     </button>
-                    {producto.state ? (
+                    {empleado.state ? (
                       <button
                         className="btn btn-outline-danger"
-                        onClick={() => handleDelete(producto.id)}
+                        onClick={() => handleDelete(empleado.id)}
                       >
                         Eliminar
                       </button>
                     ) : (
                       <button
                         className="btn btn-outline-success"
-                        onClick={() => handleActive(producto.id)}
+                        onClick={() => handleActive(empleado.id)}
                       >
                         Activar
                       </button>
@@ -96,7 +85,7 @@ export default function Producto() {
       </table>
 
       <div className="div_pie">
-        <Link to={`/admin/product/add`} className="LinkDetail">
+        <Link to={`/admin/employee/add`} className="LinkDetail">
           <button className="btn_agregar">+</button>
         </Link>
       </div>
