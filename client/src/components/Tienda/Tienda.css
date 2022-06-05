@@ -1,22 +1,24 @@
 .containerTienda{
     color: white;
     font-family: Montserrat;
-    margin-bottom: 20px;
-    letter-spacing: 10px;
-    width: 50rem;
-    height: 5rem;
+    margin-bottom: 10px;
+    /* margin-top: 5px; */
+    letter-spacing: 7px;
+    align-items: center;
+    width: 15rem;
     background-color: black;
     text-shadow: rgb(255, 145, 0) 0 0, cyan 0 0;
     transition: text-shadow 200ms;
-    margin-left: 17rem;
+    transform: translate(20rem);
 }
 
-.containerTienda > h1{
+.containerTienda > h5{
     font-weight: bold;
+    margin-top: 10px;
 }
 
 .containerTienda:hover{
-    text-shadow: rgb(255, 145, 0) -10px 0, cyan 6px 0;
+    text-shadow: rgb(255, 145, 0) -1px 4px, cyan 6px 0;
 }
 
 .cardsTienda{
@@ -76,14 +78,14 @@
     padding: 1.2rem;
 }
 
-.searchbar{
-    width: 20rem;
-}
-
 .botonOrdenar{
-    background-color: black;
+    background-color: transparent;
     color: white;
     font-weight: lighter;
+}
+
+.contOrder{
+    margin-left: 1rem;
 }
 
 .allCarrito{
@@ -91,16 +93,20 @@
 }
 
 .botonCarrito{
+    margin-left: 1rem;
+    position: absolute;
     background-color: transparent;
+    z-index: 1;
     border: none;
-    width: 1rem;
+    width: 4rem;
+    height: 4rem;
 }
 
 .divCarrito{
     display: flex;
-    justify-content: center;
-    margin-right: 5rem;
+    float: right;
 }
+
 
 .buttonup > a{
     position: fixed;
@@ -112,4 +118,56 @@
 
 .buttonup > img{
     width: 200px
+}
+
+.divNavbarTienda{
+    display: flex;
+    justify-content: space-around;
+    background-color: rgb(49, 49, 49);
+}
+
+.navbar-brandtienda{
+    width: 60px;
+     height: 50px;
+     background-size: 100%;
+     margin-top: -20px;
+     background-image: url("https://images.vexels.com/media/users/3/132674/isolated/preview/5de3fc4efa4d8ff72773bfc119c1a8e9-bigote-blanco-hipster-3.png");
+}
+
+ .carritoContainer{
+     margin-left: -1rem;
+}
+
+.numeroitems{
+    position: relative;
+    color: orange;
+    font-weight: bold;
+    font-size: 1.2rem;
+    transform: translate(2rem,-.5rem);
+} 
+
+.containernavbartienda{
+    display: flex;
+    justify-content: space-around;
+}
+
+.imgCarrito{
+    position: absolute;
+    z-index: -1;
+    margin: 0;
+}
+
+.generalcont{
+    display: flex;
+    justify-content: space-around;
+}
+
+.searchbar{
+    margin-top: 5px;
+    margin-left: 30rem;
+    color: white;
+}
+
+.dropContainer{
+    transform: translate(10rem);
 }
