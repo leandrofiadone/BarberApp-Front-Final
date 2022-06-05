@@ -1,4 +1,5 @@
-const baseUrl = `https://barber-app-henry.herokuapp.com/api`;
+// const baseUrl = `https://barber-app-henry.herokuapp.com/api`;
+const baseUrl = `http://localhost:8080/api`;
 
 
 //ESTE SIRVE DE ALGO???????????
@@ -11,7 +12,7 @@ export const fetchSinToken = (endpoint, data, method = 'GET') => {
       return fetch(url, {
          method,
          headers: {
-            'Content-Type': 'appication/json'
+            'Content-Type': 'application/json'
          },
          body: JSON.stringify(data)
       })

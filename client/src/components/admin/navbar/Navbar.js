@@ -1,25 +1,47 @@
-import React from 'react'
-import { Link } from 'react-router-dom'
+import React from 'react';
+import { NavLink, useHistory } from 'react-router-dom';
+import { useDispatch, useSelector } from 'react-redux';
+import './navbar.css';
+import { logout } from '../../../redux/actions';
 
 export const Navbar = () => {
+
+    const { user } = useSelector(state => state);
+
+    const dispatch = useDispatch();
+    const history = useHistory();
+
+    const handleLogout = () => {
+        dispatch(logout())
+        history.replace('/')
+    }
+
     return (
-        <nav className="navbar navbar-expand-lg bg-dark navbar-dark">
-            <div className="container">
-                <Link className="navbar-brand" to="/admin"></Link>
-                <button className="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-                    <span className="navbar-toggler-icon"></span>
-                </button>
-                <div className="collapse navbar-collapse" id="navbarSupportedContent">
-                    <ul className="navbar-nav me-auto mb-2 mb-lg-0">
-                        <li className="nav-item">
-                            <Link className="nav-link active" aria-current="page" to="/admin/main">Home</Link>
-                        </li>
-                        <li className="nav-item">
-                            <Link className="nav-link active" aria-current="page" to="/admin/product">Productos</Link>
-                        </li>
-                    </ul>
-                </div>
+        <nav className='navbar-admin'>
+            <div className="img-perfil">
+                <img src={user.img} alt={user.name} />
             </div>
+            <h1>
+                {user.name}
+            </h1>
+
+            <ul className="mt-3 list-group list-group-flush">
+                <NavLink className="list-group-item text-dark" activeClassName='bg-warning' to='/admin/main'>
+                    Inicio
+                </NavLink>
+
+                <NavLink className="list-group-item pointer" activeClassName='bg-warning' to='/admin/product'>
+                    Productos
+                </NavLink>
+
+                <NavLink className='list-group-item' to='/admin/usuarios' activeClassName='bg-warning'>
+                    Usuarios
+                </NavLink>
+
+                <NavLink exact activeClassName='bg-warning' className='list-group-item' to='/'>Volver a la tienda</NavLink>
+
+                <NavLink activeClassName='bg-warning' className='list-group-item' to='/profile'>Mi Perfil</NavLink>
+            </ul>
         </nav>
     )
 }

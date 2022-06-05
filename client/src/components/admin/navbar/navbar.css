@@ -1,0 +1,58 @@
+.navbar-admin {
+  background-color: white;
+  height: 100vh;
+  overflow: hidden;
+  text-align: center;
+  color: black
+}
+
+.navbar-admin .img-perfil{
+  border: 1px solid black;
+  border-radius: 100px;
+  width: 150px;
+  height: 150px;
+  overflow: hidden;
+  margin-top: 30px;
+  margin-left: 44px;
+  text-align: center;
+}
+
+.navbar-admin .img-perfil img{
+  position: relative;
+  left: -180px;
+  height: 150px;
+  width: 150px;
+}
+
+.navbar-admin .mas-opciones{
+  position: absolute;
+  top: 570px;
+  left: 45px;
+}
+
+.navbar-admin ul a:hover{
+  color: black;
+  text-decoration: none;
+}
+
+.link-admin {
+  color: white !important;
+}
+
+
+.pointer{
+  cursor: pointer;
+}
+
+/* section */
+.main-perfil section{
+  padding: 25px;
+  display: grid;
+  /* justify-content: center; */
+  /* align-items: center; */
+  width: 100%;
+}
+
+.admin-active-link{
+  color: yellow;
+}

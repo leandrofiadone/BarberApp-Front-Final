@@ -6,6 +6,8 @@ import { types } from '../../types/types'
 import Swal from 'sweetalert2'
 import './auth.css';
 import { Google } from './Google'
+import { fetchConToken, fetchSinToken } from '../../helpers/fetch'
+import { adminGetAllProducts, login } from '../../redux/actions'
 
 
 export const Login = () => {
@@ -23,85 +25,80 @@ export const Login = () => {
   const [formRegister, handleRegisterInputChange, resetRegister] = useForm({
     email: '',
     password: '',
+    password2: '',
     name: '',
     phone: '',
     rol: 'client'
   })
 
 
-  const handleLogin = (e) => {
+  const handleLogin = async (e) => {
     e.preventDefault();
 
-    fetch('https://barber-app-henry.herokuapp.com/api/auth/login', {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json'
-      },
-      body: JSON.stringify(formLogin)
-    })
-      .then(resp => resp.json())
-      .then(data => {
-        if (data.ok) {
+    const resp = await fetchSinToken('auth/login', formLogin, 'POST');
+    const data = await resp.json();
 
-          console.log(data)
+    if (data.ok) {
+      localStorage.setItem('token', data.token)
+      const payload = {
+        id: data.id,
+        email: data.email,
+        name: data.name,
+        phone: data.phone,
+        img: data.img,
+        rol: data.rol
+      }
 
-          localStorage.setItem('token', data.token)
-          dispatch({
-            type: types.login, payload: {
-              id: data.id,
-              email: data.email,
-              name: data.name,
-              rol: data.rol
-            }
-          })
-          history.replace('/')
-        } else {
-          Swal.fire('Error', 'Verifica tus datos', 'error')
-        }
-      })
-      .catch(err => console.log(err))
+      if (data.rol === 'ADMIN') {
+        const resp = await fetchConToken('users');
+        const data = await resp.json();
+        dispatch({ type: types.getAllUsers, payload: data.users })
+        dispatch(adminGetAllProducts())
+      }
 
+      dispatch(login(payload));
+      history.replace('/');
+    }
 
-    resetRegister()
+    resetLogin();
   }
 
-  const handleRegister = (e) => {
+  const handleRegister = async (e) => {
     e.preventDefault();
 
-    fetch('https://barber-app-henry.herokuapp.com/api/users', {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json'
-      },
-      body: JSON.stringify(formRegister)
-    })
-      .then(resp => resp.json())
-      .then(data => {
-        if (data.ok) {
-          localStorage.setItem('token', data.token)
-          dispatch({
-            type: types.login, payload: {
-              id: data.id,
-              email: data.email,
-              name: data.name,
-              rol: data.rol
-            }
-          })
-          history.replace('/')
-        } else {
-          if (data.errors.email) {
-            Swal.fire('Error', `${data.errors.email.msg}`, 'error')
-          } else if (data.errors.password) {
-            Swal.fire('Error', `${data.errors.password.msg}`, 'error')
-          } else if (data.errors.name) {
-            Swal.fire('Error', `${data.errors.name.msg}`, 'error')
-          }
-        }
-      })
-      .catch(err => console.log(err))
+    if(formRegister.password !== formRegister.password2){
+      return Swal.fire('Error', 'Las contraseñas tienen que ser iguales', 'error')
+    }
+
+    const resp = await fetchSinToken('users', formRegister, 'POST')
+    const data = await resp.json();
+
+    if (data.ok) {
+      console.log(data)
+      localStorage.getItem('token', data.token)
+      const payload = {
+        id: data.id,
+        email: data.email,
+        name: data.name,
+        phone: data.phone,
+        img: data.img,
+        rol: data.rol
+      }
+      dispatch(login(payload))
+      history.replace('/')
+    } else {
+      console.log(data)
+      if(data.errors.email){
+        Swal.fire('Error', data.errors.email.msg, 'error');
+      }else if(data.errors.password){
+        Swal.fire('Error', data.errors.password.msg, 'error');
+      }else if(data.errors.name){
+        Swal.fire('Error', data.errors.name.msg, 'error');
+      }
+    }
 
 
-    resetLogin()
+    // resetRegister()
   }
 
   if (isAuth) {
@@ -174,6 +171,17 @@ export const Login = () => {
                 name='password'
                 className='form-control'
                 value={formRegister.password}
+                onChange={handleRegisterInputChange} />
+
+            </div>
+
+            <div className='form-group mb-2'>
+              <input
+                type='password'
+                placeholder='Repita su password'
+                name='password2'
+                className='form-control'
+                value={formRegister.password2}
                 onChange={handleRegisterInputChange} />
 
             </div>

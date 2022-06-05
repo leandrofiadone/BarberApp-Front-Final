@@ -34,19 +34,19 @@ export const ALL_BARBEROS = "ALL_BARBEROS";
 export const DELETE_PRODUCT = "DELETE_PRODUCT";
 export const UPDATE_PRODUCT = "UPDATE_PRODUCT"
 
+// all products carga todos los productos que estan activos solo activos
 export function allProductos() {
   return async (dispatch) => {
-    try {
-      let informacion = await axios(
-        `https://barber-app-henry.herokuapp.com/api/products`
-      );
+    const resp = await fetchSinToken(`products?state=true`)
+    const data = await resp.json();
+
+    if (data.ok) {
       return dispatch({
         type: ALL_PRODUCTOS,
-        payload: informacion.data.products,
+        payload: data.products,
       });
-    } catch (err) {
-      console.log(err);
     }
+
   };
 }
 
@@ -54,7 +54,8 @@ export function buscarProductos(name) {
   return async (dispatch) => {
     try {
       let informacion = await axios(
-        `https://barber-app-henry.herokuapp.com/api/products?name=${name}`
+        // `https://barber-app-henry.herokuapp.com/api/products?name=${name}`
+        `http://localhost:8080/api/products?name=${name}`
       );
 
 
@@ -78,7 +79,8 @@ export function detalleDeProductos(id) {
   return async (dispatch) => {
     try {
       let informacion = await axios(
-        "https://barber-app-henry.herokuapp.com/api/products/" + id
+        // `https://barber-app-henry.herokuapp.com/api/products/{id}`
+        `http://localhost:8080/api/products/${id}`
       );
       return dispatch({
         type: DETALLE_PRODUCTO,
@@ -92,17 +94,15 @@ export function detalleDeProductos(id) {
 
 export function addProductos(product) {
   return async (dispatch) => {
-    try {
-      const result = await axios.post(
-        `https://barber-app-henry.herokuapp.com/api/products`,
-        product
-      );
-      return dispatch({
+    // `https://barber-app-henry.herokuapp.com/api/products`,
+    const resp = await fetchConToken(`http://localhost:8080/api/products`, product, 'POST');
+    const data = await resp.json();
+
+    if (data.ok) {
+      dispatch({
         type: ADD_PRODUCT,
-        payload: result.data,
+        payload: data.producto,
       });
-    } catch (err) {
-      console.log(err);
     }
   };
 }
@@ -116,7 +116,8 @@ export function eliminarInfoDetalle() {
 export function getServices() {
   return async function (dispatch) {
     let servicios = await axios.get(
-      "https://barber-app-henry.herokuapp.com/api/services"
+      // "https://barber-app-henry.herokuapp.com/api/services"
+      "http://localhost:8080/api/services"
     );
 
     return dispatch({
@@ -130,7 +131,8 @@ export function addEmployee(employee) {
   return async (dispatch) => {
     try {
       const result = await axios.post(
-        `https://barber-app-henry.herokuapp.com/api/employee`,
+        // `https://barber-app-henry.herokuapp.com/api/employee`,
+        `http://localhost:8080/api/employee`,
         employee
       );
       return dispatch({
@@ -146,7 +148,8 @@ export function addEmployee(employee) {
 export function getEmployee() {
   return async function (dispatch) {
     let result = await axios.get(
-      "https://barber-app-henry.herokuapp.com/api/employee"
+      // "https://barber-app-henry.herokuapp.com/api/employee"
+      "http://localhost:8080/api/employee"
     );
     return dispatch({
       type: GET_EMPLOYEE,
@@ -158,7 +161,8 @@ export function getEmployee() {
 export function getCategories() {
   return async (dispatch) => {
     let informacion = await axios(
-      `https://barber-app-henry.herokuapp.com/api/categories`
+      // `https://barber-app-henry.herokuapp.com/api/categories`
+      `http://localhost:8080/api/categories`
     );
     return dispatch({
       type: GET_CATEGORIES,
@@ -198,7 +202,8 @@ export function orderByPrecio(payload) {
 export function allCitas() {
   return async (dispatch) => {
     const informacion = await axios(
-      `https://barber-app-henry.herokuapp.com/api/date`
+      // `https://barber-app-henry.herokuapp.com/api/date`
+      `http://localhost:8080/api/date`
     );
 
     return dispatch({
@@ -212,7 +217,8 @@ export function crearCita(payload) {
   return async (dispatch) => {
     try {
       const informacion = await axios.post(
-        "https://barber-app-henry.herokuapp.com/api/date",
+        // "https://barber-app-henry.herokuapp.com/api/date",
+        "http://localhost:8080/api/date",
         payload
       );
 
@@ -236,7 +242,8 @@ export function filterPorPrecio(payload) {
 export function allBarberos() {
   return async (dispatch) => {
     let informacion = await axios(
-      `https://barber-app-henry.herokuapp.com/api/employee`
+      // `https://barber-app-henry.herokuapp.com/api/employee`
+      `http://localhost:8080/api/employee`
     );
 
     return dispatch({
@@ -248,37 +255,7 @@ export function allBarberos() {
 
 // ACCIONES DE LOGIN !!!
 //-----------------------------------------------------------------------------------
-export function login(user) {
-  return async (dispatch) => {
-    const resp = await fetch(
-      "https://barber-app-henry.herokuapp.com/api/auth/login",
-      {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify(user),
-      }
-    );
-    const data = await resp.json();
-    if (data.ok) {
-      const payload = {
-        id: data.id,
-        email: data.email,
-        name: data.name,
-        rol: data.rol
-      };
-
-      localStorage.setItem("token", data.token);
-      dispatch({
-        type: types.login,
-        payload,
-      });
-    } else {
-      Swal.fire('Error', 'Revisa tus datos', 'error')
-    }
-  };
-}
+export const login = (payload) => ({ type: types.login, payload })
 // export const login = newFunction()
 
 export function revalidarAuth() {
@@ -292,9 +269,13 @@ export function revalidarAuth() {
         id: data.id,
         email: data.email,
         name: data.name,
-        rol: data.rol
+        rol: data.rol,
+        img: data.img,
+        phone: data.phone
       };
-      dispatch({
+      
+      dispatch(adminGetAllProducts())
+      return dispatch({
         type: types.login,
         payload,
       });
@@ -321,7 +302,7 @@ export const userActive = (id) => {
         name: data.user.name,
         rol: data.user.rol.rol
       }
-      dispatch({ type: types.userActive, payload })
+      return dispatch({ type: types.userActive, payload })
     }
   }
 }
@@ -345,35 +326,40 @@ export function deleteProduct(id) {
 export function updateProductos(product) {
   return async (dispatch) => {
     try {
-
       // const result = await axios.put(`${api}/products/` + product.id, product);
-      const result = await fetchConToken(`products/${product.id}`, product, 'PUT')
+      const result = await fetchConToken(
+        `products/${product.id}`,
+        product,
+        "PUT"
+      );
       const data = await result.json();
 
-      if(data.ok){
+      if (data.ok) {
+        console.log(data)
         Swal.fire('Success', 'Producto actualizado', 'success')
-        // return dispatch({
-        //   type: UPDATE_PRODUCT,
-        //   payload: data,
-        // });
+        return dispatch({
+          type: UPDATE_PRODUCT,
+          payload: data.producto,
+        });
+      } else {
+        console.log(data)
       }
-
     } catch (err) {
       console.log("error en modificacion:", err);
     }
   };
 }
 
-export const paymentMP = async(items,user, navigate,emptyCart) =>{
-  
+export const paymentMP = async (items, user, navigate, emptyCart) => {
+
   const carrito = []
-        items.map((i)=>{
-            carrito.push({
-                idUser: user.idUser,
-                idProduct:i.idProduct,
-                quantity:i.quantity
-            })
-        })
+  items.map((i) => {
+    carrito.push({
+      idUser: user.idUser,
+      idProduct: i.idProduct,
+      quantity: i.quantity
+    })
+  })
   const response = await fetch("https://barber-app-henry.herokuapp.com/api/purchaseOrder", {
     method: "POST",
     body: JSON.stringify(carrito),
@@ -385,4 +371,39 @@ export const paymentMP = async(items,user, navigate,emptyCart) =>{
   window.open(json.urlPayment, '_blank');
   emptyCart();
   navigate.push('/');
+}
+
+
+// ======================= estas acciones las agrego david por favor consultar conmigo para cualquier cambios =================================/
+// ======================================== ALERTA
+
+// esta accion sirve para banear y desbanear basicamente
+export const banearUser = (user) => {
+  return {
+    type: types.banearUser,
+    payload: user
+  }
+}
+
+// esta accion le carga los usuarios para el administrador luego poder banearlos
+export const getAllUsers = () => {
+  return async (dispatch) => {
+    const resp = await fetchConToken('users');
+    const data = await resp.json();
+
+    if (data.ok) {
+      return dispatch({ type: types.getAllUsers, payload: data.users })
+    }
+  }
+}
+
+export const adminGetAllProducts = () => {
+  return async(dispatch) => {
+    const resp = await fetchSinToken('products?all=true');
+    const data = await resp.json();
+
+    if(data.ok){
+      return dispatch({type: types.getAllProductsAdmin, payload: data.products})
+    }
+  }
 }

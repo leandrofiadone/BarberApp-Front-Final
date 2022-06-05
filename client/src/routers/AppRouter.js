@@ -21,7 +21,7 @@ import comoReservar from "../components/Chatbot/ComoReservar";
 /* ------------------------------------------------ */
 
 import PrivateRoute from "./PrivateRoute";
-import { allProductos, getCategories, revalidarAuth } from "../redux/actions/index";
+import { allProductos, getAllUsers, getCategories, revalidarAuth } from "../redux/actions/index";
 import { PrivateAdmin } from "./PrivateAdmin";
 import { AdminRoute } from "./AdminRoute";
 
@@ -34,7 +34,8 @@ export const AppRouter = () => {
     useEffect(() => {
         dispatch(revalidarAuth());
         dispatch(allProductos());
-        dispatch(getCategories())
+        dispatch(getCategories());
+        dispatch(getAllUsers());
     }, [dispatch]);
 
     return (

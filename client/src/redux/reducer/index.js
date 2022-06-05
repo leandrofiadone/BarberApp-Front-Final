@@ -16,9 +16,13 @@ const initialState = {
   barberos: [],
   //login
   user: {},
-  isAuth: false
+  isAuth: false,
   //cierra login
 
+  // ============= DAVID HIZO ESTO, POR FAVOR CONSULTEN =================
+  // aqui en este arreglo se guardaran los usuarios para que admin luego pueda banearlos
+  adminAllUsers: [],
+  adminAllProducts: []
 };
 
 function rootReducer(state = initialState, action) {
@@ -45,12 +49,23 @@ function rootReducer(state = initialState, action) {
     case ACTIONS.ADD_PRODUCT:
       return {
         ...state,
+        productos: state.allProductos.concat(action.payload)
       };
 
     case ACTIONS.DELETE_PRODUCT:
       return {
         ...state,
-        productos: state.productos.filter(p => p.id !== action.payload) 
+        productos: state.productos.filter(p => p.id !== action.payload)
+      }
+
+    case ACTIONS.UPDATE_PRODUCT:
+      let productos = state.productos.filter(p => p.id !== action.payload.id)
+
+      let producto = action.payload
+
+      return {
+        ...state,
+        productos: productos.concat(producto)
       }
 
     case ACTIONS.ELIMINAR_INFO_DETALLE:
@@ -188,7 +203,33 @@ function rootReducer(state = initialState, action) {
       return {
         ...state,
         user: {},
-        isAuth: false
+        isAuth: false,
+        adminAllUsers: [],
+        adminAllProducts: [],
+        productos: [],
+        allProductos: [],
+        categorias: []
+      }
+
+    // ===================ACCIONES DE DAVID=================
+    case types.getAllUsers:
+      return {
+        ...state,
+        adminAllUsers: action.payload
+      }
+
+    case types.banearUser:
+      let users = state.adminAllUsers.filter(user => user.id !== action.payload.id)
+      let user = action.payload;
+      return {
+        ...state,
+        adminAllUsers: users.concat(user)
+      }
+
+    case types.getAllProductsAdmin:
+      return {
+        ...state,
+        adminAllProducts: action.payload
       }
 
     // CIERRA EL LOGIN!!!!!

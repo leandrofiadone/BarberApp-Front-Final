@@ -1,0 +1,12 @@
+.main-adminRoute{
+  display: grid;
+  grid-template-columns: 250px 1fr;
+  height: 100vh;
+  width: 100vw;
+}
+
+.main-adminRoute section{
+  /* background-color: white; */
+  overflow: scroll;
+  padding: 25px;
+}
