@@ -107,15 +107,14 @@ export function eliminarInfoDetalle() {
 
 export function getServices() {
   return async function(dispatch) {
-    const resp = await fetchSinToken("services");
-    const data = await resp.json();
+    let servicios = await axios.get(
+      "https://barber-app-henry.herokuapp.com/api/services"
+    );
 
-    if (data.ok) {
-      return dispatch({
-        type: GET_SERVICES,
-        payload: data.services,
-      });
-    }
+    return dispatch({
+      type: GET_SERVICES,
+      payload: servicios.data,
+    });
   };
 }
 export function addEmployee(employee) {
@@ -148,6 +147,7 @@ export function getEmployee() {
     }
   };
 }
+
 export function getCategories() {
   return async (dispatch) => {
     const resp = await fetchSinToken("categories");
@@ -224,7 +224,7 @@ export function filterPorPrecio(payload) {
 
 export function allBarberos() {
   return async (dispatch) => {
-    const resp = await fetchSinToken("employe");
+    const resp = await fetchSinToken("employee");
     const data = await resp.json();
 
     if (data.ok) {
@@ -301,16 +301,16 @@ export function updateProductos(product) {
     }
   };
 }
-
 export const paymentMP = async (items, user, navigate, emptyCart) => {
   const carrito = [];
   items.map((i) => {
     carrito.push({
-      idUser: user.idUser,
+      idUser: user.id,
       idProduct: i.idProduct,
       quantity: i.quantity,
     });
   });
+  const token = localStorage.getItem("token");
   const response = await fetch(
     "https://barber-app-henry.herokuapp.com/api/purchaseOrder",
     {
@@ -318,6 +318,7 @@ export const paymentMP = async (items, user, navigate, emptyCart) => {
       body: JSON.stringify(carrito),
       headers: {
         "Content-Type": "application/json",
+        "x-token": token,
       },
     }
   );

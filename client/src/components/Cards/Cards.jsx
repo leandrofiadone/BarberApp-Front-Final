@@ -1,43 +1,44 @@
 import "./Cards.css";
-import {useCart} from 'react-use-cart';
-import Swal from 'sweetalert2'
+import { useCart } from "react-use-cart";
+import Swal from "sweetalert2";
 
+const Cards = ({ name, stock, price, img, id, category, idProduct }) => {
+  const { addItem } = useCart();
 
-const Cards = ({ name, stock, price, img,id, category,idProduct}) => {
-
-  const {addItem} = useCart()
-
-  const ambos =() => {
+  const ambos = () => {
     Swal.fire({
-      icon:'success',
-      title:'Producto agregado al carrito!'
-    })
+      icon: "success",
+      title: "Producto agregado al carrito!",
+    });
 
     //Falta agregar el id delk usuario logueado
-    addItem({ name, stock, price, img, id , category, idProduct})
-  } 
-
+    addItem({ name, stock, price, img, id, category, idProduct });
+  };
 
   return (
-
     <div className="containerCard">
       <div className="containerImg">
         <img src={img} alt="Img not found" />
       </div>
 
       <div className="containerText">
-
         <h5> {name}</h5>
         <h5> ${price}</h5>
         <h6> Stock: {stock}</h6>
         <h6>Categoria: {category}</h6>
-        <h6>{id}</h6>
+        {/*    <h6>{id}</h6> */}
         <div className="buttonComprar">
-          <button id="miBoton" type="button" className="btn btn-success bg-dark fw-bold" onClick={() => ambos()}>Comprar</button>
+          <button
+            id="miBoton"
+            type="button"
+            className="btn btn-success bg-dark fw-bold"
+            onClick={() => ambos()}
+          >
+            Comprar
+          </button>
         </div>
       </div>
     </div>
-
   );
 };
 

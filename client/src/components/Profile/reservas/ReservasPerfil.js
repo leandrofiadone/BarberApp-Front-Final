@@ -11,9 +11,9 @@ export const ReservasPerfil = () => {
     <div>
       {citas.map((e, index) => (
         <ul key={index}>
-          <li>Fecha y hora: {e.date}</li>
-          <li> Empleado: {e.employee.name}</li>
-          <li> Servicio: {e.services[0].name}</li>
+          <li className="text-light">Fecha y hora: {e.date}</li>
+          <li className="text-light"> Empleado: {e.employee.name}</li>
+          <li className="text-light"> Servicio: {e.services[0].name}</li>
         </ul>
       ))}
     </div>

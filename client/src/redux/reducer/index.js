@@ -55,6 +55,7 @@ function rootReducer(state = initialState, action) {
       };
 
     case ACTIONS.GET_SERVICES:
+      console.log(action.payload);
       return {
         ...state,
         servicios: action.payload,
