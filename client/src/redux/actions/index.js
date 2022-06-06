@@ -180,10 +180,10 @@ export function sortServices(order) {
   };
 }
 
-export function sortName(order) {
+export function sortName(payload) {
   return {
     type: SORT_NAME,
-    payload: order,
+    payload,
   };
 }
 

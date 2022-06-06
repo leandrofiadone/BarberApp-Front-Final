@@ -42,6 +42,8 @@ export default function Tienda() {
 
     function onSelectsChange(e) {
       dispatch(sortName(e.target.value));
+    setState(e.target.value);
+
   }
 
   function registro(){
@@ -108,7 +110,7 @@ export default function Tienda() {
                         <div className="text-dark">
                         <label className="text-light">Alfab</label>
 
-                              <select name="select" onChange={()=>onSelectsChange()} className="form-select-sm">
+                              <select name="select" onChange={(e)=>onSelectsChange(e)} className="form-select-sm">
                                   <option value="Filter"> A-Z:</option>
                                   <option value="ASC">Ascendente</option>
                                   <option value="DESC">Descendente</option>
@@ -136,7 +138,7 @@ export default function Tienda() {
               </li>
               <li class="nav-item">
                 <Link to="/tienda">
-                  <button onClick={()=>window.location.reload()} className="containerTienda"><h5>Tienda Web</h5></button>
+                  <button onClick={()=>window.location.reload()} className="containerTienda" id="arriba"><h5>Tienda Web</h5></button>
                 </Link>
               </li>
               <li className="nav-item">
