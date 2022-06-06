@@ -22,8 +22,6 @@ function Calendario({ date, setState, state }) {
     return currentDate.getTime() < selectedDate.getTime();
   };
 
-  const filtrado = citas.map((e) => e.date);
-
   const handleChange = (e) => {
     setState({
       ...state,

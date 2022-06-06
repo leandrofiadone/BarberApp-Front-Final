@@ -6,6 +6,8 @@ import { useDispatch, useSelector } from "react-redux";
 import {
   activarProducto,
   adminGetAllProducts,
+  allBarberos,
+  allProductos,
   deleteProduct,
   detalleDeProductos,
 } from "../../../redux/actions";
@@ -97,7 +99,7 @@ export default function Producto() {
 
       <div className="div_pie">
         <Link to={`/admin/product/add`} className="LinkDetail">
-          <button className="btn_agregar">+</button>
+          <button className="btn_agregar">Agregar Producto</button>
         </Link>
       </div>
     </>

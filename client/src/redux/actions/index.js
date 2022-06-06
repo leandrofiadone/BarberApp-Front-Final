@@ -47,6 +47,7 @@ export function allProductos() {
     }
   };
 }
+
 export function buscarProductos(name) {
   return async (dispatch) => {
     const resp = await fetchSinToken(`products?name=${name}`);
@@ -152,7 +153,7 @@ export function getCategories() {
   return async (dispatch) => {
     const resp = await fetchSinToken("categories");
     const data = await resp.json();
-    console.log(data);
+
     if (data.ok) {
       return dispatch({
         type: GET_CATEGORIES,
@@ -281,7 +282,6 @@ export function deleteProduct(id) {
 export function updateProductos(product) {
   return async (dispatch) => {
     try {
-      // const result = await axios.put(`${api}/products/` + product.id, product);
       const result = await fetchConToken(
         `products/${product.id}`,
         product,
@@ -290,11 +290,14 @@ export function updateProductos(product) {
       const data = await result.json();
 
       if (data.ok) {
+        console.log(data);
         Swal.fire("Success", "Producto actualizado", "success");
-        // return dispatch({
-        //   type: UPDATE_PRODUCT,
-        //   payload: data,
-        // });
+        return dispatch({
+          type: UPDATE_PRODUCT,
+          payload: data.producto,
+        });
+      } else {
+        console.log(data);
       }
     } catch (err) {
       console.log("error en modificacion:", err);
@@ -377,7 +380,6 @@ export const getAllUsers = () => {
     }
   };
 };
-
 export const adminGetAllProducts = () => {
   return async (dispatch) => {
     const resp = await fetchSinToken("products?all=true");

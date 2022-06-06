@@ -24,16 +24,13 @@ export default function Tienda() {
 
   const dispatch = useDispatch();
 
-  const productosBarberia = useSelector((state) => state.productos);
+  const { allProductos } = useSelector((state) => state);
+
+  /*  const productosBarberia = useSelector((state) => state.productos); */
 
   useEffect(() => {
-    dispatch(allProductos());
     dispatch(getCategories());
   }, [dispatch]);
-
-  // function handleFilterCategorie(e) {
-  //   dispatch(filterByCategorie(e.target.value));
-  //   }
 
   function onSelectsChange(e) {
     dispatch(sortName(e.target.value));
@@ -65,11 +62,11 @@ export default function Tienda() {
       </Link>
       </div> */}
       {/* =============================================================== */}
-      <nav class="navbar navbar-expand-lg divNavbarTienda p-3 containernavbartienda">
-        <div class="container-fluid ">
+      <nav className="navbar navbar-expand-lg divNavbarTienda p-3 containernavbartienda">
+        <div className="container-fluid ">
           <Link className="navbar-brandtienda" to="/"></Link>
           <button
-            class="navbar-toggler"
+            className="navbar-toggler"
             type="button"
             data-bs-toggle="collapse"
             data-bs-target="#navbarSupportedContent"
@@ -77,15 +74,15 @@ export default function Tienda() {
             aria-expanded="false"
             aria-label="Toggle navigation"
           >
-            <span class="navbar-toggler-icon"></span>
+            <span className="navbar-toggler-icon"></span>
           </button>
 
           <div
-            class="collapse navbar-collapse generalcont"
+            className="collapse navbar-collapse generalcont"
             id="navbarSupportedContent"
           >
-            <ul class="navbar-nav me-auto mb-2 mb-lg-0 ">
-              <li class="nav-item dropdown dropContainer">
+            <ul className="navbar-nav me-auto mb-2 mb-lg-0 ">
+              <li className="nav-item dropdown dropContainer">
                 <button
                   className="botonOrdenar btn btn-secondary dropdown-toggle"
                   type="button"
@@ -107,18 +104,19 @@ export default function Tienda() {
                         onChange={(e) => handleCategorias(e)}
                         className="text-dark form-select-sm"
                       >
-                        <option value="All"> Todos </option>
-                        <option value="Tinte"> Tinte</option>
-                        <option value="Cremas">Crema</option>
-                        <option value="shampoo">Shampoo</option>
-                        <option value="acondicionador">Acondicionador</option>
-                        <option value="Cera">Cera</option>
+                        <option hidden>Categorias</option>
+                        <option value="All">Todos</option>
+                        <option value="crema">Crema</option>
+                        <option value="shampo">Shampoo</option>
+                        <option value="ceras">Ceras</option>
+                        <option value="pomada">Pomadas</option>
+                        <option value="locion">Locion</option>
                       </select>
                     </div>
                     <br />
 
                     <div className="text-dark">
-                      <label className="text-light">Alfab</label>
+                      <label className="text-light">Alf</label>
 
                       <select
                         name="select"
@@ -134,7 +132,7 @@ export default function Tienda() {
 
                     <div className="text-dark">
                       <label className="text-light">Precio</label>
-                      {productosBarberia ? (
+                      {allProductos ? (
                         <select
                           onChange={(e) => handlePrecio(e)}
                           className="form-select-sm"
@@ -148,7 +146,7 @@ export default function Tienda() {
                   </div>
                 </ul>
               </li>
-              <li class="nav-item">
+              <li className="nav-item">
                 <Link to="/tienda">
                   <button
                     onClick={() => window.location.reload()}
@@ -164,7 +162,7 @@ export default function Tienda() {
                   <SearchBar />
                 </div>
               </li>
-              <li class="nav-item carritoContainer">
+              <li className="nav-item carritoContainer">
                 {/* <button  className="" >
                       <img className="imgCarrito" src="https://www.ubolosoft.com/Carrito/images/carrito.png" alt="" style={{height: "2rem", width: "2rem"}}/>
                     </button> */}
@@ -172,16 +170,16 @@ export default function Tienda() {
                 <button
                   onClick={() => registro()}
                   type="button"
-                  class="btn btn-dark position-relative botonCarrito"
+                  className="btn btn-dark position-relative botonCarrito"
                 >
                   <img
                     className="imgCarrito"
                     src="https://www.ubolosoft.com/Carrito/images/carrito.png"
                     alt=""
                     style={{ height: "2rem", width: "2rem" }}
-                  />{" "}
+                  />
                   <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-secondary">
-                    {totalItems} <span class="visually-hidden"></span>
+                    {totalItems} <span className="visually-hidden"></span>
                   </span>
                 </button>
               </li>
@@ -220,8 +218,8 @@ export default function Tienda() {
       {/* </div> */}
 
       <div className="cardsTienda">
-        {productosBarberia ? (
-          productosBarberia?.map((e) => {
+        {allProductos ? (
+          allProductos?.map((e) => {
             return (
               <div key={e.id}>
                 <Cards
