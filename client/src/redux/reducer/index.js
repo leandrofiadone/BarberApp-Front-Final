@@ -46,7 +46,7 @@ function rootReducer(state = initialState, action) {
     case ACTIONS.DELETE_PRODUCT:
       return {
         ...state,
-        productos: state.productos.filter((p) => p.id !== action.payload),
+        allProductos: state.productos.filter((p) => p.id !== action.payload),
       };
 
     case ACTIONS.ELIMINAR_INFO_DETALLE:
@@ -229,9 +229,7 @@ function rootReducer(state = initialState, action) {
       };
 
     case types.activaProducto:
-      let activarProductoAdmin = state.adminAllProducts.filter(
-        (pro) => pro.id !== action.payload.id
-      );
+      let activarProductoAdmin = state.adminAllProducts.filter((pro) => pro.id !== action.payload.id);
       let productoActivar = action.payload;
       return {
         ...state,

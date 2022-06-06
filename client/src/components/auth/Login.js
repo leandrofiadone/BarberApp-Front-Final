@@ -34,7 +34,7 @@ export const Login = () => {
 
     const resp = await fetchSinToken("auth/login", formLogin, "POST");
     const data = await resp.json();
-
+    console.log(data)
     if (data.ok) {
       localStorage.setItem("token", data.token);
       const payload = {
@@ -58,9 +58,15 @@ export const Login = () => {
       history.replace("/");
     } else {
       if (data.errors.email) {
-        Swal.fire("Error", data.errors.email.msg, "error");
-      } else {
-        Swal.fire("Error", data.msg, "error");
+        return Swal.fire("Error", data.errors.email.msg, "error");
+      }
+
+      if (data.errors.password) {
+        return Swal.fire('Error', data.errors.password.msg)
+      }
+
+      if (data.msg) {
+        return Swal.fire('Error', data.msg, 'error')
       }
     }
     resetLogin();
@@ -113,125 +119,121 @@ export const Login = () => {
   }
 
   return (
-    <>
-      {isAuth && <h1>Cargando</h1>}
 
-      {!isAuth && (
-        <div className="main">
-          <div className="col-login">
-            <div className="form-login">
-              <h1>Ingresar</h1>
-              <form onSubmit={handleLogin} autoComplete="off">
-                <div className="form-group mb-2">
-                  <input
-                    type="email"
-                    placeholder="Email"
-                    className="form-control"
-                    name="email"
-                    value={formLogin.email}
-                    onChange={handleLoginInputChange}
-                  />
-                </div>
 
-                <div className="form-group mb-2">
-                  <input
-                    type="password"
-                    placeholder="Password"
-                    name="password"
-                    className="form-control"
-                    value={formLogin.password}
-                    onChange={handleLoginInputChange}
-                  />
-                </div>
-
-                <div className="form-group mb-2">
-                  <button type="submit" className="btn btn-primary">
-                    Login
-                  </button>
-                </div>
-
-                <div className="form-group mb-2">
-                  <Google />
-                </div>
-              </form>
+    <div className="main">
+      <div className="col-login">
+        <div className="form-login">
+          <h1>Ingresar</h1>
+          <form onSubmit={handleLogin} autoComplete="off">
+            <div className="form-group mb-2">
+              <input
+                type="email"
+                placeholder="Email"
+                className="form-control"
+                name="email"
+                value={formLogin.email}
+                onChange={handleLoginInputChange}
+              />
             </div>
-          </div>
-          <div className="col-register">
-            <div className="form-register">
-              <h1>Registro</h1>
-              <form onSubmit={handleRegister} autoComplete="off">
-                <div className="form-group mb-2">
-                  <input
-                    type="email"
-                    placeholder="Email"
-                    className="form-control"
-                    name="email"
-                    value={formRegister.email}
-                    onChange={handleRegisterInputChange}
-                  />
-                </div>
 
-                <div className="form-group mb-2">
-                  <input
-                    type="password"
-                    placeholder="Password"
-                    name="password"
-                    className="form-control"
-                    value={formRegister.password}
-                    onChange={handleRegisterInputChange}
-                  />
-                </div>
-
-                <div className="form-group mb-2">
-                  <input
-                    type="password"
-                    placeholder="Repita su password"
-                    name="password2"
-                    className="form-control"
-                    value={formRegister.password2}
-                    onChange={handleRegisterInputChange}
-                  />
-                </div>
-
-                <div className="form-group mb-2">
-                  <input
-                    type="text"
-                    placeholder="Tu Nombre"
-                    name="name"
-                    className="form-control"
-                    value={formRegister.name}
-                    onChange={handleRegisterInputChange}
-                  />
-                </div>
-
-                <div className="form-group mb-2">
-                  <input
-                    type="text"
-                    placeholder="Exmaple: +54 1234567899"
-                    name="phone"
-                    className="form-control"
-                    value={formRegister.phone}
-                    onChange={handleRegisterInputChange}
-                  />
-                </div>
-
-                <div className="form-group mb-2">
-                  <button type="submit" className="btn btn-primary">
-                    Registrarse
-                  </button>
-                </div>
-
-                <div className="form-group mb-2">
-                  <Google />
-                </div>
-              </form>
+            <div className="form-group mb-2">
+              <input
+                type="password"
+                placeholder="Password"
+                name="password"
+                className="form-control"
+                value={formLogin.password}
+                onChange={handleLoginInputChange}
+              />
             </div>
-          </div>
-          <div className="btn-volver">
-            <Link to="/">Volver</Link>
-          </div>
+
+            <div className="form-group mb-2">
+              <button type="submit" className="btn btn-primary">
+                Login
+              </button>
+            </div>
+
+            <div className="form-group mb-2">
+              <Google />
+            </div>
+          </form>
         </div>
-      )}
-    </>
+      </div>
+      <div className="col-register">
+        <div className="form-register">
+          <h1>Registro</h1>
+          <form onSubmit={handleRegister} autoComplete="off">
+            <div className="form-group mb-2">
+              <input
+                type="email"
+                placeholder="Email"
+                className="form-control"
+                name="email"
+                value={formRegister.email}
+                onChange={handleRegisterInputChange}
+              />
+            </div>
+
+            <div className="form-group mb-2">
+              <input
+                type="password"
+                placeholder="Password"
+                name="password"
+                className="form-control"
+                value={formRegister.password}
+                onChange={handleRegisterInputChange}
+              />
+            </div>
+
+            <div className="form-group mb-2">
+              <input
+                type="password"
+                placeholder="Repita su password"
+                name="password2"
+                className="form-control"
+                value={formRegister.password2}
+                onChange={handleRegisterInputChange}
+              />
+            </div>
+
+            <div className="form-group mb-2">
+              <input
+                type="text"
+                placeholder="Tu Nombre"
+                name="name"
+                className="form-control"
+                value={formRegister.name}
+                onChange={handleRegisterInputChange}
+              />
+            </div>
+
+            <div className="form-group mb-2">
+              <input
+                type="text"
+                placeholder="Exmaple: +54 1234567899"
+                name="phone"
+                className="form-control"
+                value={formRegister.phone}
+                onChange={handleRegisterInputChange}
+              />
+            </div>
+
+            <div className="form-group mb-2">
+              <button type="submit" className="btn btn-primary">
+                Registrarse
+              </button>
+            </div>
+
+            <div className="form-group mb-2">
+              <Google />
+            </div>
+          </form>
+        </div>
+      </div>
+      <div className="btn-volver">
+        <Link to="/">Volver</Link>
+      </div>
+    </div>
   );
 };
