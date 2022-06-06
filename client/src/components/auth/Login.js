@@ -32,46 +32,40 @@ export const Login = () => {
   const handleLogin = async (e) => {
     e.preventDefault();
 
-    const resp = await fetchSinToken("auth/login", formLogin, "POST");
+    const resp = await fetchSinToken('auth/login', formLogin, 'POST');
     const data = await resp.json();
-    console.log(data)
+
     if (data.ok) {
-      localStorage.setItem("token", data.token);
+      localStorage.setItem('token', data.token)
       const payload = {
         id: data.id,
         email: data.email,
         name: data.name,
         phone: data.phone,
         img: data.img,
-        rol: data.rol,
-      };
-
-      if (data.rol === "ADMIN") {
-        const resp = await fetchConToken("users");
-        const data = await resp.json();
-        dispatch({ type: types.getAllUsers, payload: data.users });
-        dispatch(adminGetAllProducts());
+        rol: data.rol
       }
 
-      dispatch(getCategories());
+      if (data.rol === 'ADMIN') {
+        const resp = await fetchConToken('users');
+        const data = await resp.json();
+        dispatch({ type: types.getAllUsers, payload: data.users })
+        dispatch(adminGetAllProducts())
+      }
+
+      dispatch(getCategories())
       dispatch(login(payload));
-      history.replace("/");
+      history.replace('/');
     } else {
       if (data.errors.email) {
-        return Swal.fire("Error", data.errors.email.msg, "error");
-      }
-
-      if (data.errors.password) {
-        return Swal.fire('Error', data.errors.password.msg)
-      }
-
-      if (data.msg) {
-        return Swal.fire('Error', data.msg, 'error')
+        Swal.fire('Error', data.errors.email.msg, 'error')
+      } else {
+        Swal.fire('Error', data.msg, 'error')
       }
     }
+
     resetLogin();
-    console.log(formLogin);
-  };
+  }
 
   const handleRegister = async (e) => {
     e.preventDefault();
