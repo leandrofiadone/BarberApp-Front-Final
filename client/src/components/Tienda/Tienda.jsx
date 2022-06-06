@@ -24,6 +24,7 @@ export default function Tienda() {
 
   const dispatch = useDispatch();
 
+  const { categorias } = useSelector((state) => state);
   const productosBarberia = useSelector((state) => state.productos);
 
   useEffect(() => {
@@ -115,7 +116,7 @@ export default function Tienda() {
             <div className="text-dark">
               <select
                 name="select"
-                onChange={() => onSelectsChange()}
+                onChange={(e) => onSelectsChange(e)}
                 className="form-select-sm"
               >
                 <option value="Filter"> A-Z:</option>

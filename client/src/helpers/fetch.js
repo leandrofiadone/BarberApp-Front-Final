@@ -1,6 +1,5 @@
 const baseUrl = `https://barber-app-henry.herokuapp.com/api`;
 
-
 //ESTE SIRVE DE ALGO???????????
 export const fetchSinToken = (endpoint, data, method = 'GET') => {
    const url = `${baseUrl}/${endpoint}`;

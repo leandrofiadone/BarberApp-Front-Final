@@ -36,55 +36,48 @@ export const UPDATE_PRODUCT = "UPDATE_PRODUCT";
 
 export function allProductos() {
   return async (dispatch) => {
-    try {
-      let informacion = await axios(
-        `https://barber-app-henry.herokuapp.com/api/products`
-      );
+    const resp = await fetchSinToken(`products?state=true`);
+    const data = await resp.json();
+
+    if (data.ok) {
       return dispatch({
         type: ALL_PRODUCTOS,
-        payload: informacion.data.products,
+        payload: data.products,
       });
-    } catch (err) {
-      console.log(err);
     }
   };
 }
-
 export function buscarProductos(name) {
   return async (dispatch) => {
-    try {
-      let informacion = await axios(
-        `https://barber-app-henry.herokuapp.com/api/products?name=${name}`
-      );
+    const resp = await fetchSinToken(`products?name=${name}`);
+    const data = await resp.json();
 
+    if (data.ok) {
       return dispatch({
         type: BUSCAR_PRODUCTOS,
-        payload: informacion.data.product,
+        payload: data.product,
       });
-    } catch (error) {
+    } else {
       Swal.fire({
         icon: "error",
         title: "Oops...",
         text: "No encontramos el producto que estas buscando!",
         confirmButtonText: "Aceptar",
       });
-      console.log(error);
     }
   };
 }
 
 export function detalleDeProductos(id) {
   return async (dispatch) => {
-    try {
-      let informacion = await axios(
-        "https://barber-app-henry.herokuapp.com/api/products/" + id
-      );
+    const resp = await fetchSinToken(`products/${id}`);
+    const data = await resp.json();
+
+    if (data.ok) {
       return dispatch({
         type: DETALLE_PRODUCTO,
-        payload: informacion.data.product,
+        payload: data.product,
       });
-    } catch (err) {
-      console.log(err);
     }
   };
 }
@@ -114,17 +107,17 @@ export function eliminarInfoDetalle() {
 
 export function getServices() {
   return async function(dispatch) {
-    let servicios = await axios.get(
-      "https://barber-app-henry.herokuapp.com/api/services"
-    );
+    const resp = await fetchSinToken("services");
+    const data = await resp.json();
 
-    return dispatch({
-      type: GET_SERVICES,
-      payload: servicios.data,
-    });
+    if (data.ok) {
+      return dispatch({
+        type: GET_SERVICES,
+        payload: data.services,
+      });
+    }
   };
 }
-
 export function addEmployee(employee) {
   return async (dispatch) => {
     try {
@@ -144,28 +137,30 @@ export function addEmployee(employee) {
 
 export function getEmployee() {
   return async function(dispatch) {
-    let result = await axios.get(
-      "https://barber-app-henry.herokuapp.com/api/employee"
-    );
-    return dispatch({
-      type: GET_EMPLOYEE,
-      payload: result.data,
-    });
+    const resp = await fetchSinToken("employee");
+    const data = await resp.json();
+
+    if (data.ok) {
+      return dispatch({
+        type: GET_EMPLOYEE,
+        payload: data,
+      });
+    }
   };
 }
-
 export function getCategories() {
   return async (dispatch) => {
-    let informacion = await axios(
-      `https://barber-app-henry.herokuapp.com/api/categories`
-    );
-    return dispatch({
-      type: GET_CATEGORIES,
-      payload: informacion.data.categories,
-    });
+    const resp = await fetchSinToken("categories");
+    const data = await resp.json();
+    console.log(data);
+    if (data.ok) {
+      return dispatch({
+        type: GET_CATEGORIES,
+        payload: data.categories,
+      });
+    }
   };
 }
-
 export function filterCategoriaProductos(payload) {
   return {
     type: FILTER_CATEGORIAS,
@@ -196,14 +191,15 @@ export function orderByPrecio(payload) {
 
 export function allCitas() {
   return async (dispatch) => {
-    const informacion = await axios(
-      `https://barber-app-henry.herokuapp.com/api/date`
-    );
+    const resp = await fetchSinToken("date");
+    const data = await resp.json();
 
-    return dispatch({
-      type: ALL_CITAS,
-      payload: informacion.data.allDates,
-    });
+    if (data.ok) {
+      return dispatch({
+        type: ALL_CITAS,
+        payload: data.allDates,
+      });
+    }
   };
 }
 
@@ -228,72 +224,20 @@ export function filterPorPrecio(payload) {
 
 export function allBarberos() {
   return async (dispatch) => {
-    let informacion = await axios(
-      `https://barber-app-henry.herokuapp.com/api/employee`
-    );
+    const resp = await fetchSinToken("employe");
+    const data = await resp.json();
 
-    return dispatch({
-      type: ALL_BARBEROS,
-      payload: informacion.data.employees,
-    });
+    if (data.ok) {
+      return dispatch({
+        type: ALL_BARBEROS,
+        payload: data.employees,
+      });
+    }
   };
 }
 
 // ACCIONES DE LOGIN !!!
 //-----------------------------------------------------------------------------------
-export function login(user) {
-  return async (dispatch) => {
-    const resp = await fetch(
-      "https://barber-app-henry.herokuapp.com/api/auth/login",
-      {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify(user),
-      }
-    );
-    const data = await resp.json();
-    if (data.ok) {
-      const payload = {
-        id: data.id,
-        email: data.email,
-        name: data.name,
-        rol: data.rol,
-      };
-
-      localStorage.setItem("token", data.token);
-      dispatch({
-        type: types.login,
-        payload,
-      });
-    } else {
-      Swal.fire("Error", "Revisa tus datos", "error");
-    }
-  };
-}
-// export const login = newFunction()
-
-export function revalidarAuth() {
-  return async (dispatch) => {
-    const resp = await fetchConToken("auth/renew");
-    const data = await resp.json();
-
-    if (data.ok) {
-      localStorage.setItem("token", data.token);
-      const payload = {
-        id: data.id,
-        email: data.email,
-        name: data.name,
-        rol: data.rol,
-      };
-      dispatch({
-        type: types.login,
-        payload,
-      });
-    }
-  };
-}
 
 export function logout() {
   localStorage.clear();
@@ -329,12 +273,11 @@ export function deleteProduct(id) {
       Swal.fire("Success", "Producto eliminado", "success");
       return dispatch({
         type: DELETE_PRODUCT,
-        payload: id,
+        payload: data.producto,
       });
     }
   };
 }
-
 export function updateProductos(product) {
   return async (dispatch) => {
     try {
@@ -382,4 +325,85 @@ export const paymentMP = async (items, user, navigate, emptyCart) => {
   window.open(json.urlPayment, "_blank");
   emptyCart();
   navigate.push("/");
+};
+
+export const login = (payload) => ({ type: types.login, payload });
+
+export function revalidarAuth() {
+  return async (dispatch) => {
+    const resp = await fetchConToken("auth/renew");
+    const data = await resp.json();
+
+    if (data.ok) {
+      localStorage.setItem("token", data.token);
+      const payload = {
+        id: data.id,
+        email: data.email,
+        name: data.name,
+        rol: data.rol,
+        img: data.img,
+        phone: data.phone,
+      };
+
+      dispatch(adminGetAllProducts());
+      return dispatch({
+        type: types.login,
+        payload,
+      });
+    }
+  };
+}
+
+// ======================= estas acciones las agrego david por favor consultar conmigo para cualquier cambios =================================/
+// ======================================== ALERTA
+
+// esta accion sirve para banear y desbanear basicamente
+export const banearUser = (user) => {
+  return {
+    type: types.banearUser,
+    payload: user,
+  };
+};
+
+// esta accion le carga los usuarios para el administrador luego poder banearlos
+export const getAllUsers = () => {
+  return async (dispatch) => {
+    const resp = await fetchConToken("users");
+    const data = await resp.json();
+
+    if (data.ok) {
+      return dispatch({ type: types.getAllUsers, payload: data.users });
+    }
+  };
+};
+
+export const adminGetAllProducts = () => {
+  return async (dispatch) => {
+    const resp = await fetchSinToken("products?all=true");
+    const data = await resp.json();
+
+    if (data.ok) {
+      return dispatch({
+        type: types.getAllProductsAdmin,
+        payload: data.products,
+      });
+    }
+  };
+};
+
+export const addProductosAdmin = (product) => ({
+  type: types.addProductsAdmin,
+  payload: product,
+});
+
+export const activarProducto = (id) => {
+  return async (dispatch) => {
+    const resp = await fetchConToken(`products/${id}`, {}, "PATCH");
+    const data = await resp.json();
+    console.log(data);
+    if (data.ok) {
+      dispatch({ type: types.activaProducto, payload: data.producto });
+      dispatch({ type: ADD_PRODUCT, payload: data.producto });
+    }
+  };
 };

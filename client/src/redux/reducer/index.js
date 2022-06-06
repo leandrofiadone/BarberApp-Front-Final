@@ -18,6 +18,8 @@ const initialState = {
   user: {},
   isAuth: false,
   //cierra login
+  adminAllUsers: [],
+  adminAllProducts: [],
 };
 
 function rootReducer(state = initialState, action) {
@@ -39,11 +41,6 @@ function rootReducer(state = initialState, action) {
       return {
         ...state,
         detalle: action.payload,
-      };
-
-    case ACTIONS.ADD_PRODUCT:
-      return {
-        ...state,
       };
 
     case ACTIONS.DELETE_PRODUCT:
@@ -87,7 +84,7 @@ function rootReducer(state = initialState, action) {
 
       return {
         ...state,
-        productos: infoCategoria,
+        allProductos: infoCategoria,
       };
 
     case ACTIONS.GET_CATEGORIES:
@@ -97,7 +94,7 @@ function rootReducer(state = initialState, action) {
       };
 
     case ACTIONS.SORT_NAME:
-      let orderName = [...state.productos];
+      let orderName = [...state.allProductos];
       orderName = orderName.sort((a, b) => {
         if (a.name < b.name) {
           return action.payload === "ASC" ? -1 : 1;
@@ -109,7 +106,8 @@ function rootReducer(state = initialState, action) {
       });
       return {
         ...state,
-        productos: action.payload === "Filter" ? state.allProductos : orderName,
+        allProductos:
+          action.payload === "Filter" ? state.allProductos : orderName,
       };
 
     case ACTIONS.SORT:
@@ -130,7 +128,7 @@ function rootReducer(state = initialState, action) {
       };
 
     case ACTIONS.ORDER_PRECIO:
-      let ordenPrecio = [...state.productos];
+      let ordenPrecio = [...state.allProductos];
 
       const info =
         action.payload === "All"
@@ -141,7 +139,7 @@ function rootReducer(state = initialState, action) {
 
       return {
         ...state,
-        productos: info,
+        allProductos: info,
       };
 
     case ACTIONS.FILTER_RANGO_PRECIO:
@@ -191,6 +189,78 @@ function rootReducer(state = initialState, action) {
       };
 
     // CIERRA EL LOGIN!!!!!
+
+    // ===================ACCIONES DE DAVID=================
+    case types.getAllUsers:
+      return {
+        ...state,
+        adminAllUsers: action.payload,
+      };
+
+    case types.banearUser:
+      let users = state.adminAllUsers.filter(
+        (user) => user.id !== action.payload.id
+      );
+      let user = action.payload;
+      return {
+        ...state,
+        adminAllUsers: users.concat(user),
+      };
+
+    case types.getAllProductsAdmin:
+      return {
+        ...state,
+        adminAllProducts: action.payload,
+      };
+
+    case ACTIONS.ADD_PRODUCT:
+      return {
+        ...state,
+        allProductos: state.allProductos.concat(action.payload),
+      };
+
+    case types.addProductsAdmin:
+      return {
+        ...state,
+        adminAllProducts: state.adminAllProducts.concat(action.payload),
+      };
+
+    case types.activaProducto:
+      let activarProductoAdmin = state.adminAllProducts.filter(
+        (pro) => pro.id !== action.payload.id
+      );
+      let productoActivar = action.payload;
+      return {
+        ...state,
+        adminAllProducts: activarProductoAdmin.concat(productoActivar),
+      };
+
+    case ACTIONS.DELETE_PRODUCT:
+      let arrDeProductos = state.adminAllProducts.filter(
+        (p) => p.id !== action.payload.id
+      );
+      let productoActualizado = action.payload;
+      return {
+        ...state,
+        allProductos: state.allProductos.filter(
+          (p) => p.id !== action.payload.id
+        ),
+        adminAllProducts: arrDeProductos.concat(productoActualizado),
+      };
+
+    case ACTIONS.UPDATE_PRODUCT:
+      let productos = state.productos.filter((p) => p.id !== action.payload.id);
+      let productosAdmin = state.adminAllProducts.filter(
+        (p) => p.id !== action.payload.id
+      );
+      let producto = action.payload;
+      let productoAdmin = action.payload;
+
+      return {
+        ...state,
+        productos: productos.concat(producto),
+        adminAllProducts: productosAdmin.concat(productoAdmin),
+      };
 
     default:
       return state;
