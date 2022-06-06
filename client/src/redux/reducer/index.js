@@ -76,14 +76,14 @@ function rootReducer(state = initialState, action) {
       }
 
     case ACTIONS.UPDATE_PRODUCT:
-      let productos = state.productos.filter(p => p.id !== action.payload.id)
+      let productos = state.allProductos.filter(p => p.id !== action.payload.id)
       let productosAdmin = state.adminAllProducts.filter(p => p.id !== action.payload.id)
       let producto = action.payload
       let productoAdmin = action.payload
 
       return {
         ...state,
-        productos: productos.concat(producto),
+        allProductos: productos.concat(producto),
         adminAllProducts: productosAdmin.concat(productoAdmin)
       }
 
