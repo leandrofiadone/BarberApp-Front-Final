@@ -1,15 +1,59 @@
-.formReserva{
+ 
+p {
+    color: rgb(255, 0, 0);
+    display: flex;
+    border-radius: 10px;
+    padding: 10px 15px 10px 15px;
+}
+
+.foto {  
+ grid-template-columns: repeat(2, 1fr); 
+ grid-template-areas: 'col-login   col-register' 'btn-volver btn-volver'; 
+ grid-template-rows: auto; 
+ justify-content: center !important; 
+ align-content: center;  
+ background-image: url('../../assets/ph.avif');
+ width: 100vw;
+ height: 100vh;
+}
+
+
+.foto>div {
     width: 500px;
-    margin-left: 400px;
-    margin-top: 100px;
 }
 
-.add{
-    width: 100px;
+.foto .col-login {
+    grid-area: col-login;
+    border-radius: 10px 10 10 10px;
+    justify-content: center;
+    padding: 25px;
 }
 
-
-.leaflet-container{
-    width: 50vh;
-    height: 50vh;
+.contenedor{
+    display: flex;
+        justify-content: center;
+        flex-direction: column;
+        align-items: center;
+        height: 600px;
+        width: 900px;
+        background-color: rgba(191, 224, 233, 0.101);
+        border: 1px solid aliceblue;
+        border-radius: 14px;
+        transition: transform 0.15s;
+        margin: 0 auto;
 }
+
+.foto{
+color: white;
+ font-family:Verdana, Geneva, Tahoma, sans-serif     
+}
+.boton{
+    background-color: rgba(2, 2, 2, 0.573);
+        border: none;
+        padding: 14px;
+        border-radius: 15px;
+        color: rgba(248, 248, 248, 0.801);
+        margin-top: 1rem;
+        margin-left: 1rem;
+        font-family:Cambria, Cochin, Georgia, Times, 'Times New Roman', serif
+} 
