@@ -67,87 +67,117 @@ export default function Tienda() {
 
   <div >
 
-      <div className="botonVolver">
+      {/* <div className="botonVolver">
       <Link to="/" className="LinkVolver">
         <button  onClick="location.reload();" className="btn btn-dark" id="arriba"> Volver</button>
       </Link>
+      </div> */}
+{/* =============================================================== */}
+      <nav class="navbar navbar-expand-lg divNavbarTienda p-3 containernavbartienda">
+        <div class="container-fluid ">
+            <Link className="navbar-brandtienda" to="/"></Link>
+              <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+              <span class="navbar-toggler-icon"></span>
+              </button>
+
+          <div class="collapse navbar-collapse generalcont" id="navbarSupportedContent">
+            <ul class="navbar-nav me-auto mb-2 mb-lg-0 ">
+              <li class="nav-item dropdown dropContainer">
+                
+                    <button className="botonOrdenar btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
+                      Ordenar Por:
+                    </button>
+                    <ul className="dropdown-menu bg-dark" aria-labelledby="dropdownMenuButton1">
+
+                      <div className="contOrder">
+                      
+                          <label className="text-light">Categorias</label>
+                        <div className="text-dark">
+                          <br />
+                          <select onChange={(e) => handleCategorias(e)} className="text-dark form-select-sm">
+                            <option value="All"> Todos </option>
+                            <option value="Tinte"> Tinte</option>
+                            <option value="Cremas">Crema</option>
+                            <option value="shampoo">Shampoo</option>
+                            <option value="acondicionador">Acondicionador</option>
+                            <option value="Cera">Cera</option>
+                          </select>
+                        </div>
+                        <br />
+
+                        <div className="text-dark">
+                        <label className="text-light">Alfab</label>
+
+                              <select name="select" onChange={()=>onSelectsChange()} className="form-select-sm">
+                                  <option value="Filter"> A-Z:</option>
+                                  <option value="ASC">Ascendente</option>
+                                  <option value="DESC">Descendente</option>
+                              </select>
+                        </div>
+                        <br />
+                      
+                        <div className="text-dark">
+                        <label className="text-light">Precio</label>
+                        {
+                          productosBarberia? (
+                            <select onChange={(e) => handlePrecio(e)} className="form-select-sm">
+                              <option value="All"> Todos</option>
+                              <option value="max">Mayor precio</option>
+                              <option value="min"> Menor precio</option>
+                            </select>
+                          ): null
+                        }
+
+                      </div>
+
+                      </div>
+                    </ul>
+                
+              </li>
+              <li class="nav-item">
+                <Link to="/tienda">
+                  <button onClick={()=>window.location.reload()} className="containerTienda"><h5>Tienda Web</h5></button>
+                </Link>
+              </li>
+              <li className="nav-item">
+               <div className="searchbar ">
+                  <SearchBar />
+                </div>
+                </li>
+              <li class="nav-item carritoContainer">
+    
+                    {/* <button  className="" >
+                      <img className="imgCarrito" src="https://www.ubolosoft.com/Carrito/images/carrito.png" alt="" style={{height: "2rem", width: "2rem"}}/>
+                    </button> */}
+
+                    <button onClick={() => registro()} type="button" class="btn btn-dark position-relative botonCarrito">
+                    <img className="imgCarrito" src="https://www.ubolosoft.com/Carrito/images/carrito.png" alt="" style={{height: "2rem", width: "2rem"}}/> <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-secondary">{totalItems} <span class="visually-hidden"></span></span>
+                    </button>
+                 
+              </li>
+              {/* <li className="numeroitems nav-item">
+                    {totalItems}
+              </li> */}
+            </ul>
+          </div>
+        </div>
+    </nav>
+{/* =============================================================== */}
+            
+      <div className="allCarrito" id="carrito">
+        <Carrito/>
       </div>
 
-      
-
-    <Link to="/tienda">
-      <button onClick={()=>window.location.reload()} className="containerTienda"><h1>Tienda Web</h1></button>
-    </Link>
     <br />
-
-    
-
-    <div className="allCarrito" id="carrito">
-      <Carrito/>
-    </div>
-
 
   <div className="navbar navbar-expand bg-dark navbarTienda">
 
-    <div className="dropdown">
-  <button className="botonOrdenar btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
-    Ordenar Por:
-  </button>
-  <ul className="dropdown-menu" aria-labelledby="dropdownMenuButton1">
     
-      <div className="text-dark">
-        <select onChange={(e) => handleCategorias(e)} className="text-dark">
-          <option value="All"> Todos </option>
-          <option value="tinte"> Tinte</option>
-          <option value="cremas">Crema</option>
-          <option value="shampoo">Shampoo</option>
-          <option value="acondicionador">Acondicionador</option>
-          <option value="Cera">Cera</option>
-        </select>
-      </div>
-      <br />
-
 
       
-      <div className="text-dark">
 
-            <select name="select" onChange={()=>onSelectsChange()} className="form-select-sm">
-                <option value="Filter"> A-Z:</option>
-                <option value="ASC">Ascendente</option>
-                <option value="DESC">Descendente</option>
-            </select>
-      </div>
-      <br />
+
      
-
-      <div className="text-dark">
-      {
-        productosBarberia? (
-          <select onChange={(e) => handlePrecio(e)} className="form-select-sm">
-            <option value="All"> Todos</option>
-            <option value="max">Mayor precio</option>
-            <option value="min"> Menor precio</option>
-          </select>
-        ): null
-      }
-
-    </div>
-  </ul>
-</div>
-
-      <div className="divCarrito">
-        <button onClick={() => registro()} className="botonCarrito" >
-          <img className="imgCarrito center" src="https://www.ubolosoft.com/Carrito/images/carrito.png" alt="" style={{height: "4rem"}}/>
-        </button>
-      </div>
-      <div className="fw-bold text-warning h5">
-        {totalItems}
-      </div>
-
-
-      <div className="searchbar">
-        <SearchBar />
-      </div>
 
   </div>
 

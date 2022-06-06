@@ -7,7 +7,7 @@ import Contenido from "../Chatbot/Chatbot";
 import Geolocalizacion from "../Geolocalizacion/Geolocalizacion";
 
 import "./Home.css";
-import { MDBFooter } from "mdb-react-ui-kit";
+// import { MDBFooter } from "mdb-react-ui-kit";
 
 export default function Home() {
   return (
@@ -36,10 +36,11 @@ export default function Home() {
 
       <div>
         {
-          <MDBFooter
-            bgColor="light"
-            className="text-center text-lg-start text-muted"
-          >
+          // <MDBFooter
+          //   bgColor="light"
+          //   className="text-center text-lg-start text-muted"
+          // >
+          <div>
             <section className="d-flex justify-content-center justify-content-lg-between p-4 border-bottom">
               <div className="me-5 d-none d-lg-block" />
               <div className="text-light" id="quienesSomos"></div>
@@ -86,7 +87,9 @@ export default function Home() {
                 BarberApp
               </a>
             </div>
-          </MDBFooter>
+            </div>
+          // </MDBFooter>
+
         }
       </div>
     </div>
