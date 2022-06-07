@@ -34,6 +34,8 @@ export const ALL_BARBEROS = "ALL_BARBEROS";
 export const DELETE_PRODUCT = "DELETE_PRODUCT";
 export const UPDATE_PRODUCT = "UPDATE_PRODUCT";
 
+
+
 export function allProductos() {
   return async (dispatch) => {
     const resp = await fetchSinToken(`products?state=true`);
@@ -304,27 +306,8 @@ export function updateProductos(product) {
     }
   };
 }
-export const paymentMP = async (items, user, navigate, emptyCart) => {
-  const carrito = [];
-  items.map((i) => {
-    carrito.push({
-      idUser: user.id,
-      idProduct: i.idProduct,
-      quantity: i.quantity,
-    });
-  });
-  const token = localStorage.getItem("token");
-  const response = await fetch(
-    "https://barber-app-henry.herokuapp.com/api/purchaseOrder",
-    {
-      method: "POST",
-      body: JSON.stringify(carrito),
-      headers: {
-        "Content-Type": "application/json",
-        "x-token": token,
-      },
-    }
-  );
+
+  
 
 export const paymentMP = async(items,user, navigate,emptyCart) =>{
   const carrito = []
@@ -349,6 +332,8 @@ export const paymentMP = async(items,user, navigate,emptyCart) =>{
   emptyCart();
   navigate.push("/");
 };
+
+
 
 export const login = (payload) => ({ type: types.login, payload });
 
@@ -429,5 +414,8 @@ export const activarProducto = (id) => {
     }
   };
 };
-  navigate.push('/');
-}
+
+
+
+
+
