@@ -1,28 +1,54 @@
-.containerDetail{
-    display: grid;
-    place-items: center;
-    margin-top: 2rem;
+    .containerDetail{
+     display: grid; 
+     place-items: center;
+    margin-top: 4rem;
     text-transform: capitalize;
+        padding: 80px;
+    
 }
 
-.containerDetail > img {
-    margin-right: 11rem;
+.letra{
+    font-family: 'Mulish', sans-serif;
 }
 
-.containerDetail > button{
-    background-color: transparent;
-    color: white;
-    padding: 20px;
-    border: 1px solid rgb(4, 117, 13);
-}
+ img.izquierda {
+     float: left; 
+} 
 
-.containerDetail > button:hover{
-    background-color: rgb(13, 100, 6);
-}
+.derecha {
+    float: right;
 
-.divDesc{
+}
+.media {
     display: flex;
-    justify-content: center;
-    margin-left: 26rem;
-    width: 500px;
+    align-items: flex-start;
+}
+
+.media2 {
+    flex: 1;
+    padding: 90px;
+
+}
+
+.boton {
+    background-color: rgba(2, 2, 2, 0.573);
+    border: none;
+    padding: 10px;
+    border-radius: 15px;
+    color: rgba(248, 248, 248, 0.801);
+    margin-top: 1rem;
+    margin-left: 1rem;
+} 
+
+.fotoBarber {
+    grid-template-columns: repeat(2, 1fr);
+    grid-template-areas: 'col-login   col-register''btn-volver btn-volver';
+    grid-template-rows: auto;
+    justify-content: center !important;
+    align-content: center;
+    background-image: url('../../assets/barber.jpg');
+    background-position: center center;
+    background-size: cover;
+    width: 100vw;
+    height: 100vh;
 }

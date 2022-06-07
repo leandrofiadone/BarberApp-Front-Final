@@ -1,66 +1,86 @@
-import React, { useEffect } from "react";
-import { useDispatch, useSelector } from 'react-redux'
-import { Link } from "react-router-dom";
-import { logout, userActive } from "../../redux/actions";
-import './Profile.css';
+import React, { useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { NavLink } from "react-router-dom";
+import { logout } from "../../redux/actions";
+import { ComprasPerfil } from "./compras/ComprasPerfil";
+import { EditarPerfil } from "./editar/EditarPerfil";
+import "./Profile.css";
+import { ReservasPerfil } from "./reservas/ReservasPerfil";
 
 const Profile = () => {
+  const { user } = useSelector((state) => state);
+  // const { citas } = useSelector((state) => state);
+  // const filtrado = citas.filter((e) => e.idUser === user.id);
 
-  const { user } = useSelector(state => state);
+  const [section, setSection] = useState("editar");
   const dispatch = useDispatch();
 
   const handleLogout = () => {
-    dispatch(logout())
-  }
+    dispatch(logout());
+  };
+
+  const selectSection = (section) => {
+    setSection(section);
+  };
 
   return (
     <div className="main-perfil">
       <nav>
         <div className="img-perfil">
-          <img src="https://avatars.githubusercontent.com/u/11352458?v=4" alt={user.name} />
+          <img src={user.img} alt={user.name} />
         </div>
-        <h1>
-          {user.name}
-        </h1>
+        <h1>{user.name}</h1>
 
         <ul className="mt-3 list-group list-group-flush">
-          <li className="list-group-item">Mis Compras</li>
-          <li className="list-group-item">Mis Reservaciones</li>
-          <li className="list-group-item">Editar</li>
-          <li className="list-group-item">
-            <Link to='/'>Volver a la tienda</Link>
+          <li
+            className={`list-group-item pointer ${
+              section === "compras" ? "bg-warning" : ""
+            }`}
+            onClick={() => selectSection("compras")}
+          >
+            Mis Compras
           </li>
-        </ul>
 
+          <li
+            className={`list-group-item pointer ${
+              section === "reservas" ? "bg-warning" : ""
+            }`}
+            onClick={() => selectSection("reservas")}
+          >
+            Mis Reservaciones
+          </li>
 
-        <div className="dropup mas-opciones">
-          <button className="btn btn-warning dropdown-toggle" type="button" id="masopciones" data-bs-toggle="dropdown" aria-expanded="false">
-            More Options
-          </button>
-          <ul className="dropdown-menu dropdown-menu-dark" aria-labelledby="masopciones">
-            <li 
-              className="dropdown-item pointer"
-              onClick={handleLogout}>
-              Logout
+          <li
+            className={`list-group-item pointer ${
+              section === "editar" ? "bg-warning" : ""
+            }`}
+            onClick={() => selectSection("editar")}
+          >
+            Editar
+          </li>
+
+          <li className="list-group-item">
+            <NavLink to="/">Volver a la tienda</NavLink>
+          </li>
+
+          <li className="list-group-item pointer" onClick={handleLogout}>
+            Logout
+          </li>
+
+          {user.rol === "ADMIN" && (
+            <li className="list-group-item">
+              <NavLink to="/admin/main">Administrador</NavLink>
             </li>
-            <li><hr className="dropdown-divider" /></li>
-            {
-              (user.rol === 'ADMIN') &&
-              (
-                <li>
-                  <Link className="dropdown-item link-admin" to="/admin/main">Administrador</Link>
-                </li>
-              )
-            }
-          </ul>
-        </div>
-
+          )}
+        </ul>
       </nav>
       <section>
-
+        {section === "editar" && <EditarPerfil id={user.id} />}
+        {section === "compras" && <ComprasPerfil />}
+        {section === "reservas" && <ReservasPerfil />}
       </section>
     </div>
-  )
+  );
 };
 
 export default Profile;

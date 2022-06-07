@@ -1,220 +1,233 @@
-import React, { useState } from 'react'
-import { useDispatch, useSelector } from 'react-redux'
-import { useForm } from '../../hooks/useForm'
-import { Link, useHistory } from 'react-router-dom'
-import { types } from '../../types/types'
-import Swal from 'sweetalert2'
-import './auth.css';
-import { Google } from './Google'
-
+import React, { useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { useForm } from "../../hooks/useForm";
+import { Link, useHistory } from "react-router-dom";
+import { types } from "../../types/types";
+import Swal from "sweetalert2";
+import "./auth.css";
+import { Google } from "./Google";
+import { fetchConToken, fetchSinToken } from "../../helpers/fetch";
+import { adminGetAllProducts, getCategories, login } from "../../redux/actions";
 
 export const Login = () => {
-
   const { isAuth } = useSelector((state) => state);
 
-  const dispatch = useDispatch()
+  const dispatch = useDispatch();
   const history = useHistory();
 
   const [formLogin, handleLoginInputChange, resetLogin] = useForm({
-    email: '',
-    password: ''
-  })
+    email: "",
+    password: "",
+  });
 
   const [formRegister, handleRegisterInputChange, resetRegister] = useForm({
-    email: '',
-    password: '',
-    name: '',
-    phone: '',
-    rol: 'client'
-  })
+    email: "",
+    password: "",
+    password2: "",
+    name: "",
+    phone: "",
+    rol: "client",
+  });
 
-
-  const handleLogin = (e) => {
+  const handleLogin = async (e) => {
     e.preventDefault();
 
-    fetch('https://barber-app-henry.herokuapp.com/api/auth/login', {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json'
-      },
-      body: JSON.stringify(formLogin)
-    })
-      .then(resp => resp.json())
-      .then(data => {
-        if (data.ok) {
+    const resp = await fetchSinToken('auth/login', formLogin, 'POST');
+    const data = await resp.json();
 
-          console.log(data)
+    if (data.ok) {
+      localStorage.setItem('token', data.token)
+      const payload = {
+        id: data.id,
+        email: data.email,
+        name: data.name,
+        phone: data.phone,
+        img: data.img,
+        rol: data.rol
+      }
 
-          localStorage.setItem('token', data.token)
-          dispatch({
-            type: types.login, payload: {
-              id: data.id,
-              email: data.email,
-              name: data.name,
-              rol: data.rol
-            }
-          })
-          history.replace('/')
-        } else {
-          Swal.fire('Error', 'Verifica tus datos', 'error')
-        }
-      })
-      .catch(err => console.log(err))
+      if (data.rol === 'ADMIN') {
+        const resp = await fetchConToken('users');
+        const data = await resp.json();
+        dispatch({ type: types.getAllUsers, payload: data.users })
+        dispatch(adminGetAllProducts())
+      }
 
+      dispatch(getCategories())
+      dispatch(login(payload));
+      history.replace('/');
+    } else {
+      if (data.errors.email) {
+        Swal.fire('Error', data.errors.email.msg, 'error')
+      } else {
+        Swal.fire('Error', data.msg, 'error')
+      }
+    }
 
-    resetRegister()
+    resetLogin();
   }
 
-  const handleRegister = (e) => {
+  const handleRegister = async (e) => {
     e.preventDefault();
 
-    fetch('https://barber-app-henry.herokuapp.com/api/users', {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json'
-      },
-      body: JSON.stringify(formRegister)
-    })
-      .then(resp => resp.json())
-      .then(data => {
-        if (data.ok) {
-          localStorage.setItem('token', data.token)
-          dispatch({
-            type: types.login, payload: {
-              id: data.id,
-              email: data.email,
-              name: data.name,
-              rol: data.rol
-            }
-          })
-          history.replace('/')
-        } else {
-          if (data.errors.email) {
-            Swal.fire('Error', `${data.errors.email.msg}`, 'error')
-          } else if (data.errors.password) {
-            Swal.fire('Error', `${data.errors.password.msg}`, 'error')
-          } else if (data.errors.name) {
-            Swal.fire('Error', `${data.errors.name.msg}`, 'error')
-          }
-        }
-      })
-      .catch(err => console.log(err))
+    if (formRegister.password !== formRegister.password2) {
+      return Swal.fire(
+        "Error",
+        "Las contraseñas tienen que ser iguales",
+        "error"
+      );
+    }
 
+    const resp = await fetchSinToken("users", formRegister, "POST");
+    const data = await resp.json();
 
-    resetLogin()
-  }
+    if (data.ok) {
+      console.log(data);
+      localStorage.getItem("token", data.token);
+      const payload = {
+        id: data.id,
+        email: data.email,
+        name: data.name,
+        phone: data.phone,
+        img: data.img,
+        rol: data.rol,
+      };
+      dispatch(login(payload));
+      history.replace("/");
+    } else {
+      console.log(data);
+      if (data.errors.email) {
+        Swal.fire("Error", data.errors.email.msg, "error");
+      } else if (data.errors.password) {
+        Swal.fire("Error", data.errors.password.msg, "error");
+      } else if (data.errors.name) {
+        Swal.fire("Error", data.errors.name.msg, "error");
+      }
+    }
+
+    // resetRegister()
+  };
 
   if (isAuth) {
-    return (
-      <>
-        <h1>Que diablos haces aqui andate al
-          <Link to='/'> Home</Link>
-        </h1>
-      </>
-    )
+    history.replace("/");
   }
 
   return (
-    <div className='main'>
-      <div className='col-login'>
-        <div className='form-login'>
+
+
+    <div className="main">
+      <div className="col-login">
+        <div className="form-login">
           <h1>Ingresar</h1>
-          <form onSubmit={handleLogin} autoComplete='off'>
-            <div className='form-group mb-2'>
+          <form onSubmit={handleLogin} autoComplete="off">
+            <div className="form-group mb-2">
               <input
-                type='email'
-                placeholder='Email'
-                className='form-control'
-                name='email'
+                type="email"
+                placeholder="Email"
+                className="form-control"
+                name="email"
                 value={formLogin.email}
-                onChange={handleLoginInputChange} />
+                onChange={handleLoginInputChange}
+              />
             </div>
 
-            <div className='form-group mb-2'>
+            <div className="form-group mb-2">
               <input
-                type='password'
-                placeholder='Password'
-                name='password'
-                className='form-control'
+                type="password"
+                placeholder="Password"
+                name="password"
+                className="form-control"
                 value={formLogin.password}
-                onChange={handleLoginInputChange} />
-
+                onChange={handleLoginInputChange}
+              />
             </div>
 
-            <div className='form-group mb-2'>
-              <button
-                type='submit'
-                className='btn btn-primary'>Login</button>
+            <div className="form-group mb-2">
+              <button type="submit" className="btn btn-primary">
+                Login
+              </button>
             </div>
 
-            <div className='form-group mb-2'>
+            <div className="form-group mb-2">
               <Google />
             </div>
           </form>
         </div>
       </div>
-      <div className='col-register'>
-        <div className='form-register'>
+      <div className="col-register">
+        <div className="form-register">
           <h1>Registro</h1>
-          <form onSubmit={handleRegister} autoComplete='off'>
-            <div className='form-group mb-2'>
+          <form onSubmit={handleRegister} autoComplete="off">
+            <div className="form-group mb-2">
               <input
-                type='email'
-                placeholder='Email'
-                className='form-control'
-                name='email'
+                type="email"
+                placeholder="Email"
+                className="form-control"
+                name="email"
                 value={formRegister.email}
-                onChange={handleRegisterInputChange} />
+                onChange={handleRegisterInputChange}
+              />
             </div>
 
-            <div className='form-group mb-2'>
+            <div className="form-group mb-2">
               <input
-                type='password'
-                placeholder='Password'
-                name='password'
-                className='form-control'
+                type="password"
+                placeholder="Password"
+                name="password"
+                className="form-control"
                 value={formRegister.password}
-                onChange={handleRegisterInputChange} />
-
+                onChange={handleRegisterInputChange}
+              />
             </div>
 
-            <div className='form-group mb-2'>
+            <div className="form-group mb-2">
               <input
-                type='text'
-                placeholder='Tu Nombre'
-                name='name'
-                className='form-control'
+                type="password"
+                placeholder="Repita su password"
+                name="password2"
+                className="form-control"
+                value={formRegister.password2}
+                onChange={handleRegisterInputChange}
+              />
+            </div>
+
+            <div className="form-group mb-2">
+              <input
+                type="text"
+                placeholder="Tu Nombre"
+                name="name"
+                className="form-control"
                 value={formRegister.name}
-                onChange={handleRegisterInputChange} />
-
+                onChange={handleRegisterInputChange}
+              />
             </div>
 
-            <div className='form-group mb-2'>
+            <div className="form-group mb-2">
               <input
-                type='text'
-                placeholder='Exmaple: +54 1234567899'
-                name='phone'
-                className='form-control'
+                type="text"
+                placeholder="Exmaple: +54 1234567899"
+                name="phone"
+                className="form-control"
                 value={formRegister.phone}
-                onChange={handleRegisterInputChange} />
-
+                onChange={handleRegisterInputChange}
+              />
             </div>
 
-            <div className='form-group mb-2'>
-              <button
-                type='submit'
-                className='btn btn-primary'>Registrarse</button>
+            <div className="form-group mb-2">
+              <button type="submit" className="btn btn-primary">
+                Registrarse
+              </button>
             </div>
 
-            <div className='form-group mb-2'>
+            <div className="form-group mb-2">
               <Google />
             </div>
           </form>
         </div>
       </div>
-      <div className='btn-volver'>
-        <Link to='/'>Volver</Link>
+      <div className="btn-volver">
+        <Link to="/">Volver</Link>
       </div>
     </div>
-  )
-}
+  );
+};

@@ -10,8 +10,6 @@ import Swal from "sweetalert2";
 
 import "./Reserva.css";
 
-import Geolocalizacion from "../Geolocalizacion/Geolocalizacion";
-
 const validate = (state) => {
   let errors = {};
 
@@ -28,10 +26,11 @@ const validate = (state) => {
 
 export function Reserva() {
   const dispatch = useDispatch();
+  const { user } = useSelector((state) => state);
 
   const allServices = useSelector((state) => state.servicios.services);
   const subBarberos = useSelector((state) => state.barberos);
-
+  console.log(allServices);
   const history = useHistory();
 
   const [state, setState] = useState({
@@ -39,6 +38,7 @@ export function Reserva() {
     service: "",
     idEmployee: "",
     barberos: "",
+    idUser: user,
   });
 
   const [errors, setError] = useState({});
@@ -80,6 +80,8 @@ export function Reserva() {
   const handleSubmit = (e) => {
     e.preventDefault();
 
+    const userId = state.idUser.id;
+
     if (Object.values(errors).length <= 0)
       return Swal.fire({
         icon: "error",
@@ -113,111 +115,92 @@ export function Reserva() {
         crearCita({
           date: state.date.toLocaleString("en-US"),
           service: state.service,
-          idEmployee: e.target.value,
+          idEmployee: state.idEmployee,
+          idUser: userId,
         })
       );
+
       Swal.fire({
         icon: "success",
         title: "Cita creada con exito",
         showConfirmButton: false,
         timer: 1500,
       });
+
       setTimeout(() => {
         history.push("/");
       }, 2000);
-      console.log(state);
     }
+    console.log(state);
   };
 
   return (
-    <div>
-      <div>
-        <Link to="/">
-          <button className="btn btn-warning fw-bold">Home</button>
-        </Link>
-      </div>
+    <div className="foto">
+      <Link to="/">
+        <button className="boton">Volver</button>
+      </Link>
+      <div className="contenedor">
+        <div className="col-login">
+          <div className="form-login">
+            <form onSubmit={(e) => handleSubmit(e)} data-netlify="true">
+              <div className="  form-group mb-2">
+                <label className="palabra">Servicio</label>
+                <select
+                  onChange={(e) => handleChange(e)}
+                  className="form-select"
+                  name="service"
+                  value={state.service}
+                >
+                  <option hidden> Seleccione un servicio</option>
+                  {allServices?.map((e) => (
+                    <option key={e.id} value={e.name}>
+                      {e.name}
+                    </option>
+                  ))}
+                </select>
+                {errors.service && <p>{errors.service}</p>}
+              </div>
 
-      <div className="carta">
-        <form
-          onSubmit={(e) => handleSubmit(e)}
-          data-netlify="true"
-          className="formReserva"
-        >
-          <div className="cardContainer">
-            {/*  -----------------SERVICIOS---------------------------*/}
-            <div className="mb-3">
-              <label className="text-light">Servicio</label>
-              <select
-                onChange={(e) => handleChange(e)}
-                className="form-select"
-                name="service"
-                value={state.service}
-              >
-                <option hidden> Seleccione un servicio</option>
-                {allServices?.map((e) => (
-                  <option key={e.id} value={e.name}>
-                    {e.name}
-                  </option>
-                ))}
-              </select>
-              {errors.service && <p>{errors.service}</p>}
-            </div>
+              <div className=" form-group mb-2">
+                <label className="text-light">Barbero</label>
+                <select
+                  onChange={(e) => handleChangeBarberia(e)}
+                  className="form-select "
+                  name="barberos"
+                >
+                  <option hidden>Seleccione un barbero</option>
+                  {subBarberos?.map((e, index) => (
+                    <option key={index} value={[e.id]}>
+                      {e.name}
+                    </option>
+                  ))}
+                </select>
+                {errors.barberos && <p>{errors.barberos}</p>}
+              </div>
 
-            {/*  -----------------SERVICIOS---------------------------*/}
-            {/*  -----------------BARBERO--------------------------*/}
-            <div className="mb-3">
-              <label className="text-light">Barbero</label>
-              <select
-                onChange={(e) => handleChangeBarberia(e)}
-                className="form-select"
-                name="barberos"
-              >
-                <option hidden>Seleccione un barbero</option>
-                {subBarberos?.map((e) => (
-                  <option key={e.id} value={[e.id]}>
-                    {e.name}
-                  </option>
-                ))}
-              </select>
-              {errors.barberos && <p>{errors.barberos}</p>}
-            </div>
-            {/*  -----------------BARBERO--------------------------*/}
-            {/*  ------------------CALENDARIO----------------------------*/}
-            <label>
-              Fecha y hora
-              <Calendario
-                name="date"
-                date={state.date}
-                value={state.date}
-                setState={setState}
-                state={state}
-                onChange={(e) => handleChange(e)}
-              />
-            </label>
+              <label>
+                Fecha y hora
+                <Calendario
+                  name="date"
+                  date={state.date}
+                  value={state.date}
+                  setState={setState}
+                  state={state}
+                  onChange={(e) => handleChange(e)}
+                />
+              </label>
+              <br />
+              <br />
+              <br />
+              <br />
+              <div className="mb-3">
+                <button type="submit" className=" btn btn-primary w-100 fs-5">
+                  Reservar!
+                </button>
+              </div>
+            </form>
           </div>
-
-          <br />
-          <br />
-          <br />
-          <br />
-          <br />
-          <br />
-
-          {/*  ------------------CALENDARIO----------------------------*/}
-
-          <div className="mb-3">
-            <button type="submit" className=" btn btn-primary w-100 fs-5">
-              Reservar!
-            </button>
-          </div>
-
-          <Geolocalizacion />
-
-          <br />
-          <br />
-          <br />
-          <br />
-        </form>
+        </div>
       </div>
     </div>
   );

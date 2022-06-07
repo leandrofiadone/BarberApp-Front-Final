@@ -1,4 +1,8 @@
-.main-perfil{
+
+.main-perfil {
+    color: black;
+    display: grid;
+    grid-template-columns: 250px 1fr;
     color: black;
     display: grid;
     width: 100vw;
@@ -12,7 +16,6 @@
     overflow: hidden;
     text-align: center;
 }
-
 .main-perfil nav .img-perfil{
     border: 1px solid black;
     border-radius: 100px;
@@ -31,6 +34,7 @@
     width: 150px;
 }
 
+
 .main-perfil nav .mas-opciones{
     position: absolute;
     top: 570px;
@@ -46,6 +50,19 @@
     color: white !important;
 }
 
+
+.pointer {
+    cursor: pointer;
+}
+
+/* section */
+.main-perfil section {
+    padding: 25px;
+    display: grid;
+    /* justify-content: center; */
+    /* align-items: center; */
+    width: 100%;
+}
 
 .pointer{
     cursor: pointer;

@@ -1,4 +1,3 @@
-
 import { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { buscarProductos, allProductos } from "../../redux/actions";
@@ -46,6 +45,7 @@ const SearchBar = () => {
           options={productosComplet.map((option) => option.name)}
           renderInput={(params) => (
             <TextField
+            className="campotexto"
               focus="false"
               value={name}
               label="Buscar Producto"
@@ -55,13 +55,13 @@ const SearchBar = () => {
               {...params}
               onSelect={(e) => handleChange(e)}
               InputProps={{
-                disableUnderline: true,
                 ...params.InputProps,
                 type: "text",
                 style: {
                   height: 35,
                   width: 200,
                   alignContent: "center",
+                  color: "white",
                 },
               }}
             />

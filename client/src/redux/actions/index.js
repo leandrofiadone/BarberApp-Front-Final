@@ -32,60 +32,55 @@ export const CREAR_CITA = "CREAR_CITA";
 export const ALL_BARBEROS = "ALL_BARBEROS";
 
 export const DELETE_PRODUCT = "DELETE_PRODUCT";
-export const UPDATE_PRODUCT = "UPDATE_PRODUCT"
+export const UPDATE_PRODUCT = "UPDATE_PRODUCT";
+
+
 
 export function allProductos() {
   return async (dispatch) => {
-    try {
-      let informacion = await axios(
-        `https://barber-app-henry.herokuapp.com/api/products`
-      );
+    const resp = await fetchSinToken(`products?state=true`);
+    const data = await resp.json();
+
+    if (data.ok) {
       return dispatch({
         type: ALL_PRODUCTOS,
-        payload: informacion.data.products,
+        payload: data.products,
       });
-    } catch (err) {
-      console.log(err);
     }
   };
 }
 
 export function buscarProductos(name) {
   return async (dispatch) => {
-    try {
-      let informacion = await axios(
-        `https://barber-app-henry.herokuapp.com/api/products?name=${name}`
-      );
+    const resp = await fetchSinToken(`products?name=${name}`);
+    const data = await resp.json();
 
-
+    if (data.ok) {
       return dispatch({
         type: BUSCAR_PRODUCTOS,
-        payload: informacion.data.product,
+        payload: data.product,
       });
-    } catch (error) {
+    } else {
       Swal.fire({
         icon: "error",
         title: "Oops...",
         text: "No encontramos el producto que estas buscando!",
         confirmButtonText: "Aceptar",
       });
-      console.log(error);
     }
   };
 }
 
 export function detalleDeProductos(id) {
   return async (dispatch) => {
-    try {
-      let informacion = await axios(
-        "https://barber-app-henry.herokuapp.com/api/products/" + id
-      );
+    const resp = await fetchSinToken(`products/${id}`);
+    const data = await resp.json();
+
+    if (data.ok) {
       return dispatch({
         type: DETALLE_PRODUCTO,
-        payload: informacion.data.product,
+        payload: data.product,
       });
-    } catch (err) {
-      console.log(err);
     }
   };
 }
@@ -114,7 +109,7 @@ export function eliminarInfoDetalle() {
 }
 
 export function getServices() {
-  return async function (dispatch) {
+  return async function(dispatch) {
     let servicios = await axios.get(
       "https://barber-app-henry.herokuapp.com/api/services"
     );
@@ -125,7 +120,6 @@ export function getServices() {
     });
   };
 }
-
 export function addEmployee(employee) {
   return async (dispatch) => {
     try {
@@ -144,29 +138,32 @@ export function addEmployee(employee) {
 }
 
 export function getEmployee() {
-  return async function (dispatch) {
-    let result = await axios.get(
-      "https://barber-app-henry.herokuapp.com/api/employee"
-    );
-    return dispatch({
-      type: GET_EMPLOYEE,
-      payload: result.data,
-    });
+  return async function(dispatch) {
+    const resp = await fetchSinToken("employee");
+    const data = await resp.json();
+
+    if (data.ok) {
+      return dispatch({
+        type: GET_EMPLOYEE,
+        payload: data,
+      });
+    }
   };
 }
 
 export function getCategories() {
   return async (dispatch) => {
-    let informacion = await axios(
-      `https://barber-app-henry.herokuapp.com/api/categories`
-    );
-    return dispatch({
-      type: GET_CATEGORIES,
-      payload: informacion.data.categories,
-    });
+    const resp = await fetchSinToken("categories");
+    const data = await resp.json();
+
+    if (data.ok) {
+      return dispatch({
+        type: GET_CATEGORIES,
+        payload: data.categories,
+      });
+    }
   };
 }
-
 export function filterCategoriaProductos(payload) {
   return {
     type: FILTER_CATEGORIAS,
@@ -181,10 +178,10 @@ export function sortServices(order) {
   };
 }
 
-export function sortName(order) {
+export function sortName(payload) {
   return {
     type: SORT_NAME,
-    payload: order,
+    payload,
   };
 }
 
@@ -197,31 +194,26 @@ export function orderByPrecio(payload) {
 
 export function allCitas() {
   return async (dispatch) => {
-    const informacion = await axios(
-      `https://barber-app-henry.herokuapp.com/api/date`
-    );
+    const resp = await fetchSinToken("date");
+    const data = await resp.json();
 
-    return dispatch({
-      type: ALL_CITAS,
-      payload: informacion.data.allDates,
-    });
+    if (data.ok) {
+      return dispatch({
+        type: ALL_CITAS,
+        payload: data.allDates,
+      });
+    }
   };
 }
 
 export function crearCita(payload) {
   return async (dispatch) => {
-    try {
-      const informacion = await axios.post(
-        "https://barber-app-henry.herokuapp.com/api/date",
-        payload
-      );
+    const respuesta = await fetchConToken("date", payload, "POST");
+    const data = await respuesta.json();
 
-      return dispatch({
-        type: CREAR_CITA,
-        payload: informacion.data,
-      });
-    } catch (error) {
-      console.log(error);
+    console.log(data);
+    if (data.ok) {
+      dispatch({ type: CREAR_CITA, payload: data });
     }
   };
 }
@@ -235,51 +227,115 @@ export function filterPorPrecio(payload) {
 
 export function allBarberos() {
   return async (dispatch) => {
-    let informacion = await axios(
-      `https://barber-app-henry.herokuapp.com/api/employee`
-    );
+    const resp = await fetchSinToken("employee");
+    const data = await resp.json();
 
-    return dispatch({
-      type: ALL_BARBEROS,
-      payload: informacion.data.employees,
-    });
+    if (data.ok) {
+      return dispatch({
+        type: ALL_BARBEROS,
+        payload: data.employees,
+      });
+    }
   };
 }
 
 // ACCIONES DE LOGIN !!!
 //-----------------------------------------------------------------------------------
-export function login(user) {
+
+export function logout() {
+  localStorage.clear();
+  return {
+    type: types.logout,
+  };
+}
+
+export const userActive = (id) => {
   return async (dispatch) => {
-    const resp = await fetch(
-      "https://barber-app-henry.herokuapp.com/api/auth/login",
-      {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify(user),
-      }
-    );
+    const resp = await fetchConToken(`users/${id}`);
     const data = await resp.json();
+
     if (data.ok) {
       const payload = {
-        id: data.id,
-        email: data.email,
-        name: data.name,
-        rol: data.rol
+        id: data.user.id,
+        email: data.user.email,
+        name: data.user.name,
+        rol: data.user.rol.rol,
       };
+      dispatch({ type: types.userActive, payload });
+    }
+  };
+};
 
-      localStorage.setItem("token", data.token);
-      dispatch({
-        type: types.login,
-        payload,
+//ACÁ TERMINAN LAS  ACCIONES DE LOGIN !!!
+//-----------------------------------------------------------------------------------
+export function deleteProduct(id) {
+  return async function(dispatch) {
+    let result = await fetchConToken(`products/${id}`, {}, "DELETE");
+    const data = await result.json();
+    if (data.ok) {
+      Swal.fire("Success", "Producto eliminado", "success");
+      return dispatch({
+        type: DELETE_PRODUCT,
+        payload: data.producto,
       });
-    } else {
-      Swal.fire('Error', 'Revisa tus datos', 'error')
     }
   };
 }
-// export const login = newFunction()
+export function updateProductos(product) {
+  return async (dispatch) => {
+    try {
+      const result = await fetchConToken(
+        `products/${product.id}`,
+        product,
+        "PUT"
+      );
+      const data = await result.json();
+
+      if (data.ok) {
+        console.log(data);
+        Swal.fire("Success", "Producto actualizado", "success");
+        return dispatch({
+          type: UPDATE_PRODUCT,
+          payload: data.producto,
+        });
+      } else {
+        console.log(data);
+      }
+    } catch (err) {
+      console.log("error en modificacion:", err);
+    }
+  };
+}
+
+  
+
+export const paymentMP = async(items,user, navigate,emptyCart) =>{
+  const carrito = []
+        items.map((i)=>{
+            carrito.push({
+                idUser: user.id,
+                idProduct:i.idProduct,
+                quantity:i.quantity
+            })
+        })
+  const token = localStorage.getItem('token')
+  const response = await fetch("https://barber-app-henry.herokuapp.com/api/purchaseOrder", {
+    method: "POST",
+    body: JSON.stringify(carrito),
+    headers: {
+      "Content-Type": "application/json",
+      "x-token": token
+    },
+  });
+  const json = await response.json();
+  window.open(json.urlPayment, '_blank');
+  emptyCart();
+  navigate.push("/");
+};
+
+
+
+export const login = (payload) => ({ type: types.login, payload });
 
 export function revalidarAuth() {
   return async (dispatch) => {
@@ -292,9 +348,13 @@ export function revalidarAuth() {
         id: data.id,
         email: data.email,
         name: data.name,
-        rol: data.rol
+        rol: data.rol,
+        img: data.img,
+        phone: data.phone,
       };
-      dispatch({
+
+      dispatch(adminGetAllProducts());
+      return dispatch({
         type: types.login,
         payload,
       });
@@ -302,87 +362,60 @@ export function revalidarAuth() {
   };
 }
 
-export function logout() {
-  localStorage.clear();
-  return {
-    type: types.logout,
-  };
-}
+// ======================= estas acciones las agrego david por favor consultar conmigo para cualquier cambios =================================/
+// ======================================== ALERTA
 
-export const userActive = (id) => {
+// esta accion sirve para banear y desbanear basicamente
+export const banearUser = (user) => {
+  return {
+    type: types.banearUser,
+    payload: user,
+  };
+};
+
+// esta accion le carga los usuarios para el administrador luego poder banearlos
+export const getAllUsers = () => {
   return async (dispatch) => {
-    const resp = await fetchConToken(`users/${id}`)
+    const resp = await fetchConToken("users");
     const data = await resp.json();
 
     if (data.ok) {
-      const payload = {
-        id: data.user.id,
-        email: data.user.email,
-        name: data.user.name,
-        rol: data.user.rol.rol
-      }
-      dispatch({ type: types.userActive, payload })
+      return dispatch({ type: types.getAllUsers, payload: data.users });
     }
-  }
-}
+  };
+};
+export const adminGetAllProducts = () => {
+  return async (dispatch) => {
+    const resp = await fetchSinToken("products?all=true");
+    const data = await resp.json();
 
-//ACÁ TERMINAN LAS  ACCIONES DE LOGIN !!!
-//-----------------------------------------------------------------------------------
-export function deleteProduct(id) {
-  return async function (dispatch) {
-    let result = await fetchConToken(`products/${id}`, {}, 'DELETE')
-    const data = await result.json();
     if (data.ok) {
-      Swal.fire('Success', 'Producto eliminado', 'success')
       return dispatch({
-        type: DELETE_PRODUCT,
-        payload: id
+        type: types.getAllProductsAdmin,
+        payload: data.products,
       });
     }
   };
-}
+};
 
-export function updateProductos(product) {
+export const addProductosAdmin = (product) => ({
+  type: types.addProductsAdmin,
+  payload: product,
+});
+
+export const activarProducto = (id) => {
   return async (dispatch) => {
-    try {
-
-      // const result = await axios.put(`${api}/products/` + product.id, product);
-      const result = await fetchConToken(`products/${product.id}`, product, 'PUT')
-      const data = await result.json();
-
-      if(data.ok){
-        Swal.fire('Success', 'Producto actualizado', 'success')
-        // return dispatch({
-        //   type: UPDATE_PRODUCT,
-        //   payload: data,
-        // });
-      }
-
-    } catch (err) {
-      console.log("error en modificacion:", err);
+    const resp = await fetchConToken(`products/${id}`, {}, "PATCH");
+    const data = await resp.json();
+    console.log(data);
+    if (data.ok) {
+      dispatch({ type: types.activaProducto, payload: data.producto });
+      dispatch({ type: ADD_PRODUCT, payload: data.producto });
     }
   };
-}
+};
 
-export const paymentMP = async(items,user, navigate,emptyCart) =>{
-  
-  const carrito = []
-        items.map((i)=>{
-            carrito.push({
-                idUser: user.idUser,
-                idProduct:i.idProduct,
-                quantity:i.quantity
-            })
-        })
-  const response = await fetch("https://barber-app-henry.herokuapp.com/api/purchaseOrder", {
-    method: "POST",
-    body: JSON.stringify(carrito),
-    headers: {
-      "Content-Type": "application/json",
-    },
-  });
-  const json = await response.json();
-  window.open(json.urlPayment, '_blank');
-  emptyCart();
-  navigate.push('/');
-}
+
+
+
+
