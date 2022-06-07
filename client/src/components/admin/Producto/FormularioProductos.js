@@ -14,15 +14,10 @@ import {
 } from "../../../redux/actions/index";
 
 const FormularioProductos = () => {
-
   const dispatch = useDispatch();
-  
-  const { id } = useParams();
-//   useEffect(() => {
-// console.log('hey')
-//     dispatch(getCategories());
 
-//   }, [dispatch]);
+  const { id } = useParams();
+
   const history = useHistory();
   const inicialState = {
     name: "",
@@ -77,8 +72,8 @@ const FormularioProductos = () => {
       producto["id"] = productoId.id;
       dispatch(updateProductos(producto));
     }
-    await dispatch(allProductos());
-    history.push("/producto");
+    // await dispatch(allProductos());
+    history.push("/admin/product");
   };
   return (
     <div>
@@ -193,7 +188,7 @@ const FormularioProductos = () => {
           <button className="btn btn-warning fw-bold" type="submit">
             Registrar
           </button>
-          <Link to="/producto" className="LinkVolver">
+          <Link to="/admin/product" className="LinkVolver">
             <button className="btn btn-info">Volver</button>
           </Link>
         </div>

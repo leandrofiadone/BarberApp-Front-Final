@@ -5,78 +5,87 @@ import { detalleDeProductos, eliminarInfoDetalle } from "../../redux/actions";
 
 import { Link } from "react-router-dom";
 
-import {useCart} from 'react-use-cart';
-import Swal from 'sweetalert2'
+import { useCart } from "react-use-cart";
+import Swal from "sweetalert2";
 
-import "./Detalle.css"
+import "./Detalle.css";
 
 const Detalle = () => {
-
   const dispatch = useDispatch();
 
   const { id } = useParams();
 
-  const {addItem} = useCart()
+  const { addItem } = useCart();
 
-  const {user} = useSelector(state => state)
+  const { user } = useSelector((state) => state);
 
-   function addCartAlert(){
+  function addCartAlert() {
     Swal.fire({
-    icon:'success',
-    title:'Producto agregado al carrito!'
-    }) 
-   } 
+      icon: "success",
+      title: "Producto agregado al carrito!",
+    });
+  }
 
   useEffect(() => {
     dispatch(detalleDeProductos(id));
   }, [dispatch, id]);
 
-  const deleteInfoProduct = (id) =>{
+  const deleteInfoProduct = (id) => {
     dispatch(eliminarInfoDetalle(id));
-  }
-
-  
+  };
 
   const productosId = useSelector((state) => state.detalle);
 
-
-
   return (
-    <div >
-      
+    <div className="fotoBarber">
+      <Link to="/tienda">
+        <button className="boton">Volver </button>
+      </Link>
       {productosId ? (
-        <div className="containerDetail">
-          <h3>{productosId.name}</h3>
-          <img src={productosId.img} className="imgDetalle"/>
-          <h2><b>$ {productosId.price}</b></h2>
-          <p><i>Stock: {productosId.stock}</i></p>
-          <button type="button" class="btn btn-success" onClick={() =>{ addItem({
-            id: productosId,
-            price: productosId.price,
-            stock:productosId.stock,
-            name: productosId.name,
-            idProduct: productosId.id,
-            idUser: user.idUser,
-            quantity:1
-          });addCartAlert()}}>Comprar</button>
+        <div className="izquierda media">
+          <div className=" containerDetail">
+            <img src={productosId.img} />
+          </div>
+          <div className="derecha media2 letra">
+            <h1>{productosId.name}</h1>
+            <br />
+
+            <br />
+            <h4> {productosId.detail}</h4>
+            <br />
+            <br />
+            <br />
+            <h2>
+              <b>$ {productosId.price}</b>
+            </h2>
+            {/*  <p>
+              <i>Stock: {productosId.stock}</i>
+            </p> */}
+
+            <button
+              className="boton"
+              type="button"
+              onClick={() => {
+                addItem({
+                  id: productosId,
+                  price: productosId.price,
+                  stock: productosId.stock,
+                  name: productosId.name,
+                  idProduct: productosId.id,
+                  idUser: user.idUser,
+                  detail: productosId.detail,
+                  quantity: 1,
+                });
+                addCartAlert();
+              }}
+            >
+              Agregar al carrito
+            </button>
+          </div>
         </div>
       ) : (
         <div>Cargando Producto</div>
       )}
-      <br />
-
-      <div className="divDesc">
-      <p >
-      Descripcion: <br />
-      Lorem ipsum dolor, sit amet consectetur adipisicing elit. Quidem ipsa quod deserunt qui, velit reprehenderit ea! Dicta, est, quis pariatur quas, error in harum id expedita earum porro dolorem consequatur.
-      </p>
-      </div>
-
-
-
-      <Link to="/tienda">
-        <button>Volver </button>
-      </Link>
     </div>
   );
 };

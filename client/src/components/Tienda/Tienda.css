@@ -1,4 +1,4 @@
-.containerTienda{
+.containerTienda {
     color: white;
     font-family: Montserrat;
     margin-bottom: 10px;
@@ -12,6 +12,7 @@
     transform: translate(20rem);
 }
 
+
 .containerTienda > h5{
     font-weight: bold;
     margin-top: 10px;
@@ -21,7 +22,7 @@
     text-shadow: rgb(255, 145, 0) -1px 4px, cyan 6px 0;
 }
 
-.cardsTienda{
+.cardsTienda {
     display: grid;
     grid-auto-rows: 35rem;
     grid-template-columns: repeat(auto-fill, minmax(25rem, 1fr));
@@ -31,57 +32,66 @@
     margin-top: 50px;
 }
 
-.LinkDetail{
+.LinkDetail {
     text-decoration: none;
     color: white;
 }
 
-.navbarTienda{
+.navbarTienda {
     display: flex;
     flex-direction: row;
     flex-wrap: wrap;
     justify-content: space-evenly;
 }
 
-.botonVolver{
+.botonVolver {
     display: flex;
     justify-content: center;
     margin: 20px;
 }
 
-.LinkVolver{
+.LinkVolver {
     text-decoration: none;
 }
 
-.LinkDetail{
+.LinkDetail {
     color: white;
 }
 
-.LinkDetail:hover{
+.LinkDetail:hover {
     color: rgb(82, 82, 82);
 }
 
-.LinkDetail > button{
+.LinkDetail>button {
     background-color: transparent;
     color: white;
     border: none;
     margin-bottom: 2rem;
 }
 
-.buttonComprar{
+.buttonComprar {
     display: flex;
     justify-content: center;
     margin-bottom: 3rem;
 }
 
-.buttonComprar > button {
+.buttonComprar>button {
     padding: 1.2rem;
 }
+
 
 .botonOrdenar{
     background-color: transparent;
     color: white;
     font-weight: lighter;
+}
+
+.contOrder {
+    margin-left: 1rem;
+}
+
+.allCarrito {
+    display: none;
 }
 
 .contOrder{
@@ -102,10 +112,11 @@
     height: 4rem;
 }
 
-.divCarrito{
+.divCarrito {
     display: flex;
     float: right;
 }
+
 
 
 .buttonup > a{
@@ -116,7 +127,7 @@
     border: none;
 }
 
-.buttonup > img{
+.buttonup>img {
     width: 200px
 }
 
@@ -124,6 +135,18 @@
     display: flex;
     justify-content: space-around;
     background-color: rgb(49, 49, 49);
+}
+
+.navbar-brandtienda {
+    width: 60px;
+    height: 50px;
+    background-size: 100%;
+    margin-top: -20px;
+    background-image: url("https://images.vexels.com/media/users/3/132674/isolated/preview/5de3fc4efa4d8ff72773bfc119c1a8e9-bigote-blanco-hipster-3.png");
+}
+
+.carritoContainer {
+    margin-left: -1rem;
 }
 
 .navbar-brandtienda{
@@ -143,6 +166,10 @@
     color: orange;
     font-weight: bold;
     font-size: 1.2rem;
+    transform: translate(2rem, -.5rem);
+}
+
+.containernavbartienda {
     transform: translate(2rem,-.5rem);
 } 
 
