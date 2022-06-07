@@ -21,6 +21,9 @@ export default function Carrito() {
   const navigate = useHistory();
 
   const { user } = useSelector((state) => state);
+    const {user} = useSelector(state => state)
+    
+
 
   if (isEmpty) return <h1 className="text-center">El carrito esta vacio</h1>;
 

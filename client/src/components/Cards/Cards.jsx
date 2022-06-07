@@ -18,7 +18,7 @@ const Cards = ({ name, stock, price, img, id, category, idProduct }) => {
   return (
     <div className="containerCard">
       <div className="containerImg">
-        <img src={img} alt="Img not found" />
+        <img src={img} alt="Img not found" maxwidth="500"/>
       </div>
 
       <div className="containerText">

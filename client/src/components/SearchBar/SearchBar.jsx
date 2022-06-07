@@ -45,6 +45,7 @@ const SearchBar = () => {
           options={productosComplet.map((option) => option.name)}
           renderInput={(params) => (
             <TextField
+            className="campotexto"
               focus="false"
               value={name}
               label="Buscar Producto"
@@ -60,6 +61,7 @@ const SearchBar = () => {
                   height: 35,
                   width: 200,
                   alignContent: "center",
+                  color: "white",
                 },
               }}
             />

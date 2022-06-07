@@ -65,7 +65,7 @@ export default function NavBar() {
             {!isAuth && (
               <Link className="nav-item linkReserva" to="/auth/login">
                 <li className="nav-item">
-                  <button className="bg-dark">Registrate</button>
+                  <button className="bg-dark">Ingresar/Registrarse</button>
                 </li>
               </Link>
             )}

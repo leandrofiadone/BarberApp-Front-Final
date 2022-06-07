@@ -12,12 +12,13 @@
     transform: translate(20rem);
 }
 
-.containerTienda>h5 {
+
+.containerTienda > h5{
     font-weight: bold;
     margin-top: 10px;
 }
 
-.containerTienda:hover {
+.containerTienda:hover{
     text-shadow: rgb(255, 145, 0) -1px 4px, cyan 6px 0;
 }
 
@@ -78,7 +79,8 @@
     padding: 1.2rem;
 }
 
-.botonOrdenar {
+
+.botonOrdenar{
     background-color: transparent;
     color: white;
     font-weight: lighter;
@@ -92,7 +94,15 @@
     display: none;
 }
 
-.botonCarrito {
+.contOrder{
+    margin-left: 1rem;
+}
+
+.allCarrito{
+    display: none;
+}
+
+.botonCarrito{
     margin-left: 1rem;
     position: absolute;
     background-color: transparent;
@@ -108,7 +118,8 @@
 }
 
 
-.buttonup>a {
+
+.buttonup > a{
     position: fixed;
     right: 1rem;
     bottom: 4rem;
@@ -120,7 +131,7 @@
     width: 200px
 }
 
-.divNavbarTienda {
+.divNavbarTienda{
     display: flex;
     justify-content: space-around;
     background-color: rgb(49, 49, 49);
@@ -138,7 +149,19 @@
     margin-left: -1rem;
 }
 
-.numeroitems {
+.navbar-brandtienda{
+    width: 60px;
+     height: 50px;
+     background-size: 100%;
+     margin-top: -20px;
+     background-image: url("https://images.vexels.com/media/users/3/132674/isolated/preview/5de3fc4efa4d8ff72773bfc119c1a8e9-bigote-blanco-hipster-3.png");
+}
+
+ .carritoContainer{
+     margin-left: -1rem;
+}
+
+.numeroitems{
     position: relative;
     color: orange;
     font-weight: bold;
@@ -147,27 +170,31 @@
 }
 
 .containernavbartienda {
+    transform: translate(2rem,-.5rem);
+} 
+
+.containernavbartienda{
     display: flex;
     justify-content: space-around;
 }
 
-.imgCarrito {
+.imgCarrito{
     position: absolute;
     z-index: -1;
     margin: 0;
 }
 
-.generalcont {
+.generalcont{
     display: flex;
     justify-content: space-around;
 }
 
-.searchbar {
+.searchbar{
     margin-top: 5px;
     margin-left: 30rem;
     color: white;
 }
 
-.dropContainer {
+.dropContainer{
     transform: translate(10rem);
 }
