@@ -1,10 +1,9 @@
-import React from "react";
 import NavBar from "../NavBar/NavBar";
 import Carrousel from "../Carrousel/Carrousel";
 import { Servicios } from "../Servicios/Servicios";
 import Contenido from "../Chatbot/Chatbot";
 
-import Geolocalizacion from "../Geolocalizacion/Geolocalizacion";
+// import Geolocalizacion from "../Geolocalizacion/Geolocalizacion";
 
 import "./Home.css";
 // import { MDBFooter } from "mdb-react-ui-kit";
@@ -33,6 +32,9 @@ export default function Home() {
       </div>
 
       <div className="contenidoChat" id="chatHome"></div>
+
+
+      
 
       <div>
         {
@@ -92,6 +94,7 @@ export default function Home() {
 
         }
       </div>
+
     </div>
   );
 }
