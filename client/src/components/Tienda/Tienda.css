@@ -66,6 +66,7 @@
     color: white;
     border: none;
     margin-bottom: 2rem;
+    z-index: 2;
 }
 
 .buttonComprar{
@@ -171,3 +172,8 @@
 .dropContainer{
     transform: translate(10rem);
 }
+
+.botonChat{
+    z-index: 1;
+}
+

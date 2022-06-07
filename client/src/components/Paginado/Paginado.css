@@ -1,0 +1,43 @@
+.pageNumbers {
+    list-style: none;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 5px;
+    color: black;
+    gap: 10px;
+}
+
+.pageNumbers > li {
+    box-shadow: 3px 7px 0px 1px #080808;
+	background:linear-gradient(to bottom, #E38C02 5%, #ffe608 100%);
+	background-color:#2b2b2b;
+	border-radius:5px;
+	border:1px solid #1b1b1b;
+	display:inline-block;
+	cursor:pointer;
+	color: black;
+	font-family:Arial;
+	font-size:15px;
+    font-weight: bold;
+	text-decoration:none;
+	text-shadow:0px 2px 0px #505050;
+}
+
+.pageNumbers > li > button:hover {
+	background:linear-gradient(to bottom, #000000 5%, #080808 100%);
+	background-color:#ffcb05;
+    color: white;
+}
+.pageNumbers > li:active {
+	position:relative;
+	top:1px;
+}
+
+.pageNumbers > li>button{
+	border: none;
+	background-color: transparent;
+	width: 2rem;
+	height: 2rem;
+}
+

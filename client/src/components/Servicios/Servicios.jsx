@@ -19,17 +19,20 @@ export function Servicios() {
     dispatch(getServices());
   }, [dispatch]);
 
+
   return (
     <div>
       <div className="flex justify-center ">
+        <h1 className="tituloServicios">Nuestros Servicios</h1>
         <div className="serviciosCard">
-          {allServices?.map((s) => (
+          {          
+          allServices?.map((s) => (
             <ServiciosCard
               key={s.id}
               name={s.name}
               detail={s.detail}
               price={s.price}
-              time={s.time}
+              time={s.time.replace(/^0+:/,'')}
               img={s.img}
             />
           ))}

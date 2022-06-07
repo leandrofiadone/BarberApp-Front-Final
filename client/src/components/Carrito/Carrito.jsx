@@ -4,7 +4,7 @@ import './Carrito.css'
 import Swal from 'sweetalert2'
 import { paymentMP } from "../../redux/actions";
 import { useHistory } from "react-router-dom";
-
+import { useSelector } from "react-redux";
 
 export default function Carrito() {
     const { isEmpty,
@@ -21,8 +21,8 @@ export default function Carrito() {
 
   
 
-    //const {user} = useSelector(state => state) //<-- descomentar cuando haya login
-    const user ={idUser:"c7c27d4c-5e59-4dff-aa6a-9bc366dc8766"};//<-- Harcodeo del usuario 
+    const {user} = useSelector(state => state)
+    
 
     if (isEmpty) return <h1 className="text-center">El carrito esta vacio</h1>
 

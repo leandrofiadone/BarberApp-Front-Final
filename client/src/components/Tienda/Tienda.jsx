@@ -12,6 +12,8 @@ import { Link } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { useEffect, useState } from "react";
 
+import Paginado from "../Paginado/Paginado";
+
 import Swal from 'sweetalert2'
 
 
@@ -21,7 +23,11 @@ import { allProductos, orderByPrecio, sortName } from "../../redux/actions";
 
 
 
+
+
 export default function Tienda() {
+
+  
 
   const {updateItemQuantity, totalItems} = useCart()
 
@@ -31,10 +37,28 @@ export default function Tienda() {
 
   const productosBarberia = useSelector((state) => state.productos);
 
+  const [currentPage, setCurrentPage] = useState(1);
+    const [productsPerPage] = useState(9);
+    const indexOfLastProduct = currentPage * productsPerPage;
+    const indexOfFirstProduct = indexOfLastProduct - productsPerPage;
+    const currentProducts = productosBarberia.slice(
+      indexOfFirstProduct,
+      indexOfLastProduct
+  );
+
+    const paginado = (pageNumber) => {
+        setCurrentPage(pageNumber);
+        console.log(pageNumber)
+    };
+
   useEffect(() => {
     dispatch(allProductos());
     dispatch(getCategories());
   }, [dispatch]);
+
+  useEffect(() => {
+    setCurrentPage(1)
+    }, [productosBarberia]);
 
   // function handleFilterCategorie(e) {
   //   dispatch(filterByCategorie(e.target.value));
@@ -68,6 +92,7 @@ export default function Tienda() {
   return (
 
   <div >
+    
 
       {/* <div className="botonVolver">
       <Link to="/" className="LinkVolver">
@@ -153,7 +178,7 @@ export default function Tienda() {
                     </button> */}
 
                     <button onClick={() => registro()} type="button" class="btn btn-dark position-relative botonCarrito">
-                    <img className="imgCarrito" src="https://www.ubolosoft.com/Carrito/images/carrito.png" alt="" style={{height: "2rem", width: "2rem"}}/> <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-secondary">{totalItems} <span class="visually-hidden"></span></span>
+                    <img className="imgCarrito" src="https://www.ubolosoft.com/Carrito/images/carrito.png" alt="" style={{height: "2rem", width: "2rem"}}/> <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-secondary">{totalItems}<span class="visually-hidden"></span></span>
                     </button>
                  
               </li>
@@ -188,19 +213,27 @@ export default function Tienda() {
       <div className="buttonup">
         <a href="#arriba" ><img src="https://www.nicepng.com/png/full/297-2979190_subir-flecha-arriba-transparente-png.png" alt="" style={{height: "3rem"}}/></a>
       </div>
-      <div >
+      <div className="botonChat">
           <Contenido />
       </div>
 
-
       {/* </div> */}
+
+           
+      <div>
+        <Paginado
+            productsPerPage={productsPerPage}
+            productosBarberia={productosBarberia.length}
+            paginado={paginado}
+            />
+       </div>
 
 
       <div className="cardsTienda">
 
 
-        {productosBarberia ? (
-          productosBarberia?.map((e) => {
+        {currentProducts ? (
+          currentProducts?.map((e) => {
             return (
               <div key={e.id}>
                   <Cards

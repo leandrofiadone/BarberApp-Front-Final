@@ -358,27 +358,27 @@ export function updateProductos(product) {
   };
 }
 
-export const paymentMP = async (items, user, navigate, emptyCart) => {
-  const carrito = [];
-  items.map((i) => {
-    carrito.push({
-      idUser: user.idUser,
-      idProduct: i.idProduct,
-      quantity: i.quantity,
-    });
-  });
-  const response = await fetch(
-    "https://barber-app-henry.herokuapp.com/api/purchaseOrder",
-    {
+  
+  export const paymentMP = async(items,user, navigate,emptyCart) =>{
+    const carrito = []
+          items.map((i)=>{
+              carrito.push({
+                  idUser: user.id,
+                  idProduct:i.idProduct,
+                  quantity:i.quantity
+              })
+          })
+    const token = localStorage.getItem('token')
+    const response = await fetch("https://barber-app-henry.herokuapp.com/api/purchaseOrder", {
       method: "POST",
       body: JSON.stringify(carrito),
       headers: {
         "Content-Type": "application/json",
+        "x-token": token
       },
-    }
-  );
-  const json = await response.json();
-  window.open(json.urlPayment, "_blank");
-  emptyCart();
-  navigate.push("/");
-};
+    });
+    const json = await response.json();
+    window.open(json.urlPayment, '_blank');
+    emptyCart();
+    navigate.push('/');
+  }
