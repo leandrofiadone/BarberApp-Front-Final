@@ -25,7 +25,7 @@ const FormularioProductos = () => {
     stock: null,
     price: null,
     img: "",
-    idCategorie: "",
+    categoria: "",
   };
 
   const productoId = useSelector((state) => state.detalle);
@@ -51,12 +51,12 @@ const FormularioProductos = () => {
       ) {
         delete producto.detail;
       }
-      if (
-        producto.idCategorie.length === 0 ||
-        producto.idCategorie === productoId.idCategorie
-      ) {
-        delete producto.idCategorie;
-      }
+      // if (
+      //   producto.categoria.length === 0 ||
+      //   producto.idCategorie === productoId.idCategorie
+      // ) {
+      //   delete producto.idCategorie;
+      // }
       if (producto.img.length === 0 || producto.img === productoId.img) {
         delete producto.img;
       }
@@ -157,10 +157,10 @@ const FormularioProductos = () => {
           <div className="d-flex h-1.5">
             <select
               className="form-select"
-              name="idCategorie"
+              name="categoria"
               onChange={handleInputChange}
             >
-              <option key="1" name="idCategorie" value="">
+              <option key="1" name="categoria" value="">
                 Seleccione una opcion ...
               </option>
               {categoriesBarberia.length > 0 &&
@@ -168,13 +168,13 @@ const FormularioProductos = () => {
                   return (
                     <option
                       key={categorie.id}
-                      name="idCategorie"
-                      selected={
-                        productoId?.idCategorie === categorie.id
+                      name="categoria"
+                      defaultValue={
+                        productoId.category?.categorie === categorie.categorie
                           ? "selected"
                           : "no selected"
                       }
-                      value={categorie.id}
+                      value={categorie.categorie}
                     >
                       {categorie.categorie}
                     </option>
