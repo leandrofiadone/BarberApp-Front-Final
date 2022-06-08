@@ -292,7 +292,6 @@ export function updateProductos(product) {
       const data = await result.json();
 
       if (data.ok) {
-        console.log(data);
         Swal.fire("Success", "Producto actualizado", "success");
         return dispatch({
           type: UPDATE_PRODUCT,
@@ -354,6 +353,7 @@ export function revalidarAuth() {
       };
 
       dispatch(adminGetAllProducts());
+      // dispatch(getCategories())
       return dispatch({
         type: types.login,
         payload,
