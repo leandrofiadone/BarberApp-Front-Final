@@ -9,6 +9,37 @@ import Geolocalizacion from "../Geolocalizacion/Geolocalizacion";
 import "./Home.css";
 // import { MDBFooter } from "mdb-react-ui-kit";
 
+import Typed from 'typed.js';
+
+
+
+const TypedReactHooksDemo = () => {
+	// Create reference to store the DOM element containing the animation
+	const el = React.useRef(null);
+  // Create reference to store the Typed instance itself
+	const typed = React.useRef(null);
+
+  React.useEffect(() => {
+    const options = {
+    	strings: [
+        'Nosotros somos BarberApp, ofrecemos un trato personalizado para que nuestros clientes se sientan comodos, ya que nuestro negocio se basa en la calidad, el acabado de nuestros trabajos y la constate evolucion en estilo y moda para el mejor servicio. Aqui encontraras ese espacio que hemos perdido los hombres, donde cortarse el pelo y afeitarse se convierten en una terapia de amigos y relajacion, mas que un habito. Si aun no encuentras tu estilo nosotros te aconsejaremos el estilo de corte, peinado y afeitado que te favorecera a tu personalidad. Contamos con un equipo de colaboradores que cuenta con una gran experiencia en la innovacion de la juventud. Haganos una visita para que pueda disfrutar de nuestro servicio. Les aseguramos que no se van a arrepentir!'
+      ],
+      typeSpeed: 30
+    };
+    
+    // elRef refers to the <span> rendered below
+    typed.current = new Typed(el.current, options);
+  }, [])
+
+  return (
+      <div className="type-wrap">
+        <span  ref={el} />
+      </div>
+  );
+}
+  document.getElementById('react-root')
+
+
 export default function Home() {
   return (
     <div>
@@ -34,6 +65,8 @@ export default function Home() {
 
       <div className="contenidoChat" id="chatHome"></div>
 
+
+
       <div>
         {
           // <MDBFooter
@@ -56,23 +89,11 @@ export default function Home() {
 
                   <div className="col-md-6 col-lg- col-xl-8 mx-auto mb-3">
                     <div style={{ marginBottom: "40px", marginLeft: "35px" }}>
-                      <span style={{ fontSize: "20px" }}>
-                        Nosotros somos BarberApp, ofrecemos un trato
-                        personalizado para que nuestros clientes se sientan
-                        comodos, ya que nuestro negocio se basa en la calidad,
-                        el acabado de nuestros trabajos y la constate evolucion
-                        en estilo y moda para el mejor servicio. Aqui
-                        encontraras ese espacio que hemos perdido los hombres,
-                        donde cortarse el pelo y afeitarse se convierten en una
-                        terapia de amigos y relajacion, mas que un habito. Si
-                        aun no encuentras tu estilo nosotros te aconsejaremos el
-                        estilo de corte, peinado y afeitado que te favorecera a
-                        tu personalidad. Contamos con un equipo de colaboradores
-                        que cuenta con una gran experiencia en la innovacion de
-                        la juventud. Haganos una visita para que pueda disfrutar
-                        de nuestro servicio. Les aseguramos que no se van a
-                        arrepentir!
-                      </span>
+
+                    <div id="react-root" style={{ fontSize: "20px" }}>
+                      <TypedReactHooksDemo />
+                    </div>
+                     
                     </div>
                   </div>
                 </div>

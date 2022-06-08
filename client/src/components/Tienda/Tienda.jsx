@@ -22,10 +22,9 @@ import {  filterCategoriaProductos, getCategories, } from "../../redux/actions";
 import { allProductos, orderByPrecio, sortName } from "../../redux/actions";
 
 
-
-
-
 export default function Tienda() {
+
+  
 
   
 
@@ -92,6 +91,7 @@ export default function Tienda() {
   return (
 
   <div >
+  
     
 
       {/* <div className="botonVolver">
@@ -227,6 +227,9 @@ export default function Tienda() {
             paginado={paginado}
             />
        </div>
+
+       
+
 
 
       <div className="cardsTienda">
