@@ -57,9 +57,14 @@ export const Login = () => {
       dispatch(login(payload));
       history.replace('/');
     } else {
-      if (data.errors.email) {
-        Swal.fire('Error', data.errors.email.msg, 'error')
-      } else {
+      console.log(data)
+      if (data.errors) {
+        if(data.errors.email){
+          Swal.fire('Error', data.errors.email.msg, 'error')
+        }else if(data.errors.password){
+          Swal.fire('Error', data.errors.password.msg, 'error')
+        }
+      }else{
         Swal.fire('Error', data.msg, 'error')
       }
     }
