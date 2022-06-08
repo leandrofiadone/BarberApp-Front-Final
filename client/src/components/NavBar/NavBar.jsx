@@ -49,19 +49,16 @@ export default function NavBar() {
                 Servicios
               </a>
             </li>
-
             <li>
               <a className="nav-link text-light" href="#quienesSomos">
                 Quienes Somos
               </a>
             </li>
-
             <li className="nav-item" id="LinkTienda">
               <Link className="nav-link text-light" to="/tienda">
                 Tienda
               </Link>
             </li>
-
             {!isAuth && (
               <Link className="nav-item linkReserva" to="/auth/login">
                 <li className="nav-item">
@@ -69,6 +66,7 @@ export default function NavBar() {
                 </li>
               </Link>
             )}
+
             {isAuth && (
               <Link className="nav-item linkReserva" to={`/profile`}>
                 <li className="nav-item">

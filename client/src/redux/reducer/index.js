@@ -13,6 +13,7 @@ const initialState = {
   categorias: [],
   empleados: [],
   citas: [],
+  allCitas: [],
   barberos: [],
   //login
   user: {},
@@ -55,7 +56,6 @@ function rootReducer(state = initialState, action) {
       };
 
     case ACTIONS.GET_SERVICES:
-      console.log(action.payload);
       return {
         ...state,
         servicios: action.payload,
@@ -161,12 +161,12 @@ function rootReducer(state = initialState, action) {
       return {
         ...state,
         citas: action.payload,
+        allCitas: action.payload,
       };
 
     case ACTIONS.CREAR_CITA:
       return {
         ...state,
-        citas: state.citas.concat(action.payload),
       };
 
     case ACTIONS.ALL_BARBEROS:
@@ -229,7 +229,9 @@ function rootReducer(state = initialState, action) {
       };
 
     case types.activaProducto:
-      let activarProductoAdmin = state.adminAllProducts.filter((pro) => pro.id !== action.payload.id);
+      let activarProductoAdmin = state.adminAllProducts.filter(
+        (pro) => pro.id !== action.payload.id
+      );
       let productoActivar = action.payload;
       return {
         ...state,
@@ -263,6 +265,15 @@ function rootReducer(state = initialState, action) {
         ...state,
         allProductos: productos.concat(producto),
         adminAllProducts: productosAdmin.concat(productoAdmin),
+      };
+
+    case ACTIONS.DELETE_DATE:
+      let cancelarCita = state.citas.filter((e) => e.id !== action.payload);
+      let todasLasCitas = action.payload;
+
+      return {
+        ...state,
+        citas: cancelarCita.concat(todasLasCitas),
       };
 
     default:

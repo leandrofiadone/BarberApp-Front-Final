@@ -30,7 +30,7 @@ export function Reserva() {
 
   const allServices = useSelector((state) => state.servicios.services);
   const subBarberos = useSelector((state) => state.barberos);
-  console.log(allServices);
+
   const history = useHistory();
 
   const [state, setState] = useState({
@@ -129,6 +129,7 @@ export function Reserva() {
 
       setTimeout(() => {
         history.push("/");
+        window.location.reload();
       }, 2000);
     }
     console.log(state);
