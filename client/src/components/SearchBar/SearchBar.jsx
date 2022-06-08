@@ -1,4 +1,3 @@
-
 import { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { buscarProductos, allProductos } from "../../redux/actions";
@@ -56,7 +55,6 @@ const SearchBar = () => {
               {...params}
               onSelect={(e) => handleChange(e)}
               InputProps={{
-                disableUnderline: true,
                 ...params.InputProps,
                 type: "text",
                 style: {
