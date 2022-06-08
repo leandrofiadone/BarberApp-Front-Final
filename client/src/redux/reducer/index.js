@@ -161,7 +161,6 @@ function rootReducer(state = initialState, action) {
       return {
         ...state,
         citas: action.payload,
-        allCitas: action.payload,
       };
 
     case ACTIONS.CREAR_CITA:

@@ -10,8 +10,11 @@ export const ReservasPerfil = () => {
   const { user } = useSelector((state) => state);
   const { citas } = useSelector((state) => state);
 
-  const filtrado = citas.filter((e) => e.idUser === user.id);
+  const filtradoState = citas.filter((s) => s.state === true);
+  const filtrado = filtradoState.filter((e) => e.idUser === user.id);
+
   console.log(filtrado);
+
   const cancelarCitas = (id) => {
     Swal.fire({
       title: "Estas seguro que quieres cancelar tu cita?",
@@ -22,8 +25,16 @@ export const ReservasPerfil = () => {
       confirmButtonText: "Si,cancelar cita!",
     }).then((result) => {
       if (result.isConfirmed) {
-        Swal.fire("Cita cancelada!", "", "success");
+        Swal.fire({
+          title: "Cita cancelada!",
+          icon: "success",
+          showConfirmButton: false,
+        });
+
         dispatch(deleteDate(id));
+        setTimeout(() => {
+          window.location.reload();
+        }, 350);
       }
     });
   };
