@@ -7,7 +7,7 @@ import Swal from "sweetalert2";
 import "./auth.css";
 import { Google } from "./Google";
 import { fetchConToken, fetchSinToken } from "../../helpers/fetch";
-import { adminGetAllProducts, getCategories, login } from "../../redux/actions";
+import { adminGetAllProducts, getCategories, login, getAllUsers } from "../../redux/actions";
 
 export const Login = () => {
   const { isAuth } = useSelector((state) => state);
@@ -47,9 +47,7 @@ export const Login = () => {
       }
 
       if (data.rol === 'ADMIN') {
-        const resp = await fetchConToken('users');
-        const data = await resp.json();
-        dispatch({ type: types.getAllUsers, payload: data.users })
+        dispatch(getAllUsers())
         dispatch(adminGetAllProducts())
       }
 

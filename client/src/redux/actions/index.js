@@ -109,7 +109,7 @@ export function eliminarInfoDetalle() {
 }
 
 export function getServices() {
-  return async function(dispatch) {
+  return async function (dispatch) {
     let servicios = await axios.get(
       "https://barber-app-henry.herokuapp.com/api/services"
     );
@@ -138,7 +138,7 @@ export function addEmployee(employee) {
 }
 
 export function getEmployee() {
-  return async function(dispatch) {
+  return async function (dispatch) {
     const resp = await fetchSinToken("employee");
     const data = await resp.json();
 
@@ -269,7 +269,7 @@ export const userActive = (id) => {
 //ACÁ TERMINAN LAS  ACCIONES DE LOGIN !!!
 //-----------------------------------------------------------------------------------
 export function deleteProduct(id) {
-  return async function(dispatch) {
+  return async function (dispatch) {
     let result = await fetchConToken(`products/${id}`, {}, "DELETE");
     const data = await result.json();
     if (data.ok) {
@@ -307,17 +307,17 @@ export function updateProductos(product) {
   };
 }
 
-  
 
-export const paymentMP = async(items,user, navigate,emptyCart) =>{
+
+export const paymentMP = async (items, user, navigate, emptyCart) => {
   const carrito = []
-        items.map((i)=>{
-            carrito.push({
-                idUser: user.id,
-                idProduct:i.idProduct,
-                quantity:i.quantity
-            })
-        })
+  items.map((i) => {
+    carrito.push({
+      idUser: user.id,
+      idProduct: i.idProduct,
+      quantity: i.quantity
+    })
+  })
   const token = localStorage.getItem('token')
   const response = await fetch("https://barber-app-henry.herokuapp.com/api/purchaseOrder", {
     method: "POST",
@@ -353,7 +353,10 @@ export function revalidarAuth() {
         phone: data.phone,
       };
 
-      dispatch(adminGetAllProducts());
+      if (data.rol === 'ADMIN') {
+        dispatch(adminGetAllProducts());
+        dispatch(getAllUsers())
+      }
       return dispatch({
         type: types.login,
         payload,
