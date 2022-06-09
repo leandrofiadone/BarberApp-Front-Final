@@ -87,18 +87,18 @@ export function detalleDeProductos(id) {
 
 export function addProductos(product) {
   return async (dispatch) => {
-    try {
-      const result = await axios.post(
-        `https://barber-app-henry.herokuapp.com/api/products`,
-        product
-      );
-      return dispatch({
-        type: ADD_PRODUCT,
-        payload: result.data,
-      });
-    } catch (err) {
-      console.log(err);
-    }
+      const resp = await fetchConToken('products', product, 'POST');
+      const data = await resp.json()
+
+      if(data.ok){
+        dispatch(addProductosAdmin(data.producto))
+        dispatch({type: ADD_PRODUCT, payload: data.producto});
+
+        Swal.fire('Sucess', `${data.producto.name} agregado`, 'success')
+        // window.location.replace('/admin/product')
+      }else{
+        Swal.fire('Error', 'Verifica los datos', 'error')
+      }
   };
 }
 
