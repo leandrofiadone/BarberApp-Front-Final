@@ -7,6 +7,7 @@ import FormularioProductos from "../components/admin/Producto/FormularioProducto
 import "./router.css";
 import { Usuarios } from "../components/admin/usuarios/Usuarios";
 import { CrearProducto } from "../components/admin/Producto/CrearProducto";
+import Reservas from "../components/admin/Reservas/Reservas";
 
 export const AdminRoute = () => {
   return (
@@ -24,6 +25,7 @@ export const AdminRoute = () => {
             component={FormularioProductos}
           />
           <Route exact path="/admin/usuarios" component={Usuarios} />
+          <Route exact path="/admin/reservas" component={Reservas} />
           {/* aqui se definen las rutas de admin */}
 
           <Redirect to="/admin/main" />

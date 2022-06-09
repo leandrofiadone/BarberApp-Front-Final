@@ -38,6 +38,13 @@ export const Navbar = () => {
         >
           Productos
         </NavLink>
+        <NavLink
+          className="list-group-item pointer"
+          activeClassName="bg-warning"
+          to="/admin/reservas"
+        >
+          Reservas
+        </NavLink>
 
         <NavLink
           className="list-group-item"

@@ -13,8 +13,6 @@ export const ReservasPerfil = () => {
   const filtradoState = citas.filter((s) => s.state === true);
   const filtrado = filtradoState.filter((e) => e.idUser === user.id);
 
-  console.log(filtrado);
-
   const cancelarCitas = (id) => {
     Swal.fire({
       title: "Estas seguro que quieres cancelar tu cita?",
@@ -30,7 +28,6 @@ export const ReservasPerfil = () => {
           icon: "success",
           showConfirmButton: false,
         });
-
         dispatch(deleteDate(id));
         setTimeout(() => {
           window.location.reload();
