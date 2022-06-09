@@ -25,6 +25,7 @@ const Reservas = () => {
         <thead>
           <tr>
             <th scope="col">Cliente</th>
+            <th scope="col">Email</th>
             <th scope="col">Fecha </th>
             <th scope="col">Hora</th>
             <th scope="col">Barbero</th>
@@ -36,6 +37,7 @@ const Reservas = () => {
           {filtrado.map((e, index) => (
             <tr key={index}>
               <td className="text-white">{e.user.name}</td>
+              <td className="text-white">{e.user.email}</td>
               <td className="text-white"> {e.date.slice(0, 8)}</td>
               <td className="text-white"> {e.date.slice(10)}</td>
               <td className="text-white"> {e.employee.name}</td>
