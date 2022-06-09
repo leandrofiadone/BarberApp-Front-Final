@@ -1,93 +1,92 @@
 import React, { useState } from "react";
-import { useDispatch, useSelector } from "react-redux";
-import { addProductos } from "../../../redux/actions";
+import { useDispatch } from "react-redux";
+import { useHistory } from "react-router-dom";
+import {
+  addService,
+  getAdminAllServices,
+  getServices,
+} from "../../../redux/actions";
 
-export const CrearProducto = () => {
-  const { categorias } = useSelector((state) => state);
+export const CrearServicio = () => {
   const dispatch = useDispatch();
-
+  const history = useHistory();
   const [form, setForm] = useState({
     name: "",
-    stock: 0,
-    price: 0,
-    categoria: "",
     detail: "",
+    price: null,
+    time: null,
     img: "",
+    state: true,
   });
-
+  const hr = [];
+  const min = [];
+  for (let i = 0; i <= 23; i++) {
+    hr[i] = i;
+  }
+  for (let i = 0; i < 60; i++) {
+    min[i] = i;
+  }
   const handleChange = ({ target }) => {
-    if (target.name === "stock" || target.name === "price") {
-      setForm({
-        ...form,
-        [target.name]: Number(target.value),
-      });
-    } else {
-      setForm({
-        ...form,
-        [target.name]: target.value,
-      });
-    }
+    setForm({
+      ...form,
+      [target.name]: target.value,
+    });
   };
-
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    dispatch(addProductos(form));
+    // console.log("form", form);
+    await dispatch(addService(form));
+    await dispatch(getAdminAllServices());
+    history.push("/admin/service");
   };
-
   return (
     <div>
       <form onSubmit={handleSubmit}>
-        <h1 className="display-3">Nuevo Producto</h1>
+        <h1 className="display-3">Nuevo Servicio</h1>
+        <div className="d-flex">
+          <label>Nombre:</label>
+        </div>
         <div className="input-group mb-3 row">
           <div className="col">
             <input
               className="form-control"
               type="text"
               name="name"
-              placeholder="Nombre del producto"
-              onChange={handleChange}
-            />
-          </div>
-
-          <div className="col">
-            <input
-              className="form-control"
-              type="number"
-              name="stock"
-              placeholder="Stock"
+              placeholder="Nombre del servicio"
               onChange={handleChange}
             />
           </div>
         </div>
-
+        <div className="d-flex">
+          <label>Precio:</label>
+        </div>
         <div className="input-group mb-3 row">
           <div className="col">
             <input
               className="form-control"
               type="number"
               name="price"
-              placeholder="Precio"
+              placeholder="Precio..."
               onChange={handleChange}
             />
           </div>
+        </div>
+        <div className="d-flex">
+          <label>Tiempo que dura:</label>
+        </div>
+        <div className="d-flex">
           <div className="col">
-            <select
-              className="form-select"
-              name="categoria"
+            <input
+              className="form-control"
+              type="time"
+              name="time"
               onChange={handleChange}
-            >
-              <option name="categoria">Selecciona una categoria</option>
-              {categorias.map((categoria) => (
-                <option
-                  key={categoria.id}
-                  name="categoria"
-                  value={categoria.categorie}
-                >
-                  {categoria.categorie}
-                </option>
-              ))}
-            </select>
+            />
           </div>
+        </div>
+        <div className="input-group mb-3 row"></div>
+        <div className="d-flex">
+          <label>Imagen:</label>
         </div>
         <div className="input-group mb-3 row">
           <div className="col">
@@ -95,12 +94,14 @@ export const CrearProducto = () => {
               className="form-control"
               type="text"
               name="img"
-              placeholder="Imagen.."
+              placeholder="Url imagen.."
               onChange={handleChange}
             />
           </div>
         </div>
-
+        <div className="d-flex">
+          <label>Detalle:</label>
+        </div>
         <div className="input-group mb-3 row">
           <div className="col">
             <textarea

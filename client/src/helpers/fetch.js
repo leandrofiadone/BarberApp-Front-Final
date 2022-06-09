@@ -1,10 +1,9 @@
-const baseUrl = `https://barber-app-henry.herokuapp.com/api`;
-//const baseUrl = `http://localhost:8080/api`;
+//const baseUrl = `https://barber-app-henry.herokuapp.com/api`;
+const baseUrl = `http://localhost:3001/api`;
 
 //ESTE SIRVE DE ALGO???????????
 export const fetchSinToken = (endpoint, data, method = "GET") => {
   const url = `${baseUrl}/${endpoint}`;
-
   if (method === "GET") {
     return fetch(url);
   } else {

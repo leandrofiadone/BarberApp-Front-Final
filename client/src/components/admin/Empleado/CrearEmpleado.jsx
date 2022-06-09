@@ -1,13 +1,18 @@
 import React, { useState } from "react";
 import { useDispatch } from "react-redux";
 import { useHistory } from "react-router-dom";
-import { addCategorie, getCategories } from "../../../redux/actions";
+import {
+  addEmployee,
+  getAdminAllEmpleados,
+  getEmployee,
+} from "../../../redux/actions";
 
-export const CrearCategoria = () => {
+export const CrearEmpleado = () => {
   const dispatch = useDispatch();
   const history = useHistory();
   const [form, setForm] = useState({
-    categorie: "",
+    name: "",
+    dni: "",
   });
 
   const handleChange = ({ target }) => {
@@ -17,29 +22,39 @@ export const CrearCategoria = () => {
     });
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    dispatch(addCategorie(form));
-    dispatch(getCategories());
-    history.push("/admin/categories");
+    await dispatch(addEmployee(form));
+    await dispatch(getAdminAllEmpleados());
+    history.push("/admin/employee");
   };
 
   return (
     <div>
       <form onSubmit={handleSubmit}>
-        <h1 className="display-3">Nueva Categoria</h1>
+        <h1 className="display-3">Nuevo Empleado</h1>
         <div className="input-group mb-3 row">
           <div className="col">
             <input
               className="form-control"
               type="text"
-              name="categorie"
-              placeholder="Nombre del producto"
+              name="name"
+              placeholder="Nombre del Empleado..."
               onChange={handleChange}
             />
           </div>
         </div>
-
+        <div className="input-group mb-3 row">
+          <div className="col">
+            <input
+              className="form-control"
+              type="text"
+              name="dni"
+              placeholder="Dni del empleado..."
+              onChange={handleChange}
+            />
+          </div>
+        </div>
         <button type="submit" className="btn btn-warning">
           Agregar
         </button>

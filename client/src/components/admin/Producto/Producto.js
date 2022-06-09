@@ -33,6 +33,7 @@ export default function Producto() {
   //     console.log('hey')
   //     dispatch(adminGetAllProducts())
   // }, [dispatch]);
+
   return (
     <>
       <table className="table table-dark table-striped text-center">
@@ -50,7 +51,6 @@ export default function Producto() {
         </thead>
         <tbody>
           {adminAllProducts.map((producto, index) => {
-            console.log(producto, index);
             return (
               <tr key={producto.id}>
                 <th scope="row">{index + 1}</th>

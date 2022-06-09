@@ -17,7 +17,6 @@ export default function Producto() {
         </thead>
         <tbody>
           {categorias.map((categoria, index) => {
-            console.log(categoria, index);
             return (
               <tr key={categoria.id}>
                 <th scope="row">{index + 1}</th>
@@ -28,9 +27,9 @@ export default function Producto() {
         </tbody>
       </table>
 
-      <div className="div_pie">
-        <Link to={`/admin/categories/add`} className="LinkDetail">
-          <button className="btn_agregar">+</button>
+      <div>
+        <Link to={`/admin/categories/add`} className="div_pie">
+          <button className="btn_agregar btn btn-outline-success">+</button>
         </Link>
       </div>
     </>

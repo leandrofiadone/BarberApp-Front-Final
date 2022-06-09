@@ -1,70 +1,75 @@
-import { Link, useHistory } from "react-router-dom";
+import React from "react";
+
+import { Link } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 
 import {
-  activarProducto,
-  deleteEmpleado,
-  detalleEmployee,
-  getAdminAllEmpleados,
-  updateEmpleados,
+  updateService,
+  deleteService,
+  detalleService,
+  getAdminAllServices,
+  getServices,
 } from "../../../redux/actions";
-import "./Empleado.css";
 
-export default function Empleado() {
-  const history = useHistory();
-  const { adminAllEmpleados } = useSelector((state) => state);
+export default function Servicio() {
+  const { adminAllServices } = useSelector((state) => state);
+
   const dispatch = useDispatch();
 
-  const handleDelete = async (id) => {
-    await dispatch(deleteEmpleado(id));
-    await dispatch(getAdminAllEmpleados());
+  const handleDelete = (id) => {
+    dispatch(deleteService(id));
+    dispatch(getAdminAllServices());
   };
 
-  const handleActive = async (empleado) => {
-    await dispatch(updateEmpleados(empleado));
-    await dispatch(getAdminAllEmpleados());
+  const handleActive = async (serviceU) => {
+    //console.log("srvUpdate", serviceU);
+    await dispatch(updateService(serviceU));
+    await dispatch(getAdminAllServices());
   };
 
-  const handleDetailProduct = (idEmployee) => {
-    dispatch(detalleEmployee(idEmployee));
+  const handleDetailService = (id) => {
+    dispatch(detalleService(id));
   };
   return (
     <>
-      <h1>Empleados</h1>
       <table className="table table-dark table-striped text-center">
         <thead>
           <tr>
             <th scope="col">#</th>
-            <th scope="col">Empleado Barbero</th>
-            <th scope="col">Dni</th>
+            <th scope="col">Servicio</th>
+            <th scope="col">Detalle</th>
+            <th scope="col">Precio</th>
+            <th scope="col">Duracion</th>
             <th scope="col">Estado</th>
             <th scope="col">Acciones</th>
           </tr>
         </thead>
         <tbody>
-          {adminAllEmpleados.map((empleado, index) => {
+          {adminAllServices.map((servicio, index) => {
             return (
-              <tr key={index + 1}>
+              <tr key={servicio.id}>
                 <th scope="row">{index + 1}</th>
-                <td className="text-white"> {empleado.name}</td>
-                <td className="text-white"> {empleado.dni}</td>
+                <td className="text-white"> {servicio.name}</td>
+                <td className="text-white"> {servicio.detail}</td>
+                <td className="text-white"> {servicio.price}</td>
+                <td className="text-white"> {servicio.time}</td>
                 <td className="text-white">
-                  {empleado?.availability ? "Disponible" : "No Disponible"}
+                  {servicio.state ? "Activo" : "Desactivo"}
                 </td>
                 <td className="text-white">
                   <div className="btn-group" role="group" aria-label="acciones">
                     <button className="btn btn-outline-primary btn-edit">
                       <Link
-                        to={`/admin/employee/${empleado.id}`}
-                        onClick={() => handleDetailProduct(empleado.id)}
+                        to={`/admin/service/${servicio.id}`}
+                        onClick={() => handleDetailService(servicio.id)}
                       >
                         Edit
                       </Link>
                     </button>
-                    {empleado?.availability ? (
+                    {servicio.state ? (
                       <button
                         className="btn btn-outline-danger"
-                        onClick={() => handleDelete(empleado.id)}
+                        onClick={() => handleDelete(servicio.id)}
                       >
                         Eliminar
                       </button>
@@ -72,10 +77,7 @@ export default function Empleado() {
                       <button
                         className="btn btn-outline-success"
                         onClick={() =>
-                          handleActive({
-                            id: empleado.id,
-                            availability: true,
-                          })
+                          handleActive({ id: servicio.id, state: true })
                         }
                       >
                         Activar
@@ -88,9 +90,8 @@ export default function Empleado() {
           })}
         </tbody>
       </table>
-
       <div>
-        <Link to={`/admin/employee/add`} className="div_pie">
+        <Link to={`/admin/service/add`} className="div_pie">
           <button className="btn_agregar btn btn-outline-success">+</button>
         </Link>
       </div>
