@@ -51,7 +51,7 @@ export const ComprasPerfil = () => {
           <td className="text-light">$ {e.dataProducts[0].unit_price}</td>
           <td className="text-light"><img src={e.dataProducts[0].picture_url} style={{ height: "6rem" }}/></td>
         </tr>
-       ))
+       ))    
       }
       </tbody>
       </table>
