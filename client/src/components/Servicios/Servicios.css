@@ -24,10 +24,10 @@
     margin: 0;
 }
 
-.serviciosCard img:hover {
+/* .serviciosCard img:hover {
     box-shadow: 3.9px 7.8px 30px hsl(0deg 0% 0% / 0.38);
     transform: translate(10%, -5%);
-  }
+  } */
 
 .divdetailserv > h5{
     display: flex;
@@ -99,12 +99,14 @@
 
 .divdetailserv .front h3 {
     position: absolute;
-    bottom: 0;
+    font-family: Gelasio;
+    bottom: 2.1rem;
+    background-color: transparent;
     width: 100%;
     height: 45px;
     line-height: 45px;
     color: #fff;
-    background: rgba(0,0,0,.4);
+    /* background: rgba(0,0,0,.4); */
     text-align: center;
 }
 
@@ -129,12 +131,12 @@
 .divdetailserv .back h3 {
     font-size: 30px;
     margin-top: 20px;
-    letter-spacing: 2px;
+    /* letter-spacing: 2px; */
 }
 
-.divdetailserv .back h5 {
+/* .divdetailserv .back h5 {
     letter-spacing: 1px;
-} 
+}  */
 
 .divdetailserv:hover .front {
     transform: perspective(600px) rotateY(180deg);
@@ -142,6 +144,11 @@
 
 .divdetailserv:hover .back {
     transform: perspective(600px) rotateY(360deg);
+}
+
+.textServicios{
+    font-family: Gelasio;
+    font-weight: bold;
 }
 
 

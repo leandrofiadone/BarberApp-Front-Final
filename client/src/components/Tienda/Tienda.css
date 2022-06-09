@@ -97,14 +97,6 @@
     display: none;
 }
 
-.contOrder{
-    margin-left: 1rem;
-}
-
-.allCarrito{
-    display: none;
-}
-
 .botonCarrito{
     margin-left: 1rem;
     position: absolute;
@@ -149,7 +141,7 @@
 }
 
 .carritoContainer {
-    margin-left: -1rem;
+    margin-left: 62%;
 }
 
 .navbar-brandtienda{
@@ -160,9 +152,9 @@
      background-image: url("https://images.vexels.com/media/users/3/132674/isolated/preview/5de3fc4efa4d8ff72773bfc119c1a8e9-bigote-blanco-hipster-3.png");
 }
 
- .carritoContainer{
+ /* .carritoContainer{
      margin-left: -1rem;
-}
+} */
 
 .numeroitems{
     position: relative;
@@ -172,9 +164,9 @@
     transform: translate(2rem, -.5rem);
 }
 
-.containernavbartienda {
+/* .containernavbartienda {
     transform: translate(2rem,-.5rem);
-} 
+}  */
 
 .containernavbartienda{
     display: flex;
@@ -194,7 +186,7 @@
 
 .searchbar{
     margin-top: 5px;
-    margin-left: 30rem;
+    margin-left: 160%;
     color: white;
 }
 

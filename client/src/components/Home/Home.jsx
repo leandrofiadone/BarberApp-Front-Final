@@ -53,11 +53,15 @@ export default function Home() {
       <br />
 
       <div className="backdrop-blur-sm bg-white/10">
-        <div className="text-light" id="servicios">
+        <div className="text-light" >
           <Servicios />
         </div>
       </div>
       <div className="p-3"></div>
+
+      <div className="divwsp">
+        <a href="https://wa.me/+5491138951721" target="_blank"><img src="https://i.ibb.co/Th1XCXz/Dise-o-sin-t-tulo-1.png" alt="..."/></a>
+      </div>
 
       <div>
         <Contenido />

@@ -22,8 +22,8 @@ export function Servicios() {
 
   return (
     <div>
-      <div className="flex justify-center ">
-        <h1 className="tituloServicios">Nuestros Servicios</h1>
+      <div className="flex justify-center " id="servicios">
+        <h1 className="tituloServicios" >Nuestros Servicios</h1>
         <div className="serviciosCard">
           {          
           allServices?.map((s) => (
@@ -32,7 +32,7 @@ export function Servicios() {
               name={s.name}
               detail={s.detail}
               price={s.price}
-              time={s.time.replace(/^0+:/,'')}
+              time={s.time}
               img={s.img}
             />
           ))}

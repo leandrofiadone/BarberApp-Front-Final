@@ -5,8 +5,10 @@ export const ReservasPerfil = () => {
   const { user } = useSelector((state) => state);
   const { citas } = useSelector((state) => state);
 
+  
   const fil = citas.filter((e) => e.idUser === user.id);
-
+  
+  console.log(fil)
   return (
     <div>
       {fil.map((e, index) => (
