@@ -352,7 +352,11 @@ export function revalidarAuth() {
         phone: data.phone,
       };
 
-      dispatch(adminGetAllProducts());
+      if(data.rol === 'ADMIN'){
+        dispatch(adminGetAllProducts());
+        dispatch(getAllUsers())
+      }
+
       // dispatch(getCategories())
       return dispatch({
         type: types.login,

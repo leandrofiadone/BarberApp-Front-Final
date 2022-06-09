@@ -37,8 +37,6 @@ export const AppRouter = () => {
 
   useEffect(() => {
     dispatch(revalidarAuth());
-    dispatch(allProductos());
-    dispatch(getCategories());
     dispatch(allCitas());
   }, [dispatch]);
 
