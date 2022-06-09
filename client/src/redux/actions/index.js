@@ -35,6 +35,7 @@ export const DELETE_PRODUCT = "DELETE_PRODUCT";
 export const UPDATE_PRODUCT = "UPDATE_PRODUCT";
 
 export const DELETE_DATE = "DELETE_DATE";
+export const ALL_CITAS_ADMIN = "ALL_CITAS_ADMIN";
 
 export function allProductos() {
   return async (dispatch) => {
@@ -423,6 +424,20 @@ export function deleteDate(id) {
     if (data.ok) {
       dispatch({
         type: DELETE_DATE,
+        payload: data.allDates,
+      });
+    }
+  };
+}
+
+export function allCitasAdmin() {
+  return async (dispatch) => {
+    const resp = await fetchSinToken("date?all=true");
+    const data = await resp.json();
+
+    if (data.ok) {
+      return dispatch({
+        type: ALL_CITAS_ADMIN,
         payload: data.allDates,
       });
     }

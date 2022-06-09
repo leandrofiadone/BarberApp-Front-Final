@@ -10,9 +10,8 @@ export const ReservasPerfil = () => {
   const { user } = useSelector((state) => state);
   const { citas } = useSelector((state) => state);
 
-  const filtradoState = citas.filter((s) => s.state === true);
-  const filtrado = filtradoState.filter((e) => e.idUser === user.id);
-
+  const filtrado = citas.filter((e) => e.idUser === user.id);
+  console.log(filtrado);
   const cancelarCitas = (id) => {
     Swal.fire({
       title: "Estas seguro que quieres cancelar tu cita?",

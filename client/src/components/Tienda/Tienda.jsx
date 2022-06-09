@@ -128,11 +128,11 @@ export default function Tienda() {
                         className="text-dark form-select-sm"
                       >
                         <option value="All"> Todos </option>
-                        <option value="Tinte"> Tinte</option>
-                        <option value="Cremas">Crema</option>
+                        <option value="tinte"> Tinte</option>
+                        <option value="cremas">Crema</option>
                         <option value="shampoo">Shampoo</option>
                         <option value="acondicionador">Acondicionador</option>
-                        <option value="Cera">Cera</option>
+                        <option value="cera">Cera</option>
                       </select>
                     </div>
                     <br />

@@ -26,6 +26,7 @@ import {
   getCategories,
   revalidarAuth,
   allCitas,
+  allCitasAdmin,
 } from "../redux/actions/index";
 import { PrivateAdmin } from "./PrivateAdmin";
 import { AdminRoute } from "./AdminRoute";
@@ -40,6 +41,7 @@ export const AppRouter = () => {
     dispatch(allProductos());
     dispatch(getCategories());
     dispatch(allCitas());
+    dispatch(allCitasAdmin());
   }, [dispatch]);
 
   return (

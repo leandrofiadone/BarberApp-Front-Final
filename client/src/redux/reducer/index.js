@@ -87,7 +87,7 @@ function rootReducer(state = initialState, action) {
       console.log(filterProductos[0].category.categorie);
       return {
         ...state,
-        allProductos: infoCategoria,
+        productos: infoCategoria,
       };
 
     case ACTIONS.GET_CATEGORIES:
@@ -109,8 +109,7 @@ function rootReducer(state = initialState, action) {
       });
       return {
         ...state,
-        allProductos:
-          action.payload === "Filter" ? state.allProductos : orderName,
+        productos: action.payload === "Filter" ? state.allProductos : orderName,
       };
 
     case ACTIONS.SORT:
@@ -142,7 +141,7 @@ function rootReducer(state = initialState, action) {
 
       return {
         ...state,
-        allProductos: info,
+        productos: info,
       };
 
     case ACTIONS.FILTER_RANGO_PRECIO:
@@ -273,6 +272,12 @@ function rootReducer(state = initialState, action) {
       return {
         ...state,
         citas: cancelarCita.concat(todasLasCitas),
+      };
+
+    case ACTIONS.ALL_CITAS_ADMIN:
+      return {
+        ...state,
+        allCitas: action.payload,
       };
 
     default:

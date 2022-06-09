@@ -43,7 +43,7 @@ export const Navbar = () => {
           activeClassName="bg-warning"
           to="/admin/reservas"
         >
-          Reservas
+          Reservas Usuarios
         </NavLink>
 
         <NavLink

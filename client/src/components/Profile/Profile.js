@@ -47,7 +47,6 @@ const Profile = () => {
           >
             Mis Reservaciones
           </li>
-
           <li
             className={`list-group-item pointer ${
               section === "editar" ? "bg-warning" : ""
@@ -56,15 +55,12 @@ const Profile = () => {
           >
             Editar
           </li>
-
           <li className="list-group-item">
             <NavLink to="/">Volver a la tienda</NavLink>
           </li>
-
           <li className="list-group-item pointer" onClick={handleLogout}>
             Logout
           </li>
-
           {user.rol === "ADMIN" && (
             <li className="list-group-item">
               <NavLink to="/admin/main">Administrador</NavLink>
