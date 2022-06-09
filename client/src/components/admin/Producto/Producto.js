@@ -23,7 +23,6 @@ export default function Producto() {
   };
 
   const handleActive = (id) => {
-    console.log(id);
     dispatch(activarProducto(id));
   };
 

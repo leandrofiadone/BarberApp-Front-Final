@@ -410,7 +410,6 @@ export const activarProducto = (id) => {
     console.log(data);
     if (data.ok) {
       dispatch({ type: types.activaProducto, payload: data.producto });
-      dispatch({ type: ADD_PRODUCT, payload: data.producto });
     }
   };
 };

@@ -44,9 +44,12 @@ function rootReducer(state = initialState, action) {
       };
 
     case ACTIONS.DELETE_PRODUCT:
+      const oldProduct = state.adminAllProducts.filter(prod => prod.id !== action.payload.id)
       return {
         ...state,
-        allProductos: state.productos.filter((p) => p.id !== action.payload),
+        allProductos: state.allProductos.filter((p) => p.id !== action.payload.id),
+        adminAllProducts: oldProduct.concat(action.payload),
+        productos: state.productos.filter(prod => prod.id !== action.payload.id)
       };
 
     case ACTIONS.ELIMINAR_INFO_DETALLE:
@@ -233,6 +236,8 @@ function rootReducer(state = initialState, action) {
       return {
         ...state,
         adminAllProducts: activarProductoAdmin.concat(productoActivar),
+        allProductos: state.allProductos.concat(action.payload),
+        productos: state.productos.concat(action.payload)
       };
 
     case ACTIONS.DELETE_PRODUCT:
