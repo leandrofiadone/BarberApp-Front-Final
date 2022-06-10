@@ -251,13 +251,13 @@ export function filterPorPrecio(payload) {
 
 export function allBarberos() {
   return async (dispatch) => {
-    const resp = await fetchSinToken("employee");
+    const resp = await fetchSinToken("employee?all=false");
     const data = await resp.json();
-
+    console.log(data, "ACTIONS ALL BARBEROS")
     if (data.ok) {
       return dispatch({
         type: ALL_BARBEROS,
-        payload: data.employees,
+        payload: data.allEmployes,
       });
     }
   };
