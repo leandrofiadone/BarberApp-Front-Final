@@ -2,7 +2,7 @@ import React from "react";
 import "./Tienda.css";
 import imgCorazonRojo from "./img/corazon-rojo.png";
 import imgCorazonGris from "./img/corazon-gris.png";
-import imgCorazonAmarillo from "./img/corazon-amarillo.png"
+import imgCorazonAmarillo from "./img/corazon-amarillo.png";
 import Cards from "../Cards/Cards";
 import SearchBar from "../SearchBar/SearchBar";
 import Carrito from "../Carrito/Carrito";
@@ -13,28 +13,22 @@ import { useDispatch, useSelector } from "react-redux";
 import { useEffect, useState } from "react";
 import Paginado from "../Paginado/Paginado";
 
-
-import Swal from 'sweetalert2'
-import {  filterCategoriaProductos, getCategories } from "../../redux/actions";
+import Swal from "sweetalert2";
+import { filterCategoriaProductos, getCategories } from "../../redux/actions";
 import { allProductos, orderByPrecio, sortName } from "../../redux/actions";
 import { getFavourites } from "../../redux/actions";
-import { setFavouriteApi, deleteFavouriteApi } from "../../helpers/functionsFavorites/favorites";
-
+import {
+  setFavouriteApi,
+  deleteFavouriteApi,
+} from "../../helpers/functionsFavorites/favorites";
 
 export default function Tienda() {
-
-  
-
-  
-
-  const {updateItemQuantity, totalItems} = useCart()
-
+  const { updateItemQuantity, totalItems } = useCart();
 
   const [state, setState] = useState("");
 
+  const { user } = useSelector((state) => state);
 
-  const {user} = useSelector(state => state)
- 
   const dispatch = useDispatch();
 
   const productosBarberia = useSelector((state) => state.productos);
@@ -42,19 +36,18 @@ export default function Tienda() {
   //Favourites:
   const allFavorites = useSelector((state) => state.favourites.allFavorites);
   const [addFavourites, setFavourites] = useState([]);
- //
-  
+  //
 
   const [currentPage, setCurrentPage] = useState(1);
-    const [productsPerPage] = useState(9);
-    const indexOfLastProduct = currentPage * productsPerPage;
-    const indexOfFirstProduct = indexOfLastProduct - productsPerPage;
-    let currentProducts = productosBarberia.slice(
-      indexOfFirstProduct,
-      indexOfLastProduct
+  const [productsPerPage] = useState(9);
+  const indexOfLastProduct = currentPage * productsPerPage;
+  const indexOfFirstProduct = indexOfLastProduct - productsPerPage;
+  let currentProducts = productosBarberia.slice(
+    indexOfFirstProduct,
+    indexOfLastProduct
   );
- 
- /* let currentProducts = [{name:"shampo",stock: 285, price:300,
+
+  /* let currentProducts = [{name:"shampo",stock: 285, price:300,
   category:{categorie:"tinte",id:"06af9456-0655-42e9-be92-18ceadc454c4"},
 detail:"Shampoo Hombre",
 id: "04569726-3258-4add-a406-fafb743c1c2f",
@@ -65,10 +58,9 @@ state: true
 }]*/
   //console.log(productosBarberia)
 
-
-    const paginado = (pageNumber) => {
-        setCurrentPage(pageNumber);
-    };
+  const paginado = (pageNumber) => {
+    setCurrentPage(pageNumber);
+  };
 
   useEffect(() => {
     dispatch(allProductos());
@@ -105,63 +97,60 @@ state: true
     console.log(e.target.value);
   };
 
+  //////Favourites///////
 
-//////Favourites///////
+  useEffect(() => {
+    console.log("getFavourites");
+    user && dispatch(getFavourites(user.id));
+  }, [user]);
 
-useEffect(()=>{
-  console.log("getFavourites")
- user && dispatch(getFavourites(user.id));
-},[user]);
+  useEffect(() => {
+    if (allFavorites && allFavorites.length) {
+      let favorites = [];
+      for (let i = 0; i < allFavorites.length; i++) {
+        //busca el indice del producto donde coincidan los ids
+        let found = currentProducts.findIndex(
+          (f) => f.id === allFavorites[i].idProduct
+        );
+        if (found > -1) {
+          currentProducts.map((p) => favorites.push({ newFavourite: false }));
+          favorites[found].newFavourite = true;
+        }
+      }
+      setFavourites(favorites);
+    }
+  }, [allFavorites, currentPage]);
 
-useEffect(()=>{
-  if(allFavorites && allFavorites.length){
-    let favorites = []
-    for(let i = 0; i < allFavorites.length; i++){
-      //busca el indice del producto donde coincidan los ids
-      let found = currentProducts.findIndex((f)=>f.id === allFavorites[i].idProduct);
-       if(found > -1 ){ 
-         currentProducts.map((p)=>favorites.push({newFavourite:false}));
-         favorites[found].newFavourite = true;
-       }
-       }
-       setFavourites(favorites);
-  }
-},[allFavorites,currentPage]);
-
-const handleAddFavourites = (idProduct, index) =>{
-  const {id:idUser} = user;
-    for(let i = 0; i < currentProducts.length; i++){
-      if(index === i){
-        setFavouriteApi({idProduct,idUser});
-        let favorites = addFavourites.slice()
-        favorites[i].newFavourite = true
-        setFavourites(favorites)
-
+  const handleAddFavourites = (idProduct, index) => {
+    const { id: idUser } = user;
+    for (let i = 0; i < currentProducts.length; i++) {
+      if (index === i) {
+        setFavouriteApi({ idProduct, idUser });
+        let favorites = addFavourites.slice();
+        favorites[i].newFavourite = true;
+        setFavourites(favorites);
       }
     }
-}
-  
-  const handleDeleteFavourites = (index, idProduct) =>{
-    const {id:idUser} = user;
-    for(let i = 0; i < addFavourites.length; i++){
-      if(index === i){
-        deleteFavouriteApi({idProduct, idUser});
-        console.log(idProduct)
-        let favorites = addFavourites.slice()
-        favorites[i].newFavourite = false
-        setFavourites(favorites)
+  };
+
+  const handleDeleteFavourites = (index, idProduct) => {
+    const { id: idUser } = user;
+    for (let i = 0; i < addFavourites.length; i++) {
+      if (index === i) {
+        deleteFavouriteApi({ idProduct, idUser });
+        console.log(idProduct);
+        let favorites = addFavourites.slice();
+        favorites[i].newFavourite = false;
+        setFavourites(favorites);
       }
-    }  
-  }
-/////Favourites////
+    }
+  };
+  /////Favourites////
 
   return (
-
     <div>
-
-{/* =============================================================== */}
+      {/* =============================================================== */}
       <nav class="navbar navbar-expand-xl divNavbarTienda p-3 containernavbartienda">
-
         <div class="container-fluid ">
           <Link className="navbar-brandtienda" to="/"></Link>
           <button
@@ -285,7 +274,12 @@ const handleAddFavourites = (idProduct, index) =>{
               {/* <li className="numeroitems nav-item">
                     {totalItems}
               </li> */}
-              <Link to={`/favourites/${user.id}`}><img className="corazon-amarillo" src={imgCorazonAmarillo}></img></Link>
+              <Link to={`/favourites/${user.id}`}>
+                <img
+                  className="corazon-amarillo"
+                  src={imgCorazonAmarillo}
+                ></img>
+              </Link>
             </ul>
           </div>
         </div>
@@ -297,9 +291,6 @@ const handleAddFavourites = (idProduct, index) =>{
       </div>
 
       <br />
-{/* =============================================================== */}
-
-    
 
 
       <div className="navbar navbar-expand bg-dark navbarTienda"></div>
@@ -323,36 +314,44 @@ const handleAddFavourites = (idProduct, index) =>{
 
       <div>
         <Paginado
-
           productsPerPage={productsPerPage}
           productosBarberia={productosBarberia.length}
           paginado={paginado}
         />
       </div>
 
-
       <div className="cardsTienda">
         {currentProducts ? (
-          currentProducts?.map((e,index) => {
+          currentProducts?.map((e, index) => {
             return (
-
               <div>
-                  <Cards
-                    key={index}
-                    name={e.name}
-                    stock={e.stock}
-                    price={e.price}
-                    img={e.img}
-                    category={e.category.categorie}
-                    id={e.id}
-                    idProduct={e.id}
-                  />
+                <Cards
+                  key={index}
+                  name={e.name}
+                  stock={e.stock}
+                  price={e.price}
+                  img={e.img}
+                  category={e.category.categorie}
+                  id={e.id}
+                  idProduct={e.id}
+                />
                 <Link to={`tienda/${e.id}`} className="LinkDetail">
                   <button>+info</button>
                 </Link>
                 {/*valorar por el estado de favorios y no por la propiedad**/}
-                { addFavourites.length  && !addFavourites[index].newFavourite ? <img onClick={()=> handleAddFavourites(e.id,index)} className="imagen-corazon-gris" src={imgCorazonGris}></img>  :
-                 <img onClick={()=> handleDeleteFavourites(index,e.id)} className="imagen-corazon-rojo" src={imgCorazonRojo}></img>}
+                {addFavourites.length && !addFavourites[index].newFavourite ? (
+                  <img
+                    onClick={() => handleAddFavourites(e.id, index)}
+                    className="imagen-corazon-gris"
+                    src={imgCorazonGris}
+                  ></img>
+                ) : (
+                  <img
+                    onClick={() => handleDeleteFavourites(index, e.id)}
+                    className="imagen-corazon-rojo"
+                    src={imgCorazonRojo}
+                  ></img>
+                )}
               </div>
             );
           })

@@ -7,7 +7,12 @@ import Swal from "sweetalert2";
 import "./auth.css";
 import { Google } from "./Google";
 import { fetchConToken, fetchSinToken } from "../../helpers/fetch";
-import { adminGetAllProducts, getCategories, login, getAllUsers } from "../../redux/actions";
+import {
+  adminGetAllProducts,
+  getCategories,
+  login,
+  getAllUsers,
+} from "../../redux/actions";
 
 export const Login = () => {
   const { isAuth } = useSelector((state) => state);
@@ -32,43 +37,43 @@ export const Login = () => {
   const handleLogin = async (e) => {
     e.preventDefault();
 
-    const resp = await fetchSinToken('auth/login', formLogin, 'POST');
+    const resp = await fetchSinToken("auth/login", formLogin, "POST");
     const data = await resp.json();
 
     if (data.ok) {
-      localStorage.setItem('token', data.token)
+      localStorage.setItem("token", data.token);
       const payload = {
         id: data.id,
         email: data.email,
         name: data.name,
         phone: data.phone,
         img: data.img,
-        rol: data.rol
+        rol: data.rol,
+      };
+
+      if (data.rol === "ADMIN") {
+        dispatch(getAllUsers());
+        dispatch(adminGetAllProducts());
       }
 
-      if (data.rol === 'ADMIN') {
-        dispatch(getAllUsers())
-        dispatch(adminGetAllProducts())
-      }
-
-      dispatch(getCategories())
+      dispatch(getCategories());
       dispatch(login(payload));
-      history.replace('/');
+      history.replace("/");
     } else {
-      console.log(data)
+      console.log(data);
       if (data.errors) {
-        if(data.errors.email){
-          Swal.fire('Error', data.errors.email.msg, 'error')
-        }else if(data.errors.password){
-          Swal.fire('Error', data.errors.password.msg, 'error')
+        if (data.errors.email) {
+          Swal.fire("Error", data.errors.email.msg, "error");
+        } else if (data.errors.password) {
+          Swal.fire("Error", data.errors.password.msg, "error");
         }
-      }else{
-        Swal.fire('Error', data.msg, 'error')
+      } else {
+        Swal.fire("Error", data.msg, "error");
       }
     }
 
     resetLogin();
-  }
+  };
 
   const handleRegister = async (e) => {
     e.preventDefault();
@@ -116,8 +121,6 @@ export const Login = () => {
   }
 
   return (
-
-
     <div className="main">
       <div className="col-login">
         <div className="form-login">

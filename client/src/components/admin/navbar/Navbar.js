@@ -1,11 +1,17 @@
 import React from "react";
 import { NavLink, useHistory } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
-import "./Navbar.css";
-import { logout } from "../../../redux/actions";
+import "./navbar.css";
+import {
+  getAdminAllEmpleados,
+  getAdminAllServices,
+  logout,
+  getCategories,
+} from "../../../redux/actions";
 
 export const Navbar = () => {
   const { user } = useSelector((state) => state);
+  const { categories } = useSelector((state) => state);
 
   const dispatch = useDispatch();
   const history = useHistory();
@@ -14,7 +20,6 @@ export const Navbar = () => {
     dispatch(logout());
     history.replace("/");
   };
-
   return (
     <nav className="navbar-admin">
       <div className="img-perfil">
@@ -46,6 +51,36 @@ export const Navbar = () => {
           Reservas Usuarios
         </NavLink>
 
+        <label
+          className="list-group-item pointer"
+          activeClassName="bg-warning"
+          onClick={() => {
+            dispatch(getCategories());
+            history.push("/admin/categories");
+          }}
+        >
+          Categorias
+        </label>
+        <label
+          className="list-group-item pointer"
+          activeClassName="bg-warning"
+          onClick={() => {
+            dispatch(getAdminAllEmpleados());
+            history.push("/admin/employee");
+          }}
+        >
+          Empleados
+        </label>
+        <label
+          className="list-group-item pointer"
+          activeClassName="bg-warning"
+          onClick={() => {
+            dispatch(getAdminAllServices());
+            history.push("/admin/service");
+          }}
+        >
+          Servicios
+        </label>
         <NavLink
           className="list-group-item"
           to="/admin/usuarios"
