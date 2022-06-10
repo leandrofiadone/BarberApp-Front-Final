@@ -122,11 +122,19 @@ export const Login = () => {
 
   return (
     <div className="main">
+      <div className="btn-volver">
+        <Link to="/">Volver</Link>
+      </div>
       <div className="col-login">
         <div className="form-login">
           <h1>Ingresar</h1>
           <form onSubmit={handleLogin} autoComplete="off">
-            <div className="form-group mb-2">
+          <div className="logobigote justify-content-center">
+            <img src="https://images.vexels.com/media/users/3/132674/isolated/preview/5de3fc4efa4d8ff72773bfc119c1a8e9-bigote-blanco-hipster-3.png" className="justify-content-center"/>
+          </div>
+            <div className="form-group mb-2 inputIngresar">
+            <br/>
+
               <input
                 type="email"
                 placeholder="Email"
@@ -136,6 +144,7 @@ export const Login = () => {
                 onChange={handleLoginInputChange}
               />
             </div>
+            <br/>
 
             <div className="form-group mb-2">
               <input
@@ -148,13 +157,13 @@ export const Login = () => {
               />
             </div>
 
-            <div className="form-group mb-2">
-              <button type="submit" className="btn btn-primary">
+            <div className="form-group mb-4 botonLogin">
+              <button type="submit" className="btn btn-dark">
                 Login
               </button>
             </div>
 
-            <div className="form-group mb-2">
+            <div className="form-group mb-2 botonGoogle">
               <Google />
             </div>
           </form>
@@ -174,6 +183,7 @@ export const Login = () => {
                 onChange={handleRegisterInputChange}
               />
             </div>
+            <br/>
 
             <div className="form-group mb-2">
               <input
@@ -185,6 +195,7 @@ export const Login = () => {
                 onChange={handleRegisterInputChange}
               />
             </div>
+            <br/>
 
             <div className="form-group mb-2">
               <input
@@ -196,6 +207,7 @@ export const Login = () => {
                 onChange={handleRegisterInputChange}
               />
             </div>
+            <br/>
 
             <div className="form-group mb-2">
               <input
@@ -207,33 +219,33 @@ export const Login = () => {
                 onChange={handleRegisterInputChange}
               />
             </div>
+            <br/>
 
             <div className="form-group mb-2">
               <input
                 type="text"
-                placeholder="Exmaple: +54 1234567899"
+                placeholder="Example: +54 1234567899"
                 name="phone"
                 className="form-control"
                 value={formRegister.phone}
                 onChange={handleRegisterInputChange}
               />
             </div>
+            <br/>
 
-            <div className="form-group mb-2">
-              <button type="submit" className="btn btn-primary">
+            <div className="form-group mb-2 botonRegist">
+              <button type="submit" className="btn btn-dark">
                 Registrarse
               </button>
             </div>
 
-            <div className="form-group mb-2">
+            <div className="form-group mb-2 botonGoogle">
               <Google />
             </div>
           </form>
         </div>
       </div>
-      <div className="btn-volver">
-        <Link to="/">Volver</Link>
-      </div>
+      
     </div>
   );
 };

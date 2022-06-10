@@ -1,23 +1,25 @@
 .main{
   display: grid;
   grid-template-columns: repeat(2, 1fr);
-  grid-template-areas:  'col-login   col-register'
-                        'btn-volver btn-volver';
+  grid-template-areas:  
+  'btn-volver btn-volver'
+  'col-login   col-register'
+                        ;
   grid-template-rows: auto;
   justify-content: center !important; 
   align-content: center;
-  /* background-image: url('../../assets/bg-login.avif'); */
   width: 100vw;
-  height: 100vh;
+  gap: 2rem;
 }
 
 .main > div {
-  width: 500px;
+  width: 55%;
+  height: 100%;
 }
 
 .main .col-login{
   grid-area: col-login;
-  background-color: rgba(255, 172, 42, .50);
+  background-color: rgba(255, 172, 42, .4);
   border-radius: 7px 0 0 7px;
   justify-self: end;
   padding: 25px;
@@ -25,18 +27,20 @@
 
 .main .col-register{
   grid-area: col-register;
-  background-color: rgba(0,0,0,.70);
+  background-color: rgba(0,0,0,.40);
   border-radius: 0 7px 7px 0;
   padding: 25px;
 }
 
 .main .btn-volver{
-  background-color: black;
+  background-color: rgba(0,0,0,.40);
   grid-area: btn-volver;
   text-align: center;
   justify-self: center;
   padding: 10px;
+  cursor: pointer;
   transition: all .3s ease;
+  transform: translateY(40%);
 }
 
 .main .btn-volver:hover{
@@ -50,6 +54,66 @@
   /* background-color: rgba(0, 0, 0, .50); */
 }
 
+.inputIngresar{
+  margin-top: -7%;
+}
+
+.form-login > h1{
+  display: flex;
+  justify-content: center;
+  font-style: italic;
+}
+
+.form-register > h1{
+  display: flex;
+  justify-content: center;
+  font-style: italic;
+}
+
+.botonLogin{
+  display: flex;
+  justify-content: center;
+  margin-top: 30%;
+}
+
+.botonLogin > button{
+  width: 10rem;
+  height: 2.5rem;
+}
+
+.botonGoogle{
+  display: flex;
+  justify-content: center;
+  margin-top: 10%;
+}
+
+.botonRegist{
+  display: flex;
+  justify-content: center;
+}
+
+.botonRegist > button{
+  width: 10rem;
+  height: 2.5rem;
+}
+
+.logobigote{
+  margin-top: 10%;
+  margin-bottom: 10%;
+}
+
+.logobigote > img{
+  display: flex;
+  position: relative;
+  justify-content: center;
+  align-items: center;
+  width: 4rem;
+  margin: 0;
+  /* transform: translate(150%); */
+  margin-left: 40%;
+}
+
+
 
 
 /* media queries */
@@ -60,3 +124,4 @@
     /* grid-template-rows: 2fr; */
   }
 }
+

@@ -30,12 +30,12 @@ export default function Contenido(){
                 
                 </div>
                     
+
                 <div className="modal fade " id="exampleModal" tabIndex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
                 <div className="modal-dialog allContainerChat">
                 <div className="modal-content">
                 <button type="button" className="btn-close bg-danger" data-bs-dismiss="modal" aria-label="Close"></button>
                     <div className="mb-3 containerChat">
-
 
                         <ChatBot 
                             steps={[
