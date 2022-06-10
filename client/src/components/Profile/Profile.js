@@ -53,7 +53,7 @@ const Profile = () => {
             }`}
             onClick={() => selectSection("editar")}
           >
-            Editar
+            Perfil
           </li>
           <li className="list-group-item">
             <NavLink to="/">Volver a la tienda</NavLink>
