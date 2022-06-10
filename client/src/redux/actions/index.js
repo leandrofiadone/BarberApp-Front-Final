@@ -128,7 +128,7 @@ export function getServices() {
   return async function(dispatch) {
     const resp = await fetchSinToken("services");
     const data = await resp.json();
-
+    console.log(data)
     if (data.ok) {
       return dispatch({
         type: GET_SERVICES,
