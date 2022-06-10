@@ -147,6 +147,8 @@ state: true
   };
   /////Favourites////
 
+  console.log(user)
+
   return (
     <div>
       {/* =============================================================== */}
@@ -274,12 +276,12 @@ state: true
               {/* <li className="numeroitems nav-item">
                     {totalItems}
               </li> */}
-              <Link to={`/favourites/${user.id}`}>
+              {Object.keys(user).length && <Link to={`/favourites/${user.id}`}>
                 <img
                   className="corazon-amarillo"
                   src={imgCorazonAmarillo}
                 ></img>
-              </Link>
+              </Link>}
             </ul>
           </div>
         </div>
@@ -338,20 +340,20 @@ state: true
                 <Link to={`tienda/${e.id}`} className="LinkDetail">
                   <button>+info</button>
                 </Link>
-                {/*valorar por el estado de favorios y no por la propiedad**/}
-                {addFavourites.length && !addFavourites[index].newFavourite ? (
+                {/*Renderizado de Corazones*/}
+                { addFavourites.length && !addFavourites[index].newFavourite ? (
                   <img
                     onClick={() => handleAddFavourites(e.id, index)}
                     className="imagen-corazon-gris"
                     src={imgCorazonGris}
                   ></img>
-                ) : (
+                ) : Object.keys(user).length ? (
                   <img
                     onClick={() => handleDeleteFavourites(index, e.id)}
                     className="imagen-corazon-rojo"
                     src={imgCorazonRojo}
                   ></img>
-                )}
+                ) : null}
               </div>
             );
           })
