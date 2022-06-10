@@ -18,6 +18,7 @@ import { Register } from "../components/auth/Register";
 import comoComprar from "../components/Chatbot/ComoComprar";
 import comoReservar from "../components/Chatbot/ComoReservar";
 import { ComprasPerfil } from "../components/Profile/compras/ComprasPerfil";
+import Landing from "../components/Landing/Landing";
 
 /* ------------------------------------------------ */
 
@@ -50,6 +51,7 @@ export const AppRouter = () => {
       <div>
         <Switch>
           <Route exact path="/" component={Home} />
+          <Route exact path="/landing" component={Landing} />
           {/* auth */}
           <Route exact path="/auth/login" component={Login} />
           <Route exact path="/auth/register" component={Register} />
