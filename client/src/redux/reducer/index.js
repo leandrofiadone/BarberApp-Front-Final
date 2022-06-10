@@ -55,11 +55,10 @@ function rootReducer(state = initialState, action) {
       };
 
     case ACTIONS.GET_SERVICES:
-      console.log(action.payload);
       return {
         ...state,
         servicios: action.payload,
-        categorias: action.payload,
+        // categorias: action.payload,
         allServicios: action.payload,
       };
     case ACTIONS.ADD_EMPLOYEE:
