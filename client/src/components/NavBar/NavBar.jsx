@@ -2,6 +2,7 @@ import React from "react";
 import { Link, Redirect } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { useHistory } from "react-router-dom";
+import { ComprasPerfil } from "../Profile/compras/ComprasPerfil";
 
 import { logout } from "../../redux/actions/index";
 
@@ -59,6 +60,15 @@ export default function NavBar() {
                 Tienda
               </Link>
             </li>
+
+
+            <li className="nav-item" >
+              <Link className="nav-link text-light" to="/compras">
+                Mis Compras
+              </Link>
+            </li>
+
+
             {!isAuth && (
               <Link className="nav-item linkReserva" to="/auth/login">
                 <li className="nav-item">

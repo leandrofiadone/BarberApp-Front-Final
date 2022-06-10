@@ -17,6 +17,7 @@ import { Register } from "../components/auth/Register";
 //CIERRA LOGIN JWT
 import comoComprar from "../components/Chatbot/ComoComprar";
 import comoReservar from "../components/Chatbot/ComoReservar";
+import { ComprasPerfil } from "../components/Profile/compras/ComprasPerfil";
 
 /* ------------------------------------------------ */
 
@@ -26,7 +27,11 @@ import {
   getCategories,
   revalidarAuth,
   allCitas,
+
   allCitasAdmin,
+
+  crearCompra
+
 } from "../redux/actions/index";
 import { PrivateAdmin } from "./PrivateAdmin";
 import { AdminRoute } from "./AdminRoute";
@@ -38,10 +43,11 @@ export const AppRouter = () => {
 
   useEffect(() => {
     dispatch(revalidarAuth());
-    dispatch(allProductos());
-    dispatch(getCategories());
     dispatch(allCitas());
+
     dispatch(allCitasAdmin());
+
+    dispatch(crearCompra(user.id));
   }, [dispatch]);
 
   return (
@@ -61,6 +67,7 @@ export const AppRouter = () => {
           <Route exact path="/reserva" component={Reserva} />
           <Route exact path="/comocomprar" component={comoComprar} />
           <Route exact path="/comoreservar" component={comoReservar} />
+          <Route exact path="/compras" component={ComprasPerfil} />
 
           <PrivateAdmin
             path="/admin"

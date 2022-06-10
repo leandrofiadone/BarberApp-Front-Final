@@ -19,8 +19,15 @@ import Swal from "sweetalert2";
 import { filterCategoriaProductos, getCategories } from "../../redux/actions";
 import { allProductos, orderByPrecio, sortName } from "../../redux/actions";
 
+
 export default function Tienda() {
-  const { updateItemQuantity, totalItems } = useCart();
+
+  
+
+  
+
+  const {updateItemQuantity, totalItems} = useCart()
+
 
   const [state, setState] = useState("");
 
@@ -78,14 +85,12 @@ export default function Tienda() {
   };
 
   return (
+
     <div>
-      {/* <div className="botonVolver">
-      <Link to="/" className="LinkVolver">
-        <button  onClick="location.reload();" className="btn btn-dark" id="arriba"> Volver</button>
-      </Link>
-      </div> */}
-      {/* =============================================================== */}
-      <nav class="navbar navbar-expand-lg divNavbarTienda p-3 containernavbartienda">
+
+{/* =============================================================== */}
+      <nav class="navbar navbar-expand-xl divNavbarTienda p-3 containernavbartienda">
+
         <div class="container-fluid ">
           <Link className="navbar-brandtienda" to="/"></Link>
           <button
@@ -242,11 +247,13 @@ export default function Tienda() {
 
       <div>
         <Paginado
+
           productsPerPage={productsPerPage}
           productosBarberia={productosBarberia.length}
           paginado={paginado}
         />
       </div>
+
 
       <div className="cardsTienda">
         {currentProducts ? (

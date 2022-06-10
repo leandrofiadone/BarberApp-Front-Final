@@ -35,6 +35,12 @@ export const ReservasPerfil = () => {
     });
   };
 
+
+  
+  const fil = citas.filter((e) => e.idUser === user.id);
+  
+  console.log(fil)
+
   return (
     <div>
       <table className="table table-dark table-striped text-center">
