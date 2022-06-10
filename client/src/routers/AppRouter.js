@@ -31,7 +31,11 @@ import {
   getCategories,
   revalidarAuth,
   allCitas,
+
+  allCitasAdmin,
+
   crearCompra
+
 } from "../redux/actions/index";
 import { PrivateAdmin } from "./PrivateAdmin";
 import { AdminRoute } from "./AdminRoute";
@@ -44,6 +48,9 @@ export const AppRouter = () => {
   useEffect(() => {
     dispatch(revalidarAuth());
     dispatch(allCitas());
+
+    dispatch(allCitasAdmin());
+
     dispatch(crearCompra(user.id));
   }, [dispatch]);
 

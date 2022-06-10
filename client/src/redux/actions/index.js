@@ -37,7 +37,8 @@ export const DELETE_PRODUCT = "DELETE_PRODUCT";
 export const UPDATE_PRODUCT = "UPDATE_PRODUCT";
 export const GET_FAVOURITES = "SET_FAVOURITES";
 
-
+export const DELETE_DATE = "DELETE_DATE";
+export const ALL_CITAS_ADMIN = "ALL_CITAS_ADMIN";
 
 export function allProductos() {
   return async (dispatch) => {
@@ -214,7 +215,6 @@ export function crearCita(payload) {
     const respuesta = await fetchConToken("date", payload, "POST");
     const data = await respuesta.json();
 
-    console.log(data);
     if (data.ok) {
       dispatch({ type: CREAR_CITA, payload: data });
     }
@@ -287,6 +287,7 @@ export function deleteProduct(id) {
     const data = await result.json();
     if (data.ok) {
       Swal.fire("Success", "Producto eliminado", "success");
+      console.log(data);
       return dispatch({
         type: DELETE_PRODUCT,
         payload: data.producto,
@@ -294,6 +295,7 @@ export function deleteProduct(id) {
     }
   };
 }
+
 export function updateProductos(product) {
   return async (dispatch) => {
     try {
@@ -321,31 +323,36 @@ export function updateProductos(product) {
 
 
 
+
 export const paymentMP = async (items, user, navigate, emptyCart) => {
   const carrito = []
+
   items.map((i) => {
     carrito.push({
       idUser: user.id,
       idProduct: i.idProduct,
+
       quantity: i.quantity
     })
   })
-  const token = localStorage.getItem('token')
-  const response = await fetch("https://barber-app-henry.herokuapp.com/api/purchaseOrder", {
-    method: "POST",
-    body: JSON.stringify(carrito),
-    headers: {
-      "Content-Type": "application/json",
-      "x-token": token
-    },
-  });
+
+  const token = localStorage.getItem("token");
+  const response = await fetch(
+    "https://barber-app-henry.herokuapp.com/api/purchaseOrder",
+    {
+      method: "POST",
+      body: JSON.stringify(carrito),
+      headers: {
+        "Content-Type": "application/json",
+        "x-token": token,
+      },
+    }
+  );
   const json = await response.json();
-  window.open(json.urlPayment, '_blank');
+  window.open(json.urlPayment, "_blank");
   emptyCart();
   navigate.push("/");
 };
-
-
 
 export const login = (payload) => ({ type: types.login, payload });
 
@@ -401,6 +408,7 @@ export const getAllUsers = () => {
     }
   };
 };
+
 export const adminGetAllProducts = () => {
   return async (dispatch) => {
     const resp = await fetchSinToken("products?all=true");
@@ -424,13 +432,25 @@ export const activarProducto = (id) => {
   return async (dispatch) => {
     const resp = await fetchConToken(`products/${id}`, {}, "PATCH");
     const data = await resp.json();
-    console.log(data);
+
     if (data.ok) {
       dispatch({ type: types.activaProducto, payload: data.producto });
     }
   };
 };
 
+export function deleteDate(id) {
+  return async function(dispatch) {
+    const result = await fetchConToken(`date/${id}`, {}, "DELETE");
+    const data = await result.json();
+    if (data.ok) {
+      dispatch({
+        type: DELETE_DATE,
+        payload: data.allDates,
+      });
+    }
+  };
+}
 export const getFavourites = (idUser) =>{
   return async (dispatch) => {
     try {
@@ -446,6 +466,16 @@ export const getFavourites = (idUser) =>{
 
 
 
+export function allCitasAdmin() {
+  return async (dispatch) => {
+    const resp = await fetchSinToken("date?all=true");
+    const data = await resp.json();
 
-
-
+    if (data.ok) {
+      return dispatch({
+        type: ALL_CITAS_ADMIN,
+        payload: data.allDates,
+      });
+    }
+  };
+}

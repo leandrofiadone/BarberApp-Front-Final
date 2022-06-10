@@ -9,8 +9,6 @@ import { ReservasPerfil } from "./reservas/ReservasPerfil";
 
 const Profile = () => {
   const { user } = useSelector((state) => state);
-  // const { citas } = useSelector((state) => state);
-  // const filtrado = citas.filter((e) => e.idUser === user.id);
 
   const [section, setSection] = useState("editar");
   const dispatch = useDispatch();
@@ -49,24 +47,20 @@ const Profile = () => {
           >
             Mis Reservaciones
           </li>
-
           <li
             className={`list-group-item pointer ${
               section === "editar" ? "bg-warning" : ""
             }`}
             onClick={() => selectSection("editar")}
           >
-            Editar
+            Perfil
           </li>
-
           <li className="list-group-item">
             <NavLink to="/">Volver a la tienda</NavLink>
           </li>
-
           <li className="list-group-item pointer" onClick={handleLogout}>
             Logout
           </li>
-
           {user.rol === "ADMIN" && (
             <li className="list-group-item">
               <NavLink to="/admin/main">Administrador</NavLink>

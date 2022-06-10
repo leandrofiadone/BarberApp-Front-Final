@@ -13,7 +13,11 @@ const initialState = {
   categorias: [],
   empleados: [],
   citas: [],
+
+  allCitas: [],
+
   compras: [],
+
   barberos: [],
   //login
   user: {},
@@ -89,7 +93,7 @@ function rootReducer(state = initialState, action) {
 
       return {
         ...state,
-        allProductos: infoCategoria,
+        productos: infoCategoria,
       };
 
     case ACTIONS.GET_CATEGORIES:
@@ -111,8 +115,7 @@ function rootReducer(state = initialState, action) {
       });
       return {
         ...state,
-        allProductos:
-          action.payload === "Filter" ? state.allProductos : orderName,
+        productos: action.payload === "Filter" ? state.allProductos : orderName,
       };
 
     case ACTIONS.SORT:
@@ -144,7 +147,7 @@ function rootReducer(state = initialState, action) {
 
       return {
         ...state,
-        allProductos: info,
+        productos: info,
       };
 
     case ACTIONS.FILTER_RANGO_PRECIO:
@@ -168,7 +171,6 @@ function rootReducer(state = initialState, action) {
     case ACTIONS.CREAR_CITA:
       return {
         ...state,
-        citas: state.citas.concat(action.payload),
       };
 
       case ACTIONS.ALL_COMPRA:
@@ -239,7 +241,9 @@ function rootReducer(state = initialState, action) {
       };
 
     case types.activaProducto:
-      let activarProductoAdmin = state.adminAllProducts.filter((pro) => pro.id !== action.payload.id);
+      let activarProductoAdmin = state.adminAllProducts.filter(
+        (pro) => pro.id !== action.payload.id
+      );
       let productoActivar = action.payload;
       return {
         ...state,
@@ -275,6 +279,20 @@ function rootReducer(state = initialState, action) {
         adminAllProducts: OldProductosAdmin.concat(action.payload),
       };
 
+    case ACTIONS.DELETE_DATE:
+      let cancelarCita = state.citas.filter((e) => e.id !== action.payload);
+      let todasLasCitas = action.payload;
+
+      return {
+        ...state,
+        citas: cancelarCita.concat(todasLasCitas),
+      };
+
+    case ACTIONS.ALL_CITAS_ADMIN:
+      return {
+        ...state,
+        allCitas: action.payload,
+      };
       case ACTIONS.GET_FAVOURITES:
         return {
           ...state,

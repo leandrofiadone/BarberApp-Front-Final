@@ -27,12 +27,12 @@ const validate = (state) => {
 export function Reserva() {
   const dispatch = useDispatch();
   const { user } = useSelector((state) => state);
+  const history = useHistory();
 
   const allServices = useSelector((state) => state.servicios.services);
   const subBarberos = useSelector((state) => state.barberos);
-  console.log(allServices);
-  const history = useHistory();
 
+  const [errors, setError] = useState({});
   const [state, setState] = useState({
     date: new Date(),
     service: "",
@@ -40,8 +40,6 @@ export function Reserva() {
     barberos: "",
     idUser: user,
   });
-
-  const [errors, setError] = useState({});
 
   useEffect(() => {
     dispatch(getServices());
@@ -129,6 +127,7 @@ export function Reserva() {
 
       setTimeout(() => {
         history.push("/");
+        window.location.reload();
       }, 2000);
     }
     console.log(state);
@@ -139,6 +138,7 @@ export function Reserva() {
       <Link to="/">
         <button className="boton">Volver</button>
       </Link>
+
       <div className="contenedor">
         <div className="col-login">
           <div className="form-login">

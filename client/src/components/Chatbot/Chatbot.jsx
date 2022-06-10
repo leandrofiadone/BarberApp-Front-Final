@@ -1,22 +1,21 @@
-import React, { Component } from 'react'
-import ChatBot from 'react-simple-chatbot'
-import { ThemeProvider } from 'styled-components'
-import './Chatbot.css'
-import { Link } from 'react-router-dom'
-
-
+import React, { Component } from "react";
+import ChatBot from "react-simple-chatbot";
+import { ThemeProvider } from "styled-components";
+import "./Chatbot.css";
+import { Link } from "react-router-dom";
 
 const theme = {
-    background: '#f5f8fb',
-    headerBgColor: '#000000',
-    headerFontColor: '#F7DC6F',
-    headerFontSize: '20px',
-    botBubbleColor: '#F7DC6F',
-    botBubbleSize: '100%',
-    botFontColor: '#000000',
-    userBubbleColor: '#000000',
-    userFontColor: '#F7DC6F',
-}
+  background: "#f5f8fb",
+  headerBgColor: "#000000",
+  headerFontColor: "#F7DC6F",
+  headerFontSize: "20px",
+  botBubbleColor: "#F7DC6F",
+  botBubbleSize: "100%",
+  botFontColor: "#000000",
+  userBubbleColor: "#000000",
+  userFontColor: "#F7DC6F",
+};
+
 
 export default function Contenido(){
     
@@ -185,3 +184,4 @@ export default function Contenido(){
         )
     
 }
+
