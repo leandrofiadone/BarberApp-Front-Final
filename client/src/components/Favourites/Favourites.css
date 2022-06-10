@@ -1,0 +1,65 @@
+/*Cards Favoritos*/
+
+.container-General{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+.container-Favourites{
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: center;
+}
+
+.title-Favoritos{
+    font-size: 35px;
+    margin-top: 35px;
+    margin-bottom:50px ;
+}
+
+
+
+/*Card favorito*/
+
+.container-Card-Favourite{
+    border: 3px solid yellow;
+    border-radius: 15px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 10px;
+    margin: 15px;
+}
+
+.container-Img{
+    width: 250px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+}
+
+.img{
+    height: auto;
+    width: auto;
+    max-height: 200px;
+    max-width: 500px;
+    border-radius: 5px;
+    justify-content: center;
+    align-items: center;
+    margin-right: 175px;
+}
+
+.container-Text{
+    display: flex;
+    flex-direction: column;
+    justify-items: center;
+    align-items: center;
+    margin-bottom: -2rem;
+}
+
+
+

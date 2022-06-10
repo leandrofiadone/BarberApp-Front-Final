@@ -1,0 +1,53 @@
+import React, { useEffect, useState } from "react";
+import { paymentMPFavourites } from "../../helpers/functionsFavorites/favorites";
+import { useSelector } from "react-redux";
+import "./Favourites.css";
+import { deleteFavouriteApi } from "../../helpers/functionsFavorites/favorites";
+
+const Favourite = ({ idProduct, name, price, stock, img, categorie, setFavourites }) => {
+    const {user} = useSelector(state => state)
+    
+  return (
+    <React.Fragment>
+      <div className="container-Card-Favourite">
+        <div className="container-Img">
+          <img className="img" src={img} alt="Img Product" maxwidth="500" />
+        </div>
+
+        <div className="container-Text">
+          <h5> {name}</h5>
+          <h5> ${price}</h5>
+          <h6> Stock: {stock}</h6>
+          <h6>Categoria: {categorie}</h6>
+          <div className="buttonComprar">
+            <button
+              id="miBoton"
+              type="button"
+              className="btn btn-success bg-dark fw-bold"
+              onClick={()=> paymentMPFavourites([{
+                  idUser: user.id,
+                  idProduct,
+                  quantity:1
+                }]) }
+            >
+              Comprar
+            </button>
+            <button
+              id="miBoton"
+              type="button"
+              className="btn btn-success bg-dark fw-bold"
+              onClick={()=>{ deleteFavouriteApi({idProduct, idUser: user.id});
+              setFavourites((f)=>{
+                  return f.filter((fa)=>fa.id !== idProduct)
+              }) }}
+            >
+              Quitar
+            </button>
+          </div>
+        </div>
+      </div>
+    </React.Fragment>
+  );
+};
+
+export default Favourite;

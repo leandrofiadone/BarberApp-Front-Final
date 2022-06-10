@@ -4,8 +4,9 @@ import Swal from "sweetalert2";
 import { fetchConToken } from "../../../helpers/fetch";
 import { useForm } from "../../../hooks/useForm";
 import { types } from "../../../types/types";
-
-export const EditarPerfil = ({ id }) => {
+import "./editarPerfil.css";
+export const EditarPerfil = () => {
+  
   const { user } = useSelector((state) => state);
 
   const [formValues, handleInputChange, reset] = useForm({
@@ -37,55 +38,53 @@ export const EditarPerfil = ({ id }) => {
   };
 
   return (
-    <div className="main-editar">
-      <h1 className="display-3 text-light">Actualizar Info</h1>
-      <div className="row">
-        <div className="col-md-6">
-          <input
-            className="form-control"
-            type="email"
-            value={user.email}
-            disabled
-          />
+    <div className="caja">
+      <div className="card">
+        <div className="info">
+          <div className="bigote"></div>
         </div>
-        <div className="col-md-6">
-          <input
-            className="form-control"
-            type="text"
-            name="name"
-            value={formValues.name}
-            onChange={handleInputChange}
-            placeholder="Nombre"
-          />
+        <div className="forms">
+          <div className="inputs">
+            <h3>Nombre y Apellido</h3>
+            <input
+              className="borde"
+              type="text"
+              readonly
+              value={user.name}
+              onChange={handleInputChange}
+            />
+          </div>
+          <div className="inputs">
+            <h3>Email</h3>
+            <input
+              className="borde"
+              type="email"
+              readonly
+              value={user.email}
+              disabled
+            />
+          </div>
+          <div className="inputs">
+            <h3>Telefono</h3>
+            <input
+              className="borde"
+              type="text"
+              readonly
+              name="phone"
+              value={formValues.phone}
+              onChange={handleInputChange}
+              placeholder="Telefono"
+            />
+          </div>
+          <button
+            type="button"
+            className="btn btn-dark botonEditar"
+            onClick={handleUpdate}
+          >
+            Editar
+          </button>
         </div>
       </div>
-
-      <div className="row mt-3">
-        <div className="col-md-6">
-          <input
-            className="form-control"
-            type="text"
-            name="phone"
-            value={formValues.phone}
-            onChange={handleInputChange}
-            placeholder="Phone"
-          />
-        </div>
-
-        <div className="col-md-6">
-          <input
-            className="form-control"
-            type="password"
-            name="password"
-            value={formValues.password}
-            onChange={handleInputChange}
-            placeholder="Password"
-          />
-        </div>
-      </div>
-      <button className="btn btn-primary mt-3" onClick={handleUpdate}>
-        Editar
-      </button>
     </div>
   );
 };

@@ -194,7 +194,37 @@
     transform: translate(10rem);
 }
 
+
+.imagen-corazon-rojo{
+    width: 25px;
+}
+
+.imagen-corazon-rojo:hover{
+    transform: scale(1.1);
+    cursor: pointer;
+}
+
+.imagen-corazon-gris{
+    width: 36px;
+}
+
+.imagen-corazon-gris:hover{
+    transform: scale(1.1);
+    cursor: pointer;
+}
+
+.corazon-amarillo{
+    margin: 0px;
+    margin-left: 20px;
+    width: 40px;
+}
+
+.corazon-amarillo:hover{
+    transform: scale(1.2);
+    cursor: pointer;
+}
 .botonChat{
     z-index: 1;
+
 }
 
