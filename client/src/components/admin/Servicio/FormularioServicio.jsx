@@ -48,6 +48,7 @@ export const FormularioServicio = () => {
     service["id"] = serviceId.id;
     await dispatch(updateService(service));
     await dispatch(getAdminAllServices());
+    await dispatch(getServices());
     history.push("/admin/service");
   };
   return (

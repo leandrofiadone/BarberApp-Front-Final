@@ -2,10 +2,10 @@ import { Link, useHistory } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 
 import {
-  activarProducto,
   deleteEmpleado,
   detalleEmployee,
   getAdminAllEmpleados,
+  getEmployee,
   updateEmpleados,
 } from "../../../redux/actions";
 import "./Empleado.css";
@@ -18,6 +18,7 @@ export default function Empleado() {
   const handleDelete = async (id) => {
     await dispatch(deleteEmpleado(id));
     await dispatch(getAdminAllEmpleados());
+    await dispatch(getEmployee());
   };
 
   const handleActive = async (empleado) => {

@@ -37,6 +37,7 @@ export const CrearServicio = () => {
     // console.log("form", form);
     await dispatch(addService(form));
     await dispatch(getAdminAllServices());
+    await dispatch(getServices());
     history.push("/admin/service");
   };
   return (

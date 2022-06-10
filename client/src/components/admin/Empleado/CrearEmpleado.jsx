@@ -26,6 +26,7 @@ export const CrearEmpleado = () => {
     e.preventDefault();
     await dispatch(addEmployee(form));
     await dispatch(getAdminAllEmpleados());
+    await dispatch(getEmployee());
     history.push("/admin/employee");
   };
 

@@ -45,6 +45,7 @@ const FormularioEmpleado = () => {
     console.log(empleado);
     await dispatch(updateEmpleados(empleado));
     await dispatch(getAdminAllEmpleados());
+    await dispatch(getEmployee());
     history.push("/admin/employee");
   };
   return (

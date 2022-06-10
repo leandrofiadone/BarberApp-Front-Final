@@ -25,6 +25,7 @@ export default function Servicio() {
     //console.log("srvUpdate", serviceU);
     await dispatch(updateService(serviceU));
     await dispatch(getAdminAllServices());
+    await dispatch(getServices());
   };
 
   const handleDetailService = (id) => {
