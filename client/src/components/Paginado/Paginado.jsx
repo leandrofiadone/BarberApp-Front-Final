@@ -11,8 +11,8 @@ export default function Paginado({ productsPerPage, productosBarberia, paginado 
     <nav>
       <ul className="pageNumbers">
         {pageNumbers &&
-          pageNumbers.map(number => {
-             return <li key ='num'>
+          pageNumbers.map((number,index) => {
+             return <li key = {index}>
                 <button  onClick={() => paginado(number)}>
                 {number}
                 </button >

@@ -35,6 +35,7 @@ export const ALL_BARBEROS = "ALL_BARBEROS";
 
 export const DELETE_PRODUCT = "DELETE_PRODUCT";
 export const UPDATE_PRODUCT = "UPDATE_PRODUCT";
+export const GET_FAVOURITES = "SET_FAVOURITES";
 
 export const DELETE_DATE = "DELETE_DATE";
 export const ALL_CITAS_ADMIN = "ALL_CITAS_ADMIN";
@@ -450,6 +451,20 @@ export function deleteDate(id) {
     }
   };
 }
+export const getFavourites = (idUser) =>{
+  return async (dispatch) => {
+    try {
+      const response = await fetchConToken(`favorite/${idUser}`);
+      const json = await response.json();
+      dispatch({type:GET_FAVOURITES, payload: json});
+    } catch (error) {
+      console.error(error);
+    }
+  }
+}
+
+
+
 
 export function allCitasAdmin() {
   return async (dispatch) => {
