@@ -1,5 +1,6 @@
 import React from "react";
 import { useDispatch, useSelector } from "react-redux";
+import Swal from "sweetalert2";
 import { fetchConToken } from "../../../helpers/fetch";
 import { banearUser } from "../../../redux/actions";
 
@@ -8,23 +9,25 @@ export const Usuarios = () => {
 
   const dispatch = useDispatch();
 
-  const handleBanear = async (id) => {
+  const handleBanear = async (id, name) => {
     const resp = await fetchConToken(`users/${id}`, {}, "DELETE");
     const data = await resp.json();
 
     if (data.ok) {
       dispatch(banearUser(data.user));
+      Swal.fire('Success', `El usuario ${name} baneado`, 'success')
     } else {
       console.log(data);
     }
   };
 
-  const handleDesBanear = async (id) => {
+  const handleDesBanear = async (id, name) => {
     const resp = await fetchConToken(`users/${id}`, {}, "PATCH");
     const data = await resp.json();
 
     if (data.ok) {
       dispatch(banearUser(data.user));
+      Swal.fire('Success', `Usuario ${name} desbloqueado`, 'success')
     } else {
       console.log(data);
     }
@@ -56,14 +59,14 @@ export const Usuarios = () => {
               {user.state ? (
                 <button
                   className="btn btn-danger"
-                  onClick={() => handleBanear(user.id)}
+                  onClick={() => handleBanear(user.id, user.name)}
                 >
                   Banear
                 </button>
               ) : (
                 <button
                   className="btn btn-success"
-                  onClick={() => handleDesBanear(user.id)}
+                  onClick={() => handleDesBanear(user.id, user.name)}
                 >
                   Activar
                 </button>

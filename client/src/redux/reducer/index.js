@@ -13,6 +13,7 @@ const initialState = {
   categorias: [],
   empleados: [],
   citas: [],
+  compras: [],
   barberos: [],
   //login
   user: {},
@@ -45,9 +46,12 @@ function rootReducer(state = initialState, action) {
       };
 
     case ACTIONS.DELETE_PRODUCT:
+      const oldProduct = state.adminAllProducts.filter(prod => prod.id !== action.payload.id)
       return {
         ...state,
-        allProductos: state.productos.filter((p) => p.id !== action.payload),
+        allProductos: state.allProductos.filter((p) => p.id !== action.payload.id),
+        adminAllProducts: oldProduct.concat(action.payload),
+        productos: state.productos.filter(prod => prod.id !== action.payload.id)
       };
 
     case ACTIONS.ELIMINAR_INFO_DETALLE:
@@ -56,11 +60,10 @@ function rootReducer(state = initialState, action) {
       };
 
     case ACTIONS.GET_SERVICES:
-      console.log(action.payload);
       return {
         ...state,
         servicios: action.payload,
-        categorias: action.payload,
+        // categorias: action.payload,
         allServicios: action.payload,
       };
     case ACTIONS.ADD_EMPLOYEE:
@@ -83,9 +86,7 @@ function rootReducer(state = initialState, action) {
           : filterProductos.filter(
               (e) => e.category.categorie === action.payload
             );
-      console.log(infoCategoria);
 
-      console.log(filterProductos[0].category.categorie);
       return {
         ...state,
         allProductos: infoCategoria,
@@ -170,6 +171,13 @@ function rootReducer(state = initialState, action) {
         citas: state.citas.concat(action.payload),
       };
 
+      case ACTIONS.ALL_COMPRA:
+      return {
+        ...state,
+        compras: action.payload,
+      };
+
+
     case ACTIONS.ALL_BARBEROS:
       return {
         ...state,
@@ -221,6 +229,7 @@ function rootReducer(state = initialState, action) {
       return {
         ...state,
         allProductos: state.allProductos.concat(action.payload),
+        productos: state.productos.concat(action.payload)
       };
 
     case types.addProductsAdmin:
@@ -235,6 +244,8 @@ function rootReducer(state = initialState, action) {
       return {
         ...state,
         adminAllProducts: activarProductoAdmin.concat(productoActivar),
+        allProductos: state.allProductos.concat(action.payload),
+        productos: state.productos.concat(action.payload)
       };
 
     case ACTIONS.DELETE_PRODUCT:
@@ -251,19 +262,17 @@ function rootReducer(state = initialState, action) {
       };
 
     case ACTIONS.UPDATE_PRODUCT:
-      let productos = state.allProductos.filter(
+      let Oldproductos = state.allProductos.filter(
         (p) => p.id !== action.payload.id
       );
-      let productosAdmin = state.adminAllProducts.filter(
+      let OldProductosAdmin = state.adminAllProducts.filter(
         (p) => p.id !== action.payload.id
       );
-      let producto = action.payload;
-      let productoAdmin = action.payload;
 
       return {
         ...state,
-        allProductos: productos.concat(producto),
-        adminAllProducts: productosAdmin.concat(productoAdmin),
+        allProductos: Oldproductos.concat(action.payload),
+        adminAllProducts: OldProductosAdmin.concat(action.payload),
       };
 
       case ACTIONS.GET_FAVOURITES:

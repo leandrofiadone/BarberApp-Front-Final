@@ -1,12 +1,14 @@
 import './QuienesSomos.css'
 
+
 const QuienesSomos = () => {
   return (
 
     <div className='texto-quienes'>
 
-      <h1 className='tituloQuienes'><i>Quienes Somos</i></h1>
 
+      <h1 className='tituloQuienes'><i>Quienes Somos</i></h1>
+    
     <p >
       Nosotros somos BarberApp, ofrecemos un trato personalizado para que
       nuestros clientes se sientan comodos, ya que nuestro negocio se basa en la

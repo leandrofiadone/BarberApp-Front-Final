@@ -29,6 +29,8 @@ export const FILTER_RANGO_PRECIO = "FILTER_RANGO_PRECIO";
 export const ALL_CITAS = " ALL_CITAS";
 export const CREAR_CITA = "CREAR_CITA";
 
+export const ALL_COMPRA = "ALL_COMPRA";
+
 export const ALL_BARBEROS = "ALL_BARBEROS";
 
 export const DELETE_PRODUCT = "DELETE_PRODUCT";
@@ -88,18 +90,18 @@ export function detalleDeProductos(id) {
 
 export function addProductos(product) {
   return async (dispatch) => {
-    try {
-      const result = await axios.post(
-        `https://barber-app-henry.herokuapp.com/api/products`,
-        product
-      );
-      return dispatch({
-        type: ADD_PRODUCT,
-        payload: result.data,
-      });
-    } catch (err) {
-      console.log(err);
-    }
+      const resp = await fetchConToken('products', product, 'POST');
+      const data = await resp.json()
+
+      if(data.ok){
+        dispatch(addProductosAdmin(data.producto))
+        dispatch({type: ADD_PRODUCT, payload: data.producto});
+
+        Swal.fire('Sucess', `${data.producto.name} agregado`, 'success')
+        // window.location.replace('/admin/product')
+      }else{
+        Swal.fire('Error', 'Verifica los datos', 'error')
+      }
   };
 }
 
@@ -110,7 +112,7 @@ export function eliminarInfoDetalle() {
 }
 
 export function getServices() {
-  return async function(dispatch) {
+  return async function (dispatch) {
     let servicios = await axios.get(
       "https://barber-app-henry.herokuapp.com/api/services"
     );
@@ -139,7 +141,7 @@ export function addEmployee(employee) {
 }
 
 export function getEmployee() {
-  return async function(dispatch) {
+  return async function (dispatch) {
     const resp = await fetchSinToken("employee");
     const data = await resp.json();
 
@@ -219,6 +221,16 @@ export function crearCita(payload) {
   };
 }
 
+export function crearCompra(id) {
+  return async (dispatch) => {
+    const respuesta = await fetchConToken(`pago/${id}`, 'GET');
+    const data = await respuesta.json();
+
+    console.log(data.notification);
+    if (data.ok) {dispatch({ type: ALL_COMPRA,  payload: data.notification })}
+  };
+}
+
 export function filterPorPrecio(payload) {
   return {
     type: FILTER_RANGO_PRECIO,
@@ -270,7 +282,7 @@ export const userActive = (id) => {
 //ACÁ TERMINAN LAS  ACCIONES DE LOGIN !!!
 //-----------------------------------------------------------------------------------
 export function deleteProduct(id) {
-  return async function(dispatch) {
+  return async function (dispatch) {
     let result = await fetchConToken(`products/${id}`, {}, "DELETE");
     const data = await result.json();
     if (data.ok) {
@@ -293,7 +305,6 @@ export function updateProductos(product) {
       const data = await result.json();
 
       if (data.ok) {
-        console.log(data);
         Swal.fire("Success", "Producto actualizado", "success");
         return dispatch({
           type: UPDATE_PRODUCT,
@@ -308,17 +319,17 @@ export function updateProductos(product) {
   };
 }
 
-  
 
-export const paymentMP = async(items,user, navigate,emptyCart) =>{
+
+export const paymentMP = async (items, user, navigate, emptyCart) => {
   const carrito = []
-        items.map((i)=>{
-            carrito.push({
-                idUser: user.id,
-                idProduct:i.idProduct,
-                quantity:i.quantity
-            })
-        })
+  items.map((i) => {
+    carrito.push({
+      idUser: user.id,
+      idProduct: i.idProduct,
+      quantity: i.quantity
+    })
+  })
   const token = localStorage.getItem('token')
   const response = await fetch("https://barber-app-henry.herokuapp.com/api/purchaseOrder", {
     method: "POST",
@@ -354,7 +365,12 @@ export function revalidarAuth() {
         phone: data.phone,
       };
 
-      dispatch(adminGetAllProducts());
+
+      if (data.rol === 'ADMIN') {
+        dispatch(adminGetAllProducts());
+        dispatch(getAllUsers())
+      }
+
       return dispatch({
         type: types.login,
         payload,
@@ -411,7 +427,6 @@ export const activarProducto = (id) => {
     console.log(data);
     if (data.ok) {
       dispatch({ type: types.activaProducto, payload: data.producto });
-      dispatch({ type: ADD_PRODUCT, payload: data.producto });
     }
   };
 };

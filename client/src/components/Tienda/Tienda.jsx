@@ -19,10 +19,9 @@ import { getFavourites } from "../../redux/actions";
 import { setFavouriteApi, deleteFavouriteApi } from "../../helpers/functionsFavorites/favorites";
 
 
-
-
-
 export default function Tienda() {
+
+  
 
   
 
@@ -156,6 +155,7 @@ const handleAddFavourites = (idProduct, index) =>{
   return (
 
   <div >
+  
     
 
       {/* <div className="botonVolver">
@@ -164,7 +164,7 @@ const handleAddFavourites = (idProduct, index) =>{
       </Link>
       </div> */}
 {/* =============================================================== */}
-      <nav class="navbar navbar-expand-lg divNavbarTienda p-3 containernavbartienda">
+      <nav class="navbar navbar-expand-xl divNavbarTienda p-3 containernavbartienda">
         <div class="container-fluid ">
             <Link className="navbar-brandtienda" to="/"></Link>
               <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
@@ -293,6 +293,9 @@ const handleAddFavourites = (idProduct, index) =>{
             paginado={paginado}
             />
        </div>
+
+       
+
 
 
       <div className="cardsTienda">
