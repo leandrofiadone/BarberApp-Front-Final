@@ -22,10 +22,9 @@ import {  filterCategoriaProductos, getCategories, } from "../../redux/actions";
 import { allProductos, orderByPrecio, sortName } from "../../redux/actions";
 
 
-
-
-
 export default function Tienda() {
+
+  
 
   
 
@@ -92,6 +91,7 @@ export default function Tienda() {
   return (
 
   <div >
+  
     
 
       {/* <div className="botonVolver">
@@ -100,7 +100,7 @@ export default function Tienda() {
       </Link>
       </div> */}
 {/* =============================================================== */}
-      <nav class="navbar navbar-expand-lg divNavbarTienda p-3 containernavbartienda">
+      <nav class="navbar navbar-expand-xl divNavbarTienda p-3 containernavbartienda">
         <div class="container-fluid ">
             <Link className="navbar-brandtienda" to="/"></Link>
               <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
@@ -227,6 +227,9 @@ export default function Tienda() {
             paginado={paginado}
             />
        </div>
+
+       
+
 
 
       <div className="cardsTienda">

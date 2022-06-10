@@ -12,7 +12,7 @@ export const CrearProducto = () => {
     price: 0,
     categoria: "",
     detail: "",
-    img: "",
+    img: "https://m.media-amazon.com/images/I/71HMYf1sp1L._SX355_.jpg",
   });
 
   const handleChange = ({ target }) => {
@@ -32,6 +32,7 @@ export const CrearProducto = () => {
   const handleSubmit = (e) => {
     e.preventDefault();
     dispatch(addProductos(form));
+
   };
 
   return (
@@ -87,6 +88,17 @@ export const CrearProducto = () => {
                 </option>
               ))}
             </select>
+          </div>
+        </div>
+
+        <div className="input-group mb-3 row">
+          <div className="col">
+              <input 
+                type="url" 
+                name='img'
+                className="form-control"
+                placeholder="Ingresa una url de imagen"
+                onChange={handleChange} />
           </div>
         </div>
 

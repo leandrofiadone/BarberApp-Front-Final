@@ -5,6 +5,9 @@
 
 
 .botonAyuda{
+    position: fixed;
+    margin-left: 65rem;
+    margin-top: 29rem;
     padding: 1rem;
 }
 
@@ -13,6 +16,10 @@
     padding: 1rem;
     font-weight: bold;
     border: none;
+    /* z-index: 1; */
+    /* background-color: aliceblue; */
+    border-radius: 100%;
+    width: 1rem;
 
 }
 
@@ -22,6 +29,7 @@
 }
 
 .botonAyuda > button > img{
+    position: relative;
     width: 7rem;
-    margin-right: -3rem;
+    margin-left: -1rem;
 }
