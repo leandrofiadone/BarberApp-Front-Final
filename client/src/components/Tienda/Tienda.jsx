@@ -291,8 +291,7 @@ state: true
       </div>
 
       <br />
-      {/* </nav> */}
-      {/* =============================================================== */}
+
 
       <div className="navbar navbar-expand bg-dark navbarTienda"></div>
 
