@@ -29,6 +29,8 @@ export const FILTER_RANGO_PRECIO = "FILTER_RANGO_PRECIO";
 export const ALL_CITAS = " ALL_CITAS";
 export const CREAR_CITA = "CREAR_CITA";
 
+export const ALL_COMPRA = "ALL_COMPRA";
+
 export const ALL_BARBEROS = "ALL_BARBEROS";
 
 export const DELETE_PRODUCT = "DELETE_PRODUCT";
@@ -215,6 +217,16 @@ export function crearCita(payload) {
     if (data.ok) {
       dispatch({ type: CREAR_CITA, payload: data });
     }
+  };
+}
+
+export function crearCompra(id) {
+  return async (dispatch) => {
+    const respuesta = await fetchConToken(`pago/${id}`, 'GET');
+    const data = await respuesta.json();
+
+    console.log(data.notification);
+    if (data.ok) {dispatch({ type: ALL_COMPRA,  payload: data.notification })}
   };
 }
 

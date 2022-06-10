@@ -13,6 +13,7 @@ const initialState = {
   categorias: [],
   empleados: [],
   citas: [],
+  compras: [],
   barberos: [],
   //login
   user: {},
@@ -168,6 +169,13 @@ function rootReducer(state = initialState, action) {
         ...state,
         citas: state.citas.concat(action.payload),
       };
+
+      case ACTIONS.ALL_COMPRA:
+      return {
+        ...state,
+        compras: action.payload,
+      };
+
 
     case ACTIONS.ALL_BARBEROS:
       return {
