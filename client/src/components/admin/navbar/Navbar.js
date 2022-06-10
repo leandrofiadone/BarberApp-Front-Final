@@ -59,7 +59,7 @@ export const Navbar = () => {
             history.push("/admin/categories");
           }}
         >
-          Categoria
+          Categorias
         </label>
         <label
           className="list-group-item pointer"
