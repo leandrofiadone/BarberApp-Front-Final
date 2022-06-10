@@ -5,23 +5,8 @@ import { fetchConToken } from "../../../helpers/fetch";
 import { useForm } from "../../../hooks/useForm";
 import { types } from "../../../types/types";
 import "./editarPerfil.css";
-export const EditarPerfil = ({ id }) => {
-  var savebutton = document.getElementById("savebutton");
-  var readonly = true;
-  if (savebutton) {
-    var inputs = document.querySelectorAll('input[type="text"]');
-    savebutton.addEventListener("click", function() {
-      for (var i = 0; i < inputs.length; i++) {
-        inputs[i].toggleAttribute("readonly");
-      }
-
-      if (savebutton.innerHTML == "edit") {
-        savebutton.innerHTML = "save";
-      } else {
-        savebutton.innerHTML = "edit";
-      }
-    });
-  }
+export const EditarPerfil = () => {
+  
   const { user } = useSelector((state) => state);
 
   const [formValues, handleInputChange, reset] = useForm({

@@ -297,7 +297,6 @@ const handleAddFavourites = (idProduct, index) =>{
       </div>
 
       <br />
-    </nav>
 {/* =============================================================== */}
 
     

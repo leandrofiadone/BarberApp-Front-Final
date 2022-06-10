@@ -24,17 +24,17 @@ export default function Contenido(){
             <ThemeProvider theme={theme}>
 
                 <div >
-                <div class="fixed-bottom botonAyuda">
+                <div className="fixed-bottom botonAyuda">
 
-                <button type="button" class="btn" data-bs-toggle="modal" data-bs-target="#exampleModal" data-bs-whatever="@mdo"><img src="https://universitas.space/pluginfile.php/1178/mod_resource/content/1/icono_seo.png" alt="" /></button>
+                <button type="button" className="btn" data-bs-toggle="modal" data-bs-target="#exampleModal" data-bs-whatever="@mdo"><img src="https://universitas.space/pluginfile.php/1178/mod_resource/content/1/icono_seo.png" alt="" /></button>
                 
                 </div>
                     
-                <div class="modal fade " id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                <div class="modal-dialog allContainerChat">
-                <div class="modal-content">
-                <button type="button" class="btn-close bg-danger" data-bs-dismiss="modal" aria-label="Close"></button>
-                    <div class="mb-3 containerChat">
+                <div className="modal fade " id="exampleModal" tabIndex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                <div className="modal-dialog allContainerChat">
+                <div className="modal-content">
+                <button type="button" className="btn-close bg-danger" data-bs-dismiss="modal" aria-label="Close"></button>
+                    <div className="mb-3 containerChat">
 
 
                         <ChatBot 
@@ -83,7 +83,7 @@ export default function Contenido(){
                                 {
                                     id: "6B",
                                     component: (
-                                        <div class="text-danger">
+                                        <div className="text-danger">
                                             <b>Gracias por contactarte! <br />
                                              <i>*chat finalizado*</i></b>
                                         </div>
@@ -108,13 +108,13 @@ export default function Contenido(){
                                     id: "7A",
                                     component: (
 
-                                        <div class="accordion" id="accordionExample">
-                                        <div class="accordion-item">
-                                            <h2 class="accordion-header" id="headingTwo">
-                                            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">Como Comprar</button>
+                                        <div className="accordion" id="accordionExample">
+                                        <div className="accordion-item">
+                                            <h2 className="accordion-header" id="headingTwo">
+                                            <button className="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">Como Comprar</button>
                                             </h2>
-                                            <div id="collapseTwo" class="accordion-collapse collapse" aria-labelledby="headingOne" data-bs-parent="#accordionExample">
-                                            <div class="accordion-body">
+                                            <div id="collapseTwo" className="accordion-collapse collapse" aria-labelledby="headingOne" data-bs-parent="#accordionExample">
+                                            <div className="accordion-body">
                                                 1. Selecciona tu producto y agregalos al <b>carrito</b> <br />
                                                 2. Agrega todos los items que quieras <br />
                                                 3. Presiona <b>Comprar Ahora</b> <br />
@@ -136,13 +136,13 @@ export default function Contenido(){
                                     id: "7B",
                                     component: (
 
-                                        <div class="accordion" id="accordionExample">
-                                        <div class="accordion-item">
-                                            <h2 class="accordion-header" id="headingTwo">
-                                            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">Como Reservar</button>
+                                        <div className="accordion" id="accordionExample">
+                                        <div className="accordion-item">
+                                            <h2 className="accordion-header" id="headingTwo">
+                                            <button className="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">Como Reservar</button>
                                             </h2>
-                                            <div id="collapseTwo" class="accordion-collapse collapse" aria-labelledby="headingOne" data-bs-parent="#accordionExample">
-                                            <div class="accordion-body">
+                                            <div id="collapseTwo" className="accordion-collapse collapse" aria-labelledby="headingOne" data-bs-parent="#accordionExample">
+                                            <div className="accordion-body">
                                                 1. Selecciona tu servicio <br />
                                                 2. Elije al <b>Barbero</b> <br />
                                                 3. Marca la fecha en el <i>calendario</i> que te quede mejor <br />
