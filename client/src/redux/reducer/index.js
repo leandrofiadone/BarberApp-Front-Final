@@ -20,6 +20,7 @@ const initialState = {
   //cierra login
   adminAllUsers: [],
   adminAllProducts: [],
+  favourites:[]
 };
 
 function rootReducer(state = initialState, action) {
@@ -264,6 +265,12 @@ function rootReducer(state = initialState, action) {
         allProductos: productos.concat(producto),
         adminAllProducts: productosAdmin.concat(productoAdmin),
       };
+
+      case ACTIONS.GET_FAVOURITES:
+        return {
+          ...state,
+          favourites:action.payload
+        }
 
     default:
       return state;

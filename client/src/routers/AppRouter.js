@@ -18,6 +18,10 @@ import { Register } from "../components/auth/Register";
 import comoComprar from "../components/Chatbot/ComoComprar";
 import comoReservar from "../components/Chatbot/ComoReservar";
 
+//FAVOURITES
+import Favourites from "../components/Favourites/Favourites";
+//CIERRA FAVOURITES
+
 /* ------------------------------------------------ */
 
 import PrivateRoute from "./PrivateRoute";
@@ -54,7 +58,7 @@ export const AppRouter = () => {
           {/* tienda */}
           <Route exact path="/tienda" component={Tienda} />
           <Route exact path="/tienda/:id" component={Detalle} />
-
+          <Route exact path="/favourites/:id" component={Favourites}/>
           <Route exact path="/servicios" component={Servicios} />
           <Route exact path="/reserva" component={Reserva} />
           <Route exact path="/comocomprar" component={comoComprar} />
