@@ -222,7 +222,7 @@
 .corazon-amarillo:hover{
     transform: scale(1.2);
     cursor: pointer;
-
+}
 .botonChat{
     z-index: 1;
 

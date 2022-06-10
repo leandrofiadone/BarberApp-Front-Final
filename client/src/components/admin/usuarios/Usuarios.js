@@ -15,7 +15,7 @@ export const Usuarios = () => {
 
     if (data.ok) {
       dispatch(banearUser(data.user));
-      Swal.fire('Success', `El usuario ${name} baneado`, 'success')
+      Swal.fire("Success", `El usuario ${name} baneado`, "success");
     } else {
       console.log(data);
     }
@@ -27,7 +27,7 @@ export const Usuarios = () => {
 
     if (data.ok) {
       dispatch(banearUser(data.user));
-      Swal.fire('Success', `Usuario ${name} desbloqueado`, 'success')
+      Swal.fire("Success", `Usuario ${name} desbloqueado`, "success");
     } else {
       console.log(data);
     }
