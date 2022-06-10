@@ -13,12 +13,14 @@ export const ADD_PRODUCT = "ADD_PRODUCT";
 export const ELIMINAR_INFO_DETALLE = "ELIMNAR_INFO_DETALLE";
 
 export const GET_SERVICES = "GET_SERVICES";
+export const ADD_SERVICE = "ADD_SERVICE";
 
 export const ADD_EMPLOYEE = "ADD_EMPLOYEE";
 export const GET_EMPLOYEE = "GET_EMPLOYEE";
 
 export const FILTER_CATEGORIAS = "FILTER_CATEGORIAS";
 export const GET_CATEGORIES = "GET_CATEGORIES";
+export const ADD_CATEGORIE = "ADD_CATEGORIE";
 
 export const SORT_NAME = "SORT_NAME";
 export const SORT = "SORT";
@@ -40,6 +42,16 @@ export const GET_FAVOURITES = "SET_FAVOURITES";
 export const DELETE_DATE = "DELETE_DATE";
 export const ALL_CITAS_ADMIN = "ALL_CITAS_ADMIN";
 
+export const DELETE_EMPLOYEE = "DELETE_EMPLOYEE";
+export const UPDATE_EMPLOYEE = "UPDATE_EMPLOYEE";
+export const DETALLE_EMPLOYEE = "DETALLE_EMPLOYEE";
+export const UPDATE_SERVICE = "UPDATE_SERVICE";
+export const DETALLE_SERVICE = "DETALLE_SERVICE";
+export const DELETE_SERVICE = "DELETE_SERVICE";
+export const ADMIN_GET_ALL_SERVICES = "ADMIN_GET_ALL_SERVICES";
+export const ADMIN_GET_ALL_EMPLOYEE = "ADMIN_GET_ALL_EMPLOYEE";
+
+// all products carga todos los productos que estan activos solo activos
 export function allProductos() {
   return async (dispatch) => {
     const resp = await fetchSinToken(`products?state=true`);
@@ -91,18 +103,18 @@ export function detalleDeProductos(id) {
 
 export function addProductos(product) {
   return async (dispatch) => {
-      const resp = await fetchConToken('products', product, 'POST');
-      const data = await resp.json()
+    const resp = await fetchConToken("products", product, "POST");
+    const data = await resp.json();
 
-      if(data.ok){
-        dispatch(addProductosAdmin(data.producto))
-        dispatch({type: ADD_PRODUCT, payload: data.producto});
+    if (data.ok) {
+      dispatch(addProductosAdmin(data.producto));
+      dispatch({ type: ADD_PRODUCT, payload: data.producto });
 
-        Swal.fire('Sucess', `${data.producto.name} agregado`, 'success')
-        // window.location.replace('/admin/product')
-      }else{
-        Swal.fire('Error', 'Verifica los datos', 'error')
-      }
+      Swal.fire("Sucess", `${data.producto.name} agregado`, "success");
+      // window.location.replace('/admin/product')
+    } else {
+      Swal.fire("Error", "Verifica los datos", "error");
+    }
   };
 }
 
@@ -113,43 +125,41 @@ export function eliminarInfoDetalle() {
 }
 
 export function getServices() {
-  return async function (dispatch) {
-    let servicios = await axios.get(
-      "https://barber-app-henry.herokuapp.com/api/services"
-    );
+  return async function(dispatch) {
+    const resp = await fetchSinToken("services");
+    const data = await resp.json();
 
-    return dispatch({
-      type: GET_SERVICES,
-      payload: servicios.data,
-    });
+    if (data.ok) {
+      return dispatch({
+        type: GET_SERVICES,
+        payload: data.services,
+      });
+    }
   };
 }
 export function addEmployee(employee) {
   return async (dispatch) => {
-    try {
-      const result = await axios.post(
-        `https://barber-app-henry.herokuapp.com/api/employee`,
-        employee
-      );
+    const resp = await fetchConToken("employee", employee, "POST");
+    const data = await resp.json();
+    console.log("data. add:", data);
+    if (data.ok) {
       return dispatch({
         type: ADD_EMPLOYEE,
-        payload: result.data,
+        payload: data.newEmployee,
       });
-    } catch (err) {
-      console.log(err);
     }
   };
 }
 
 export function getEmployee() {
-  return async function (dispatch) {
+  return async function(dispatch) {
     const resp = await fetchSinToken("employee");
     const data = await resp.json();
-
+    console.log("data.employe:", data);
     if (data.ok) {
       return dispatch({
         type: GET_EMPLOYEE,
-        payload: data,
+        payload: data.employees,
       });
     }
   };
@@ -159,7 +169,6 @@ export function getCategories() {
   return async (dispatch) => {
     const resp = await fetchSinToken("categories");
     const data = await resp.json();
-
     if (data.ok) {
       return dispatch({
         type: GET_CATEGORIES,
@@ -223,11 +232,13 @@ export function crearCita(payload) {
 
 export function crearCompra(id) {
   return async (dispatch) => {
-    const respuesta = await fetchConToken(`pago/${id}`, 'GET');
+    const respuesta = await fetchConToken(`pago/${id}`, "GET");
     const data = await respuesta.json();
 
     console.log(data.notification);
-    if (data.ok) {dispatch({ type: ALL_COMPRA,  payload: data.notification })}
+    if (data.ok) {
+      dispatch({ type: ALL_COMPRA, payload: data.notification });
+    }
   };
 }
 
@@ -282,7 +293,7 @@ export const userActive = (id) => {
 //ACÁ TERMINAN LAS  ACCIONES DE LOGIN !!!
 //-----------------------------------------------------------------------------------
 export function deleteProduct(id) {
-  return async function (dispatch) {
+  return async function(dispatch) {
     let result = await fetchConToken(`products/${id}`, {}, "DELETE");
     const data = await result.json();
     if (data.ok) {
@@ -321,20 +332,17 @@ export function updateProductos(product) {
   };
 }
 
-
-
-
 export const paymentMP = async (items, user, navigate, emptyCart) => {
-  const carrito = []
+  const carrito = [];
 
   items.map((i) => {
     carrito.push({
       idUser: user.id,
       idProduct: i.idProduct,
 
-      quantity: i.quantity
-    })
-  })
+      quantity: i.quantity,
+    });
+  });
 
   const token = localStorage.getItem("token");
   const response = await fetch(
@@ -372,10 +380,9 @@ export function revalidarAuth() {
         phone: data.phone,
       };
 
-
-      if (data.rol === 'ADMIN') {
+      if (data.rol === "ADMIN") {
         dispatch(adminGetAllProducts());
-        dispatch(getAllUsers())
+        dispatch(getAllUsers());
       }
 
       return dispatch({
@@ -451,20 +458,17 @@ export function deleteDate(id) {
     }
   };
 }
-export const getFavourites = (idUser) =>{
+export const getFavourites = (idUser) => {
   return async (dispatch) => {
     try {
       const response = await fetchConToken(`favorite/${idUser}`);
       const json = await response.json();
-      dispatch({type:GET_FAVOURITES, payload: json});
+      dispatch({ type: GET_FAVOURITES, payload: json });
     } catch (error) {
       console.error(error);
     }
-  }
-}
-
-
-
+  };
+};
 
 export function allCitasAdmin() {
   return async (dispatch) => {
@@ -475,6 +479,170 @@ export function allCitasAdmin() {
       return dispatch({
         type: ALL_CITAS_ADMIN,
         payload: data.allDates,
+      });
+    }
+  };
+}
+
+export function addCategorie(categorie) {
+  return async (dispatch) => {
+    const resp = await fetchConToken("categories", categorie, "POST");
+    const data = await resp.json();
+    if (data.ok) {
+      Swal.fire("Success", "Categoria creado", "success");
+      return dispatch({
+        type: ADD_CATEGORIE,
+        payload: {
+          id: data.id,
+          categorie: data.categorie,
+          products: [],
+        },
+      });
+    }
+  };
+}
+export function detalleEmployee(id) {
+  return async (dispatch) => {
+    const resp = await fetchSinToken(`employee/${id}`);
+    const data = await resp.json();
+    console.log("empleadito:", data);
+    if (data.ok) {
+      return dispatch({
+        type: DETALLE_EMPLOYEE,
+        payload: data.employee,
+      });
+    }
+  };
+}
+
+export function updateEmpleados(employee) {
+  return async (dispatch) => {
+    try {
+      const result = await fetchConToken(
+        `employee/${employee.id}`,
+        employee,
+        "PUT"
+      );
+      const data = await result.json();
+      if (data.ok) {
+        Swal.fire("Success", "Empleado actualizado", "success");
+        return dispatch({
+          type: UPDATE_EMPLOYEE,
+          payload: data.employee,
+        });
+      } else {
+        console.log(data);
+      }
+    } catch (err) {
+      console.log("error en modificacion:", err);
+    }
+  };
+}
+export function deleteEmpleado(idEmployee) {
+  return async function(dispatch) {
+    console.log(idEmployee);
+    let result = await fetchConToken(`employee/${idEmployee}`, {}, "DELETE");
+    const data = await result.json();
+    console.log(data);
+    if (data.ok) {
+      Swal.fire("Success", "Empleado eliminado", "success");
+      return dispatch({
+        type: DELETE_EMPLOYEE,
+        payload: data.employee,
+      });
+    }
+  };
+}
+
+export function addService(service) {
+  return async function(dispatch) {
+    let result = await fetchConToken(`services`, service, "POST");
+    const data = await result.json();
+    console.log("data", data);
+    if (data.ok) {
+      Swal.fire("Success", "Servicio Agregado", "success");
+      return dispatch({
+        type: ADD_SERVICE,
+        payload: data.service,
+      });
+    }
+  };
+}
+export function updateService(servicio) {
+  return async (dispatch) => {
+    try {
+      const result = await fetchConToken(
+        `services/${servicio.id}`,
+        servicio,
+        "PUT"
+      );
+      const data = await result.json();
+      console.log("data update", data);
+      if (data.ok) {
+        Swal.fire("Success", "Servicio actualizado", "success");
+        return dispatch({
+          type: UPDATE_SERVICE,
+          payload: data.employee,
+        });
+      } else {
+        console.log(data);
+      }
+    } catch (err) {
+      console.log("error en modificacion:", err);
+    }
+  };
+}
+
+export function detalleService(id) {
+  return async (dispatch) => {
+    const resp = await fetchSinToken(`services/${id}`);
+    const data = await resp.json();
+    console.log("servicio:", data);
+    if (data.ok) {
+      return dispatch({
+        type: DETALLE_SERVICE,
+        payload: data.service,
+      });
+    }
+  };
+}
+export function deleteService(idServicio) {
+  return async function(dispatch) {
+    console.log(idServicio);
+    let result = await fetchConToken(`services/${idServicio}`, {}, "DELETE");
+    const data = await result.json();
+    console.log(data);
+    if (data.ok) {
+      Swal.fire("Success", "Servicio eliminado", "success");
+      return dispatch({
+        type: DELETE_SERVICE,
+        payload: data.service,
+      });
+    }
+  };
+}
+export function getAdminAllServices() {
+  return async function(dispatch) {
+    const resp = await fetchSinToken("services?all=true");
+    const data = await resp.json();
+    console.log(data);
+    if (data.ok) {
+      return dispatch({
+        type: ADMIN_GET_ALL_SERVICES,
+        payload: data.allServices,
+      });
+    }
+  };
+}
+export function getAdminAllEmpleados() {
+  return async function(dispatch) {
+    const resp = await fetchSinToken("employee?all=true");
+    const data = await resp.json();
+    console.log(data);
+    if (data.ok) {
+      return dispatch({
+        type: ADMIN_GET_ALL_EMPLOYEE,
+        payload: data.allEmployes,
       });
     }
   };

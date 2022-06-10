@@ -35,11 +35,9 @@ export const ReservasPerfil = () => {
     });
   };
 
-
-  
   const fil = citas.filter((e) => e.idUser === user.id);
-  
-  console.log(fil)
+
+  console.log(fil);
 
   return (
     <div>

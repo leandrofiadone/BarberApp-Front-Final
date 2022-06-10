@@ -32,7 +32,6 @@ export const CrearProducto = () => {
   const handleSubmit = (e) => {
     e.preventDefault();
     dispatch(addProductos(form));
-
   };
 
   return (
@@ -93,12 +92,13 @@ export const CrearProducto = () => {
 
         <div className="input-group mb-3 row">
           <div className="col">
-              <input 
-                type="url" 
-                name='img'
-                className="form-control"
-                placeholder="Ingresa una url de imagen"
-                onChange={handleChange} />
+            <input
+              type="url"
+              name="img"
+              className="form-control"
+              placeholder="Ingresa una url de imagen"
+              onChange={handleChange}
+            />
           </div>
         </div>
 
