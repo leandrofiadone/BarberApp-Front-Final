@@ -9,7 +9,9 @@ import { logout } from "../../redux/actions/index";
 import "./NavBar.css";
 
 export default function NavBar() {
+
   const { isAuth, user } = useSelector((state) => state);
+
 
   const dispatch = useDispatch();
   const history = useHistory();
@@ -50,8 +52,8 @@ export default function NavBar() {
                 Servicios
               </a>
             </li>
-            <li>
-              <a className="nav-link text-light" href="#quienesSomos">
+            <li >
+              <a className="nav-link text-light" >
                 Quienes Somos
               </a>
             </li>

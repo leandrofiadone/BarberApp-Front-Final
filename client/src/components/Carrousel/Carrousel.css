@@ -1,19 +1,24 @@
-#slider1{
+.sliderOne{
     height: 100vh;
     max-height: 37rem;
     background-size: 100%;
-    background-image: url("../../img/pexels-thgusstavo-santana-1813272.jpg");
-}
-#slider2{
-    height: 100vh;
-    max-height: 37rem;
-    background-size: 100%;
-    background-image: url("../../img/barberone.jpg");
+    background-image: url("https://www.comunicare.es/wp-content/uploads/2021/01/Publicidad-para-barberia.jpg");
+    background-repeat: no-repeat;
+    background-position-y: center;
 }
 
-#slider3{
+.sliderTwo{
     height: 100vh;
     max-height: 37rem;
     background-size: 100%;
-    background-image: url("../../img/pexels-rodnae-productions-7697316.jpg");
+    background-image: url("https://joseppons.com/formacion/wp-content/uploads/2020/11/servicios-salon-barberia.jpeg");
+    background-position-y: center;
+}
+
+.sliderThree{
+    height: 100vh;
+    max-height: 37rem;
+    background-size: 100%;
+    background-image: url("https://buenosairesbarbershop.com/assets/img/bg/barberia_byn.jpg");
+    background-position-y: center;
 }

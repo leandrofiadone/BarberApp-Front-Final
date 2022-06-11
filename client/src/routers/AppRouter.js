@@ -20,6 +20,7 @@ import comoReservar from "../components/Chatbot/ComoReservar";
 import { ComprasPerfil } from "../components/Profile/compras/ComprasPerfil";
 import Landing from "../components/Landing/Landing";
 
+
 //FAVOURITES
 import Favourites from "../components/Favourites/Favourites";
 //CIERRA FAVOURITES
@@ -38,7 +39,7 @@ import {
   revalidarAuth,
   allCitas,
   allCitasAdmin,
-  crearCompra,
+  // crearCompra,
 } from "../redux/actions/index";
 import { PrivateAdmin } from "./PrivateAdmin";
 import { AdminRoute } from "./AdminRoute";
@@ -54,7 +55,7 @@ export const AppRouter = () => {
 
     dispatch(allCitasAdmin());
 
-    dispatch(crearCompra(user.id));
+    // dispatch(crearCompra(user.id));
   }, [dispatch]);
 
   return (
@@ -71,6 +72,7 @@ export const AppRouter = () => {
           <Route exact path="/tienda" component={Tienda} />
           <Route exact path="/tienda/:id" component={Detalle} />
           <Route exact path="/favourites/:id" component={Favourites} />
+          <Route exact path="/servicios" component={Servicios} />
           <Route exact path="/servicios" component={Servicios} />
           <Route exact path="/reserva" component={Reserva} />
           <Route exact path="/comocomprar" component={comoComprar} />

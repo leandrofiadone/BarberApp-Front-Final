@@ -128,6 +128,8 @@ export function getServices() {
   return async function(dispatch) {
     const resp = await fetchSinToken("services");
     const data = await resp.json();
+
+
     console.log(data)
     if (data.ok) {
       return dispatch({
@@ -235,7 +237,6 @@ export function crearCompra(id) {
     const respuesta = await fetchConToken(`pago/${id}`, "GET");
     const data = await respuesta.json();
 
-    console.log(data.notification);
     if (data.ok) {
       dispatch({ type: ALL_COMPRA, payload: data.notification });
     }

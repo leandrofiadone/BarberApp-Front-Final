@@ -78,8 +78,8 @@ function rootReducer(state = initialState, action) {
       return {
         ...state,
         servicios: action.payload,
-        // categorias: action.payload,
         allServicios: action.payload,
+        // categorias: action.payload,
       };
     case ACTIONS.ADD_EMPLOYEE:
       return {

@@ -3,7 +3,7 @@
 .divwsp > a{
     position: fixed;
     right: .5rem;
-    bottom: 5rem;
+    bottom: 6rem;
     background-color: transparent;
     border: none;
     border-radius: 100%;
@@ -14,5 +14,13 @@
 .divwsp > a > img{
     margin-left: 0;
     width: 4rem;
+}
+
+.botonQuienes{
+    cursor: pointer;
+}
+
+.botonServicios{
+    cursor: pointer;
 }
  

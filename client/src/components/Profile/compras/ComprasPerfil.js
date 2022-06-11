@@ -25,7 +25,7 @@ export const ComprasPerfil = () => {
       <section className="py-4 container">
         <div className="row">
           <div className="col-12">
-            <table className="table table-dark m-0">
+            <table className="table table-dark m-0 table-striped">
               <thead>
                 <tr>
                   <th scope="col">Total:</th>
