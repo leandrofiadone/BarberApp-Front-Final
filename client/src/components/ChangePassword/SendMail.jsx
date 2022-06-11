@@ -19,14 +19,14 @@ const SendMail = () => {
     const handleSubmit = async() =>{
         const token = localStorage.getItem("token");
         try {
-                           //await fetch("https://barber-app-henry.herokuapp.com/api/resetPassword"
-            const response = await fetch("http://localhost:3001/api/resetPassword",
+                           //await fetch("http://localhost:3001/api/resetPassword",
+            const response = await fetch("https://barber-app-henry.herokuapp.com/api/resetPassword",
             {
             method: "POST",
             body: JSON.stringify(input),
             headers: {
             "Content-Type": "application/json",
-            "x-token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1aWQiOiI3YWQ5OTNjNS0yN2M1LTQ1ODctYjJjMi02ZDNlNTEzOWQyZGQiLCJpYXQiOjE2NTQ5MTY1NTMsImV4cCI6MTY1NDkzMDk1M30.OBxHsy1xo7nu52ytHmVcT0g-m6kH8UthyFIvj1T9prU",
+            "x-token": token,
                      }
            });
 
