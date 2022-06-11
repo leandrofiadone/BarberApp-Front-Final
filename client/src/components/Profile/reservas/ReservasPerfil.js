@@ -55,7 +55,7 @@ export const ReservasPerfil = () => {
           {filtrado.map((e, index) => (
             <tr key={index}>
               <td className="text-white"> {e.date.slice(0, 8)}</td>
-              <td className="text-white"> {e.date.slice(9)}</td>
+              <td className="text-white"> {e.date.slice(10)}</td>
               <td className="text-white"> {e.employee.name}</td>
               <td className="text-white">{e.services[0].name}</td>
               <td className="text-white">

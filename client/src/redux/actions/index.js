@@ -129,6 +129,8 @@ export function getServices() {
     const resp = await fetchSinToken("services");
     const data = await resp.json();
 
+    console.log(data)
+
     if (data.ok) {
       return dispatch({
         type: GET_SERVICES,
@@ -235,7 +237,6 @@ export function crearCompra(id) {
     const respuesta = await fetchConToken(`pago/${id}`, "GET");
     const data = await respuesta.json();
 
-    console.log(data.notification);
     if (data.ok) {
       dispatch({ type: ALL_COMPRA, payload: data.notification });
     }
@@ -251,13 +252,13 @@ export function filterPorPrecio(payload) {
 
 export function allBarberos() {
   return async (dispatch) => {
-    const resp = await fetchSinToken("employee");
+    const resp = await fetchSinToken("employee?all=false");
     const data = await resp.json();
 
     if (data.ok) {
       return dispatch({
         type: ALL_BARBEROS,
-        payload: data.employees,
+        payload: data.allEmployes,
       });
     }
   };

@@ -29,7 +29,7 @@ export function Reserva() {
   const { user } = useSelector((state) => state);
   const history = useHistory();
 
-  const allServices = useSelector((state) => state.servicios.services);
+  const allServices = useSelector((state) => state.servicios);
   const subBarberos = useSelector((state) => state.barberos);
 
   const [errors, setError] = useState({});

@@ -150,8 +150,8 @@ state: true
   return (
     <div>
       {/* =============================================================== */}
-      <nav class="navbar navbar-expand-xl divNavbarTienda p-3 containernavbartienda">
-        <div class="container-fluid ">
+      <nav className="navbar navbar-expand-lg navbar-dark p-3 containernavbartienda justify-content-center">
+        <div className="container-fluid ">
           <Link className="navbar-brandtienda" to="/"></Link>
           <button
             class="navbar-toggler"
@@ -233,54 +233,51 @@ state: true
                   </div>
                 </ul>
               </li>
-              <li class="nav-item">
+            </ul>
+
+
+            <ul class="navbar-nav me-auto mb-lg-0 ">
+              
+
+            <div className="contTituloTiendaWeb">
                 <Link to="/tienda">
                   <button
                     onClick={() => window.location.reload()}
-                    className="containerTienda"
-                    id="arriba"
+                    className="botonTiendaWeb"
+                    id="tienda"
                   >
                     <h5>Tienda Web</h5>
                   </button>
                 </Link>
-              </li>
-              <li className="nav-item">
+            </div>
+            </ul>
+
                 <div className="searchbar ">
                   <SearchBar />
                 </div>
-              </li>
-              <li class="nav-item carritoContainer">
-                {/* <button  className="" >
-                      <img className="imgCarrito" src="https://www.ubolosoft.com/Carrito/images/carrito.png" alt="" style={{height: "2rem", width: "2rem"}}/>
-                    </button> */}
-
-                <button
-                  onClick={() => registro()}
-                  type="button"
-                  class="btn btn-dark position-relative botonCarrito"
-                >
-                  <img
-                    className="imgCarrito"
-                    src="https://www.ubolosoft.com/Carrito/images/carrito.png"
-                    alt=""
-                    style={{ height: "2rem", width: "2rem" }}
-                  />{" "}
-                  <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-secondary">
-                    {totalItems}
-                    <span class="visually-hidden"></span>
-                  </span>
-                </button>
-              </li>
-              {/* <li className="numeroitems nav-item">
-                    {totalItems}
-              </li> */}
+                  <button
+                    onClick={() => registro()}
+                    type="button"
+                    class="btn btn-dark position-relative botonCarrito"
+                  >
+                    <img
+                      className="imgCarrito"
+                      src="https://www.ubolosoft.com/Carrito/images/carrito.png"
+                      alt=""
+                      style={{ height: "2rem", width: "2rem" }}
+                    />{" "}
+                    <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-secondary">
+                      {totalItems}
+                      <span class="visually-hidden"></span>
+                    </span>
+                  </button>
               <Link to={`/favourites/${user.id}`}>
                 <img
                   className="corazon-amarillo"
                   src={imgCorazonAmarillo}
                 ></img>
               </Link>
-            </ul>
+         
           </div>
         </div>
       </nav>
@@ -298,7 +295,7 @@ state: true
       {/* <div className="containercontenido"> */}
 
       <div className="buttonup">
-        <a href="#arriba">
+        <a href="#tienda">
           <img
             src="https://www.nicepng.com/png/full/297-2979190_subir-flecha-arriba-transparente-png.png"
             alt=""
