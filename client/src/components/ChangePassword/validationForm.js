@@ -1,16 +1,16 @@
-const validate = (input) => {
+const validateEmail = (input) => {
     let errors = {};
   
+    if (!input.email) {
+      errors.email = "Email is required";
+    } else if (!/^[^@]+@[^@]+\.[a-zA-Z]{2,}$/.test(input.email)) {
 
-    if (!input.password1 ||!input.password2 ) {
-      errors.password = "Password is required";
-    } 
-
-    if(input.password1 !== input.password2){
-      errors.password = "Passwords no coinciden";
+      errors.email ="El formato de Email es incorrecto";
     }
+
+    
     return errors;
 
 }
 
-export default validate;
+export default validateEmail;

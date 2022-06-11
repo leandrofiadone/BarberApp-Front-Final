@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import validate from "./validationForm.js"
+import validateEmail from "./validationForm.js"
 import './SendMail.css';
 
 const SendMail = () => {
@@ -13,7 +13,7 @@ const SendMail = () => {
           email: e.target.value,
         }
     })
-    setError(validate({ ...input, email: e.target.value }));
+    setError(validateEmail({ ...input, email: e.target.value }));
     }
 
     const handleSubmit = async() =>{
@@ -43,7 +43,7 @@ const SendMail = () => {
             
         }
     }
-    
+
   return (
     <div className="caja-change">
       <div className="card-change">

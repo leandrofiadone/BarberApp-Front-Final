@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import validate from "./validationForm.js"
+import validatePassword from "./validatePassword.js"
 import './SendMail.css';
 import { useParams } from "react-router-dom/cjs/react-router-dom.min";
 
@@ -16,7 +16,7 @@ const ResetPassword = () => {
           [e.target.name]: e.target.value,
         }
     })
-    setError(validate({
+    setError(validatePassword({
          ...input,
           [e.target.name]: e.target.value }));
     }
