@@ -9,6 +9,7 @@ export const ReservasPerfil = () => {
   const dispatch = useDispatch();
   const { user } = useSelector((state) => state);
   const { citas } = useSelector((state) => state);
+  console.log(citas)
 
   const filtrado = citas.filter((e) => e.idUser === user.id);
   console.log(filtrado);

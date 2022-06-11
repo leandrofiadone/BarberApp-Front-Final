@@ -6,7 +6,7 @@
     font-family: 'Poppins', sans-serif
 }
 
-.caja {
+.caja-change {
     height: 90vh;
     display: flex;
     justify-content: center;
@@ -14,7 +14,7 @@
    
 }
 
-.card {
+.card-change {
     width: 500px;
     height: 620px;
     background-color: rgb(255, 255, 255);
@@ -23,7 +23,7 @@
     overflow: hidden
 }
 
- .info {
+ .info-change {
     padding: 1%; 
     font-size: 30px;
     display: flex;
@@ -33,7 +33,7 @@
     background-color: rgba(0, 0, 0, 0.5);
     
 }
-.bigote{
+.bigote-change{
      left: -44%;
      width: 100px; 
      position: relative;
@@ -43,30 +43,67 @@
      background-image: url("https://images.vexels.com/media/users/3/132674/isolated/preview/5de3fc4efa4d8ff72773bfc119c1a8e9-bigote-blanco-hipster-3.png");
  }
 
-.card .forms {
-    padding: 20px
-}
-
-.card .inputs {
+.card-change .forms-change {
+    padding: 20px;
     display: flex;
     flex-direction: column;
-    margin-bottom: 45px
+    align-items: center;
 }
 
-.card .inputs h3 {
+.card-change .inputs-change {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 45px;
+    margin-top: 45px;
+    align-items: center;
+    
+}
+
+.inputEmail-change{
+    width: 400px;
+    border-radius: 20px;
+    margin-bottom: 10px;
+}
+
+
+.card-change .inputs-change h3 {
     font-size: 26px; 
+    color: black;
+    margin-bottom: 45px;
 }
 
 
-.borde{
+
+.borde-change{
     padding: 1px 10px;
     font-size: 24px;
     border-radius: 13px;
 }
 
-.botonEditar{
-   margin-left: 35%;
+.botonEditar-change{
+
    width: 30%;
    height: 10%;
    margin-bottom: 15px;
+   margin-top: 200px;
+}
+
+.botonEditar-change:hover{
+    transition: 300ms;
+    transform: scale(1.2);
+    cursor: pointer;
+    color: black;
+    background-color:#ffc107;
+}
+
+.error-change{
+    margin-top: 15px;
+    color: red;
+    font-size: 15px;
+}
+
+.notification-change{
+    color: green;
+    margin-top: 15px;
+    font-size: 15px;
 }

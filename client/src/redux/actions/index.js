@@ -129,8 +129,8 @@ export function getServices() {
     const resp = await fetchSinToken("services");
     const data = await resp.json();
 
-    console.log(data)
 
+    console.log(data)
     if (data.ok) {
       return dispatch({
         type: GET_SERVICES,
@@ -254,7 +254,7 @@ export function allBarberos() {
   return async (dispatch) => {
     const resp = await fetchSinToken("employee?all=false");
     const data = await resp.json();
-
+    console.log(data, "ACTIONS ALL BARBEROS")
     if (data.ok) {
       return dispatch({
         type: ALL_BARBEROS,
@@ -384,6 +384,7 @@ export function revalidarAuth() {
       if (data.rol === "ADMIN") {
         dispatch(adminGetAllProducts());
         dispatch(getAllUsers());
+        dispatch(getCategories())
       }
 
       return dispatch({
