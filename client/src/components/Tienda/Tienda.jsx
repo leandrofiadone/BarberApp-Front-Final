@@ -14,7 +14,11 @@ import { useEffect, useState } from "react";
 import Paginado from "../Paginado/Paginado";
 
 import Swal from "sweetalert2";
-import { ALL_PRODUCTOS, filterCategoriaProductos, getCategories } from "../../redux/actions";
+import {
+  ALL_PRODUCTOS,
+  filterCategoriaProductos,
+  getCategories,
+} from "../../redux/actions";
 import { allProductos, orderByPrecio, sortName } from "../../redux/actions";
 import { getFavourites } from "../../redux/actions";
 import {
@@ -91,14 +95,14 @@ state: true
     setState(e.target.value);
   };
 
-  const handleCategorias = async(e) => {
+  const handleCategorias = async (e) => {
     e.preventDefault();
     const resp = await fetchSinToken(`products?category=${e.target.value}`);
     const data = await resp.json();
-    if(data.ok){
-      dispatch({type: ALL_PRODUCTOS, payload: data.product})
-    }else{
-      Swal.fire('Error', data.msg, 'error')
+    if (data.ok) {
+      dispatch({ type: ALL_PRODUCTOS, payload: data.product });
+    } else {
+      Swal.fire("Error", data.msg, "error");
     }
   };
 
@@ -151,10 +155,6 @@ state: true
   };
   /////Favourites////
 
-<<<<<<< HEAD
-=======
-
->>>>>>> a22b82e9122155a89ebaa4383693852de49ba640
   return (
     <div>
       {/* =============================================================== */}
@@ -200,13 +200,14 @@ state: true
                         onChange={(e) => handleCategorias(e)}
                         className="text-dark form-select-sm"
                       >
-                       {
-                        categorias.map(categoria => (
-                          <option value={categoria.categorie} key={categoria.id}>
+                        {categorias.map((categoria) => (
+                          <option
+                            value={categoria.categorie}
+                            key={categoria.id}
+                          >
                             {categoria.categorie}
                           </option>
-                        ))
-                       }
+                        ))}
                       </select>
                     </div>
                     <br />
