@@ -11,11 +11,11 @@ export const ComprasPerfil = () => {
   const { user } = useSelector((state) => state);
   const { compras } = useSelector((state) => state);
 
-  useEffect(() => {
-    dispatch(crearCompra(user.id));
-  }, [dispatch, id]);
+  // aqui no pueden ir useEffect porque? no sabemos
+  // useEffect(() => {
+  //   // dispatch(crearCompra(user.id));
+  // }, [dispatch, id]);
 
-  console.log(compras.notification);
 
   return (
     <div>

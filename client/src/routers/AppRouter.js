@@ -1,5 +1,5 @@
 import React, { useEffect } from "react";
-import { BrowserRouter, HashRouter, Route, Switch } from "react-router-dom";
+import {HashRouter, Route, Switch } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import "bootstrap/dist/css/bootstrap.min.css";
 import Home from "../components/Home/Home";
@@ -17,7 +17,6 @@ import { Register } from "../components/auth/Register";
 //CIERRA LOGIN JWT
 import comoComprar from "../components/Chatbot/ComoComprar";
 import comoReservar from "../components/Chatbot/ComoReservar";
-import { ComprasPerfil } from "../components/Profile/compras/ComprasPerfil";
 import Landing from "../components/Landing/Landing";
 
 //FAVOURITES
@@ -42,6 +41,7 @@ import {
 } from "../redux/actions/index";
 import { PrivateAdmin } from "./PrivateAdmin";
 import { AdminRoute } from "./AdminRoute";
+import Reservas from "../components/admin/Reservas/Reservas";
 
 export const AppRouter = () => {
   const { isAuth, user } = useSelector((state) => state);
@@ -75,7 +75,7 @@ export const AppRouter = () => {
           <Route exact path="/reserva" component={Reserva} />
           <Route exact path="/comocomprar" component={comoComprar} />
           <Route exact path="/comoreservar" component={comoReservar} />
-          <Route exact path="/compras" component={ComprasPerfil} />
+          {/* <Route exact path="/compras" component={ComprasPerfil} /> */}
 
           {/*ChangePassword*/}
           <Route exact path="/resetPassword/:idUser/:token" component={ChangePassword} />
