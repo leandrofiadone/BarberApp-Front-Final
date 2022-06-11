@@ -134,8 +134,7 @@ function rootReducer(state = initialState, action) {
       });
       return {
         ...state,
-        allProductos:
-          action.payload === "Filter" ? state.allProductos : orderName,
+        productos: action.payload === "Filter" ? state.allProductos : orderName,
       };
 
     case ACTIONS.SORT:
@@ -167,7 +166,7 @@ function rootReducer(state = initialState, action) {
 
       return {
         ...state,
-        allProductos: info,
+        productos: info,
       };
 
     case ACTIONS.FILTER_RANGO_PRECIO:

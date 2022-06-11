@@ -100,7 +100,6 @@ state: true
   //////Favourites///////
 
   useEffect(() => {
-    console.log("getFavourites");
     user && dispatch(getFavourites(user.id));
   }, [user]);
 
@@ -146,8 +145,6 @@ state: true
     }
   };
   /////Favourites////
-
-  console.log(user)
 
   return (
     <div>
@@ -276,12 +273,14 @@ state: true
               {/* <li className="numeroitems nav-item">
                     {totalItems}
               </li> */}
-              {Object.keys(user).length && <Link to={`/favourites/${user.id}`}>
-                <img
-                  className="corazon-amarillo"
-                  src={imgCorazonAmarillo}
-                ></img>
-              </Link>}
+              {Object.keys(user).length && (
+                <Link to={`/favourites/${user.id}`}>
+                  <img
+                    className="corazon-amarillo"
+                    src={imgCorazonAmarillo}
+                  ></img>
+                </Link>
+              )}
             </ul>
           </div>
         </div>
@@ -293,7 +292,6 @@ state: true
       </div>
 
       <br />
-
 
       <div className="navbar navbar-expand bg-dark navbarTienda"></div>
 
@@ -341,7 +339,7 @@ state: true
                   <button>+info</button>
                 </Link>
                 {/*Renderizado de Corazones*/}
-                { addFavourites.length && !addFavourites[index].newFavourite ? (
+                {addFavourites.length && !addFavourites[index].newFavourite ? (
                   <img
                     onClick={() => handleAddFavourites(e.id, index)}
                     className="imagen-corazon-gris"

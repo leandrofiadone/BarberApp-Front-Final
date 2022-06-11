@@ -127,11 +127,12 @@ export function Reserva() {
 
       setTimeout(() => {
         history.push("/");
-        window.location.reload();
       }, 2000);
     }
     console.log(state);
+    console.log(state);
   };
+  console.log(state);
 
   return (
     <div className="foto">
