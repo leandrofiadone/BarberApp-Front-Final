@@ -24,6 +24,11 @@ import Landing from "../components/Landing/Landing";
 import Favourites from "../components/Favourites/Favourites";
 //CIERRA FAVOURITES
 
+//CHANGE PASSWORD
+import sendMail from '../components/ChangePassword/SendMail';
+import ChangePassword from '../components/ChangePassword/ChangePassword';
+//CIERRA CHANGE PASSWORD
+
 /* ------------------------------------------------ */
 
 import PrivateRoute from "./PrivateRoute";
@@ -72,6 +77,9 @@ export const AppRouter = () => {
           <Route exact path="/comoreservar" component={comoReservar} />
           <Route exact path="/compras" component={ComprasPerfil} />
 
+          {/*ChangePassword*/}
+          <Route exact path="/resetPassword/:idUser/:token" component={ChangePassword} />
+
           <PrivateAdmin
             path="/admin"
             component={AdminRoute}
@@ -80,6 +88,7 @@ export const AppRouter = () => {
           />
 
           <PrivateRoute path="/profile" component={Profile} isAuth={isAuth} />
+          <PrivateRoute path="/sendMail" component={sendMail} isAuth={isAuth} />
         </Switch>
       </div>
     </HashRouter>
