@@ -14,20 +14,21 @@ import { useEffect, useState } from "react";
 import Paginado from "../Paginado/Paginado";
 
 import Swal from "sweetalert2";
-import { filterCategoriaProductos, getCategories } from "../../redux/actions";
+import { ALL_PRODUCTOS, filterCategoriaProductos, getCategories } from "../../redux/actions";
 import { allProductos, orderByPrecio, sortName } from "../../redux/actions";
 import { getFavourites } from "../../redux/actions";
 import {
   setFavouriteApi,
   deleteFavouriteApi,
 } from "../../helpers/functionsFavorites/favorites";
+import { fetchSinToken } from "../../helpers/fetch";
 
 export default function Tienda() {
   const { updateItemQuantity, totalItems } = useCart();
 
   const [state, setState] = useState("");
 
-  const { user } = useSelector((state) => state);
+  const { user, categorias } = useSelector((state) => state);
 
   const dispatch = useDispatch();
 
@@ -90,11 +91,15 @@ state: true
     setState(e.target.value);
   };
 
-  const handleCategorias = (e) => {
+  const handleCategorias = async(e) => {
     e.preventDefault();
-    dispatch(filterCategoriaProductos(e.target.value));
-    setState(e.target.value);
-    console.log(e.target.value);
+    const resp = await fetchSinToken(`products?category=${e.target.value}`);
+    const data = await resp.json();
+    if(data.ok){
+      dispatch({type: ALL_PRODUCTOS, payload: data.product})
+    }else{
+      Swal.fire('Error', data.msg, 'error')
+    }
   };
 
   //////Favourites///////
@@ -146,6 +151,10 @@ state: true
   };
   /////Favourites////
 
+<<<<<<< HEAD
+=======
+
+>>>>>>> a22b82e9122155a89ebaa4383693852de49ba640
   return (
     <div>
       {/* =============================================================== */}
@@ -191,12 +200,13 @@ state: true
                         onChange={(e) => handleCategorias(e)}
                         className="text-dark form-select-sm"
                       >
-                        <option value="All"> Todos </option>
-                        <option value="tinte"> Tinte</option>
-                        <option value="cremas">Crema</option>
-                        <option value="shampoo">Shampoo</option>
-                        <option value="acondicionador">Acondicionador</option>
-                        <option value="cera">Cera</option>
+                       {
+                        categorias.map(categoria => (
+                          <option value={categoria.categorie} key={categoria.id}>
+                            {categoria.categorie}
+                          </option>
+                        ))
+                       }
                       </select>
                     </div>
                     <br />

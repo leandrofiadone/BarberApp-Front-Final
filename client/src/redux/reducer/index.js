@@ -122,7 +122,7 @@ function rootReducer(state = initialState, action) {
       };
 
     case ACTIONS.SORT_NAME:
-      let orderName = [...state.allProductos];
+      let orderName = [...state.productos];
       orderName = orderName.sort((a, b) => {
         if (a.name < b.name) {
           return action.payload === "ASC" ? -1 : 1;
@@ -134,7 +134,7 @@ function rootReducer(state = initialState, action) {
       });
       return {
         ...state,
-        productos: action.payload === "Filter" ? state.allProductos : orderName,
+        productos: action.payload === "Filter" ? state.productos : orderName,
       };
 
     case ACTIONS.SORT:
@@ -155,7 +155,7 @@ function rootReducer(state = initialState, action) {
       };
 
     case ACTIONS.ORDER_PRECIO:
-      let ordenPrecio = [...state.allProductos];
+      let ordenPrecio = [...state.productos];
 
       const info =
         action.payload === "All"

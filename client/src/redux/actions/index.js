@@ -382,6 +382,7 @@ export function revalidarAuth() {
       if (data.rol === "ADMIN") {
         dispatch(adminGetAllProducts());
         dispatch(getAllUsers());
+        dispatch(getCategories())
       }
 
       return dispatch({

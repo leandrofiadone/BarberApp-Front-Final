@@ -5,6 +5,7 @@ import { fetchConToken } from "../../../helpers/fetch";
 import { useForm } from "../../../hooks/useForm";
 import { types } from "../../../types/types";
 import "./editarPerfil.css";
+import { useHistory } from "react-router-dom";
 export const EditarPerfil = () => {
   
   const { user } = useSelector((state) => state);
@@ -16,6 +17,7 @@ export const EditarPerfil = () => {
   });
 
   const dispatch = useDispatch();
+  const navigate = useHistory();
 
   const handleUpdate = async () => {
     const resp = await fetchConToken(`users/${user.id}`, formValues, "PUT");
@@ -82,6 +84,14 @@ export const EditarPerfil = () => {
             onClick={handleUpdate}
           >
             Editar
+          </button>
+
+          <button
+            type="button"
+            className="btn btn-dark botonEditar"
+            onClick={()=>navigate.push('/sendMail')}
+          >
+            Cambiar Contraseña
           </button>
         </div>
       </div>
