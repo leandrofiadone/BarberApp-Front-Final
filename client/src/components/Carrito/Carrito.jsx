@@ -76,7 +76,8 @@ export default function Carrito() {
                     <h2>Precio Total: $ {cartTotal}</h2>
                 </div>
                 <div className="col-auto">
-                    <button className="btn btn-success fw-bold" style={{ padding: "1.5rem" }} onClick={()=>{paymentMP(items, user, navigate,emptyCart)}}>Comprar Ahora</button>
+                    <button className="btn btn-success fw-bold" style={{ padding: ".8rem" }} onClick={()=>{paymentMP(items, user, navigate,emptyCart)}}>Comprar Ahora</button>
+                    <br />
                     <br />
                     <button className="btn btn-danger" onClick={() => emptyCart()}>Vaciar Carrito</button>
                 </div>

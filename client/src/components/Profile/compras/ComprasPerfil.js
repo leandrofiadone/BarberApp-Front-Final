@@ -11,9 +11,11 @@ export const ComprasPerfil = () => {
   const { user } = useSelector((state) => state);
   const { compras } = useSelector((state) => state);
 
-  // aqui no pueden ir useEffect porque? no sabemos
+  console.log(compras)
+
+  // aqui no pueden ir useEffect porque? no sabemos PROBAR UN TRY-CATCH EN LA ACTION
   // useEffect(() => {
-  //   // dispatch(crearCompra(user.id));
+  //   dispatch(crearCompra(user.id));
   // }, [dispatch, id]);
 
 
