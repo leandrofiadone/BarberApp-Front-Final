@@ -177,14 +177,9 @@ export function Reserva() {
                     </option>
                   ))}
                 </select>
-<<<<<<< HEAD
                 {errors.barberos && (
                   <p className="textoError">{errors.barberos}</p>
                 )}
-=======
-                {errors.barberos && <p className="textoError">{errors.barberos}</p>}
-                
->>>>>>> f45f6c7d047da1c911025a6f00f1f53fb7b847ec
               </div>
 
               <label>
