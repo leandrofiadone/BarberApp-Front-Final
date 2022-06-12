@@ -1,5 +1,9 @@
  
+<<<<<<< HEAD
 .textoError {
+=======
+.errorMjs {
+>>>>>>> f45f6c7d047da1c911025a6f00f1f53fb7b847ec
     color: rgb(255, 0, 0);
     display: flex;
     border-radius: 10px;
@@ -45,6 +49,7 @@
 
 .boton{
     background-color: rgba(2, 2, 2, 0.573);
+<<<<<<< HEAD
     border: none;
     padding: 14px;
     border-radius: 15px;
@@ -52,4 +57,20 @@
     margin-top: 1rem;
     margin-left: 1rem;
     font-family:Cambria, Cochin, Georgia, Times, 'Times New Roman', serif
+=======
+        border: none;
+        padding: 14px;
+        border-radius: 15px;
+        color: rgba(248, 248, 248, 0.801);
+        margin-top: 1rem;
+        margin-left: 1rem;
+        font-family:Cambria, Cochin, Georgia, Times, 'Times New Roman', serif
+} 
+
+.textoError{
+    color: rgb(255,0,0);
+    display: flex;
+    border-radius: 10px;
+    padding: 10px 15px 10px 15px;
+>>>>>>> f45f6c7d047da1c911025a6f00f1f53fb7b847ec
 }

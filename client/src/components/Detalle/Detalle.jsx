@@ -18,6 +18,7 @@ const Detalle = () => {
   const { addItem } = useCart();
 
   const { user } = useSelector((state) => state);
+  const productosId = useSelector((state) => state.detalle);
 
   function addCartAlert() {
     Swal.fire({
@@ -28,13 +29,11 @@ const Detalle = () => {
 
   useEffect(() => {
     dispatch(detalleDeProductos(id));
-  }, [dispatch, id]);
+  }, [dispatch]);
 
-  const deleteInfoProduct = (id) => {
-    dispatch(eliminarInfoDetalle(id));
-  };
-
-  const productosId = useSelector((state) => state.detalle);
+  /*   useEffect(() => {
+    return dispatch(eliminarInfoDetalle());
+  }, [dispatch]); */
 
   return (
     <div className="fotoBarber">
@@ -44,14 +43,26 @@ const Detalle = () => {
             <Link to="/tienda">Volver</Link>
           </button>
         </div>
+<<<<<<< HEAD
+=======
+
+>>>>>>> f45f6c7d047da1c911025a6f00f1f53fb7b847ec
         {productosId ? (
           <div className="transparenteContenedor">
             <div className=" containerImagen">
               <img src={productosId.img} />
             </div>
+<<<<<<< HEAD
             <div className="ContenedorTituloLetra">
               <h1 className="letra">{productosId.name}</h1>
             </div>
+=======
+
+            <div className="ContenedorTituloLetra">
+              <h1 className="letra">{productosId.name}</h1>
+            </div>
+
+>>>>>>> f45f6c7d047da1c911025a6f00f1f53fb7b847ec
             <div className="TextoClases">
               <div>
                 <p>
@@ -61,14 +72,26 @@ const Detalle = () => {
                   voluptatibus voluptatem porro cupiditate fugit possimus eaque.
                 </p>
               </div>
+<<<<<<< HEAD
+=======
+
+>>>>>>> f45f6c7d047da1c911025a6f00f1f53fb7b847ec
               <div>
                 <h2>
                   <b>$ {productosId.price}</b>
                 </h2>
               </div>
+<<<<<<< HEAD
               <div>
                 <span>Stock: {productosId.stock}</span>
               </div>
+=======
+
+              <div>
+                <span>Stock: {productosId.stock}</span>
+              </div>
+
+>>>>>>> f45f6c7d047da1c911025a6f00f1f53fb7b847ec
               <div>
                 <button
                   className="botonDelCarrito"
