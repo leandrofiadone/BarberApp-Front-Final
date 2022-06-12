@@ -31,15 +31,15 @@ const Detalle = () => {
     dispatch(detalleDeProductos(id));
   }, [dispatch]);
 
-  /*   useEffect(() => {
-    return dispatch(eliminarInfoDetalle());
-  }, [dispatch]); */
+  const detalleEliminar = () => {
+    dispatch(eliminarInfoDetalle());
+  };
 
   return (
     <div className="fotoBarber">
       <div className="fotoTransparente">
         <div className="botonDetalleVolver">
-          <button>
+          <button onClick={() => detalleEliminar()}>
             <Link to="/tienda">Volver</Link>
           </button>
         </div>

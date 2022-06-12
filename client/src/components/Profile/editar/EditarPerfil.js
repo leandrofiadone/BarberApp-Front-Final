@@ -7,7 +7,6 @@ import { types } from "../../../types/types";
 import "./editarPerfil.css";
 import { useHistory } from "react-router-dom";
 export const EditarPerfil = () => {
-  
   const { user } = useSelector((state) => state);
 
   const [formValues, handleInputChange, reset] = useForm({
@@ -88,8 +87,8 @@ export const EditarPerfil = () => {
 
           <button
             type="button"
-            className="btn btn-dark botonEditar"
-            onClick={()=>navigate.push('/sendMail')}
+            className="btn btn-dark botonCambiarContraseña"
+            onClick={() => navigate.push("/sendMail")}
           >
             Cambiar Contraseña
           </button>

@@ -1,4 +1,4 @@
-import React, {useRef} from "react";
+import React, { useRef } from "react";
 // import NavBar from "../NavBar/NavBar";
 import Carrousel from "../Carrousel/Carrousel";
 import { Servicios } from "../Servicios/Servicios";
@@ -51,9 +51,7 @@ const TypedReactHooksDemo = () => {
 document.getElementById("react-root");
 
 export default function Home() {
-
   const { isAuth, user } = useSelector((state) => state);
-
 
   const dispatch = useDispatch();
   const history = useHistory();
@@ -66,113 +64,111 @@ export default function Home() {
 
   const sectionServicios = useRef(null);
 
-  
-
   const handleQuienesSomos = (elementRef) => {
     window.scrollTo({
       top: elementRef.current.offsetTop,
-      behavior: "smooth"
-    })
-  }
+      behavior: "smooth",
+    });
+  };
 
   const handleServicios = (elementRef) => {
     window.scrollTo({
       top: elementRef.current.offsetTop,
-      behavior: "smooth"
-    })
-  }
+      behavior: "smooth",
+    });
+  };
   return (
     <div>
       <nav className="navbar navbar-expand-lg navbar-dark p-3" id="menu">
-      <div className="container-fluid">
-        <Link className="navbar-brand" to="/"></Link>
-        <button
-          className="navbar-toggler"
-          type="button"
-          data-bs-toggle="collapse"
-          data-bs-target="#navbarSupportedContent"
-          aria-controls="navbarSupportedContent"
-          aria-expanded="false"
-          aria-label="Toggle navigation"
-        >
-          <span className="navbar-toggler-icon"></span>
-        </button>
+        <div className="container-fluid">
+          <Link className="navbar-brand" to="/"></Link>
+          <button
+            className="navbar-toggler"
+            type="button"
+            data-bs-toggle="collapse"
+            data-bs-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent"
+            aria-expanded="false"
+            aria-label="Toggle navigation"
+          >
+            <span className="navbar-toggler-icon"></span>
+          </button>
 
-        <div className="collapse navbar-collapse" id="navbarSupportedContent">
-          <ul className="navbar-nav me-auto mb-2 mb-lg-0">
-            
-            <li onClick={() => handleServicios(sectionServicios)}>
-              <a className="nav-link text-light botonServicios">
-                Servicios
-              </a>
-            </li>
-            <li onClick={() => handleQuienesSomos(quienesSomos)} >
-              <a className="nav-link text-light botonQuienes" >
-                Quienes Somos
-              </a>
-            </li>
-            <li className="nav-item" id="LinkTienda">
-              <Link className="nav-link text-light" to="/tienda">
-                Tienda
-              </Link>
-            </li>
+          <div className="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul className="navbar-nav me-auto mb-2 mb-lg-0">
+              <li onClick={() => handleServicios(sectionServicios)}>
+                <a className="nav-link text-light botonServicios">Servicios</a>
+              </li>
+              <li onClick={() => handleQuienesSomos(quienesSomos)}>
+                <a className="nav-link text-light botonQuienes">
+                  Quienes Somos
+                </a>
+              </li>
+              <li className="nav-item" id="LinkTienda">
+                <Link className="nav-link text-light" to="/tienda">
+                  Tienda
+                </Link>
+              </li>
 
+              <li className="nav-item">
+                <Link className="nav-link text-light" to="/compras">
+                  Mis Compras
+                </Link>
+              </li>
 
-            {/* <li className="nav-item" >
-              <Link className="nav-link text-light" to="/compras">
-                Mis Compras
-              </Link>
-            </li> */}
+              {!isAuth && (
+                <Link className="nav-item linkReserva" to="/auth/login">
+                  <li className="nav-item">
+                    <button className="bg-dark">Ingresar/Registrarse</button>
+                  </li>
+                </Link>
+              )}
 
-
-            {!isAuth && (
-              <Link className="nav-item linkReserva" to="/auth/login">
-                <li className="nav-item">
-                  <button className="bg-dark">Ingresar/Registrarse</button>
-                </li>
-              </Link>
-            )}
+              {isAuth && (
+                <Link className="nav-item linkReserva" to={`/profile`}>
+                  <li className="nav-item">
+                    <button className="bg-dark">Perfil</button>
+                  </li>
+                </Link>
+              )}
+            </ul>
 
             {isAuth && (
-              <Link className="nav-item linkReserva" to={`/profile`}>
-                <li className="nav-item mx-1">
-                  <button className="bg-dark text-warning"><i><b>Perfil</b></i></button>
-                </li>
+              <span className="linkReserva">
+                <button
+                  onClick={handleLogout}
+                  className="btnCita btn btn-warning fw-bold"
+                  type="button"
+                >
+                  Salir
+                </button>
+              </span>
+            )}
+            {isAuth && isAuth ? (
+              <Link to="/reserva" className="linkReserva">
+                <button
+                  className="btnCita btn btn-warning fw-bold"
+                  type="button"
+                >
+                  Reserva tu cita
+                </button>
+              </Link>
+            ) : (
+              <Link to="auth/login" className="linkReserva">
+                <button
+                  className="btnCita btn btn-warning fw-bold"
+                  type="button"
+                >
+                  Reserva tu cita
+                </button>
               </Link>
             )}
-          </ul>
-
-          {isAuth && (
-            <span className="linkReserva">
-              <button
-                onClick={handleLogout}
-                className="btnCita btn btn-warning fw-bold"
-                type="button"
-              >
-                Salir
-              </button>
-            </span>
-          )}
-          {isAuth && isAuth ? (
-            <Link to="/reserva" className="linkReserva">
-              <button className="btnCita btn btn-warning fw-bold" type="button">
-                Reserva tu cita
-              </button>
-            </Link>
-          ) : (
-            <Link to="auth/login" className="linkReserva">
-              <button className="btnCita btn btn-warning fw-bold" type="button">
-                Reserva tu cita
-              </button>
-            </Link>
-          )}
+          </div>
         </div>
-      </div>
-    </nav>
+      </nav>
       <div className="p-3 backdrop-blur-sm bg-white/30 ">
         <Carrousel />
       </div>
-      
 
       <br />
 
@@ -204,14 +200,14 @@ export default function Home() {
           //   bgColor="light"
           //   className="text-center text-lg-start text-muted"
           // >
-          <div ref={quienesSomos} >
+          <div ref={quienesSomos}>
             <section className="d-flex justify-content-center justify-content-lg-between p-4 border-bottom">
               <div className="me-5 d-none d-lg-block" />
               <div className="text-light"></div>
               <span>QUIENES SOMOS</span>
             </section>
 
-            <section >
+            <section>
               <div className="container text-center text-md-start mt-5">
                 <div className="row mt-3">
                   <div className="col-md-3 col-lg-4 col-xl-3 mx-auto mb-1">
