@@ -21,9 +21,10 @@
 }
 
 .formSearch > input{
+    width: 10rem;
     height: 2em;
 }
 
 .formSearch > button{
-    height: 2em;
+    padding: 3px;
 }

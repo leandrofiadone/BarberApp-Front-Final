@@ -242,7 +242,7 @@ state: true
             </ul>
 
 
-            <ul class="navbar-nav me-auto mb-lg-0 ">
+            <ul class="navbar-nav me-auto mb-lg-0 ulCarritoyTitulo">
               
 
             <div className="contTituloTiendaWeb">
@@ -260,7 +260,7 @@ state: true
                 <div className="searchbar">
                   <SearchBar />
                 </div>
-            <ul>
+            <ul className="ulCarrito">
               <button
                 onClick={() => registro()}
                 type="button"

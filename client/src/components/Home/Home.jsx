@@ -101,13 +101,13 @@ export default function Home() {
         <div className="collapse navbar-collapse" id="navbarSupportedContent">
           <ul className="navbar-nav me-auto mb-2 mb-lg-0">
             <li className="nav-item">
-              <a
+              {/* <a
                 className="nav-link text-light"
                 aria-current="page"
                 href="#inicio"
               >
                 Inicio
-              </a>
+              </a> */}
             </li>
             <li onClick={() => handleServicios(sectionServicios)}>
               <a className="nav-link text-light botonServicios">
@@ -180,10 +180,6 @@ export default function Home() {
       <div className="p-3 backdrop-blur-sm bg-white/30 ">
         <Carrousel />
       </div>
-      
-
-      <br />
-
       <div ref={sectionServicios} className="backdrop-blur-sm bg-white/10">
         <div className="text-light">
           <Servicios />

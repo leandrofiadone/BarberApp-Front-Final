@@ -7,7 +7,7 @@
 .contTituloTiendaWeb{
     display: flex;
     justify-content: flex-end;
-    width: 27em;
+    width: 16em;
     align-items: center;
     background-color: transparent;
 }
@@ -212,5 +212,15 @@
 .botonChat{
     z-index: 1;
 
+}
+
+.ulCarrito{
+    margin: 0;
+    padding: 0;
+}
+
+.ulCarrito > button{
+    padding: 0;
+    margin: 0;
 }
 

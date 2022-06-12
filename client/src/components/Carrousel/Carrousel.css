@@ -13,6 +13,7 @@
     background-size: 100%;
     background-image: url("https://joseppons.com/formacion/wp-content/uploads/2020/11/servicios-salon-barberia.jpeg");
     background-position-y: center;
+    background-repeat: no-repeat;
 }
 
 .sliderThree{
@@ -21,4 +22,5 @@
     background-size: 100%;
     background-image: url("https://buenosairesbarbershop.com/assets/img/bg/barberia_byn.jpg");
     background-position-y: center;
+    background-repeat: no-repeat;
 }
