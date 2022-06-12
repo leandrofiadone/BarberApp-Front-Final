@@ -38,54 +38,70 @@ const Detalle = () => {
 
   return (
     <div className="fotoBarber">
-      <Link to="/tienda">
-        <button className="boton">Volver </button>
-      </Link>
-      {productosId ? (
-        <div className="izquierda media">
-          <div className=" containerDetail">
-            <img src={productosId.img} />
-          </div>
-          <div className="derecha media2 letra">
-            <h1>{productosId.name}</h1>
-            <br />
-
-            <br />
-            <h4> {productosId.detail}</h4>
-            <br />
-            <br />
-            <br />
-            <h2>
-              <b>$ {productosId.price}</b>
-            </h2>
-            {/*  <p>
-              <i>Stock: {productosId.stock}</i>
-            </p> */}
-
-            <button
-              className="boton"
-              type="button"
-              onClick={() => {
-                addItem({
-                  id: productosId,
-                  price: productosId.price,
-                  stock: productosId.stock,
-                  name: productosId.name,
-                  idProduct: productosId.id,
-                  idUser: user.idUser,
-                  detail: productosId.detail,
-                  quantity: 1,
-                });
-                addCartAlert();
-              }}
-            >
-              Agregar al carrito
-            </button>
-          </div>
+      <div className="fotoTransparente">
+        <div className="botonDetalleVolver">
+          <button>
+            <Link to="/tienda">Volver</Link>
+          </button>
         </div>
-      ) : (
-        <div>Cargando Producto</div>
-      )}
+
+        {productosId ? (
+          <div className="transparenteContenedor">
+            <div className=" containerImagen">
+              <img src={productosId.img} />
+            </div>
+
+            <div className="ContenedorTituloLetra">
+              <h1 className="letra">{productosId.name}</h1>
+            </div>
+
+            <div className="TextoClases">
+              <div>
+                <p>
+                  Lorem ipsum dolor sit amet, consectetur adipisicing elit.
+                  Doloribus dolor, similique ullam velit consequuntur
+                  aspernatur, labore vero ipsa error sequi eos animi, culpa
+                  voluptatibus voluptatem porro cupiditate fugit possimus eaque.
+                </p>
+              </div>
+
+              <div>
+                <h2>
+                  <b>$ {productosId.price}</b>
+                </h2>
+              </div>
+
+              <div>
+                <span>Stock: {productosId.stock}</span>
+              </div>
+
+              <div>
+                <button
+                  className="botonDelCarrito"
+                  type="button"
+                  onClick={() => {
+                    addItem({
+                      id: productosId,
+                      price: productosId.price,
+                      stock: productosId.stock,
+                      name: productosId.name,
+                      idProduct: productosId.id,
+                      idUser: user.idUser,
+                      detail: productosId.detail,
+                      quantity: 1,
+                    });
+                    addCartAlert();
+                  }}
+                >
+                  Agregar al carrito
+                </button>
+              </div>
+            </div>
+          </div>
+        ) : (
+          <div>Cargando Producto</div>
+        )}
+      </div>
     </div>
   );
 };
