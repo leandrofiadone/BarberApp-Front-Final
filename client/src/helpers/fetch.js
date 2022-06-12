@@ -38,3 +38,19 @@ export const fetchConToken = (endpoint, data, method = "GET") => {
     });
   }
 };
+
+export const fetchConTokenFiles = (endpoint, files, method = 'POST') => {
+  const url = `${baseUrl}/${endpoint}`;
+  const token = localStorage.getItem("token") || "";
+  const formData = new FormData()
+  formData.append('archivo', files)
+  return fetch(url, {
+    method,
+    headers: {
+      'x-token': token
+    },
+    body: formData,
+    redirect: 'follow'
+  });
+
+}

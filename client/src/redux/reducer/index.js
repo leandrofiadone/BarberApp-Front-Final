@@ -314,6 +314,9 @@ function rootReducer(state = initialState, action) {
       let Oldproductos = state.allProductos.filter(
         (p) => p.id !== action.payload.id
       );
+      let Oldproductos2 = state.productos.filter(
+        (p) => p.id !== action.payload.id
+      );
       let OldProductosAdmin = state.adminAllProducts.filter(
         (p) => p.id !== action.payload.id
       );
@@ -321,6 +324,7 @@ function rootReducer(state = initialState, action) {
       return {
         ...state,
         allProductos: Oldproductos.concat(action.payload),
+        productos: Oldproductos2.concat(action.payload),
         adminAllProducts: OldProductosAdmin.concat(action.payload),
       };
 
