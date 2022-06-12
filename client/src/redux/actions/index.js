@@ -559,7 +559,6 @@ export function addService(service) {
   return async function(dispatch) {
     let result = await fetchConToken(`services`, service, "POST");
     const data = await result.json();
-    console.log("data", data);
     if (data.ok) {
       Swal.fire("Success", "Servicio Agregado", "success");
       return dispatch({
