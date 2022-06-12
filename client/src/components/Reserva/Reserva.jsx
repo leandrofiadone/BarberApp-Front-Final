@@ -176,9 +176,8 @@ export function Reserva() {
                     </option>
                   ))}
                 </select>
-                {errors.barberos && (
-                  <p className="errorMjs">{errors.barberos}</p>
-                )}
+                {errors.barberos && <p className="textoError">{errors.barberos}</p>}
+                
               </div>
 
               <label>
