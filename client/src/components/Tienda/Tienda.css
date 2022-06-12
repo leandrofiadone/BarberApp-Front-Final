@@ -215,12 +215,20 @@
 }
 
 .ulCarrito{
+<<<<<<< HEAD
     margin: 0;
     padding: 0;
+=======
+    padding: 0;
+    margin: 0;
+>>>>>>> 2f75286381889acdc5ad84dab25952a008358717
 }
 
 .ulCarrito > button{
     padding: 0;
     margin: 0;
 }
+<<<<<<< HEAD
 
+=======
+>>>>>>> 2f75286381889acdc5ad84dab25952a008358717

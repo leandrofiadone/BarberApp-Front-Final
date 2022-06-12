@@ -100,6 +100,7 @@ export default function Home() {
 
         <div className="collapse navbar-collapse" id="navbarSupportedContent">
           <ul className="navbar-nav me-auto mb-2 mb-lg-0">
+<<<<<<< HEAD
             <li className="nav-item">
               {/* <a
                 className="nav-link text-light"
@@ -109,6 +110,9 @@ export default function Home() {
                 Inicio
               </a> */}
             </li>
+=======
+            
+>>>>>>> 2f75286381889acdc5ad84dab25952a008358717
             <li onClick={() => handleServicios(sectionServicios)}>
               <a className="nav-link text-light botonServicios">
                 Servicios

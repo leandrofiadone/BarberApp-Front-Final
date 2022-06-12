@@ -9,7 +9,7 @@
     align-items: center;
     display: flex;
     justify-content: center;
-}  */
+} */
 
 .formSearch{
     display: flex;
@@ -17,12 +17,13 @@
     justify-content: center;
     align-items: center;
     gap: 1em;
-    margin-left: -5%;
+    margin-left: -10%;
 }
 
 .formSearch > input{
     width: 10rem;
     height: 2em;
+    width: 10rem;
 }
 
 .formSearch > button{
@@ -31,5 +32,10 @@
 }
 =======
     height: 2em;
+<<<<<<< HEAD
 }
 >>>>>>> f45f6c7d047da1c911025a6f00f1f53fb7b847ec
+=======
+    padding: 3px;
+}
+>>>>>>> 2f75286381889acdc5ad84dab25952a008358717
