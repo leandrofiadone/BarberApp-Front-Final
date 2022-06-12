@@ -143,8 +143,8 @@ export default function Home() {
 
             {isAuth && (
               <Link className="nav-item linkReserva" to={`/profile`}>
-                <li className="nav-item">
-                  <button className="bg-dark text-light">Perfil</button>
+                <li className="nav-item mx-1">
+                  <button className="bg-dark text-warning"><i><b>Perfil</b></i></button>
                 </li>
               </Link>
             )}
