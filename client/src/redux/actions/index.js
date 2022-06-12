@@ -318,7 +318,7 @@ export function updateProductos(product) {
       const data = await result.json();
 
       if (data.ok) {
-        Swal.fire("Success", "Producto actualizado", "success");
+        Swal.fire("Success", `${data.producto.name} actualizado correctamente`, "success");
         return dispatch({
           type: UPDATE_PRODUCT,
           payload: data.producto,
