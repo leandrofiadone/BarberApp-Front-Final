@@ -126,11 +126,11 @@ export default function Home() {
             </li>
 
 
-            <li className="nav-item" >
+            {/* <li className="nav-item" >
               <Link className="nav-link text-light" to="/compras">
                 Mis Compras
               </Link>
-            </li>
+            </li> */}
 
 
             {!isAuth && (
@@ -144,7 +144,7 @@ export default function Home() {
             {isAuth && (
               <Link className="nav-item linkReserva" to={`/profile`}>
                 <li className="nav-item">
-                  <button className="bg-dark">Perfil</button>
+                  <button className="bg-dark text-light">Perfil</button>
                 </li>
               </Link>
             )}
