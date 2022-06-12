@@ -14,7 +14,6 @@ import "./Servicios.css";
 export function Servicios() {
   const dispatch = useDispatch();
   const allServices = useSelector((state) => state.servicios);
-
   console.log(allServices)
 
   useEffect(() => {
@@ -23,12 +22,9 @@ export function Servicios() {
 
 
   return (
-    <div >
-
-      <div className="divTituloService">
+    <div>
+      <div className="flex justify-center " id="servicios">
         <h1 className="tituloServicios" >Nuestros Servicios</h1>
-      </div>
-      <div className="containerCardService" id="servicios">
         <div className="serviciosCard">
           {          
           allServices?.map((s) => (

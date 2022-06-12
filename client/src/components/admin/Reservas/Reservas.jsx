@@ -5,11 +5,8 @@ import { useSelector } from "react-redux";
 const Reservas = () => {
   const { user } = useSelector((state) => state);
   const { allCitas } = useSelector((state) => state);
-  console.log(user);
-  console.log(allCitas);
 
   const filtrado = allCitas.filter((e) => e);
-  console.log(filtrado);
 
   const citaFalse = () => {
     filtrado.state === false;

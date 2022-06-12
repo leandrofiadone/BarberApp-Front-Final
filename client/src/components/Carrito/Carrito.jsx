@@ -24,6 +24,7 @@ export default function Carrito() {
     const {user} = useSelector(state => state)
     
 
+    if (isEmpty) return <h1 className="text-center">El carrito esta vacio</h1>
 
     function cerrarReg() {
         document.getElementById('carrito').style.display = 'none';
@@ -33,11 +34,7 @@ export default function Carrito() {
         <section className="py-4 container">
             <div className="row justify-content-center">
                 <div className="col-12">
-                    <button onClick={() => cerrarReg()} type="button" className="btn-close bg-danger text-light botonCierreCarrito" aria-label="Close"></button>
-                    {
-                        (isEmpty) &&
-                        <h1 className="text-center">El carrito está vacio</h1>
-                    }
+                    <button onClick={() => cerrarReg()} type="button" className="btn-close bg-danger text-light" aria-label="Close"></button>
                     <h5>Productos: ({totalUniqueItems}) Total items: ({totalItems})</h5>
                     <table className="table table-dark m-0">
                         {
@@ -70,7 +67,6 @@ export default function Carrito() {
                             })
                         }
                     </table>
-              
                 </div>
                 <div className="col-auto ms-auto">
                     <h2>Precio Total: $ {cartTotal}</h2>

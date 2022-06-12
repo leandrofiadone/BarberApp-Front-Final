@@ -9,6 +9,15 @@
 // import "./NavBar.css";
 
 // export default function NavBar() {
+//   const { isAuth, user } = useSelector((state) => state);
+
+//   const dispatch = useDispatch();
+//   const history = useHistory();
+//   const handleLogout = () => {
+//     dispatch(logout());
+//     history.replace("/");
+//   };
+// export default function NavBar() {
 
 //   const { isAuth, user } = useSelector((state) => state);
 
@@ -36,6 +45,32 @@
 //           <span className="navbar-toggler-icon"></span>
 //         </button>
 
+//         <div className="collapse navbar-collapse" id="navbarSupportedContent">
+//           <ul className="navbar-nav me-auto mb-2 mb-lg-0">
+//             <li className="nav-item">
+//               <a
+//                 className="nav-link text-light"
+//                 aria-current="page"
+//                 href="#inicio"
+//               >
+//                 Inicio
+//               </a>
+//             </li>
+//             <li>
+//               <a className="nav-link text-light" href="#servicios">
+//                 Servicios
+//               </a>
+//             </li>
+//             <li>
+//               <a className="nav-link text-light" href="#quienesSomos">
+//                 Quienes Somos
+//               </a>
+//             </li>
+//             <li className="nav-item" id="LinkTienda">
+//               <Link className="nav-link text-light" to="/tienda">
+//                 Tienda
+//               </Link>
+//             </li>
 //         <div className="collapse navbar-collapse" id="navbarSupportedContent">
 //           <ul className="navbar-nav me-auto mb-2 mb-lg-0">
 //             <li className="nav-item">
