@@ -40,7 +40,8 @@ export default function Tienda() {
 
   //Favourites:
   const allFavorites = useSelector((state) => state.favourites.allFavorites);
-  const [addFavourites, setFavourites] = useState([]);
+  const [addFavourites, setFavourites] = useState([{newFavourite:false},{newFavourite:false},{newFavourite:false}
+    ,{newFavourite:false},{newFavourite:false},{newFavourite:false},{newFavourite:false},{newFavourite:false},{newFavourite:false}]);
   //
 
   const [currentPage, setCurrentPage] = useState(1);
@@ -109,20 +110,32 @@ state: true
   //////Favourites///////
 
   useEffect(() => {
+    console.log("GetFavorites")
     user && dispatch(getFavourites(user.id));
-  }, [user]);
+  }, [user,currentPage]);
 
   useEffect(() => {
     if (allFavorites && allFavorites.length) {
+      console.log("ENTRE")
       let favorites = [];
       for (let i = 0; i < allFavorites.length; i++) {
         //busca el indice del producto donde coincidan los ids
         let found = currentProducts.findIndex(
           (f) => f.id === allFavorites[i].idProduct
         );
+        console.log(found)
         if (found > -1) {
           currentProducts.map((p) => favorites.push({ newFavourite: false }));
           favorites[found].newFavourite = true;
+          if(favorites.length < 9){
+            for(let i = favorites.length + 1; i < 10; i++){
+              favorites.push({ newFavourite: false });
+            }
+          }
+        }else{
+          for(let i = 0; i < 9; i++){
+            favorites.push({ newFavourite: false });
+          } 
         }
       }
       setFavourites(favorites);
@@ -369,14 +382,17 @@ state: true
                 <Link to={`tienda/${e.id}`} className="LinkDetail">
                   <button>+info</button>
                 </Link>
-                {/*     {/Renderizado de Corazones/} */}
-                {addFavourites.length && !addFavourites[index].newFavourite ? (
+
+                {/*Renderizado de Corazones*/}
+               
+                { Object.keys(user).length ? addFavourites.length && !addFavourites[index].newFavourite ? (
+
                   <img
                     onClick={() => handleAddFavourites(e.id, index)}
                     className="imagen-corazon-gris"
                     src={imgCorazonGris}
                   ></img>
-                ) : Object.keys(user).length ? (
+                ) : (
                   <img
                     onClick={() => handleDeleteFavourites(index, e.id)}
                     className="imagen-corazon-rojo"
