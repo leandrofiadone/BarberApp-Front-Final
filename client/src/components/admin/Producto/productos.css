@@ -27,3 +27,9 @@
 .buscador-productos form button{
     border-radius: 0px 4px 4px 0px;
 }
+
+.moverBoton{
+position: relative;
+right: 66rem;
+
+}

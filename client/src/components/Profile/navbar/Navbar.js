@@ -49,18 +49,24 @@ export const Navbar = () => {
         >
           Perfil
         </NavLink>
+        <NavLink
+          exact
+          activeClassName="bg-warning"
+          className="list-group-item pointer"
+          to="/"
+        >
+          Volver
+        </NavLink>
 
-        {
-
-          (isAuth && user.rol === 'ADMIN') &&
+        {isAuth && user.rol === "ADMIN" && (
           <NavLink
-            className='list-group-item'
+            className="list-group-item"
             activeClassName="bg-warning"
-            to='/admin/main'
+            to="/admin/main"
           >
             Administrador
           </NavLink>
-        }
+        )}
       </ul>
     </nav>
   );
