@@ -5,7 +5,7 @@ export default function ServiciosCard({ name, detail, price, time, img  }) {
 
   return (
     
-  <div  >
+  <div >
 
     <div className="serviciosCard">
     

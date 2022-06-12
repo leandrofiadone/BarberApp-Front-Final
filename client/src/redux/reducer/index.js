@@ -78,8 +78,8 @@ function rootReducer(state = initialState, action) {
       return {
         ...state,
         servicios: action.payload,
-        allServicios: action.payload,
         // categorias: action.payload,
+        allServicios: action.payload,
       };
     case ACTIONS.ADD_EMPLOYEE:
       return {
@@ -134,8 +134,7 @@ function rootReducer(state = initialState, action) {
       });
       return {
         ...state,
-        productos:
-          action.payload === "Filter" ? state.productos : orderName,
+        productos: action.payload === "Filter" ? state.productos : orderName,
       };
 
     case ACTIONS.SORT:

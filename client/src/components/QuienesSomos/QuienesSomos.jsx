@@ -1,23 +1,11 @@
-import { useRef } from 'react';
-
 import './QuienesSomos.css'
 
 
 const QuienesSomos = () => {
-
-  const quienesSomos = useRef(null);
-
-  const handleQuienesSomos = (elementRef) => {
-    window.scrollTo({
-      top: elementRef.current.offsetTop,
-      behavior: "smooth"
-    })
-  }
-
   return (
 
-    
     <div className='texto-quienes'>
+
 
       <h1 className='tituloQuienes'><i>Quienes Somos</i></h1>
     

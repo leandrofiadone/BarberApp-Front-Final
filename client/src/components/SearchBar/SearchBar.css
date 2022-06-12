@@ -9,7 +9,7 @@
     align-items: center;
     display: flex;
     justify-content: center;
-} */
+}  */
 
 .formSearch{
     display: flex;
@@ -26,5 +26,10 @@
 }
 
 .formSearch > button{
+<<<<<<< HEAD
     padding: 3px;
 }
+=======
+    height: 2em;
+}
+>>>>>>> f45f6c7d047da1c911025a6f00f1f53fb7b847ec

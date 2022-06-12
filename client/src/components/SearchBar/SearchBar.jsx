@@ -23,7 +23,7 @@ const SearchBar = () => {
 
   const handleClick = (e) => {
     e.preventDefault();
-    if (name.length > 3) {
+    if (name.length > 4) {
       console.log("enviado");
       setName("");
       dispatch(buscarProductos(name));
@@ -38,52 +38,47 @@ const SearchBar = () => {
   };
 
   return (
-    // <div className="d-flex">
-    //   <Stack>
-    //     <Autocomplete
-    //       id="producto"
-    //       options={productosComplet.map((option) => option.name)}
-    //       renderInput={(params) => (
-    //         <TextField
-    //         className="campotexto"
-    //           focus="false"
-    //           value={name}
-    //           label="Buscar Producto"
-    //           variant="outlined"
-    //           focused
-    //           onChange={(e) => handleChange(e)}
-    //           {...params}
-    //           onSelect={(e) => handleChange(e)}
-    //           InputProps={{
-    //             ...params.InputProps,
-    //             type: "text",
-    //             style: {
-    //               height: 35,
-    //               width: 200,
-    //               alignContent: "center",
-    //               color: "white",
-    //             },
-    //           }}
-    //         />
-    //       )}
-    //     />
-    //   </Stack>
-    //   <div className="mx-1">
-    //     <button
-    //       onClick={(e) => handleClick(e)}
-    //       className="btn btn-warning"
-    //       type="submit"
-    //       disabled={name === "" ? true : false}
-    //     >
-    //       Buscar
-    //     </button>
-    //   </div>
-    // </div>
-
-    <form class="form-inline my-2 my-lg-0 formSearch">
-      <input onChange={(e) => handleChange(e)}  value={name} class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search" />
-      <button onClick={(e) => handleClick(e)} class="btn btn-outline-warning my-2 my-sm-0" type="submit">Buscar</button>
-    </form>
+    <div className="d-flex">
+      <Stack>
+        <Autocomplete
+          id="producto"
+          options={productosComplet.map((option) => option.name)}
+          renderInput={(params) => (
+            <TextField
+            className="campotexto"
+              focus="false"
+              value={name}
+              label="Buscar Producto"
+              variant="outlined"
+              focused
+              onChange={(e) => handleChange(e)}
+              {...params}
+              onSelect={(e) => handleChange(e)}
+              InputProps={{
+                ...params.InputProps,
+                type: "text",
+                style: {
+                  height: 35,
+                  width: 200,
+                  alignContent: "center",
+                  color: "white",
+                },
+              }}
+            />
+          )}
+        />
+      </Stack>
+      <div className="mx-1">
+        <button
+          onClick={(e) => handleClick(e)}
+          className="btn btn-warning"
+          type="submit"
+          disabled={name === "" ? true : false}
+        >
+          Buscar
+        </button>
+      </div>
+    </div>
   );
 };
 
