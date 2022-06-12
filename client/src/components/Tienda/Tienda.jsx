@@ -257,34 +257,35 @@ state: true
                 </Link>
             </div>
             </ul>
-
-                <div className="searchbar ">
+                <div className="searchbar">
                   <SearchBar />
                 </div>
-                  <button
-                    onClick={() => registro()}
-                    type="button"
-                    class="btn btn-dark position-relative botonCarrito"
-                  >
-                    <img
-                      className="imgCarrito"
-                      src="https://www.ubolosoft.com/Carrito/images/carrito.png"
-                      alt=""
-                      style={{ height: "2rem", width: "2rem" }}
-                    />{" "}
-                    <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-secondary">
-                      {totalItems}
-                      <span class="visually-hidden"></span>
-                    </span>
-                  </button>
-              <Link to={`/favourites/${user.id}`}>
-              </li>
-              <li class="nav-item carritoContainer">
+            <ul className="ulCarrito">
+              <button
+                onClick={() => registro()}
+                type="button"
+                class="btn btn-dark position-relative botonCarrito"
+              >
+                <img
+                  className="imgCarrito"
+                  src="https://www.ubolosoft.com/Carrito/images/carrito.png"
+                  alt=""
+                  style={{ height: "2rem", width: "2rem" }}
+                />{" "}
+                <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-secondary">
+                  {totalItems}
+                  <span class="visually-hidden"></span>
+                </span>
+              </button>
+                  
+
+              
+              {/* <li class="nav-item carritoContainer"> */}
                 {/* <button  className="" >
                       <img className="imgCarrito" src="https://www.ubolosoft.com/Carrito/images/carrito.png" alt="" style={{height: "2rem", width: "2rem"}}/>
                     </button> */}
 
-                <button
+                {/* <button
                   onClick={() => registro()}
                   type="button"
                   class="btn btn-dark position-relative botonCarrito"
@@ -299,19 +300,29 @@ state: true
                     {totalItems}
                     <span class="visually-hidden"></span>
                   </span>
-                </button>
-              </li>
+                </button> */}
+              {/* </li> */}
               {/* <li className="numeroitems nav-item">
                     {totalItems}
               </li> */}
-              {Object.keys(user).length && <Link to={`/favourites/${user.id}`}>
+
+
+                {/* <Link to={`/favourites/${user.id}`}>
+                </Link> */}
+              {
+
+                (user.id) &&
+                
+              Object.keys(user).length && 
+              
+              <Link to={`/favourites/${user.id}`}>
                 <img
                   className="corazon-amarillo"
                   src={imgCorazonAmarillo}
-                ></img>
+                  />
               </Link>
          
-              </Link>}
+              }
             </ul>
           </div>
         </div>

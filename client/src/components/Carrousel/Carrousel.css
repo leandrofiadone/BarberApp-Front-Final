@@ -1,24 +1,28 @@
 .sliderOne{
     height: 100vh;
     max-height: 37rem;
-    background-size: 100%;
+    background-size: cover;
     background-image: url("https://www.comunicare.es/wp-content/uploads/2021/01/Publicidad-para-barberia.jpg");
     background-repeat: no-repeat;
-    background-position-y: center;
+    background-position: center;
 }
 
 .sliderTwo{
     height: 100vh;
     max-height: 37rem;
-    background-size: 100%;
+    background-size: cover;
     background-image: url("https://joseppons.com/formacion/wp-content/uploads/2020/11/servicios-salon-barberia.jpeg");
-    background-position-y: center;
+    background-position: center;
+    background-repeat: no-repeat;
+
 }
 
 .sliderThree{
     height: 100vh;
     max-height: 37rem;
-    background-size: 100%;
+    background-size: cover;
     background-image: url("https://buenosairesbarbershop.com/assets/img/bg/barberia_byn.jpg");
-    background-position-y: center;
+    background-position: center;
+    background-repeat: no-repeat;
+
 }
