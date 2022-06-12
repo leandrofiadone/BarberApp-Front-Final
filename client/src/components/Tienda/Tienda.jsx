@@ -260,7 +260,7 @@ state: true
                 <div className="searchbar">
                   <SearchBar />
                 </div>
-            <ul>
+            <ul className="ulCarrito">
               <button
                 onClick={() => registro()}
                 type="button"

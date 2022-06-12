@@ -9,7 +9,7 @@
     align-items: center;
     display: flex;
     justify-content: center;
-}  */
+} */
 
 .formSearch{
     display: flex;
@@ -17,13 +17,15 @@
     justify-content: center;
     align-items: center;
     gap: 1em;
-    margin-left: -5%;
+    margin-left: -10%;
 }
 
 .formSearch > input{
     height: 2em;
+    width: 10rem;
 }
 
 .formSearch > button{
     height: 2em;
+    padding: 3px;
 }
