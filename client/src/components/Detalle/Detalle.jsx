@@ -18,6 +18,7 @@ const Detalle = () => {
   const { addItem } = useCart();
 
   const { user } = useSelector((state) => state);
+  const productosId = useSelector((state) => state.detalle);
 
   function addCartAlert() {
     Swal.fire({
@@ -28,13 +29,11 @@ const Detalle = () => {
 
   useEffect(() => {
     dispatch(detalleDeProductos(id));
-  }, [dispatch, id]);
+  }, [dispatch]);
 
-  const deleteInfoProduct = (id) => {
-    dispatch(eliminarInfoDetalle(id));
-  };
-
-  const productosId = useSelector((state) => state.detalle);
+  /*   useEffect(() => {
+    return dispatch(eliminarInfoDetalle());
+  }, [dispatch]); */
 
   return (
     <div className="fotoBarber">

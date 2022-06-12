@@ -159,7 +159,7 @@ export function Reserva() {
                     </option>
                   ))}
                 </select>
-                {errors.service && <p>{errors.service}</p>}
+                {errors.service && <p className="errorMjs">{errors.service}</p>}
               </div>
 
               <div className=" form-group mb-2">
@@ -176,7 +176,9 @@ export function Reserva() {
                     </option>
                   ))}
                 </select>
-                {errors.barberos && <p>{errors.barberos}</p>}
+                {errors.barberos && (
+                  <p className="errorMjs">{errors.barberos}</p>
+                )}
               </div>
 
               <label>
