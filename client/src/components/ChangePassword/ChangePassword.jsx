@@ -23,9 +23,9 @@ const ResetPassword = () => {
 
     const handleSubmit = async() =>{
         const data = {idUser,password:input.password1}
-        try {
+        try {   
                              //await fetch(`http://localhost:3001/api/resetPassword/confirmation`
-                             
+                             //Ruta del deploy->>>
             const response = await fetch("https://barber-app-henry.herokuapp.com/api/resetPassword",
             {
             method: "POST",
