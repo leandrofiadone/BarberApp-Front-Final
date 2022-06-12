@@ -52,7 +52,7 @@ export default function Contenido(){
                                             return true;
                                         }
                                         else {
-                                            return 'Ingrese sólo letras minusculas.';
+                                            return 'Please enter a valid name.';
                                         }
                                     },
                                     trigger: "3"
@@ -168,7 +168,7 @@ export default function Contenido(){
                                 {
                                     id: "respuestaVuelta",
                                     options: [
-                                        {value: "y", label: "Si", trigger: "6A"},
+                                        {value: "y", label: "Yes", trigger: "6A"},
                                         {value: "n", label: "No", trigger: "6B"},
                                     ],
                                 }

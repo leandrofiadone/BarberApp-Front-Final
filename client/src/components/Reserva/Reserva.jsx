@@ -127,11 +127,12 @@ export function Reserva() {
 
       setTimeout(() => {
         history.push("/");
-        window.location.reload();
       }, 2000);
     }
     console.log(state);
+    console.log(state);
   };
+  console.log(state);
 
   return (
     <div className="foto">
@@ -158,7 +159,7 @@ export function Reserva() {
                     </option>
                   ))}
                 </select>
-                {errors.service && <p>{errors.service}</p>}
+                {errors.service && <p className="errorMjs">{errors.service}</p>}
               </div>
 
               <div className=" form-group mb-2">
@@ -175,7 +176,8 @@ export function Reserva() {
                     </option>
                   ))}
                 </select>
-                {errors.barberos && <p>{errors.barberos}</p>}
+                {errors.barberos && <p className="textoError">{errors.barberos}</p>}
+                
               </div>
 
               <label>

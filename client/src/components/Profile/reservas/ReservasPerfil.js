@@ -9,7 +9,7 @@ export const ReservasPerfil = () => {
   const dispatch = useDispatch();
   const { user } = useSelector((state) => state);
   const { citas } = useSelector((state) => state);
-  console.log(citas)
+  console.log(citas);
 
   const filtrado = citas.filter((e) => e.idUser === user.id);
   console.log(filtrado);
@@ -55,7 +55,7 @@ export const ReservasPerfil = () => {
         <tbody>
           {filtrado.map((e, index) => (
             <tr key={index}>
-              <td className="text-white"> {e.date.slice(0, 8)}</td>
+              <td className="text-white"> {e.date.slice(0, 9)}</td>
               <td className="text-white"> {e.date.slice(10)}</td>
               <td className="text-white"> {e.employee.name}</td>
               <td className="text-white">{e.services[0].name}</td>

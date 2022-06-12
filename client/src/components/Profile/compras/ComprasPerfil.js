@@ -11,11 +11,17 @@ export const ComprasPerfil = () => {
   const { user } = useSelector((state) => state);
   const { compras } = useSelector((state) => state);
 
-  // aqui no pueden ir useEffect porque? no sabemos
+//   useEffect(() => {
+//     dispatch(crearCompra(user.id));
+//   }, [dispatch, id]);
+//   console.log(compras)
+
+  // aqui no pueden ir useEffect porque? no sabemos PROBAR UN TRY-CATCH EN LA ACTION
   // useEffect(() => {
-  //   // dispatch(crearCompra(user.id));
+  //   dispatch(crearCompra(user.id));
   // }, [dispatch, id]);
 
+  console.log(compras.notification);
 
   return (
     <div>
@@ -25,7 +31,7 @@ export const ComprasPerfil = () => {
       <section className="py-4 container">
         <div className="row">
           <div className="col-12">
-            <table className="table table-dark m-0 table-striped">
+            <table className="table table-dark m-0">
               <thead>
                 <tr>
                   <th scope="col">Total:</th>
