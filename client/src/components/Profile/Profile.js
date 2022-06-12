@@ -1,9 +1,10 @@
 import React, { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { NavLink } from "react-router-dom";
+import { NavLink, Switch, Route, Redirect } from "react-router-dom";
 import { logout } from "../../redux/actions";
 import { ComprasPerfil } from "./compras/ComprasPerfil";
 import { EditarPerfil } from "./editar/EditarPerfil";
+import { Navbar } from "./navbar/Navbar";
 import "./Profile.css";
 import { ReservasPerfil } from "./reservas/ReservasPerfil";
 
@@ -23,55 +24,16 @@ const Profile = () => {
 
   return (
     <div className="main-perfil">
-      <nav>
-        <div className="img-perfil">
-          <img src={user.img} alt={user.name} />
-        </div>
-        <h1>{user.name}</h1>
-
-        <ul className="mt-3 list-group list-group-flush">
-          <li
-            className={`list-group-item pointer ${
-              section === "compras" ? "bg-warning" : ""
-            }`}
-            onClick={() => selectSection("compras")}
-          >
-            Mis Compras
-          </li>
-
-          <li
-            className={`list-group-item pointer ${
-              section === "reservas" ? "bg-warning" : ""
-            }`}
-            onClick={() => selectSection("reservas")}
-          >
-            Mis Reservaciones
-          </li>
-          <li
-            className={`list-group-item pointer ${
-              section === "editar" ? "bg-warning" : ""
-            }`}
-            onClick={() => selectSection("editar")}
-          >
-            Perfil
-          </li>
-          <li className="list-group-item">
-            <NavLink to="/">Volver a la tienda</NavLink>
-          </li>
-          <li className="list-group-item pointer" onClick={handleLogout}>
-            Logout
-          </li>
-          {user.rol === "ADMIN" && (
-            <li className="list-group-item">
-              <NavLink to="/admin/main">Administrador</NavLink>
-            </li>
-          )}
-        </ul>
-      </nav>
+      {/* este es el menu del panel de administracion */}
+      <Navbar />
       <section>
-        {section === "editar" && <EditarPerfil id={user.id} />}
-        {section === "compras" && <ComprasPerfil />}
-        {section === "reservas" && <ReservasPerfil />}
+        <Switch>
+          <Route exact path="/profile/editar" component={EditarPerfil} />
+          <Route exact path="/profile/reservas" component={ReservasPerfil} />
+          <Route exact path="/profile/compras" component={ComprasPerfil} />
+
+          <Redirect to="/profile/editar" />
+        </Switch>
       </section>
     </div>
   );

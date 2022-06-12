@@ -31,29 +31,26 @@ const Detalle = () => {
     dispatch(detalleDeProductos(id));
   }, [dispatch]);
 
-  /*   useEffect(() => {
-    return dispatch(eliminarInfoDetalle());
-  }, [dispatch]); */
+  const detalleEliminar = () => {
+    dispatch(eliminarInfoDetalle());
+  };
 
   return (
     <div className="fotoBarber">
       <div className="fotoTransparente">
         <div className="botonDetalleVolver">
-          <button>
+          <button onClick={() => detalleEliminar()}>
             <Link to="/tienda">Volver</Link>
           </button>
         </div>
-
         {productosId ? (
           <div className="transparenteContenedor">
             <div className=" containerImagen">
               <img src={productosId.img} />
             </div>
-
             <div className="ContenedorTituloLetra">
               <h1 className="letra">{productosId.name}</h1>
             </div>
-
             <div className="TextoClases">
               <div>
                 <p>
@@ -63,17 +60,14 @@ const Detalle = () => {
                   voluptatibus voluptatem porro cupiditate fugit possimus eaque.
                 </p>
               </div>
-
               <div>
                 <h2>
                   <b>$ {productosId.price}</b>
                 </h2>
               </div>
-
               <div>
                 <span>Stock: {productosId.stock}</span>
               </div>
-
               <div>
                 <button
                   className="botonDelCarrito"
