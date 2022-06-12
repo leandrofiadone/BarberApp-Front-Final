@@ -129,8 +129,6 @@ export function getServices() {
     const resp = await fetchSinToken("services");
     const data = await resp.json();
 
-
-    console.log(data)
     if (data.ok) {
       return dispatch({
         type: GET_SERVICES,
@@ -143,7 +141,7 @@ export function addEmployee(employee) {
   return async (dispatch) => {
     const resp = await fetchConToken("employee", employee, "POST");
     const data = await resp.json();
-    console.log("data. add:", data);
+
     if (data.ok) {
       return dispatch({
         type: ADD_EMPLOYEE,
@@ -225,8 +223,8 @@ export function crearCita(payload) {
   return async (dispatch) => {
     const respuesta = await fetchConToken("date", payload, "POST");
     const data = await respuesta.json();
-
     if (data.ok) {
+      console.log(data);
       dispatch({ type: CREAR_CITA, payload: data });
     }
   };
@@ -254,7 +252,7 @@ export function allBarberos() {
   return async (dispatch) => {
     const resp = await fetchSinToken("employee?all=false");
     const data = await resp.json();
-    console.log(data, "ACTIONS ALL BARBEROS")
+
     if (data.ok) {
       return dispatch({
         type: ALL_BARBEROS,

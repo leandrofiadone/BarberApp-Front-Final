@@ -3,24 +3,33 @@
     height: 30rem;
 }
 
+
+.botonAyuda{
+    position: fixed;
+    margin-left: 65rem;
+    margin-top: 29rem;
+    padding: 1rem;
+}
+
+.botonAyuda > button{
+    float: right;
+    padding: 1rem;
+    font-weight: bold;
+    border: none;
+    /* z-index: 1; */
+    /* background-color: aliceblue; */
+    border-radius: 100%;
+    width: 1rem;
+
+}
+
 .containerChat{
     display: flex;
     justify-content: center;
 }
 
-.botonAyuda{
-    transform: translateX(50%);
-}
-
-.botonAyuda > button{
-    float: right;
-    border-radius: 100%;
-    margin-right: 50%;
-    width: 5rem;
-    border: none;
-}
-
 .botonAyuda > button > img{
-    margin-left: -55%;
+    position: relative;
     width: 7rem;
+    margin-left: -1rem;
 }
