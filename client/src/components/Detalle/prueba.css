@@ -1,0 +1,109 @@
+@import url('https://fonts.googleapis.com/css2?family=Bungee&family=Mulish:wght@200&display=swap');
+
+.containerDetail {
+    display: grid;
+    place-items: center;
+    margin-top: 4rem;
+    text-transform: capitalize;
+    padding: 80px;
+}
+
+.letra {
+    font-family: 'Bungee', cursive;
+}
+
+img.izquierda {
+    float: left;
+}
+
+.derecha {
+    float: right;
+
+}
+
+.media {
+    display: flex;
+    align-items: flex-start;
+}
+
+.media2 {
+    flex: 1;
+    padding: 90px;
+
+}
+
+.botonDetalleVolver {
+    background-color: rgba(2, 2, 2, 0.573);
+    border: none;
+    padding: 10px;
+    border-radius: 15px;
+    color: rgba(248, 248, 248, 0.801);
+    margin-top: 1rem;
+    margin-left: 1rem;
+    position: relative;
+    left: 1rem;
+    top: -2rem;
+}
+
+.botonDelCarrito {
+    background-color: rgba(2, 2, 2, 0.573);
+    border: none;
+    padding: 10px;
+    border-radius: 15px;
+    color: rgba(248, 248, 248, 0.801);
+    margin-top: 1rem;
+    margin-left: 1rem;
+    position: relative;
+    left: -1rem;
+    top: 10rem;
+}
+
+.fotoTransparente {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    width: 100vw;
+    height: 100vh;
+    background-color: rgba(250, 246, 246, 0.043);
+    box-shadow: 1px 1px 25px 5px black;
+    border-radius: 30px;
+    margin-bottom: 20px;
+    padding-top: 20px;
+    padding-bottom: 20px;
+}
+
+.fotoBarber {
+    grid-template-columns: repeat(2, 1fr);
+    grid-template-areas: 'col-login col-register''btn-volver btn-volver';
+    grid-template-rows: auto;
+    justify-content: center !important;
+    align-content: center;
+    background-image: url('../../assets/pexels.jpeg');
+    background-position: center center;
+    background-size: cover;
+    width: 100vw;
+    height: 100vh;
+}
+
+.transparenteContenedor {
+    display: grid;
+    justify-content: center;
+    align-content: center;
+    align-items: center;
+    height: 600px;
+    width: 1000px;
+    background-color: rgba(191, 224, 233, 0.063);
+    border: 1px solid aliceblue;
+    border-radius: 14px;
+    
+    margin: 0 auto;
+    position: relative;
+    left: -2rem;
+    top: 2.2rem;
+}
+
+.precioDetalle {
+    position: relative;
+    left: 5rem;
+    top: 2.2rem;
+}
