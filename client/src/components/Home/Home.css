@@ -15,4 +15,16 @@
     margin-left: 0;
     width: 4rem;
 }
+
+.botonQuienes{
+    cursor: pointer;
+}
+
+.botonServicios{
+    cursor: pointer;
+}
+
+.linkReserva > button{
+    padding: 10px;
+}
  

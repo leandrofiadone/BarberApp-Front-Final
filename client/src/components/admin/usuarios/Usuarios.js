@@ -3,6 +3,8 @@ import { useDispatch, useSelector } from "react-redux";
 import Swal from "sweetalert2";
 import { fetchConToken } from "../../../helpers/fetch";
 import { banearUser } from "../../../redux/actions";
+import { Buscador } from "./Buscador";
+import { Filtros } from "./Filtros";
 
 export const Usuarios = () => {
   const { adminAllUsers } = useSelector((state) => state);
@@ -34,7 +36,12 @@ export const Usuarios = () => {
   };
 
   return (
-    <table className="table table-dark table-striped text-center">
+    <>
+      <div className="main-filtros">
+        <Buscador />
+        <Filtros />
+      </div>
+      <table className="table table-dark table-striped text-center">
       <thead>
         <tr>
           <th scope="col">#</th>
@@ -76,5 +83,6 @@ export const Usuarios = () => {
         ))}
       </tbody>
     </table>
+    </>
   );
 };

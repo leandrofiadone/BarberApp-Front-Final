@@ -1,28 +1,32 @@
 
+.containernavbartienda{
+    display: flex;
+    justify-content: flex-end;
+}
 
-.containerTienda{
-    color: white;
-    font-family: Montserrat;
-    margin-bottom: 10px;
-    /* margin-top: 5px; */
-    letter-spacing: 7px;
+.contTituloTiendaWeb{
+    display: flex;
+    justify-content: flex-end;
+    width: 27em;
     align-items: center;
-    width: 15rem;
-    background-color: black;
-    text-shadow: rgb(255, 145, 0) 0 0, cyan 0 0;
+    background-color: transparent;
+}
+
+.botonTiendaWeb{
+    font-family: Montserrat;
+    letter-spacing: 4px;
+    background: #000;
+    color: white;
+    padding: 10px;
+    text-shadow: rgb(255, 0, 0) 0 0, cyan 0 0;
     transition: text-shadow 200ms;
-    transform: translate(20rem);
+}
+
+.botonTiendaWeb:hover{
+    text-shadow: #d40000 -8px 0, cyan 6px 0;
 }
 
 
-.containerTienda > h5{
-    font-weight: bold;
-    margin-top: 10px;
-}
-
-.containerTienda:hover{
-    text-shadow: rgb(255, 145, 0) -1px 4px, cyan 6px 0;
-}
 
 .cardsTienda {
     display: grid;
@@ -87,10 +91,11 @@
     background-color: transparent;
     color: white;
     font-weight: lighter;
+    margin-left: 2em;
 }
 
 .contOrder {
-    margin-left: 1rem;
+    position: relative;
 }
 
 .allCarrito {
@@ -112,18 +117,22 @@
     float: right;
 }
 
-
+/* .buttonup{
+} */
 
 .buttonup > a{
     position: fixed;
-    right: 1rem;
-    bottom: 4rem;
+    right: 0.1rem;
+    bottom: 7rem;
     background-color: transparent;
     border: none;
+    border-radius: 100%;
+    width: 4rem;
 }
 
-.buttonup>img {
-    width: 200px
+.buttonup>a>img {
+    width: auto;
+    margin: 0;
 }
 
 .divNavbarTienda{
@@ -140,10 +149,6 @@
     background-image: url("https://images.vexels.com/media/users/3/132674/isolated/preview/5de3fc4efa4d8ff72773bfc119c1a8e9-bigote-blanco-hipster-3.png");
 }
 
-.carritoContainer {
-    margin-left: 62%;
-}
-
 .navbar-brandtienda{
     width: 60px;
      height: 50px;
@@ -152,29 +157,17 @@
      background-image: url("https://images.vexels.com/media/users/3/132674/isolated/preview/5de3fc4efa4d8ff72773bfc119c1a8e9-bigote-blanco-hipster-3.png");
 }
 
- /* .carritoContainer{
-     margin-left: -1rem;
-} */
-
 .numeroitems{
     position: relative;
     color: orange;
     font-weight: bold;
     font-size: 1.2rem;
-    transform: translate(2rem, -.5rem);
+    transform: translate(3rem, -2rem);
 }
 
-/* .containernavbartienda {
-    transform: translate(2rem,-.5rem);
-}  */
-
-.containernavbartienda{
-    display: flex;
-    justify-content: space-around;
-}
 
 .imgCarrito{
-    position: absolute;
+    /* position: absolute; */
     z-index: -1;
     margin: 0;
 }
@@ -185,15 +178,8 @@
 }
 
 .searchbar{
-    margin-top: 5px;
-    margin-left: 160%;
     color: white;
 }
-
-.dropContainer{
-    transform: translate(10rem);
-}
-
 
 .imagen-corazon-rojo{
     width: 25px;
@@ -216,7 +202,7 @@
 .corazon-amarillo{
     margin: 0px;
     margin-left: 20px;
-    width: 40px;
+    width: 2rem;
 }
 
 .corazon-amarillo:hover{
