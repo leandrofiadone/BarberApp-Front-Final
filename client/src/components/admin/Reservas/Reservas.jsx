@@ -1,6 +1,8 @@
-import React from "react";
+import React, { useState } from "react";
 
-import { useSelector } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
+
+import { EliminarCita } from "../../../redux/actions";
 
 import "./Reservas.css";
 
@@ -8,15 +10,17 @@ const Reservas = () => {
   const { user } = useSelector((state) => state);
   const { allCitas } = useSelector((state) => state);
 
-  const filtrado = allCitas.filter((e) => e);
-  console.log(filtrado);
+  const dispatch = useDispatch();
 
-  const citaFalse = () => {
-    filtrado ? filtrado.state === false : filtrado.finished === true;
-  };
-
-  const citaTrue = () => {
-    filtrado.state === true;
+  const handleChange = (id) => {
+    Swal.fire({
+      position: "top-end",
+      icon: "success",
+      title: "Cita Finalizada",
+      showConfirmButton: false,
+      timer: 1500,
+    });
+    dispatch(EliminarCita(id));
   };
 
   return (
@@ -31,10 +35,12 @@ const Reservas = () => {
             <th scope="col">Barbero</th>
             <th scope="col">Servicio</th>
             <th scope="col">Estado</th>
+
+            <th scope="col">Finalizar</th>
           </tr>
         </thead>
         <tbody>
-          {filtrado.map((e, index) => (
+          {allCitas.map((e, index) => (
             <tr key={index}>
               <td className="text-white">{e.user.name}</td>
               <td className="text-white">{e.user.email}</td>
@@ -46,25 +52,34 @@ const Reservas = () => {
               </td>
               <td className="text-white"> {e.employee.name}</td>
               <td className="text-white">{e.services[0].name}</td>
+              <td className="text-white">
+                {e.state === true ? (
+                  <button className="btn btn-warning botonReservaUsu" disabled>
+                    Pendiente
+                  </button>
+                ) : (
+                  <button className="btn btn-success botonReservaUsu" disabled>
+                    Finalizada
+                  </button>
+                )}
+              </td>
+
               <td>
-                <div className="btn-group" role="group" aria-label="acciones">
-                  {e.state ? (
-                    <button
-                      onClick={citaTrue}
-                      className="btn btn-warning botonReservaUsu"
-                    >
-                      Pendiente
-                    </button>
-                  ) : (
-                    <button
-                      disabled
-                      onClick={citaFalse}
-                      className="btn btn-success botonReservaUsu"
-                    >
-                      Finalizada
-                    </button>
-                  )}
-                </div>
+                <div
+                  className="btn-group"
+                  role="group"
+                  aria-label="acciones"
+                ></div>
+                {e.state ? (
+                  <button
+                    onClick={() => handleChange(e.id)}
+                    className="btn btn-outline-danger botonCancelarUsu"
+                  >
+                    Finalizar Cita
+                  </button>
+                ) : (
+                  <div></div>
+                )}
               </td>
             </tr>
           ))}

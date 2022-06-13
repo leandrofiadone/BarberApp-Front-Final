@@ -1,7 +1,7 @@
-import React, { useEffect, useMemo } from "react";
+import React from "react";
 
 import { useSelector, useDispatch } from "react-redux";
-import { deleteDate, deleteDateTable, allCitas } from "../../../redux/actions";
+import { deleteDate } from "../../../redux/actions";
 
 import "./ReservasPerfil.css";
 
@@ -10,10 +10,8 @@ export const ReservasPerfil = React.memo(() => {
   const { user } = useSelector((state) => state);
   const { citas } = useSelector((state) => state);
 
-  /*   let citasFiltradas = (citas) => {
-    return 
-  }; */
   const filtrado = citas.filter((e) => e.idUser === user.id);
+
   console.log(filtrado);
   const cancelarCitas = (id) => {
     Swal.fire({
@@ -29,9 +27,10 @@ export const ReservasPerfil = React.memo(() => {
           title: "Cita cancelada!",
           icon: "success",
           showConfirmButton: false,
+          timer: 900,
         });
-        dispatch(deleteDate(id));
       }
+      dispatch(deleteDate(id));
     });
   };
 
@@ -61,7 +60,7 @@ export const ReservasPerfil = React.memo(() => {
               <td className="text-white">
                 <div className="btn-group" role="group" aria-label="acciones">
                   <button
-                    className="btn btn-outline-danger"
+                    className="btn btn-outline-danger "
                     onClick={() => cancelarCitas(e.id)}
                   >
                     Cancelar

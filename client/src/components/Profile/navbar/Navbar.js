@@ -52,29 +52,14 @@ export const Navbar = () => {
         >
           Perfil
         </NavLink>
-
         <NavLink
           exact
-
           activeClassName="bg-warning"
-          className="list-group-item"
+          className="list-group-item pointer"
           to="/"
         >
           Volver
         </NavLink>
-
-        <NavLink
-          exact
-          className="list-group-item pointer"
-          activeClassName="bg-warning"
-          to="/"
-          onClick={handleLogout}
-        >
-          Salir
-        </NavLink>
-
-        
-
 
         {isAuth && user.rol === "ADMIN" && (
           <NavLink

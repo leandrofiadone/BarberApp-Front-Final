@@ -53,12 +53,7 @@ const Detalle = () => {
             </div>
             <div className="TextoClases">
               <div>
-                <p>
-                  Lorem ipsum dolor sit amet, consectetur adipisicing elit.
-                  Doloribus dolor, similique ullam velit consequuntur
-                  aspernatur, labore vero ipsa error sequi eos animi, culpa
-                  voluptatibus voluptatem porro cupiditate fugit possimus eaque.
-                </p>
+                <p>{productosId.detail}</p>
               </div>
               <div>
                 <h2>
