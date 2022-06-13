@@ -63,6 +63,7 @@ export const Navbar = () => {
           Volver
         </NavLink>
 
+        <NavLink
           className="list-group-item pointer"
           activeClassName="bg-warning"
           to="/"
@@ -71,7 +72,7 @@ export const Navbar = () => {
           Salir
         </NavLink>
 
-        {
+        
 
 
         {isAuth && user.rol === "ADMIN" && (
