@@ -174,7 +174,7 @@ export function Reserva() {
 
       setTimeout(() => {
         history.push("/");
-      }, 1000);
+      }, 2000);
     }
   };
 

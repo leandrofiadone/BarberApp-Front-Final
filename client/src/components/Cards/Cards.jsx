@@ -22,8 +22,10 @@ const Cards = ({ name, stock, price, img, id, category, idProduct }) => {
       </div>
 
       <div className="containerText">
-        <h5> {name}</h5>
-        <h5> ${price}</h5>
+        <h3> {name}</h3>
+        <br />
+        <h4><i><b>${price}</b></i></h4>
+        <br />
         <h6> Stock: {stock}</h6>
         <h6>Categoria: {category}</h6>
         {/*    <h6>{id}</h6> */}
@@ -31,7 +33,7 @@ const Cards = ({ name, stock, price, img, id, category, idProduct }) => {
           <button
             id="miBoton"
             type="button"
-            className="btn btn-success bg-dark fw-bold botonTiendaComprar"
+            className="btn btn-success fw-bold botonTiendaComprar"
             onClick={() => ambos()}
           >
             Comprar
