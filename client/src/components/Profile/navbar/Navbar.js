@@ -64,6 +64,7 @@ export const Navbar = () => {
         </NavLink>
 
         <NavLink
+          exact
           className="list-group-item pointer"
           activeClassName="bg-warning"
           to="/"
