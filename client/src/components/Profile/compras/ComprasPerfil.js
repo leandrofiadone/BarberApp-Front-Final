@@ -44,16 +44,16 @@ export const ComprasPerfil = () => {
               <tbody>
                 {compras.map((e, index) => (
                   <tr key={index}>
-                    <td className="text-light">$ {e.transaction_amount}</td>
-                    <td className="text-light">{e.status}</td>
-                    <td className="text-light">{e.dataProducts[0].title}</td>
-                    <td className="text-light">{e.dataProducts[0].quantity}</td>
+                    <td className="text-light">$ {e?.transaction_amount}</td>
+                    <td className="text-light">{e?.status}</td>
+                    <td className="text-light">{e?.dataProducts[0].title}</td>
+                    <td className="text-light">{e?.dataProducts[0].quantity}</td>
                     <td className="text-light">
-                      $ {e.dataProducts[0].unit_price}
+                      $ {e?.dataProducts[0].unit_price}
                     </td>
                     <td className="text-light">
                       <img
-                        src={e.dataProducts[0].picture_url}
+                        src={e?.dataProducts[0].picture_url}
                         style={{ height: "6rem" }}
                       />
                     </td>

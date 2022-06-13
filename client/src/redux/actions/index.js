@@ -392,6 +392,7 @@ export function revalidarAuth() {
         dispatch(getCategories());
       }
       dispatch(allCitas());
+      dispatch(crearCompra(data.id))
 
       return dispatch({
         type: types.login,
