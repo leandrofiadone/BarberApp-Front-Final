@@ -16,7 +16,7 @@
 
 .card {
     width: 500px;
-    height: 620px;
+    height: 600px;
     background-color: rgb(255, 255, 255);
     box-shadow: 0px 15px 30px rgba(228, 226, 226, 0.231);
     border-radius: 4%;
@@ -71,8 +71,12 @@
    margin-bottom: 15px;
 }
 .botonCambiarContraseña{
-   margin-left: 34%;
-   width: 32%;
-   height: 12%;
+   display: flex;
+   flex-direction: row;
+   margin-left: 25%;
+   justify-content: center;
+   align-items: center;
+   width: 50%;
+   height: 10%;
    margin-bottom: 10px;
 }
