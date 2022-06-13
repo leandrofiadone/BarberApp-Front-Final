@@ -54,11 +54,11 @@ const Reservas = () => {
               <td className="text-white">{e.services[0].name}</td>
               <td className="text-white">
                 {e.state === true ? (
-                  <button className="btn btn-warning" disabled>
+                  <button className="btn btn-warning botonReservaUsu" disabled>
                     Pendiente
                   </button>
                 ) : (
-                  <button className="btn btn-success" disabled>
+                  <button className="btn btn-success botonReservaUsu" disabled>
                     Finalizada
                   </button>
                 )}
@@ -73,7 +73,7 @@ const Reservas = () => {
                 {e.state ? (
                   <button
                     onClick={() => handleChange(e.id)}
-                    className="btn btn-outline-danger"
+                    className="btn btn-outline-danger botonCancelarUsu"
                   >
                     Finalizar Cita
                   </button>

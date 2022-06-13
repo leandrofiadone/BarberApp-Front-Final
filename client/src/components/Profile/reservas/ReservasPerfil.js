@@ -60,7 +60,7 @@ export const ReservasPerfil = React.memo(() => {
               <td className="text-white">
                 <div className="btn-group" role="group" aria-label="acciones">
                   <button
-                    className="btn btn-outline-danger"
+                    className="btn btn-outline-danger "
                     onClick={() => cancelarCitas(e.id)}
                   >
                     Cancelar
