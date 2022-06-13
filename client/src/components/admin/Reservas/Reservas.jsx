@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 
 import { useSelector } from "react-redux";
 
@@ -11,10 +11,15 @@ const Reservas = () => {
   const filtrado = allCitas.filter((e) => e);
   console.log(filtrado);
 
-  const citaFalse = () => {
-    filtrado ? filtrado.state === false : filtrado.finished === true;
+  const [state, setState] = useState(false);
+
+  const handleChange = () => {
+    setState(!state);
   };
 
+  const citaFalse = () => {
+    filtrado.state === false;
+  };
   const citaTrue = () => {
     filtrado.state === true;
   };
@@ -30,6 +35,7 @@ const Reservas = () => {
             <th scope="col">Hora</th>
             <th scope="col">Barbero</th>
             <th scope="col">Servicio</th>
+            <th scope="col">Canceladas</th>
             <th scope="col">Estado</th>
           </tr>
         </thead>
@@ -50,15 +56,29 @@ const Reservas = () => {
                 <div className="btn-group" role="group" aria-label="acciones">
                   {e.state ? (
                     <button
-                      onClick={citaTrue}
+                      disabled
+                      onClick={citaFalse}
+                      className="btn btn-danger botonReservaUsu"
+                    >
+                      Cancelada
+                    </button>
+                  ) : (
+                    <div></div>
+                  )}
+                </div>
+              </td>
+              <td>
+                <div className="btn-group" role="group" aria-label="acciones">
+                  {state ? (
+                    <button
+                      onClick={handleChange}
                       className="btn btn-warning botonReservaUsu"
                     >
                       Pendiente
                     </button>
                   ) : (
                     <button
-                      disabled
-                      onClick={citaFalse}
+                      onClick={handleChange}
                       className="btn btn-success botonReservaUsu"
                     >
                       Finalizada
