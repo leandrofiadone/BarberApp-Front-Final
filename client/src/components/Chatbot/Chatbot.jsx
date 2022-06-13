@@ -20,7 +20,7 @@ export default function Contenido() {
   return (
     <ThemeProvider theme={theme}>
       <div>
-        <div className="fixed-bottom botonAyuda">
+        <div className=" botonAyuda">
           <button
             type="button"
             className="btn"

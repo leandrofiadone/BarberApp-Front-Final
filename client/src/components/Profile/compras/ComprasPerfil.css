@@ -1,0 +1,14 @@
+.tituloproducto{
+    display: flex;
+    flex-direction: column;
+    flex-wrap: nowrap;
+    text-transform: capitalize;
+    margin-bottom: 1.5rem;
+}
+
+.tituloproductoimg{
+    display: flex;
+    flex-direction: column;
+    flex-wrap: nowrap;
+    text-transform: capitalize;
+}
