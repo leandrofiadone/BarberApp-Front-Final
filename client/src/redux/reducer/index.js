@@ -71,6 +71,7 @@ function rootReducer(state = initialState, action) {
 
     case ACTIONS.ELIMINAR_INFO_DETALLE:
       return {
+        ...state,
         detalle: [],
       };
 
