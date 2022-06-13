@@ -471,6 +471,7 @@ export const getFavourites = (idUser) => {
     try {
       const response = await fetchConToken(`favorite/${idUser}`);
       const json = await response.json();
+      console.log("Action",json)
       dispatch({ type: GET_FAVOURITES, payload: json });
     } catch (error) {
       console.error(error);

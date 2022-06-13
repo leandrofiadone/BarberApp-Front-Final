@@ -28,6 +28,7 @@ export const Navbar = () => {
 
       <ul className="mt-3 list-group list-group-flush">
         <NavLink
+          exact
           className="list-group-item text-dark"
           activeClassName="bg-warning"
           to="/profile/compras"
@@ -36,6 +37,7 @@ export const Navbar = () => {
         </NavLink>
 
         <NavLink
+          exact
           className="list-group-item pointer"
           activeClassName="bg-warning"
           to="/profile/reservas"
@@ -43,6 +45,7 @@ export const Navbar = () => {
           Mis Reservas
         </NavLink>
         <NavLink
+          exact
           className="list-group-item pointer"
           activeClassName="bg-warning"
           to="/profile/editar"
@@ -52,12 +55,24 @@ export const Navbar = () => {
 
         <NavLink
           exact
+
           activeClassName="bg-warning"
           className="list-group-item"
           to="/"
         >
           Volver
         </NavLink>
+
+          className="list-group-item pointer"
+          activeClassName="bg-warning"
+          to="/"
+          onClick={handleLogout}
+        >
+          Salir
+        </NavLink>
+
+        {
+
 
         {isAuth && user.rol === "ADMIN" && (
           <NavLink
