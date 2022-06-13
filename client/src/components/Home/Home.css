@@ -1,6 +1,5 @@
 
-
-.divwsp > a{
+.divwsp>a {
     position: fixed;
     right: .5rem;
     bottom: 6rem;
@@ -11,21 +10,20 @@
     height: 4rem;
 }
 
-.divwsp > a > img{
+.divwsp>a>img {
     margin-left: 0;
     width: 4rem;
 }
 
-.botonQuienes{
+.botonQuienes {
     cursor: pointer;
 }
 
-.botonServicios{
+.botonServicios {
     cursor: pointer;
 }
 
-.linkReserva > button{
+.linkReserva>button {
     padding: 7px;
     text-align: center;
 }
- 

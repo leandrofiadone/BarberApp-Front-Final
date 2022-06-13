@@ -317,7 +317,7 @@ export function updateProductos(product) {
       const data = await result.json();
 
       if (data.ok) {
-        Swal.fire("Success", "Producto actualizado", "success");
+        Swal.fire("Success", `${data.producto.name} actualizado correctamente`, "success");
         return dispatch({
           type: UPDATE_PRODUCT,
           payload: data.producto,
@@ -463,6 +463,7 @@ export const getFavourites = (idUser) => {
     try {
       const response = await fetchConToken(`favorite/${idUser}`);
       const json = await response.json();
+      console.log("Action",json)
       dispatch({ type: GET_FAVOURITES, payload: json });
     } catch (error) {
       console.error(error);
@@ -558,7 +559,6 @@ export function addService(service) {
   return async function(dispatch) {
     let result = await fetchConToken(`services`, service, "POST");
     const data = await result.json();
-    console.log("data", data);
     if (data.ok) {
       Swal.fire("Success", "Servicio Agregado", "success");
       return dispatch({

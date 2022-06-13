@@ -11,7 +11,7 @@
     justify-content: center;
 } */
 
-.formSearch{
+.formSearch {
     display: flex;
     flex-direction: row;
     justify-content: center;
@@ -20,22 +20,12 @@
     margin-left: -10%;
 }
 
-.formSearch > input{
-    width: 10rem;
+.formSearch>input {
     height: 2em;
     width: 10rem;
 }
 
-.formSearch > button{
-<<<<<<< HEAD
-    padding: 3px;
-}
-=======
+.formSearch>button {
     height: 2em;
-<<<<<<< HEAD
-}
->>>>>>> f45f6c7d047da1c911025a6f00f1f53fb7b847ec
-=======
     padding: 3px;
 }
->>>>>>> 2f75286381889acdc5ad84dab25952a008358717

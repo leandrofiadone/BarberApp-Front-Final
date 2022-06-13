@@ -14,7 +14,11 @@ import { useEffect, useState } from "react";
 import Paginado from "../Paginado/Paginado";
 
 import Swal from "sweetalert2";
-import { ALL_PRODUCTOS, filterCategoriaProductos, getCategories } from "../../redux/actions";
+import {
+  ALL_PRODUCTOS,
+  filterCategoriaProductos,
+  getCategories,
+} from "../../redux/actions";
 import { allProductos, orderByPrecio, sortName } from "../../redux/actions";
 import { getFavourites } from "../../redux/actions";
 import {
@@ -36,7 +40,8 @@ export default function Tienda() {
 
   //Favourites:
   const allFavorites = useSelector((state) => state.favourites.allFavorites);
-  const [addFavourites, setFavourites] = useState([]);
+  const [addFavourites, setFavourites] = useState([{newFavourite:false},{newFavourite:false},{newFavourite:false}
+    ,{newFavourite:false},{newFavourite:false},{newFavourite:false},{newFavourite:false},{newFavourite:false},{newFavourite:false}]);
   //
 
   const [currentPage, setCurrentPage] = useState(1);
@@ -91,34 +96,46 @@ state: true
     setState(e.target.value);
   };
 
-  const handleCategorias = async(e) => {
+  const handleCategorias = async (e) => {
     e.preventDefault();
     const resp = await fetchSinToken(`products?category=${e.target.value}`);
     const data = await resp.json();
-    if(data.ok){
-      dispatch({type: ALL_PRODUCTOS, payload: data.product})
-    }else{
-      Swal.fire('Error', data.msg, 'error')
+    if (data.ok) {
+      dispatch({ type: ALL_PRODUCTOS, payload: data.product });
+    } else {
+      Swal.fire("Error", data.msg, "error");
     }
   };
 
   //////Favourites///////
 
   useEffect(() => {
+    console.log("GetFavorites")
     user && dispatch(getFavourites(user.id));
-  }, [user]);
+  }, [user,currentPage]);
 
   useEffect(() => {
     if (allFavorites && allFavorites.length) {
+      console.log("ENTRE")
       let favorites = [];
       for (let i = 0; i < allFavorites.length; i++) {
         //busca el indice del producto donde coincidan los ids
         let found = currentProducts.findIndex(
           (f) => f.id === allFavorites[i].idProduct
         );
+        console.log(found)
         if (found > -1) {
           currentProducts.map((p) => favorites.push({ newFavourite: false }));
           favorites[found].newFavourite = true;
+          if(favorites.length < 9){
+            for(let i = favorites.length + 1; i < 10; i++){
+              favorites.push({ newFavourite: false });
+            }
+          }
+        }else{
+          for(let i = 0; i < 9; i++){
+            favorites.push({ newFavourite: false });
+          } 
         }
       }
       setFavourites(favorites);
@@ -150,7 +167,6 @@ state: true
     }
   };
   /////Favourites////
-
 
   return (
     <div>
@@ -190,46 +206,47 @@ state: true
                   aria-labelledby="dropdownMenuButton1"
                 >
                   <div className="contOrder">
-                    <label className="text-light">Categorias</label>
-                    <div className="text-dark">
-                      <br />
+                    <div>
                       <select
                         onChange={(e) => handleCategorias(e)}
-                        className="text-dark form-select-sm"
+                        className="form-select-sm"
                       >
-                       {
-                        categorias.map(categoria => (
-                          <option value={categoria.categorie} key={categoria.id}>
+                        <option hidden>Categorias</option>
+
+                        {categorias.map((categoria) => (
+                          <option
+                            value={categoria.categorie}
+                            key={categoria.id}
+                          >
                             {categoria.categorie}
                           </option>
-                        ))
-                       }
+                        ))}
                       </select>
                     </div>
                     <br />
 
-                    <div className="text-dark">
-                      <label className="text-light">Alfab</label>
-
+                    <div>
                       <select
                         name="select"
                         onChange={(e) => onSelectsChange(e)}
                         className="form-select-sm"
                       >
-                        <option value="Filter"> A-Z:</option>
+                        <option hidden value="Filter">
+                          A-Z
+                        </option>
                         <option value="ASC">Ascendente</option>
                         <option value="DESC">Descendente</option>
                       </select>
                     </div>
                     <br />
 
-                    <div className="text-dark">
-                      <label className="text-light">Precio</label>
+                    <div>
                       {productosBarberia ? (
                         <select
                           onChange={(e) => handlePrecio(e)}
                           className="form-select-sm"
                         >
+                          <option hidden>$$</option>
                           <option value="All"> Todos</option>
                           <option value="max">Mayor precio</option>
                           <option value="min"> Menor precio</option>
@@ -241,11 +258,8 @@ state: true
               </li>
             </ul>
 
-
-            <ul class="navbar-nav me-auto mb-lg-0 ulCarritoyTitulo">
-              
-
-            <div className="contTituloTiendaWeb">
+            <ul class="navbar-nav me-auto mb-lg-0 ">
+              <div className="contTituloTiendaWeb">
                 <Link to="/tienda">
                   <button
                     onClick={() => window.location.reload()}
@@ -255,11 +269,11 @@ state: true
                     <h5>Tienda Web</h5>
                   </button>
                 </Link>
-            </div>
+              </div>
             </ul>
-                <div className="searchbar">
-                  <SearchBar />
-                </div>
+            <div className="searchbar">
+              <SearchBar />
+            </div>
             <ul className="ulCarrito">
               <button
                 onClick={() => registro()}
@@ -277,15 +291,13 @@ state: true
                   <span class="visually-hidden"></span>
                 </span>
               </button>
-                  
 
-              
               {/* <li class="nav-item carritoContainer"> */}
-                {/* <button  className="" >
+              {/* <button  className="" >
                       <img className="imgCarrito" src="https://www.ubolosoft.com/Carrito/images/carrito.png" alt="" style={{height: "2rem", width: "2rem"}}/>
                     </button> */}
 
-                {/* <button
+              {/* <button
                   onClick={() => registro()}
                   type="button"
                   class="btn btn-dark position-relative botonCarrito"
@@ -306,23 +318,13 @@ state: true
                     {totalItems}
               </li> */}
 
-
-                {/* <Link to={`/favourites/${user.id}`}>
+              {/* <Link to={`/favourites/${user.id}`}>
                 </Link> */}
-              {
-
-                (user.id) &&
-                
-              Object.keys(user).length && 
-              
-              <Link to={`/favourites/${user.id}`}>
-                <img
-                  className="corazon-amarillo"
-                  src={imgCorazonAmarillo}
-                  />
-              </Link>
-         
-              }
+              {user.id && Object.keys(user).length && (
+                <Link to={`/favourites/${user.id}`}>
+                  <img className="corazon-amarillo" src={imgCorazonAmarillo} />
+                </Link>
+              )}
             </ul>
           </div>
         </div>
@@ -334,7 +336,6 @@ state: true
       </div>
 
       <br />
-
 
       <div className="navbar navbar-expand bg-dark navbarTienda"></div>
 
@@ -379,16 +380,19 @@ state: true
                   idProduct={e.id}
                 />
                 <Link to={`tienda/${e.id}`} className="LinkDetail">
-                  <button>+info</button>
+                  <button className="masinfo">+info</button>
                 </Link>
+
                 {/*Renderizado de Corazones*/}
-                { addFavourites.length && !addFavourites[index].newFavourite ? (
+               
+                { Object.keys(user).length ? addFavourites.length && !addFavourites[index].newFavourite ? (
+
                   <img
                     onClick={() => handleAddFavourites(e.id, index)}
                     className="imagen-corazon-gris"
                     src={imgCorazonGris}
                   ></img>
-                ) : Object.keys(user).length ? (
+                ) : (
                   <img
                     onClick={() => handleDeleteFavourites(index, e.id)}
                     className="imagen-corazon-rojo"

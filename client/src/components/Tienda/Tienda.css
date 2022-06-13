@@ -1,4 +1,3 @@
-
 .containernavbartienda{
     display: flex;
     justify-content: flex-end;
@@ -7,7 +6,7 @@
 .contTituloTiendaWeb{
     display: flex;
     justify-content: flex-end;
-    width: 16em;
+    width: 18em;
     align-items: center;
     background-color: transparent;
 }
@@ -36,6 +35,7 @@
     text-align: center;
     align-items: center;
     margin-top: 50px;
+    z-index: 10;
 }
 
 .LinkDetail {
@@ -210,25 +210,20 @@
     cursor: pointer;
 }
 .botonChat{
-    z-index: 1;
+    z-index: 1000;
 
 }
 
 .ulCarrito{
-<<<<<<< HEAD
-    margin: 0;
-    padding: 0;
-=======
     padding: 0;
     margin: 0;
->>>>>>> 2f75286381889acdc5ad84dab25952a008358717
 }
 
 .ulCarrito > button{
     padding: 0;
     margin: 0;
 }
-<<<<<<< HEAD
 
-=======
->>>>>>> 2f75286381889acdc5ad84dab25952a008358717
+.masinfo{
+    z-index: 1;
+}

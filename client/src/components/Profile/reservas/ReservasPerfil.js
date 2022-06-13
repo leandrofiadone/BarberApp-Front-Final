@@ -31,7 +31,7 @@ export const ReservasPerfil = () => {
         dispatch(deleteDate(id));
         setTimeout(() => {
           window.location.reload();
-        }, 350);
+        }, 540);
       }
     });
   };

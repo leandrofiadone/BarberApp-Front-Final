@@ -1,6 +1,6 @@
 import React from "react";
-import './Carrousel.css'
-import 'bootstrap'
+import "./Carrousel.css";
+import "bootstrap";
 
 export default function Carrousel(){
     return(

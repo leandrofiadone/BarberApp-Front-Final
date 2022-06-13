@@ -95,7 +95,7 @@ export const Navbar = () => {
           className="list-group-item"
           to="/"
         >
-          Volver a la tienda
+          Volver
         </NavLink>
 
         <NavLink

@@ -1,31 +1,31 @@
 @import url('https://fonts.googleapis.com/css2?family=Bungee&family=Mulish:wght@200&display=swap');
-
-.containerImagen {
-    display: grid;
+  
+.containerImagen{
+    display: grid; 
     text-transform: capitalize;
     grid-area: imagen;
     align-self: start;
     justify-self: center;
 }
 
-.letra {
+.letra{
     font-family: 'Bungee', cursive;
 }
-
-.ContenedorTituloLetra {
+.ContenedorTituloLetra{
     grid-area: titulo;
     justify-self: center;
     align-self: center;
 }
 
-.botonDetalleVolver {
+
+.botonDetalleVolver{
     align-self: center;
     grid-area: btn-volver;
     width: 100px;
     margin-left: 0.7rem;
-}
+} 
 
-.botonDetalleVolver button {
+.botonDetalleVolver button{
     background-color: rgba(2, 2, 2, 0.573);
     border: none;
     padding: 10px;
@@ -33,18 +33,19 @@
     color: rgba(248, 248, 248, 0.801);
 }
 
-.botonDetalleVolver button a {
+.botonDetalleVolver button a{
     color: white;
     text-decoration: none;
 }
 
-.botonDelCarrito {
+
+.botonDelCarrito{
     background-color: rgba(2, 2, 2, 0.573);
     border: none;
     padding: 10px;
     border-radius: 15px;
     color: rgba(248, 248, 248, 0.801);
-
+  
 }
 
 .fotoBarber {
@@ -52,11 +53,10 @@
     background-position: center center;
     background-size: cover;
     width: 100vw;
-    height: 100vh;
+    height: 100vh; 
 }
-
-.fotoTransparente {
-    display: grid;
+.fotoTransparente{
+    display: grid;  
     width: 100vw;
     height: 100vh;
     backdrop-filter: blur(2px);
@@ -65,8 +65,9 @@
     grid-template-columns: 1fr;
     grid-template-rows: 100px auto;
     grid-template-areas: "btn-volver"
-        "card";
+                         "card";
 }
+
 
 .transparenteContenedor {
     display: grid;
@@ -83,18 +84,18 @@
     grid-area: card;
     grid-template-rows: 100px 380px;
     grid-template-areas: "titulo titulo"
-        "imagen texto";
+                         "imagen texto";
 }
 
-.TextoClases {
-    grid-area: texto;
-    align-self: start;
-    display: grid;
-    grid-template-columns: 1fr;
-    grid-template-rows: repeat(4, auto);
-    gap: 10px;
+.TextoClases{
+  grid-area: texto;
+  align-self: start;
+  display: grid;
+  grid-template-columns: 1fr;
+  grid-template-rows: repeat(4, auto);
+  gap: 10px;
 }
 
 .TextoClases div p {
-    color: white;
+  color: white;
 }

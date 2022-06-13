@@ -1,9 +1,9 @@
 .serviciosCard{
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
     justify-content: center;
     align-items: center;
-    transform: translateX(2.5%);
     transition: 0.3s;
     animation: move 2s;
 }
@@ -56,7 +56,7 @@
     color: white;
     font-family: Montserrat;
     margin-bottom: 10px;
-    letter-spacing: 7px;
+    letter-spacing: 10px;
     align-items: center;
     width: 100%;
     height: 5rem;
@@ -66,7 +66,7 @@
 }
 
 .tituloServicios:hover{
-    text-shadow: #8F5800 -8px 0, rgb(207, 207, 207) 6px 0;
+    text-shadow: red -8px 0, cyan 6px 0;
 }
 
 .divdetailserv{

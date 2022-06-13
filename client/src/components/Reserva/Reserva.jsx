@@ -127,6 +127,7 @@ export function Reserva() {
 
       setTimeout(() => {
         history.push("/");
+        window.location.reload();
       }, 2000);
     }
     console.log(state);
@@ -176,8 +177,9 @@ export function Reserva() {
                     </option>
                   ))}
                 </select>
-                {errors.barberos && <p className="textoError">{errors.barberos}</p>}
-                
+                {errors.barberos && (
+                  <p className="textoError">{errors.barberos}</p>
+                )}
               </div>
 
               <label>

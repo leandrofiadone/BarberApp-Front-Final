@@ -1,35 +1,47 @@
-.allContainerChat{
+.allContainerChat {
     width: 25rem;
     height: 30rem;
 }
 
-
-.botonAyuda{
-    position: fixed;
-    margin-left: 65rem;
-    margin-top: 29rem;
-    padding: 1rem;
-}
-
-.botonAyuda > button{
-    float: right;
-    padding: 1rem;
-    font-weight: bold;
-    border: none;
-    /* z-index: 1; */
-    /* background-color: aliceblue; */
-    border-radius: 100%;
-    width: 1rem;
-
-}
-
-.containerChat{
+.containerChat {
     display: flex;
     justify-content: center;
 }
 
-.botonAyuda > button > img{
-    position: relative;
+/* .botonAyuda {
+    background-color: aqua;
+}
+
+.botonAyuda>button {
+    float: right;
+    border-radius: 100%;
+    width: 5rem;
+    border: none;
+}
+
+.botonAyuda>button>img {
+    z-index: 10;
+    margin-left: -2rem;
     width: 7rem;
-    margin-left: -1rem;
+} */
+
+.botonAyuda{
+    position: fixed;
+    right: 0rem;
+    bottom: 0;
+
+}
+
+.botonAyuda > button{
+    padding: 0;
+    width: 6rem;
+    border-radius: 100%;
+    font-weight: bold;
+    border: none;
+    background-color: transparent;
+}
+
+.botonAyuda > button > img{
+    transform: translateX(-165%);
+    width: 7rem;
 }
