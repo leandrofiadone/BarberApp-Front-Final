@@ -27,7 +27,6 @@ function Calendario({ date, setState, state }) {
   };
 
   const dateCitas = citas.map((e) => [e.date, e.idEmployee]); //TODAS LAS FECHAS Y TODAS LAS HORAS
-  console.log(dateCitas);
 
   return (
     <DatePicker

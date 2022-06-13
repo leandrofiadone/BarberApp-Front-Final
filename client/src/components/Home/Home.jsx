@@ -6,7 +6,7 @@ import Contenido from "../Chatbot/Chatbot";
 
 //NAVBAR
 
-import { Link, Redirect } from "react-router-dom";
+import { Link } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { useHistory } from "react-router-dom";
 import { ComprasPerfil } from "../Profile/compras/ComprasPerfil";
@@ -17,7 +17,7 @@ import "../NavBar/NavBar.css";
 
 /////////////////////////////////////////////////////
 
-// import Geolocalizacion from "../Geolocalizacion/Geolocalizacion";
+//import Geolocalizacion from "../Geolocalizacion/Geolocalizacion";
 
 import "./Home.css";
 // import { MDBFooter } from "mdb-react-ui-kit";
@@ -110,16 +110,18 @@ export default function Home() {
                 </Link>
               </li>
 
-              <li className="nav-item">
+              {/*   <li className="nav-item">
                 <Link className="nav-link text-light" to="/compras">
                   Mis Compras
                 </Link>
-              </li>
+              </li> */}
 
               {!isAuth && (
                 <Link className="nav-item linkReserva" to="/auth/login">
                   <li className="nav-item">
-                    <button className="bg-dark">Ingresar/Registrarse</button>
+                    <button className="bg-dark mx-2">
+                      Ingresar/Registrarse
+                    </button>
                   </li>
                 </Link>
               )}
@@ -127,7 +129,7 @@ export default function Home() {
               {isAuth && (
                 <Link className="nav-item linkReserva" to={`/profile`}>
                   <li className="nav-item">
-                    <button className="bg-dark">Perfil</button>
+                    <button className="bg-dark mx-2">Perfil</button>
                   </li>
                 </Link>
               )}
@@ -204,7 +206,6 @@ export default function Home() {
             <section className="d-flex justify-content-center justify-content-lg-between p-4 border-bottom">
               <div className="me-5 d-none d-lg-block" />
               <div className="text-light"></div>
-              <span>QUIENES SOMOS</span>
             </section>
 
             <section>
@@ -230,7 +231,7 @@ export default function Home() {
               style={{ backgroundColor: "rgba(0, 0, 0, 0.05)" }}
             >
               <a className="text-reset fw-bold" href="https://mdbootstrap.com/">
-                BarberApp
+                Barber App
               </a>
             </div>
           </div>

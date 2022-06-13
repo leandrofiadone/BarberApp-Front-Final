@@ -24,3 +24,14 @@ img{
     justify-items: center;
     margin-bottom: -2rem;
 }
+
+ .botonTiendaComprar {
+    display: flex;
+    flex-direction: row;
+    margin-left: -2%;
+    justify-content: center;
+    align-items: center;
+    width: 20%;
+    height: 20px;
+    margin-bottom: -2px;
+} 
