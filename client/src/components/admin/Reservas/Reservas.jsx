@@ -2,14 +2,17 @@ import React from "react";
 
 import { useSelector } from "react-redux";
 
+import "./Reservas.css";
+
 const Reservas = () => {
   const { user } = useSelector((state) => state);
   const { allCitas } = useSelector((state) => state);
 
   const filtrado = allCitas.filter((e) => e);
+  console.log(filtrado);
 
   const citaFalse = () => {
-    filtrado.state === false;
+    filtrado ? filtrado.state === false : filtrado.finished === true;
   };
 
   const citaTrue = () => {
@@ -35,21 +38,28 @@ const Reservas = () => {
             <tr key={index}>
               <td className="text-white">{e.user.name}</td>
               <td className="text-white">{e.user.email}</td>
-              <td className="text-white"> {e.date.slice(0, 8)}</td>
-              <td className="text-white"> {e.date.slice(10)}</td>
+              <td className="text-white">
+                {new Date(e.date).toLocaleString("en-GB").slice(0, 10)}
+              </td>
+              <td className="text-white">
+                {new Date(e.date).toLocaleString("en-GB").slice(11)}
+              </td>
               <td className="text-white"> {e.employee.name}</td>
               <td className="text-white">{e.services[0].name}</td>
               <td>
                 <div className="btn-group" role="group" aria-label="acciones">
                   {e.state ? (
-                    <button onClick={citaTrue} className="btn btn-warning">
+                    <button
+                      onClick={citaTrue}
+                      className="btn btn-warning botonReservaUsu"
+                    >
                       Pendiente
                     </button>
                   ) : (
                     <button
                       disabled
                       onClick={citaFalse}
-                      className="btn btn-success"
+                      className="btn btn-success botonReservaUsu"
                     >
                       Finalizada
                     </button>

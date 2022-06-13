@@ -51,6 +51,8 @@ export const DELETE_SERVICE = "DELETE_SERVICE";
 export const ADMIN_GET_ALL_SERVICES = "ADMIN_GET_ALL_SERVICES";
 export const ADMIN_GET_ALL_EMPLOYEE = "ADMIN_GET_ALL_EMPLOYEE";
 
+export const CITAS_EMPLEADO = "CITAS_EMPLEADO";
+
 // all products carga todos los productos que estan activos solo activos
 export function allProductos() {
   return async (dispatch) => {
@@ -207,7 +209,7 @@ export function orderByPrecio(payload) {
 
 export function allCitas() {
   return async (dispatch) => {
-    const resp = await fetchSinToken("date");
+    const resp = await fetchSinToken("date?state=true");
     const data = await resp.json();
 
     if (data.ok) {
@@ -226,6 +228,7 @@ export function crearCita(payload) {
     if (data.ok) {
       console.log(data);
       dispatch({ type: CREAR_CITA, payload: data });
+      dispatch(allCitas());
     }
   };
 }
@@ -317,7 +320,11 @@ export function updateProductos(product) {
       const data = await result.json();
 
       if (data.ok) {
-        Swal.fire("Success", `${data.producto.name} actualizado correctamente`, "success");
+        Swal.fire(
+          "Success",
+          `${data.producto.name} actualizado correctamente`,
+          "success"
+        );
         return dispatch({
           type: UPDATE_PRODUCT,
           payload: data.producto,
@@ -382,8 +389,9 @@ export function revalidarAuth() {
       if (data.rol === "ADMIN") {
         dispatch(adminGetAllProducts());
         dispatch(getAllUsers());
-        dispatch(getCategories())
+        dispatch(getCategories());
       }
+      dispatch(allCitas());
 
       return dispatch({
         type: types.login,
@@ -450,19 +458,20 @@ export function deleteDate(id) {
   return async function(dispatch) {
     const result = await fetchConToken(`date/${id}`, {}, "DELETE");
     const data = await result.json();
+    console.log(data);
     if (data.ok) {
-      dispatch({
-        type: DELETE_DATE,
-        payload: data.allDates,
-      });
+      Swal.fire("Success", "Cita cancelada", "success");
+      dispatch(allCitas());
     }
   };
 }
+
 export const getFavourites = (idUser) => {
   return async (dispatch) => {
     try {
       const response = await fetchConToken(`favorite/${idUser}`);
       const json = await response.json();
+      console.log("Action",json)
       dispatch({ type: GET_FAVOURITES, payload: json });
     } catch (error) {
       console.error(error);
@@ -642,6 +651,20 @@ export function getAdminAllEmpleados() {
       return dispatch({
         type: ADMIN_GET_ALL_EMPLOYEE,
         payload: data.allEmployes,
+      });
+    }
+  };
+}
+
+export function datesEmployee(idEmployee) {
+  return async (dispatch) => {
+    const resp = await fetchSinToken(`date/${idEmployee}`);
+    const data = await resp.json();
+
+    if (data.ok) {
+      return dispatch({
+        type: CITAS_EMPLEADO,
+        payload: data.foundDatesEmployee,
       });
     }
   };

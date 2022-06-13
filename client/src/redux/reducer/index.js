@@ -31,6 +31,8 @@ const initialState = {
   adminAllServices: [],
   detalleEmpleado: [],
   detalleServicio: [],
+
+  citasEmpleado: [],
 };
 
 function rootReducer(state = initialState, action) {
@@ -71,6 +73,7 @@ function rootReducer(state = initialState, action) {
 
     case ACTIONS.ELIMINAR_INFO_DETALLE:
       return {
+        ...state,
         detalle: [],
       };
 
@@ -328,15 +331,6 @@ function rootReducer(state = initialState, action) {
         adminAllProducts: OldProductosAdmin.concat(action.payload),
       };
 
-    case ACTIONS.DELETE_DATE:
-      let cancelarCita = state.citas.filter((e) => e.id !== action.payload);
-      let todasLasCitas = action.payload;
-
-      return {
-        ...state,
-        citas: cancelarCita.concat(todasLasCitas),
-      };
-
     case ACTIONS.ALL_CITAS_ADMIN:
       return {
         ...state,
@@ -346,6 +340,12 @@ function rootReducer(state = initialState, action) {
       return {
         ...state,
         favourites: action.payload,
+      };
+
+    case ACTIONS.CITAS_EMPLEADO:
+      return {
+        ...state,
+        citasEmpleado: action.payload,
       };
 
     default:

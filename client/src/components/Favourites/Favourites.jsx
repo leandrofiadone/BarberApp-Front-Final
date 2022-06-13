@@ -13,12 +13,18 @@ const Favourites = () => {
   const allFavorites = useSelector((state) => state.favourites.allFavorites);
   const productosBarberia = useSelector((state) => state.productos);
   const dispatch = useDispatch();
-  let favourites = favoritesRender(allFavorites, productosBarberia);
-  const [favouriteState, setFavourites] = useState(favourites);
+  const [favouriteState, setFavourites] = useState([]);
 
   useEffect(() => {
     dispatch(getFavourites(id));
   },[id]);
+
+  useEffect(()=>{
+     setFavourites(favoritesRender(allFavorites, productosBarberia));
+  },[allFavorites])
+
+console.log("allFavorites --> favorites",allFavorites)
+
 
   return (
     <div className="container-General">

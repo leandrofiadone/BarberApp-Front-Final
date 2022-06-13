@@ -18,7 +18,7 @@ const Cards = ({ name, stock, price, img, id, category, idProduct }) => {
   return (
     <div className="containerCard">
       <div className="containerImg">
-        <img src={img} alt="Img not found" maxwidth="500"/>
+        <img src={img} alt="Img not found" maxwidth="500" />
       </div>
 
       <div className="containerText">
@@ -31,7 +31,7 @@ const Cards = ({ name, stock, price, img, id, category, idProduct }) => {
           <button
             id="miBoton"
             type="button"
-            className="btn btn-success bg-dark fw-bold"
+            className="btn btn-success bg-dark fw-bold botonTiendaComprar"
             onClick={() => ambos()}
           >
             Comprar
