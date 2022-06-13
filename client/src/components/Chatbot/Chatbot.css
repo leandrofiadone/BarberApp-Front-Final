@@ -1,27 +1,26 @@
-.allContainerChat{
+.allContainerChat {
     width: 25rem;
     height: 30rem;
 }
 
-
-.botonAyuda{
-    padding: 1rem;
-}
-
-.botonAyuda > button{
-    float: right;
-    padding: 1rem;
-    font-weight: bold;
-    border: none;
-
-}
-
-.containerChat{
+.containerChat {
     display: flex;
     justify-content: center;
 }
 
-.botonAyuda > button > img{
+.botonAyuda {
+    transform: translateX(50%);
+}
+
+.botonAyuda>button {
+    float: right;
+    border-radius: 100%;
+    margin-right: 50%;
+    width: 5rem;
+    border: none;
+}
+
+.botonAyuda>button>img {
+    margin-left: -55%;
     width: 7rem;
-    margin-right: -3rem;
 }

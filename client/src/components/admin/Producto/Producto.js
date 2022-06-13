@@ -2,6 +2,7 @@ import React, { useEffect } from "react";
 
 import { Link } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
+import { useForm } from "../../../hooks/useForm";
 
 import {
   activarProducto,
@@ -12,9 +13,12 @@ import {
   detalleDeProductos,
 } from "../../../redux/actions";
 import "./productos.css";
+import { fetchSinToken } from "../../../helpers/fetch";
+import { types } from "../../../types/types";
+import Swal from "sweetalert2";
 
 export default function Producto() {
-  const { adminAllProducts } = useSelector((state) => state);
+  const { adminAllProducts, categorias } = useSelector((state) => state);
 
   const dispatch = useDispatch();
 
@@ -23,13 +27,43 @@ export default function Producto() {
   };
 
   const handleActive = (id) => {
-    console.log(id);
     dispatch(activarProducto(id));
   };
 
   const handleDetailProduct = (id) => {
     dispatch(detalleDeProductos(id));
   };
+
+  const [form, handleInputChange, reset] = useForm({
+    search: "",
+  });
+
+  const handleSearch = async (e) => {
+    e.preventDefault();
+
+    const resp = await fetchSinToken(`products?all=true&name=${form.search}`);
+    const data = await resp.json();
+
+    if (data.ok) {
+      dispatch({ type: types.getAllProductsAdmin, payload: data.product });
+    } else {
+      Swal.fire("Error", data.msg, "error");
+    }
+  };
+
+  const handleChange = async ({ target }) => {
+    const resp = await fetchSinToken(
+      `products?all=true&category=${target.value}`
+    );
+    const data = await resp.json();
+    if (data.ok) {
+      dispatch({ type: types.getAllProductsAdmin, payload: data.product });
+    } else {
+      Swal.fire("Error", data.msg, "error");
+    }
+  };
+
+  const handleAllProducts = () => dispatch(adminGetAllProducts());
 
   // useEffect(() => {
   //     console.log('hey')
@@ -38,6 +72,37 @@ export default function Producto() {
 
   return (
     <>
+      <div className="buscador-productos">
+        <form onSubmit={handleSearch}>
+          <input
+            type="search"
+            placeholder="Busca un producto"
+            name="search"
+            className="form-control"
+            value={form.search}
+            onChange={handleInputChange}
+          />
+          <button className="btn btn-warning" type="submit">
+            Buscar
+          </button>
+        </form>
+        <div className="btn-allProducts">
+          <button className="btn btn-success" onClick={handleAllProducts}>
+            Todos
+          </button>
+        </div>
+        <div className="filter-categoria">
+          <select className="form-select" onChange={handleChange}>
+            <option>Selecciona</option>
+            {categorias.map((categoria) => (
+              <option value={categoria.categorie} key={categoria.id}>
+                {categoria.categorie}
+              </option>
+            ))}
+          </select>
+        </div>
+      </div>
+
       <table className="table table-dark table-striped text-center">
         <thead>
           <tr>
@@ -99,7 +164,7 @@ export default function Producto() {
 
       <div className="div_pie">
         <Link to={`/admin/product/add`} className="LinkDetail">
-          <button className="btn_agregar">Agregar Producto</button>
+          <button className=" moverBoton">Agregar Producto</button>
         </Link>
       </div>
     </>

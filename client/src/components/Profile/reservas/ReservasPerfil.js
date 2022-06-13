@@ -1,21 +1,77 @@
-import React from "react";
-import { useSelector } from "react-redux";
+import React, { useEffect, useMemo } from "react";
 
-export const ReservasPerfil = () => {
+import { useSelector, useDispatch } from "react-redux";
+import { deleteDate, deleteDateTable, allCitas } from "../../../redux/actions";
+
+import "./ReservasPerfil.css";
+
+export const ReservasPerfil = React.memo(() => {
+  const dispatch = useDispatch();
   const { user } = useSelector((state) => state);
   const { citas } = useSelector((state) => state);
 
-  const fil = citas.filter((e) => e.idUser === user.id);
+  /*   let citasFiltradas = (citas) => {
+    return 
+  }; */
+  const filtrado = citas.filter((e) => e.idUser === user.id);
+  console.log(filtrado);
+  const cancelarCitas = (id) => {
+    Swal.fire({
+      title: "Estas seguro que quieres cancelar tu cita?",
+      icon: "warning",
+      showCancelButton: true,
+      confirmButtonColor: "#3085d8",
+      cancelButtonColor: "#d33",
+      confirmButtonText: "Si,cancelar cita!",
+    }).then((result) => {
+      if (result.isConfirmed) {
+        Swal.fire({
+          title: "Cita cancelada!",
+          icon: "success",
+          showConfirmButton: false,
+        });
+        dispatch(deleteDate(id));
+      }
+    });
+  };
 
   return (
     <div>
-      {fil.map((e, index) => (
-        <ul key={index}>
-          <li className="text-light">Fecha y hora: {e.date}</li>
-
-          <li className="text-light"> Servicio: {e.services[0].name}</li>
-        </ul>
-      ))}
+      <table className="table table-dark table-striped text-center">
+        <thead>
+          <tr>
+            <th scope="col">Fecha </th>
+            <th scope="col"> Hora</th>
+            <th scope="col">Barbero</th>
+            <th scope="col">Servicio</th>
+            <th scope="col">Cancelar Cita</th>
+          </tr>
+        </thead>
+        <tbody>
+          {filtrado.map((e, index) => (
+            <tr key={index}>
+              <td className="text-white">
+                {new Date(e.date).toLocaleString("en-GB").slice(0, 10)}
+              </td>
+              <td className="text-white">
+                {new Date(e.date).toLocaleString("en-GB").slice(11)}
+              </td>
+              <td className="text-white"> {e.employee.name}</td>
+              <td className="text-white">{e.services[0].name}</td>
+              <td className="text-white">
+                <div className="btn-group" role="group" aria-label="acciones">
+                  <button
+                    className="btn btn-outline-danger"
+                    onClick={() => cancelarCitas(e.id)}
+                  >
+                    Cancelar
+                  </button>
+                </div>
+              </td>
+            </tr>
+          ))}
+        </tbody>
+      </table>
     </div>
   );
-};
+});

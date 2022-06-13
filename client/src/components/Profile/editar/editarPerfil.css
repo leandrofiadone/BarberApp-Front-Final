@@ -1,0 +1,82 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Montserrat&display=swap');
+* {
+    padding: 0;
+    margin: 0;
+    font-family: 'Poppins', sans-serif
+}
+
+.caja {
+    height: 90vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+   
+}
+
+.card {
+    width: 500px;
+    height: 600px;
+    background-color: rgb(255, 255, 255);
+    box-shadow: 0px 15px 30px rgba(228, 226, 226, 0.231);
+    border-radius: 4%;
+    overflow: hidden
+}
+
+ .info {
+    padding: 1%; 
+    font-size: 30px;
+    display: flex;
+    height: 60px;
+    justify-content: space-between;
+    border-bottom: 0px solid #1d1c1c;
+    background-color: rgba(0, 0, 0, 0.5);
+    
+}
+.bigote{
+     left: -44%;
+     width: 100px; 
+     position: relative;
+     top: -10px;
+     background-size: 100%;
+     margin-left: 85%;
+     background-image: url("https://images.vexels.com/media/users/3/132674/isolated/preview/5de3fc4efa4d8ff72773bfc119c1a8e9-bigote-blanco-hipster-3.png");
+ }
+
+.card .forms {
+    padding: 20px
+}
+
+.card .inputs {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 45px
+}
+
+.card .inputs h3 {
+    font-size: 26px; 
+}
+
+
+.borde{
+    padding: 1px 10px;
+    font-size: 24px;
+    border-radius: 13px;
+}
+
+.botonEditar{
+   margin-left: 35%;
+   width: 30%;
+   height: 10%;
+   margin-bottom: 15px;
+}
+.botonCambiarContraseña{
+   display: flex;
+   flex-direction: row;
+   margin-left: 25%;
+   justify-content: center;
+   align-items: center;
+   width: 50%;
+   height: 10%;
+   margin-bottom: 10px;
+}

@@ -1,0 +1,109 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Montserrat&display=swap');
+* {
+    padding: 0;
+    margin: 0;
+    font-family: 'Poppins', sans-serif
+}
+
+.caja-change {
+    height: 90vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+   
+}
+
+.card-change {
+    width: 500px;
+    height: 620px;
+    background-color: rgb(255, 255, 255);
+    box-shadow: 0px 15px 30px rgba(228, 226, 226, 0.231);
+    border-radius: 4%;
+    overflow: hidden
+}
+
+ .info-change {
+    padding: 1%; 
+    font-size: 30px;
+    display: flex;
+    height: 60px;
+    justify-content: space-between;
+    border-bottom: 0px solid #1d1c1c;
+    background-color: rgba(0, 0, 0, 0.5);
+    
+}
+.bigote-change{
+     left: -44%;
+     width: 100px; 
+     position: relative;
+     top: -10px;
+     background-size: 100%;
+     margin-left: 85%;
+     background-image: url("https://images.vexels.com/media/users/3/132674/isolated/preview/5de3fc4efa4d8ff72773bfc119c1a8e9-bigote-blanco-hipster-3.png");
+ }
+
+.card-change .forms-change {
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.card-change .inputs-change {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 45px;
+    margin-top: 45px;
+    align-items: center;
+    
+}
+
+.inputEmail-change{
+    width: 400px;
+    border-radius: 20px;
+    margin-bottom: 10px;
+}
+
+
+.card-change .inputs-change h3 {
+    font-size: 26px; 
+    color: black;
+    margin-bottom: 45px;
+}
+
+
+
+.borde-change{
+    padding: 1px 10px;
+    font-size: 24px;
+    border-radius: 13px;
+}
+
+.botonEditar-change{
+
+   width: 30%;
+   height: 10%;
+   margin-bottom: 15px;
+   margin-top: 200px;
+}
+
+.botonEditar-change:hover{
+    transition: 300ms;
+    transform: scale(1.2);
+    cursor: pointer;
+    color: black;
+    background-color:#ffc107;
+}
+
+.error-change{
+    margin-top: 15px;
+    color: red;
+    font-size: 15px;
+}
+
+.notification-change{
+    color: green;
+    margin-top: 15px;
+    font-size: 15px;
+}

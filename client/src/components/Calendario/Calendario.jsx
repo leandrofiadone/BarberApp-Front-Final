@@ -5,9 +5,6 @@ import setHours from "date-fns/setHours";
 import setMinutes from "date-fns/setMinutes";
 
 import { useSelector, useDispatch } from "react-redux";
-import { useEffect } from "react";
-
-import { allCitas } from "../../redux/actions/index";
 
 registerLocale("es", es);
 
@@ -29,6 +26,8 @@ function Calendario({ date, setState, state }) {
     });
   };
 
+  const dateCitas = citas.map((e) => [e.date, e.idEmployee]); //TODAS LAS FECHAS Y TODAS LAS HORAS
+
   return (
     <DatePicker
       selected={date}
@@ -36,11 +35,11 @@ function Calendario({ date, setState, state }) {
       timeInputLabel="Horario:"
       dateFormat="MM/dd/yyy h:mm aa"
       showTimeSelect //PODER SELECCIONAR UNA HORA
-      timeIntervals={15} //CADA CUANTOS MINUTOS QUIERO QUE SE PUEDA RESERVAR
+      timeIntervals={30} //CADA CUANTOS MINUTOS QUIERO QUE SE PUEDA RESERVAR
       minDate={new Date()} //CANCELAR LOS DIAS QUE YA PASARON
       filterTime={filterPassedTime} // CANCELANDO LAS HORAS QUE YA PASARON
-      minTime={setHours(setMinutes(new Date(), 0), 9)}
-      maxTime={setHours(setMinutes(new Date(), 30), 20)}
+      minTime={setHours(setMinutes(new Date(), 0), 9)} //CANCELA ANTES DE LAS 9 AM
+      maxTime={setHours(setMinutes(new Date(), 30), 20)} //CANCELA DESPUES DE LAS 20: 30
       locale="es"
     />
   );

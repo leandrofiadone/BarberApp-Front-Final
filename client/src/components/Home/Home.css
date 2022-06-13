@@ -1,12 +1,28 @@
- .imgHelp > button{
+.divwsp>a {
     position: fixed;
-    right: 1rem;
-    bottom: 1rem;
+    right: .5rem;
+    bottom: 6rem;
     background-color: transparent;
     border: none;
+    border-radius: 100%;
+    width: 4rem;
+    height: 4rem;
 }
 
-.imgHelp > button > img {
+.divwsp>a>img {
+    margin-left: 0;
     width: 4rem;
 }
- 
+
+.botonQuienes {
+    cursor: pointer;
+}
+
+.botonServicios {
+    cursor: pointer;
+}
+
+.linkReserva>button {
+    padding: 7px;
+    text-align: center;
+}

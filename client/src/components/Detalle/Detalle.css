@@ -1,54 +1,101 @@
-    .containerDetail{
-     display: grid; 
-     place-items: center;
-    margin-top: 4rem;
+@import url('https://fonts.googleapis.com/css2?family=Bungee&family=Mulish:wght@200&display=swap');
+  
+.containerImagen{
+    display: grid; 
     text-transform: capitalize;
-        padding: 80px;
-    
+    grid-area: imagen;
+    align-self: start;
+    justify-self: center;
 }
 
 .letra{
-    font-family: 'Mulish', sans-serif;
+    font-family: 'Bungee', cursive;
+}
+.ContenedorTituloLetra{
+    grid-area: titulo;
+    justify-self: center;
+    align-self: center;
 }
 
- img.izquierda {
-     float: left; 
+
+.botonDetalleVolver{
+    align-self: center;
+    grid-area: btn-volver;
+    width: 100px;
+    margin-left: 0.7rem;
 } 
 
-.derecha {
-    float: right;
-
-}
-.media {
-    display: flex;
-    align-items: flex-start;
-}
-
-.media2 {
-    flex: 1;
-    padding: 90px;
-
-}
-
-.boton {
+.botonDetalleVolver button{
     background-color: rgba(2, 2, 2, 0.573);
     border: none;
     padding: 10px;
     border-radius: 15px;
     color: rgba(248, 248, 248, 0.801);
-    margin-top: 1rem;
-    margin-left: 1rem;
-} 
+}
+
+.botonDetalleVolver button a{
+    color: white;
+    text-decoration: none;
+}
+
+
+.botonDelCarrito{
+    background-color: rgba(2, 2, 2, 0.573);
+    border: none;
+    padding: 10px;
+    border-radius: 15px;
+    color: rgba(248, 248, 248, 0.801);
+  
+}
 
 .fotoBarber {
-    grid-template-columns: repeat(2, 1fr);
-    grid-template-areas: 'col-login   col-register''btn-volver btn-volver';
-    grid-template-rows: auto;
-    justify-content: center !important;
-    align-content: center;
-    background-image: url('../../assets/barber.jpg');
+    background-image: url('../../assets/pexels.jpeg');
     background-position: center center;
     background-size: cover;
     width: 100vw;
+    height: 100vh; 
+}
+.fotoTransparente{
+    display: grid;  
+    width: 100vw;
     height: 100vh;
+    backdrop-filter: blur(2px);
+    background-color: rgba(7, 8, 7, 0.045);
+    box-shadow: 1px 1px 25px 5px rgb(8, 7, 7);
+    grid-template-columns: 1fr;
+    grid-template-rows: 100px auto;
+    grid-template-areas: "btn-volver"
+                         "card";
+}
+
+
+.transparenteContenedor {
+    display: grid;
+    width: 900px;
+    overflow: hidden;
+    align-self: start;
+    justify-self: center;
+    background-color: rgba(191, 224, 233, 0.063);
+    border: 1px solid aliceblue;
+    border-radius: 14px;
+    gap: 30px;
+    align-items: center;
+    grid-template-columns: repeat(2, 1fr);
+    grid-area: card;
+    grid-template-rows: 100px 380px;
+    grid-template-areas: "titulo titulo"
+                         "imagen texto";
+}
+
+.TextoClases{
+  grid-area: texto;
+  align-self: start;
+  display: grid;
+  grid-template-columns: 1fr;
+  grid-template-rows: repeat(4, auto);
+  gap: 10px;
+}
+
+.TextoClases div p {
+  color: white;
 }

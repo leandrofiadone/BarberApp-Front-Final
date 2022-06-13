@@ -1,0 +1,45 @@
+/* main filtros */
+.main-filtros{
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  align-items: center;
+  justify-content: space-between;
+} 
+
+/* styles para buscador */
+.main-buscador{
+  display: grid;
+  width: 500px;
+  margin-bottom: 20px;
+}
+
+.main-buscador form {
+  display: grid;
+  grid-template-columns: 300px 100px;
+}
+
+.main-buscador form input {
+  border-radius: 4px 0 0 4px;
+}
+
+.main-buscador form button{
+  border-radius: 0 4px 4px 0px;
+}
+
+
+.contenedor-filtros{
+  display: flex;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 8px;
+  align-self: start;
+}
+
+.contenedor-filtros > select{
+  outline: none;
+  height: 35px;
+}
+.botonBanear{
+  padding: 3px; 
+  width: 70%;
+    
+}

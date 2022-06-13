@@ -1,0 +1,58 @@
+.navbar-profile {
+  background-color: white;
+  height: 100vh;
+  overflow: hidden;
+  text-align: center;
+  color: black
+}
+
+.navbar-profile .img-perfil{
+  border: 1px solid black;
+  border-radius: 100px;
+  width: 150px;
+  height: 150px;
+  overflow: hidden;
+  margin-top: 30px;
+  margin-left: 44px;
+  text-align: center;
+}
+
+.navbar-profile .img-perfil img{
+  position: relative;
+  left: -180px;
+  height: 150px;
+  width: 150px;
+}
+
+.navbar-profile .mas-opciones{
+  position: absolute;
+  top: 570px;
+  left: 45px;
+}
+
+.navbar-profile ul a:hover{
+  color: black;
+  text-decoration: none;
+}
+
+.link-profile {
+  color: white !important;
+}
+
+
+.pointer{
+  cursor: pointer;
+}
+
+/* section */
+.main-perfil section{
+  padding: 25px;
+  display: grid;
+  /* justify-content: center; */
+  /* align-items: center; */
+  width: 100%;
+}
+
+.profile-active-link{
+  color: yellow;
+}

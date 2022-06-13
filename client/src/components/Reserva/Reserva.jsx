@@ -2,37 +2,60 @@ import { Link, useHistory, useParams } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { useEffect, useState } from "react";
 
-import { crearCita, getServices, allBarberos } from "../../redux/actions";
+import {
+  crearCita,
+  getServices,
+  allBarberos,
+  datesEmployee,
+  allCitas,
+} from "../../redux/actions";
 
 import Calendario from "../Calendario/Calendario";
 
 import Swal from "sweetalert2";
 
 import "./Reserva.css";
-
-const validate = (state) => {
-  let errors = {};
-
-  if (!state.service.length) {
-    errors.service = "Seleccione un servicio";
-  } else if (!state.barberos.length) {
-    errors.barberos = "Seleccione un barbero";
-  } else if (!state.date.length) {
-    errors.date = "Elija la fecha y la hora";
-  }
-
-  return errors;
-};
+import { getDate } from "date-fns";
 
 export function Reserva() {
   const dispatch = useDispatch();
   const { user } = useSelector((state) => state);
 
-  const allServices = useSelector((state) => state.servicios.services);
-  const subBarberos = useSelector((state) => state.barberos);
-  console.log(allServices);
+  //console.log(user)
   const history = useHistory();
 
+  const allServices = useSelector((state) => state.servicios);
+
+  const subBarberos = useSelector((state) => state.barberos);
+
+  const citasEmpleado = useSelector((state) => state.citasEmpleado);
+  console.log(citasEmpleado);
+
+  const validate = (state) => {
+    let errors = {};
+
+    if (!state.service.length) {
+      errors.service = "Seleccione un servicio";
+    }
+    if (!state.barberos.length) {
+      errors.barberos = "Seleccione un barbero";
+    }
+    if (!state.date.length) {
+      errors.date = "Elija la fecha y la hora";
+    }
+    if (
+      state.date &&
+      citasEmpleado
+        .map((e) => e.date)
+        .find((e) => e === new Date(state.date).toLocaleString("en-US"))
+    ) {
+      errors.fecha = "Cita ya reservada";
+    }
+
+    //console.log(errors)
+    return errors;
+  };
+  const [errors, setError] = useState({});
   const [state, setState] = useState({
     date: new Date(),
     service: "",
@@ -41,7 +64,20 @@ export function Reserva() {
     idUser: user,
   });
 
-  const [errors, setError] = useState({});
+  console.log(state);
+
+  const listadoCitaseEmp = citasEmpleado.map((e) => e.date);
+  console.log(listadoCitaseEmp);
+
+  const fecha = citasEmpleado
+    .map((e) => e.date)
+    .find((e) => e === new Date(state.date).toLocaleString("en-US"));
+  //console.log(fecha)
+
+  if (fecha) {
+    console.log("ya esta reservada");
+    //  alert("fecha reservada")
+  }
 
   useEffect(() => {
     dispatch(getServices());
@@ -49,6 +85,8 @@ export function Reserva() {
   }, [dispatch]);
 
   const handleChange = (e) => {
+    //console.log(e.target)
+
     e.preventDefault();
     setState({
       ...state,
@@ -62,6 +100,7 @@ export function Reserva() {
     );
   };
   const handleChangeBarberia = (e) => {
+    dispatch(datesEmployee(e.target.value));
     e.preventDefault();
     setState({
       ...state,
@@ -79,8 +118,7 @@ export function Reserva() {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-
-    const userId = state.idUser.id;
+    const userId = user.id;
 
     if (Object.values(errors).length <= 0)
       return Swal.fire({
@@ -103,11 +141,18 @@ export function Reserva() {
         text: "Complete la informacion requerida ",
         confirmButtonText: "OK",
       });
-    else if (state.date.length === 0)
+    else if (!state.date)
       return Swal.fire({
         icon: "error",
         title: "Oops...",
         text: "Complete la informacion requerida D",
+        confirmButtonText: "OK",
+      });
+    else if (fecha)
+      return Swal.fire({
+        icon: "error",
+        title: "Oops...",
+        text: "Fecha reservada",
         confirmButtonText: "OK",
       });
     else {
@@ -129,9 +174,8 @@ export function Reserva() {
 
       setTimeout(() => {
         history.push("/");
-      }, 2000);
+      }, 1000);
     }
-    console.log(state);
   };
 
   return (
@@ -139,6 +183,7 @@ export function Reserva() {
       <Link to="/">
         <button className="boton">Volver</button>
       </Link>
+
       <div className="contenedor">
         <div className="col-login">
           <div className="form-login">
@@ -158,7 +203,9 @@ export function Reserva() {
                     </option>
                   ))}
                 </select>
-                {errors.service && <p>{errors.service}</p>}
+                {errors.service && (
+                  <p className="textoError">{errors.service}</p>
+                )}
               </div>
 
               <div className=" form-group mb-2">
@@ -175,11 +222,12 @@ export function Reserva() {
                     </option>
                   ))}
                 </select>
-                {errors.barberos && <p>{errors.barberos}</p>}
+                {errors.barberos && (
+                  <p className="textoError">{errors.barberos}</p>
+                )}
               </div>
-
-              <label>
-                Fecha y hora
+              <div>
+                <label>Fecha y hora</label>
                 <Calendario
                   name="date"
                   date={state.date}
@@ -188,7 +236,9 @@ export function Reserva() {
                   state={state}
                   onChange={(e) => handleChange(e)}
                 />
-              </label>
+                {errors.fecha && <p>{errors.fecha}</p>}
+              </div>
+
               <br />
               <br />
               <br />

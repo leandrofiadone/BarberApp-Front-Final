@@ -13,12 +13,14 @@ export const ADD_PRODUCT = "ADD_PRODUCT";
 export const ELIMINAR_INFO_DETALLE = "ELIMNAR_INFO_DETALLE";
 
 export const GET_SERVICES = "GET_SERVICES";
+export const ADD_SERVICE = "ADD_SERVICE";
 
 export const ADD_EMPLOYEE = "ADD_EMPLOYEE";
 export const GET_EMPLOYEE = "GET_EMPLOYEE";
 
 export const FILTER_CATEGORIAS = "FILTER_CATEGORIAS";
 export const GET_CATEGORIES = "GET_CATEGORIES";
+export const ADD_CATEGORIE = "ADD_CATEGORIE";
 
 export const SORT_NAME = "SORT_NAME";
 export const SORT = "SORT";
@@ -29,13 +31,29 @@ export const FILTER_RANGO_PRECIO = "FILTER_RANGO_PRECIO";
 export const ALL_CITAS = " ALL_CITAS";
 export const CREAR_CITA = "CREAR_CITA";
 
+export const ALL_COMPRA = "ALL_COMPRA";
+
 export const ALL_BARBEROS = "ALL_BARBEROS";
 
 export const DELETE_PRODUCT = "DELETE_PRODUCT";
 export const UPDATE_PRODUCT = "UPDATE_PRODUCT";
+export const GET_FAVOURITES = "SET_FAVOURITES";
 
+export const DELETE_DATE = "DELETE_DATE";
+export const ALL_CITAS_ADMIN = "ALL_CITAS_ADMIN";
 
+export const DELETE_EMPLOYEE = "DELETE_EMPLOYEE";
+export const UPDATE_EMPLOYEE = "UPDATE_EMPLOYEE";
+export const DETALLE_EMPLOYEE = "DETALLE_EMPLOYEE";
+export const UPDATE_SERVICE = "UPDATE_SERVICE";
+export const DETALLE_SERVICE = "DETALLE_SERVICE";
+export const DELETE_SERVICE = "DELETE_SERVICE";
+export const ADMIN_GET_ALL_SERVICES = "ADMIN_GET_ALL_SERVICES";
+export const ADMIN_GET_ALL_EMPLOYEE = "ADMIN_GET_ALL_EMPLOYEE";
 
+export const CITAS_EMPLEADO = "CITAS_EMPLEADO";
+
+// all products carga todos los productos que estan activos solo activos
 export function allProductos() {
   return async (dispatch) => {
     const resp = await fetchSinToken(`products?state=true`);
@@ -87,17 +105,17 @@ export function detalleDeProductos(id) {
 
 export function addProductos(product) {
   return async (dispatch) => {
-    try {
-      const result = await axios.post(
-        `https://barber-app-henry.herokuapp.com/api/products`,
-        product
-      );
-      return dispatch({
-        type: ADD_PRODUCT,
-        payload: result.data,
-      });
-    } catch (err) {
-      console.log(err);
+    const resp = await fetchConToken("products", product, "POST");
+    const data = await resp.json();
+
+    if (data.ok) {
+      dispatch(addProductosAdmin(data.producto));
+      dispatch({ type: ADD_PRODUCT, payload: data.producto });
+
+      Swal.fire("Sucess", `${data.producto.name} agregado`, "success");
+      // window.location.replace('/admin/product')
+    } else {
+      Swal.fire("Error", "Verifica los datos", "error");
     }
   };
 }
@@ -110,29 +128,27 @@ export function eliminarInfoDetalle() {
 
 export function getServices() {
   return async function(dispatch) {
-    let servicios = await axios.get(
-      "https://barber-app-henry.herokuapp.com/api/services"
-    );
+    const resp = await fetchSinToken("services");
+    const data = await resp.json();
 
-    return dispatch({
-      type: GET_SERVICES,
-      payload: servicios.data,
-    });
+    if (data.ok) {
+      return dispatch({
+        type: GET_SERVICES,
+        payload: data.services,
+      });
+    }
   };
 }
 export function addEmployee(employee) {
   return async (dispatch) => {
-    try {
-      const result = await axios.post(
-        `https://barber-app-henry.herokuapp.com/api/employee`,
-        employee
-      );
+    const resp = await fetchConToken("employee", employee, "POST");
+    const data = await resp.json();
+
+    if (data.ok) {
       return dispatch({
         type: ADD_EMPLOYEE,
-        payload: result.data,
+        payload: data.newEmployee,
       });
-    } catch (err) {
-      console.log(err);
     }
   };
 }
@@ -141,11 +157,11 @@ export function getEmployee() {
   return async function(dispatch) {
     const resp = await fetchSinToken("employee");
     const data = await resp.json();
-
+    console.log("data.employe:", data);
     if (data.ok) {
       return dispatch({
         type: GET_EMPLOYEE,
-        payload: data,
+        payload: data.employees,
       });
     }
   };
@@ -155,7 +171,6 @@ export function getCategories() {
   return async (dispatch) => {
     const resp = await fetchSinToken("categories");
     const data = await resp.json();
-
     if (data.ok) {
       return dispatch({
         type: GET_CATEGORIES,
@@ -194,7 +209,7 @@ export function orderByPrecio(payload) {
 
 export function allCitas() {
   return async (dispatch) => {
-    const resp = await fetchSinToken("date");
+    const resp = await fetchSinToken("date?state=true");
     const data = await resp.json();
 
     if (data.ok) {
@@ -210,10 +225,21 @@ export function crearCita(payload) {
   return async (dispatch) => {
     const respuesta = await fetchConToken("date", payload, "POST");
     const data = await respuesta.json();
-
-    console.log(data);
     if (data.ok) {
+      console.log(data);
       dispatch({ type: CREAR_CITA, payload: data });
+      dispatch(allCitas());
+    }
+  };
+}
+
+export function crearCompra(id) {
+  return async (dispatch) => {
+    const respuesta = await fetchConToken(`pago/${id}`, "GET");
+    const data = await respuesta.json();
+
+    if (data.ok) {
+      dispatch({ type: ALL_COMPRA, payload: data.notification });
     }
   };
 }
@@ -227,13 +253,13 @@ export function filterPorPrecio(payload) {
 
 export function allBarberos() {
   return async (dispatch) => {
-    const resp = await fetchSinToken("employee");
+    const resp = await fetchSinToken("employee?all=false");
     const data = await resp.json();
 
     if (data.ok) {
       return dispatch({
         type: ALL_BARBEROS,
-        payload: data.employees,
+        payload: data.allEmployes,
       });
     }
   };
@@ -274,6 +300,7 @@ export function deleteProduct(id) {
     const data = await result.json();
     if (data.ok) {
       Swal.fire("Success", "Producto eliminado", "success");
+      console.log(data);
       return dispatch({
         type: DELETE_PRODUCT,
         payload: data.producto,
@@ -281,6 +308,7 @@ export function deleteProduct(id) {
     }
   };
 }
+
 export function updateProductos(product) {
   return async (dispatch) => {
     try {
@@ -292,8 +320,11 @@ export function updateProductos(product) {
       const data = await result.json();
 
       if (data.ok) {
-        console.log(data);
-        Swal.fire("Success", "Producto actualizado", "success");
+        Swal.fire(
+          "Success",
+          `${data.producto.name} actualizado correctamente`,
+          "success"
+        );
         return dispatch({
           type: UPDATE_PRODUCT,
           payload: data.producto,
@@ -307,33 +338,35 @@ export function updateProductos(product) {
   };
 }
 
-  
+export const paymentMP = async (items, user, navigate, emptyCart) => {
+  const carrito = [];
 
-export const paymentMP = async(items,user, navigate,emptyCart) =>{
-  const carrito = []
-        items.map((i)=>{
-            carrito.push({
-                idUser: user.id,
-                idProduct:i.idProduct,
-                quantity:i.quantity
-            })
-        })
-  const token = localStorage.getItem('token')
-  const response = await fetch("https://barber-app-henry.herokuapp.com/api/purchaseOrder", {
-    method: "POST",
-    body: JSON.stringify(carrito),
-    headers: {
-      "Content-Type": "application/json",
-      "x-token": token
-    },
+  items.map((i) => {
+    carrito.push({
+      idUser: user.id,
+      idProduct: i.idProduct,
+
+      quantity: i.quantity,
+    });
   });
+
+  const token = localStorage.getItem("token");
+  const response = await fetch(
+    "https://barber-app-henry.herokuapp.com/api/purchaseOrder",
+    {
+      method: "POST",
+      body: JSON.stringify(carrito),
+      headers: {
+        "Content-Type": "application/json",
+        "x-token": token,
+      },
+    }
+  );
   const json = await response.json();
-  window.open(json.urlPayment, '_blank');
+  window.open(json.urlPayment, "_blank");
   emptyCart();
   navigate.push("/");
 };
-
-
 
 export const login = (payload) => ({ type: types.login, payload });
 
@@ -353,7 +386,13 @@ export function revalidarAuth() {
         phone: data.phone,
       };
 
-      dispatch(adminGetAllProducts());
+      if (data.rol === "ADMIN") {
+        dispatch(adminGetAllProducts());
+        dispatch(getAllUsers());
+        dispatch(getCategories());
+      }
+      dispatch(allCitas());
+
       return dispatch({
         type: types.login,
         payload,
@@ -384,6 +423,7 @@ export const getAllUsers = () => {
     }
   };
 };
+
 export const adminGetAllProducts = () => {
   return async (dispatch) => {
     const resp = await fetchSinToken("products?all=true");
@@ -407,15 +447,225 @@ export const activarProducto = (id) => {
   return async (dispatch) => {
     const resp = await fetchConToken(`products/${id}`, {}, "PATCH");
     const data = await resp.json();
-    console.log(data);
+
     if (data.ok) {
       dispatch({ type: types.activaProducto, payload: data.producto });
-      dispatch({ type: ADD_PRODUCT, payload: data.producto });
     }
   };
 };
 
+export function deleteDate(id) {
+  return async function(dispatch) {
+    const result = await fetchConToken(`date/${id}`, {}, "DELETE");
+    const data = await result.json();
+    console.log(data);
+    if (data.ok) {
+      Swal.fire("Success", "Cita cancelada", "success");
+      dispatch(allCitas());
+    }
+  };
+}
 
+export const getFavourites = (idUser) => {
+  return async (dispatch) => {
+    try {
+      const response = await fetchConToken(`favorite/${idUser}`);
+      const json = await response.json();
+      console.log("Action",json)
+      dispatch({ type: GET_FAVOURITES, payload: json });
+    } catch (error) {
+      console.error(error);
+    }
+  };
+};
 
+export function allCitasAdmin() {
+  return async (dispatch) => {
+    const resp = await fetchSinToken("date?all=true");
+    const data = await resp.json();
 
+    if (data.ok) {
+      return dispatch({
+        type: ALL_CITAS_ADMIN,
+        payload: data.allDates,
+      });
+    }
+  };
+}
 
+export function addCategorie(categorie) {
+  return async (dispatch) => {
+    const resp = await fetchConToken("categories", categorie, "POST");
+    const data = await resp.json();
+    if (data.ok) {
+      Swal.fire("Success", "Categoria creado", "success");
+      return dispatch({
+        type: ADD_CATEGORIE,
+        payload: {
+          id: data.id,
+          categorie: data.categorie,
+          products: [],
+        },
+      });
+    }
+  };
+}
+export function detalleEmployee(id) {
+  return async (dispatch) => {
+    const resp = await fetchSinToken(`employee/${id}`);
+    const data = await resp.json();
+    console.log("empleadito:", data);
+    if (data.ok) {
+      return dispatch({
+        type: DETALLE_EMPLOYEE,
+        payload: data.employee,
+      });
+    }
+  };
+}
+
+export function updateEmpleados(employee) {
+  return async (dispatch) => {
+    try {
+      const result = await fetchConToken(
+        `employee/${employee.id}`,
+        employee,
+        "PUT"
+      );
+      const data = await result.json();
+      if (data.ok) {
+        Swal.fire("Success", "Empleado actualizado", "success");
+        return dispatch({
+          type: UPDATE_EMPLOYEE,
+          payload: data.employee,
+        });
+      } else {
+        console.log(data);
+      }
+    } catch (err) {
+      console.log("error en modificacion:", err);
+    }
+  };
+}
+export function deleteEmpleado(idEmployee) {
+  return async function(dispatch) {
+    console.log(idEmployee);
+    let result = await fetchConToken(`employee/${idEmployee}`, {}, "DELETE");
+    const data = await result.json();
+    console.log(data);
+    if (data.ok) {
+      Swal.fire("Success", "Empleado eliminado", "success");
+      return dispatch({
+        type: DELETE_EMPLOYEE,
+        payload: data.employee,
+      });
+    }
+  };
+}
+
+export function addService(service) {
+  return async function(dispatch) {
+    let result = await fetchConToken(`services`, service, "POST");
+    const data = await result.json();
+    if (data.ok) {
+      Swal.fire("Success", "Servicio Agregado", "success");
+      return dispatch({
+        type: ADD_SERVICE,
+        payload: data.service,
+      });
+    }
+  };
+}
+export function updateService(servicio) {
+  return async (dispatch) => {
+    try {
+      const result = await fetchConToken(
+        `services/${servicio.id}`,
+        servicio,
+        "PUT"
+      );
+      const data = await result.json();
+      console.log("data update", data);
+      if (data.ok) {
+        Swal.fire("Success", "Servicio actualizado", "success");
+        return dispatch({
+          type: UPDATE_SERVICE,
+          payload: data.employee,
+        });
+      } else {
+        console.log(data);
+      }
+    } catch (err) {
+      console.log("error en modificacion:", err);
+    }
+  };
+}
+
+export function detalleService(id) {
+  return async (dispatch) => {
+    const resp = await fetchSinToken(`services/${id}`);
+    const data = await resp.json();
+    console.log("servicio:", data);
+    if (data.ok) {
+      return dispatch({
+        type: DETALLE_SERVICE,
+        payload: data.service,
+      });
+    }
+  };
+}
+export function deleteService(idServicio) {
+  return async function(dispatch) {
+    console.log(idServicio);
+    let result = await fetchConToken(`services/${idServicio}`, {}, "DELETE");
+    const data = await result.json();
+    console.log(data);
+    if (data.ok) {
+      Swal.fire("Success", "Servicio eliminado", "success");
+      return dispatch({
+        type: DELETE_SERVICE,
+        payload: data.service,
+      });
+    }
+  };
+}
+export function getAdminAllServices() {
+  return async function(dispatch) {
+    const resp = await fetchSinToken("services?all=true");
+    const data = await resp.json();
+    console.log(data);
+    if (data.ok) {
+      return dispatch({
+        type: ADMIN_GET_ALL_SERVICES,
+        payload: data.allServices,
+      });
+    }
+  };
+}
+export function getAdminAllEmpleados() {
+  return async function(dispatch) {
+    const resp = await fetchSinToken("employee?all=true");
+    const data = await resp.json();
+    console.log(data);
+    if (data.ok) {
+      return dispatch({
+        type: ADMIN_GET_ALL_EMPLOYEE,
+        payload: data.allEmployes,
+      });
+    }
+  };
+}
+
+export function datesEmployee(idEmployee) {
+  return async (dispatch) => {
+    const resp = await fetchSinToken(`date/${idEmployee}`);
+    const data = await resp.json();
+
+    if (data.ok) {
+      return dispatch({
+        type: CITAS_EMPLEADO,
+        payload: data.foundDatesEmployee,
+      });
+    }
+  };
+}
