@@ -13,10 +13,10 @@ export const ComprasPerfil = () => {
   const { user } = useSelector((state) => state);
   const { compras } = useSelector((state) => state);
 
-//   useEffect(() => {
-//     dispatch(crearCompra(user.id));
-//   }, [dispatch, id]);
-//   console.log(compras)
+  //   useEffect(() => {
+  //     dispatch(crearCompra(user.id));
+  //   }, [dispatch, id]);
+  //   console.log(compras)
 
   // aqui no pueden ir useEffect porque? no sabemos PROBAR UN TRY-CATCH EN LA ACTION
   useEffect(() => {

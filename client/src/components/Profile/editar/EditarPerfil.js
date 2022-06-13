@@ -50,7 +50,7 @@ export const EditarPerfil = () => {
             <input
               className="borde"
               type="text"
-              readonly
+              readOnly
               value={user.name}
               onChange={handleInputChange}
             />
@@ -60,7 +60,7 @@ export const EditarPerfil = () => {
             <input
               className="borde"
               type="email"
-              readonly
+              readOnly
               value={user.email}
               disabled
             />
@@ -70,7 +70,7 @@ export const EditarPerfil = () => {
             <input
               className="borde"
               type="text"
-              readonly
+              readOnly
               name="phone"
               value={formValues.phone}
               onChange={handleInputChange}

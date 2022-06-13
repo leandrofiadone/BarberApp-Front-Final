@@ -90,20 +90,19 @@ export const Navbar = () => {
         </NavLink>
 
         <NavLink
+          activeClassName="bg-warning"
+          className="list-group-item"
+          to="/profile"
+        >
+          Mi Perfil
+        </NavLink>
+        <NavLink
           exact
           activeClassName="bg-warning"
           className="list-group-item"
           to="/"
         >
           Volver
-        </NavLink>
-
-        <NavLink
-          activeClassName="bg-warning"
-          className="list-group-item"
-          to="/profile"
-        >
-          Mi Perfil
         </NavLink>
       </ul>
     </nav>

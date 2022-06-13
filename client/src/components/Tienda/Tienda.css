@@ -13,8 +13,12 @@
 
 .botonTiendaWeb{
     font-family: Montserrat;
-    letter-spacing: 4px;
-    background: #000;
+    letter-spacing: 6px;
+    background: rgba(0, 0, 0, 0.114);
+    border: 2px solid rgb(255, 255, 255);
+    border-radius: 8px;
+    justify-content: center;
+    align-items: center;
     color: white;
     padding: 10px;
     text-shadow: rgb(255, 0, 0) 0 0, cyan 0 0;
@@ -22,7 +26,7 @@
 }
 
 .botonTiendaWeb:hover{
-    text-shadow: #d40000 -8px 0, cyan 6px 0;
+    text-shadow: #d40000 -3px 0, cyan -4px 0;
 }
 
 
@@ -80,6 +84,7 @@
     display: flex;
     justify-content: center;
     margin-bottom: 3rem;
+    
 }
 
 .buttonComprar>button {
@@ -222,8 +227,4 @@
 .ulCarrito > button{
     padding: 0;
     margin: 0;
-}
-
-.masinfo{
-    z-index: 1;
 }

@@ -1,16 +1,18 @@
-import React from "react";
+import React, { useEffect, useMemo } from "react";
 
 import { useSelector, useDispatch } from "react-redux";
-import { deleteDate, deleteDateTable } from "../../../redux/actions";
+import { deleteDate, deleteDateTable, allCitas } from "../../../redux/actions";
 
 import "./ReservasPerfil.css";
 
-export const ReservasPerfil = () => {
+export const ReservasPerfil = React.memo(() => {
   const dispatch = useDispatch();
   const { user } = useSelector((state) => state);
   const { citas } = useSelector((state) => state);
-  console.log(citas);
 
+  /*   let citasFiltradas = (citas) => {
+    return 
+  }; */
   const filtrado = citas.filter((e) => e.idUser === user.id);
   console.log(filtrado);
   const cancelarCitas = (id) => {
@@ -29,16 +31,9 @@ export const ReservasPerfil = () => {
           showConfirmButton: false,
         });
         dispatch(deleteDate(id));
-        setTimeout(() => {
-          window.location.reload();
-        }, 540);
       }
     });
   };
-
-  const fil = citas.filter((e) => e.idUser === user.id);
-
-  console.log(fil);
 
   return (
     <div>
@@ -55,8 +50,12 @@ export const ReservasPerfil = () => {
         <tbody>
           {filtrado.map((e, index) => (
             <tr key={index}>
-              <td className="text-white"> {e.date.slice(0, 9)}</td>
-              <td className="text-white"> {e.date.slice(10)}</td>
+              <td className="text-white">
+                {new Date(e.date).toLocaleString("en-GB").slice(0, 10)}
+              </td>
+              <td className="text-white">
+                {new Date(e.date).toLocaleString("en-GB").slice(11)}
+              </td>
               <td className="text-white"> {e.employee.name}</td>
               <td className="text-white">{e.services[0].name}</td>
               <td className="text-white">
@@ -75,4 +74,4 @@ export const ReservasPerfil = () => {
       </table>
     </div>
   );
-};
+});
