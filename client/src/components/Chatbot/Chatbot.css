@@ -42,6 +42,6 @@
 }
 
 .botonAyuda > button > img{
-    transform: translateX(-165%);
+    transform: translateX(-175%);
     width: 7rem;
 }

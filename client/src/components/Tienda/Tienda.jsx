@@ -180,7 +180,7 @@ state: true
             data-bs-toggle="collapse"
             data-bs-target="#navbarSupportedContent"
             aria-controls="navbarSupportedContent"
-            aria-expanded="false"
+            aria-expanded="true"
             aria-label="Toggle navigation"
           >
             <span class="navbar-toggler-icon"></span>
@@ -271,10 +271,18 @@ state: true
                 </Link>
               </div>
             </ul>
+
+
             <div className="searchbar">
               <SearchBar />
             </div>
+
+
             <ul className="ulCarrito">
+
+            <div className="divCarritouno">
+
+
               <button
                 onClick={() => registro()}
                 type="button"
@@ -291,35 +299,8 @@ state: true
                   <span class="visually-hidden"></span>
                 </span>
               </button>
+            </div>
 
-              {/* <li class="nav-item carritoContainer"> */}
-              {/* <button  className="" >
-                      <img className="imgCarrito" src="https://www.ubolosoft.com/Carrito/images/carrito.png" alt="" style={{height: "2rem", width: "2rem"}}/>
-                    </button> */}
-
-              {/* <button
-                  onClick={() => registro()}
-                  type="button"
-                  class="btn btn-dark position-relative botonCarrito"
-                >
-                  <img
-                    className="imgCarrito"
-                    src="https://www.ubolosoft.com/Carrito/images/carrito.png"
-                    alt=""
-                    style={{ height: "2rem", width: "2rem" }}
-                  />{" "}
-                  <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-secondary">
-                    {totalItems}
-                    <span class="visually-hidden"></span>
-                  </span>
-                </button> */}
-              {/* </li> */}
-              {/* <li className="numeroitems nav-item">
-                    {totalItems}
-              </li> */}
-
-              {/* <Link to={`/favourites/${user.id}`}>
-                </Link> */}
               {user.id && Object.keys(user).length && (
                 <Link to={`/favourites/${user.id}`}>
                   <img className="corazon-amarillo" src={imgCorazonAmarillo} />
@@ -369,6 +350,20 @@ state: true
           currentProducts?.map((e, index) => {
             return (
               <div>
+                { Object.keys(user).length ? addFavourites.length && !addFavourites[index].newFavourite ? (
+    
+                  <img
+                    onClick={() => handleAddFavourites(e.id, index)}
+                    className="imagen-corazon-gris"
+                    src={imgCorazonGris}
+                  ></img>
+                ) : (
+                  <img
+                    onClick={() => handleDeleteFavourites(index, e.id)}
+                    className="imagen-corazon-rojo"
+                    src={imgCorazonRojo}
+                  ></img>
+                ) : null}
                 <Cards
                   key={index}
                   name={e.name}
@@ -383,22 +378,8 @@ state: true
                   <button className="masinfo">+info</button>
                 </Link>
 
-                {/*Renderizado de Corazones*/}
+                
                
-                { Object.keys(user).length ? addFavourites.length && !addFavourites[index].newFavourite ? (
-
-                  <img
-                    onClick={() => handleAddFavourites(e.id, index)}
-                    className="imagen-corazon-gris"
-                    src={imgCorazonGris}
-                  ></img>
-                ) : (
-                  <img
-                    onClick={() => handleDeleteFavourites(index, e.id)}
-                    className="imagen-corazon-rojo"
-                    src={imgCorazonRojo}
-                  ></img>
-                ) : null}
               </div>
             );
           })
