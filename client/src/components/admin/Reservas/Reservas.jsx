@@ -7,7 +7,6 @@ import { EliminarCita } from "../../../redux/actions";
 import "./Reservas.css";
 
 const Reservas = () => {
-  const { user } = useSelector((state) => state);
   const { allCitas } = useSelector((state) => state);
 
   const dispatch = useDispatch();
