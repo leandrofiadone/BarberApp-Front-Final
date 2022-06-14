@@ -174,7 +174,7 @@ export function Reserva() {
 
       setTimeout(() => {
         history.push("/");
-      }, 1000);
+      }, 2000);
     }
   };
 
@@ -209,7 +209,7 @@ export function Reserva() {
               </div>
 
               <div className=" form-group mb-2">
-                <label className="text-light">Barbero</label>
+                <label className="palabra">Barbero</label>
                 <select
                   onChange={(e) => handleChangeBarberia(e)}
                   className="form-select "
