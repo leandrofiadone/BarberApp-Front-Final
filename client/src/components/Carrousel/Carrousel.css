@@ -10,7 +10,7 @@
 .sliderTwo {
     height: 100vh;
     max-height: 37rem;
-    background-size: 100%;
+    background-size: cover;
     background-image: url("https://joseppons.com/formacion/wp-content/uploads/2020/11/servicios-salon-barberia.jpeg");
     background-position: center;
     background-repeat: no-repeat;

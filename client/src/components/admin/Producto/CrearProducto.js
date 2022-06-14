@@ -4,6 +4,9 @@ import Swal from "sweetalert2";
 import { fetchConToken, fetchConTokenFiles } from "../../../helpers/fetch";
 import { addProductos, addProductosAdmin, ADD_PRODUCT } from "../../../redux/actions";
 
+import './productos.css'
+
+
 export const CrearProducto = () => {
   const { categorias } = useSelector((state) => state);
   const dispatch = useDispatch();
@@ -81,7 +84,7 @@ export const CrearProducto = () => {
     <div>
       {
         loading 
-        ? <h1>Espere</h1>
+        ? <div className="loader"></div>
         :
         <form onSubmit={handleSubmit}>
           <h1 className="display-3">Nuevo Producto</h1>

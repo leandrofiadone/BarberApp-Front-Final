@@ -13,6 +13,9 @@ import { useDispatch, useSelector } from "react-redux";
 import { useEffect, useState } from "react";
 import Paginado from "../Paginado/Paginado";
 
+// import '../Paginado/Paginado.css'
+
+
 import Swal from "sweetalert2";
 import {
   ALL_PRODUCTOS,
@@ -178,7 +181,7 @@ state: true
   return (
     <div>
       {/* =============================================================== */}
-      <nav className="navbar navbar-expand-lg navbar-dark p-3 containernavbartienda justify-content-center">
+      <nav className="navbar navbar-expand-lg  p-3 containernavbartienda justify-content-center">
         <div className="container-fluid ">
           <Link className="navbar-brandtienda" to="/"></Link>
           <button
@@ -350,7 +353,7 @@ state: true
       {/* </div> */}
 
       <div>
-        {/* <button disabled={currentPage -1 === 0 } onClick={() => paginado(currentPage - 1)}>PREV</button> */}
+        {/* <button  disabled={currentPage -1 === 0 } onClick={() => paginado(currentPage - 1)}>PREV</button> */}
         <Paginado
           productsPerPage={productsPerPage}
           productosBarberia={productosBarberia.length}

@@ -16,15 +16,15 @@ const Favourite = ({ idProduct, name, price, stock, img, categorie, setFavourite
         </div>
 
         <div className="container-Text">
-          <h5> {name}</h5>
-          <h5> ${price}</h5>
-          <h6> Stock: {stock}</h6>
-          <h6>Categoria: {categorie}</h6>
+          <h3> {name}</h3>
+          <h3> ${price}</h3>
+          {/* <h6> Stock: {stock}</h6> */}
+          {/* <h6>Categoria: {categorie}</h6> */}
           <div className="buttonComprar">
             <button
               id="miBoton"
               type="button"
-              className="btn btn-success bg-dark fw-bold"
+              className="btn btn-success fw-bold botonDetalleComprar"
               onClick={()=> paymentMPFavourites([{
                   idUser: user.id,
                   idProduct,
@@ -36,7 +36,7 @@ const Favourite = ({ idProduct, name, price, stock, img, categorie, setFavourite
             <button
               id="miBoton"
               type="button"
-              className="btn btn-success bg-dark fw-bold"
+              className="btn btn-success fw-bold botonDetalleQuitar"
               onClick={()=>{handleDeleteFavourites(index,idProduct);
               setFavourites((f)=>{
                   return f.filter((fa)=>fa.id !== idProduct)

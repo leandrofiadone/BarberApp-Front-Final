@@ -12,6 +12,8 @@ import {
 import { fetchConToken, fetchConTokenFiles } from "../../../helpers/fetch";
 import Swal from "sweetalert2";
 
+import './productos.css'
+
 const FormularioProductos = () => {
   const dispatch = useDispatch();
 
@@ -121,7 +123,7 @@ const FormularioProductos = () => {
       )}
       {
         loading 
-          ? <h1>Espere</h1>
+          ? <div className="loader"></div>
           :
           <form className="mx-5 mt-2" onSubmit={handleSubmit}>
             <div>

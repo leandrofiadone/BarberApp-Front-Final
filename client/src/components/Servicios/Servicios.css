@@ -88,9 +88,9 @@ body {
     display: flex;
     justify-content: center;
     text-align: center;
-    font-weight: bold;
+    /* font-weight: bold; */
     color: white;
-    font-family: Montserrat;
+    font-family: Gelasio;
     margin-bottom: 10px;
     letter-spacing: 10px;
     align-items: center;
