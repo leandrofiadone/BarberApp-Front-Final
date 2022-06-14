@@ -203,7 +203,7 @@ state: true
             <ul class="navbar-nav me-auto mb-2 mb-lg-0 ">
               <li class="nav-item dropdown dropContainer">
                 <button
-                  className="botonOrdenar btn btn-secondary dropdown-toggle"
+                  className="botonOrdenar btn btn-secondary dropdown-toggle dropdown-toggle-split"
                   type="button"
                   id="dropdownMenuButton1"
                   data-bs-toggle="dropdown"
@@ -211,15 +211,19 @@ state: true
                 >
                   Ordenar Por:
                 </button>
+
+
                 <ul
                   className="dropdown-menu bg-dark"
                   aria-labelledby="dropdownMenuButton1"
                 >
+
+                  
                   <div className="contOrder">
                     <div>
                       <select
                         onChange={(e) => handleCategorias(e)}
-                        className="form-select-sm"
+                        className="form-select form-select-lg mb-3"
                       >
                         <option hidden>Categorias</option>
 
@@ -239,7 +243,7 @@ state: true
                       <select
                         name="select"
                         onChange={(e) => onSelectsChange(e)}
-                        className="form-select-sm"
+                        className="form-select form-select-lg mb-3"
                       >
                         <option hidden value="Filter">
                           A-Z
@@ -254,7 +258,8 @@ state: true
                       {productosBarberia ? (
                         <select
                           onChange={(e) => handlePrecio(e)}
-                          className="form-select-sm"
+                          className="form-select form-select-lg mb-3 dropdown-toggle"
+                          
                         >
                           <option hidden>$$</option>
                           <option value="All"> Todos</option>
