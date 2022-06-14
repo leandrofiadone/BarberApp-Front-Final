@@ -393,7 +393,7 @@ export function revalidarAuth() {
         dispatch(allCitasAdmin());
       }
       dispatch(allCitas());
-      dispatch(crearCompra(data.id));
+
 
       return dispatch({
         type: types.login,
