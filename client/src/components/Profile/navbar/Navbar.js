@@ -7,7 +7,11 @@ import {
   getAdminAllServices,
   logout,
   getCategories,
+  revalidarAuth,
 } from "../../../redux/actions";
+import sinImage from '../../../assets/sin-img.jpeg'
+import { fetchConTokenFiles } from "../../../helpers/fetch";
+import Swal from "sweetalert2";
 
 export const Navbar = () => {
   const { user, isAuth, categories } = useSelector((state) => state);
@@ -19,10 +23,26 @@ export const Navbar = () => {
     dispatch(logout());
     history.replace("/");
   };
+
+  const selectImage = () => {
+    document.querySelector('#img_user').click()
+  }
+  
+  const changeImg = async({target}) => {
+    const resp = await fetchConTokenFiles(`upload/usuario/${user.id}`, target.files[0], 'POST');
+    const data = await resp.json();
+
+    if(data.ok){
+      dispatch(revalidarAuth())
+      Swal.fire('Success', 'Imagen actualizada correctamente', 'success')
+    }
+  }
+
   return (
     <nav className="navbar-profile">
-      <div className="img-perfil">
-        <img src={user.img} alt={user.name} />
+      <div className="img-perfil" onClick={selectImage}>
+        <img src={user.img ? user.img : sinImage} alt={user.name} />
+        <input type="file" id="img_user" onChange={changeImg} />
       </div>
       <h1>{user.name}</h1>
 

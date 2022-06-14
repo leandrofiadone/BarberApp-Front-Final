@@ -53,7 +53,11 @@ const Detalle = () => {
             </div>
             <div className="TextoClases">
               <div>
-                <p>{productosId.detail}</p>
+
+                <p>
+                  {productosId.detail}
+                </p>
+
               </div>
               <div>
                 <h2>
