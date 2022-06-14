@@ -21,7 +21,6 @@ export function Reserva() {
   const dispatch = useDispatch();
   const { user } = useSelector((state) => state);
 
-  //console.log(user)
   const history = useHistory();
 
   const allServices = useSelector((state) => state.servicios);
@@ -29,7 +28,6 @@ export function Reserva() {
   const subBarberos = useSelector((state) => state.barberos);
 
   const citasEmpleado = useSelector((state) => state.citasEmpleado);
-  console.log(citasEmpleado);
 
   const validate = (state) => {
     let errors = {};
@@ -44,7 +42,7 @@ export function Reserva() {
       errors.date = "Elija la fecha y la hora";
     }
     if (
-      state.date &&
+      !state.date &&
       citasEmpleado
         .map((e) => e.date)
         .find((e) => e === new Date(state.date).toLocaleString("en-US"))
@@ -64,20 +62,11 @@ export function Reserva() {
     idUser: user,
   });
 
-  console.log(state);
-
   const listadoCitaseEmp = citasEmpleado.map((e) => e.date);
-  console.log(listadoCitaseEmp);
 
   const fecha = citasEmpleado
     .map((e) => e.date)
     .find((e) => e === new Date(state.date).toLocaleString("en-US"));
-  //console.log(fecha)
-
-  if (fecha) {
-    console.log("ya esta reservada");
-    //  alert("fecha reservada")
-  }
 
   useEffect(() => {
     dispatch(getServices());
@@ -85,8 +74,6 @@ export function Reserva() {
   }, [dispatch]);
 
   const handleChange = (e) => {
-    //console.log(e.target)
-
     e.preventDefault();
     setState({
       ...state,
