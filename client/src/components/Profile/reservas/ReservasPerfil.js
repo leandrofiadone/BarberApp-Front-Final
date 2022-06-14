@@ -59,11 +59,17 @@ export const ReservasPerfil = React.memo(() => {
               <td className="text-white">{e.services[0].name}</td>
               <td className="text-white">
                 {e.state === true ? (
-                  <button className="btn btn-warning botonReservaUsu" disabled>
+                  <button
+                    className="btn btn-warning botonReservaUsuario"
+                    disabled
+                  >
                     Pendiente
                   </button>
                 ) : (
-                  <button className="btn btn-success botonReservaUsu" disabled>
+                  <button
+                    className="btn btn-success botonReservaUsuario"
+                    disabled
+                  >
                     Finalizada
                   </button>
                 )}
@@ -72,10 +78,10 @@ export const ReservasPerfil = React.memo(() => {
                 <div className="btn-group" role="group" aria-label="acciones">
                   {e.state ? (
                     <button
-                      className="btn btn-outline-danger "
+                      className="btn btn-outline-danger botonCancelar"
                       onClick={() => cancelarCitas(e.id)}
                     >
-                      Cancelar
+                      Cancelar cita
                     </button>
                   ) : (
                     <div> </div>
