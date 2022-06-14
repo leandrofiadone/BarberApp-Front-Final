@@ -6,7 +6,7 @@
 .contTituloTiendaWeb{
     display: flex;
     justify-content: flex-end;
-    width: 19em;
+    width: 18em;
     align-items: center;
     background-color: transparent;
 }
@@ -34,13 +34,6 @@
 }
 
  .cardsTienda {
-    /* display: grid;
-    grid-auto-rows: 35rem;
-    grid-template-columns: repeat(3, 11fr);
-    justify-content: center;
-    text-align: center;
-    align-items: center;
-    margin-top: 50px; */
     display: flex;
     flex-direction: row;
     flex-wrap: wrap;
@@ -148,7 +141,6 @@
     border: none;
     border-radius: 100%;
     width: 4rem;
-    z-index: 10;
 }
 
 .buttonup>a>img {
@@ -203,9 +195,11 @@
 }
 
 .imagen-corazon-rojo{
-    transform: translate(2rem, 1rem);
+    transform: translate(2rem, 2rem);
     margin-left: 23rem;
     width: 30px;
+    position: absolute;
+
 }
 
 .imagen-corazon-rojo:hover{
@@ -213,13 +207,15 @@
 }
 
 .imagen-corazon-gris{
-    transform: translate(2rem, 1rem);
+    transform: translate(2rem, 2rem);
     margin-left: 23rem;
     width: 36px;
+    position: absolute;
 }
 
 .imagen-corazon-gris:hover{
     cursor: pointer;
+    z-index: 99999999;
 }
 
 .corazon-amarillo{
@@ -231,10 +227,6 @@
 
 .corazon-amarillo:hover{
     cursor: pointer;
-}
-.botonChat{
-    z-index: 1000;
-
 }
 
 .ulCarrito{

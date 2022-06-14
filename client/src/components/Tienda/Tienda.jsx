@@ -376,10 +376,10 @@ state: true
                 <Cards
                   key={index}
                   name={e.name}
-                  // stock={e.stock}
+                  stock={e.stock}
                   price={e.price}
                   img={e.img}
-                  // category={e.category.categorie}
+                  category={e.category.categorie}
                   id={e.id}
                   idProduct={e.id}
                 />
