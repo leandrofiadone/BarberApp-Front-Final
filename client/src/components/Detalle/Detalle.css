@@ -55,6 +55,7 @@
     width: 100vw;
     height: 100vh; 
 }
+
 .fotoTransparente{
     display: grid;  
     width: 100vw;
@@ -113,9 +114,9 @@
 
 .imagen-corazon-rojo-detalle{
     transform: translate(2rem, 1rem);
-    width: 30px;
-    margin:-10px;
-    margin-bottom: 15px;
+    width: 40px;
+    margin:-20px;
+    margin-bottom: 20px;
 }
 
 .imagen-corazon-rojo-detalle:hover{

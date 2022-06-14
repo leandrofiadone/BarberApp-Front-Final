@@ -209,11 +209,11 @@ export function orderByPrecio(payload) {
 
 export function allCitas() {
   return async (dispatch) => {
-    const resp = await fetchSinToken("date?state=true");
+    const resp = await fetchSinToken("date?all=true");
     const data = await resp.json();
 
     if (data.ok) {
-      return dispatch({
+      dispatch({
         type: ALL_CITAS,
         payload: data.allDates,
       });
@@ -226,7 +226,6 @@ export function crearCita(payload) {
     const respuesta = await fetchConToken("date", payload, "POST");
     const data = await respuesta.json();
     if (data.ok) {
-      console.log(data);
       dispatch({ type: CREAR_CITA, payload: data });
       dispatch(allCitas());
       dispatch(allCitasAdmin());
@@ -394,7 +393,7 @@ export function revalidarAuth() {
         dispatch(allCitasAdmin());
       }
       dispatch(allCitas());
-      dispatch(crearCompra(data.id))
+      dispatch(crearCompra(data.id));
 
       return dispatch({
         type: types.login,
@@ -464,6 +463,7 @@ export function deleteDate(id) {
     console.log(data);
     if (data.ok) {
       dispatch(allCitas());
+      dispatch(allCitasAdmin());
     }
   };
 }
@@ -549,6 +549,7 @@ export function updateEmpleados(employee) {
     }
   };
 }
+
 export function deleteEmpleado(idEmployee) {
   return async function(dispatch) {
     console.log(idEmployee);
@@ -578,6 +579,7 @@ export function addService(service) {
     }
   };
 }
+
 export function updateService(servicio) {
   return async (dispatch) => {
     try {
@@ -679,6 +681,7 @@ export function EliminarCita(id) {
 
     if (data.ok) {
       dispatch(allCitasAdmin());
+      dispatch(allCitas());
     }
   };
 }
