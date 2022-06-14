@@ -63,6 +63,7 @@
     width: 400px;
     border-radius: 20px;
     margin-bottom: 10px;
+    margin-left: 25px;
 }
 
 
@@ -85,7 +86,7 @@
    width: 30%;
    height: 10%;
    margin-bottom: 15px;
-   margin-top: 200px;
+   margin-top: 120px;
 }
 
 .botonEditar-change:hover{
@@ -107,3 +108,10 @@
     margin-top: 15px;
     font-size: 15px;
 }
+
+.botonVolver-change{
+    width: 30%;
+    height: 10%;
+    margin-bottom: 15px;
+    margin-top: 20px;
+ }

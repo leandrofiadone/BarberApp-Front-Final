@@ -1,13 +1,14 @@
 import React, { useState } from "react";
 import validatePassword from "./validatePassword.js"
 import './SendMail.css';
-import { useParams } from "react-router-dom/cjs/react-router-dom.min";
+import { useHistory, useParams } from "react-router-dom/cjs/react-router-dom.min";
+import { bottomNavigationClasses } from "@mui/material";
 
 const ResetPassword = () => {
   const [input, setInput] = useState({password1:"",password2:"",notification:""});
   const [error, setError] = useState({});
   const {idUser, token} = useParams();
-
+  const navigate = useHistory();
   const handleChange = (e) =>{
       
     setInput((input) => {
@@ -84,6 +85,12 @@ const ResetPassword = () => {
             onClick={() => handleSubmit()}
           >
             Cambiar Contraseña
+          </button>
+          <button
+            className="btn btn-dark botonVolver-change"
+            onClick={() => navigate.push('/')}
+          >
+            Volver
           </button>
           
         </div>
