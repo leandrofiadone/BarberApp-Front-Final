@@ -13,6 +13,9 @@ import { useDispatch, useSelector } from "react-redux";
 import { useEffect, useState } from "react";
 import Paginado from "../Paginado/Paginado";
 
+// import '../Paginado/Paginado.css'
+
+
 import Swal from "sweetalert2";
 import {
   ALL_PRODUCTOS,
@@ -345,7 +348,7 @@ state: true
       {/* </div> */}
 
       <div>
-        {/* <button disabled={currentPage -1 === 0 } onClick={() => paginado(currentPage - 1)}>PREV</button> */}
+        {/* <button  disabled={currentPage -1 === 0 } onClick={() => paginado(currentPage - 1)}>PREV</button> */}
         <Paginado
           productsPerPage={productsPerPage}
           productosBarberia={productosBarberia.length}

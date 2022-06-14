@@ -123,7 +123,7 @@ const FormularioProductos = () => {
       )}
       {
         loading 
-          ? <div></div>
+          ? <div className="loader"></div>
           :
           <form className="mx-5 mt-2" onSubmit={handleSubmit}>
             <div>
