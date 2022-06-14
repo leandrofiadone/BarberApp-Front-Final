@@ -4,7 +4,6 @@ export const setFavouriteApi = async(favourite) =>{
     try {
       const response = await fetchConToken(`favorite`, favourite, "POST");
       const json = await response.json();
-      console.log(json);
     } catch (error) {
       console.log(error);
       
@@ -15,7 +14,6 @@ export const setFavouriteApi = async(favourite) =>{
     try {
       const response = await fetchConToken(`favorite`, favourite, "DELETE");
       const json = await response.json();
-      console.log(json);
     } catch (error) {
       console.log(error);
       
@@ -46,6 +44,5 @@ export const setFavouriteApi = async(favourite) =>{
       },
     });
     const json = await response.json();
-    console.log(json)
     window.open(json.urlPayment, '_blank');
   };

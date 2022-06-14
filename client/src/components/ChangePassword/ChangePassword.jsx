@@ -50,7 +50,6 @@ const ResetPassword = () => {
             
         }
     }
-    console.log(input.notification)
   return (
     <div className="caja-change">
       <div className="card-change">

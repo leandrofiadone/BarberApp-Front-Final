@@ -110,7 +110,6 @@ state: true
   //////Favourites///////
 
   useEffect(() => {
-    console.log("Antes GetFavorites", allFavorites)
     user && dispatch(getFavourites(user.id));
     
   }, [user,currentPage]);
@@ -123,7 +122,6 @@ state: true
         let found = currentProducts.findIndex(
           (f) => f.id === allFavorites[i].idProduct
         );
-        console.log(found)
         if (found > -1) {
           currentProducts.map((p) => favorites.push({ newFavourite: false }));
           favorites[found].newFavourite = true;
@@ -166,7 +164,6 @@ state: true
     for (let i = 0; i < addFavourites.length; i++) {
       if (index === i) {
         deleteFavouriteApi({ idProduct, idUser });
-        console.log(idProduct);
         let favorites = addFavourites.slice();
         favorites[i].newFavourite = false;
         setFavourites(favorites);

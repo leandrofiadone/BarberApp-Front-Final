@@ -25,8 +25,7 @@ const Favourites = () => {
      setFavourites(favoritesRender(allFavorites, productosBarberia));
   },[allFavorites])
 
-console.log("allFavorites --> favorites",allFavorites)
-console.log(favouriteState)
+
 
   return (
     <div className="container-General">
