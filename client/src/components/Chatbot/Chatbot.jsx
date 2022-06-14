@@ -11,9 +11,11 @@ const theme = {
   headerFontSize: "20px",
   botBubbleColor: "#F7DC6F",
   botBubbleSize: "100%",
+  botBubbleWidth: "100rem",
   botFontColor: "#000000",
   userBubbleColor: "#000000",
   userFontColor: "#F7DC6F",
+  placeholder: "xxx"
 };
 
 export default function Contenido() {

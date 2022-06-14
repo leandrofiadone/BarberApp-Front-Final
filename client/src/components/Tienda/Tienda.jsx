@@ -178,7 +178,7 @@ state: true
   return (
     <div>
       {/* =============================================================== */}
-      <nav className="navbar navbar-expand-lg navbar-dark p-3 containernavbartienda justify-content-center">
+      <nav className="navbar navbar-expand-lg  p-3 containernavbartienda justify-content-center">
         <div className="container-fluid ">
           <Link className="navbar-brandtienda" to="/"></Link>
           <button

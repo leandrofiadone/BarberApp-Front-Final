@@ -1,3 +1,6 @@
+@import url('https://fonts.googleapis.com/css2?family=Gelasio&display=swap');
+
+
 .containernavbartienda{
     display: flex;
     justify-content: flex-end;
@@ -247,4 +250,8 @@
 
 .masinfo{
     transform: translate(1rem, -2.5rem);
+}
+
+.containernavbartienda{
+    background-color:rgba(0, 0, 0, 0.295);
 }
