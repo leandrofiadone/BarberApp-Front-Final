@@ -7,6 +7,10 @@ import {
   getAdminAllServices,
   logout,
   getCategories,
+  allProductos,
+  allCitasAdmin,
+  getAllUsers,
+  getVentasUsuarios,
 } from "../../../redux/actions";
 
 export const Navbar = () => {
@@ -36,6 +40,19 @@ export const Navbar = () => {
           Inicio
         </NavLink>
 
+        <label
+          className="list-group-item pointer"
+          // activeClassName="bg-warning"
+          onClick={async () => {
+            await dispatch(allProductos());
+            await dispatch(allCitasAdmin());
+            await dispatch(getVentasUsuarios());
+            await dispatch(getAllUsers());
+            history.push("/admin/dashboard");
+          }}
+        >
+          Dashboard
+        </label>
         <NavLink
           className="list-group-item pointer"
           activeClassName="bg-warning"
@@ -53,7 +70,7 @@ export const Navbar = () => {
 
         <label
           className="list-group-item pointer"
-          activeClassName="bg-warning"
+          // activeClassName="bg-warning"
           onClick={() => {
             dispatch(getCategories());
             history.push("/admin/categories");
@@ -63,7 +80,7 @@ export const Navbar = () => {
         </label>
         <label
           className="list-group-item pointer"
-          activeClassName="bg-warning"
+          // activeClassName="bg-warning"
           onClick={() => {
             dispatch(getAdminAllEmpleados());
             history.push("/admin/employee");
@@ -73,7 +90,7 @@ export const Navbar = () => {
         </label>
         <label
           className="list-group-item pointer"
-          activeClassName="bg-warning"
+          // activeClassName="bg-warning"
           onClick={() => {
             dispatch(getAdminAllServices());
             history.push("/admin/service");

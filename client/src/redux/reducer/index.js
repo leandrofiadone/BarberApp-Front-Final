@@ -33,6 +33,10 @@ const initialState = {
   detalleServicio: [],
 
   citasEmpleado: [],
+  conStock: 0,
+  sinStock: 0,
+  userBan: 0,
+  ventas: [],
 };
 
 function rootReducer(state = initialState, action) {
@@ -347,7 +351,23 @@ function rootReducer(state = initialState, action) {
         ...state,
         citasEmpleado: action.payload,
       };
+    case ACTIONS.CONSTOCK_SINSTOCK:
+      return {
+        ...state,
+        conStock: action.payload,
+        sinStock: action.payload1,
+      };
 
+    case ACTIONS.USUARIOS_BANEADOS:
+      return {
+        ...state,
+        userBan: action.payload,
+      };
+    case ACTIONS.VENTAS_TRANSACCION:
+      return {
+        ...state,
+        ventas: action.payload,
+      };
     default:
       return state;
   }
