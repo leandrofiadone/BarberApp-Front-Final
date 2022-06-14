@@ -32,7 +32,7 @@ const Favourite = ({ idProduct, name, price, stock, img, categorie, setFavourite
             >
               Comprar
             </button>
-            {/*<button
+            <button
               id="miBoton"
               type="button"
               className="btn btn-success bg-dark fw-bold"
@@ -42,7 +42,7 @@ const Favourite = ({ idProduct, name, price, stock, img, categorie, setFavourite
               }) }}
             >
               Quitar
-            </button>*/}
+            </button>
           </div>
         </div>
       </div>
