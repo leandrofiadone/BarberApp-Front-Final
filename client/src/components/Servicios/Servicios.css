@@ -17,6 +17,7 @@ body {
     align-items: center;
     transition: 0.3s;
     animation: move 2s;
+
 }
 
 @keyframes move {
@@ -29,10 +30,36 @@ body {
     
 }
 
+
+
+/* .serviciosCard:before{
+    position: absolute;
+    content: "";
+    width: 100px;
+    height: 100%;
+    background-color: rgba(255, 255, 255, 0.2);
+    left: -300px;
+    transform: skewX(-30deg);
+    transition: all 2s;
+
+}
+
+.serviciosCard:hover:before{
+    left: 140%;
+} */
+
 .serviciosCard img{
     cursor: pointer;
     transition: all .5s ease;
     margin: 0;
+}
+
+.imgReloj{
+    display: flex;
+    justify-content: center;
+    margin-left: 4rem;
+    width: 2rem;
+    height: 2rem;
 }
 
 /* .serviciosCard img:hover {
@@ -53,10 +80,8 @@ body {
 }
 
 
-.imgReloj{
-    margin-left: -.4rem;
-    margin-top: -5%;
-    width: 2rem;
+.tiemposervice i{
+    margin-bottom: 2rem;
 }
 
 .tituloServicios{
@@ -94,6 +119,7 @@ body {
     backface-visibility: hidden;
     border-radius: 10px;
     transition: .5s;
+
 }
 
 .divdetailserv .front {
@@ -105,7 +131,7 @@ body {
     position: absolute;
     width: 100%;
     height: 100%;
-    object-fit: cover;
+    object-fit:contain
 }
 
 .divdetailserv .front h3 {
@@ -118,6 +144,7 @@ body {
     color: #fff;
     /* background: rgba(0,0,0,.4); */
     text-align: center;
+
 }
 
 .divdetailserv .back {
@@ -138,12 +165,6 @@ body {
     line-height: 50px;
 }
 
-.divdetailserv .back h3 {
-    font-size: 30px;
-    margin-top: 20px;
-    /* letter-spacing: 2px; */
-}
-
 /* .divdetailserv .back h5 {
     letter-spacing: 1px;
 }  */
@@ -156,9 +177,22 @@ body {
     transform: perspective(600px) rotateY(360deg);
 }
 
-.textServicios{
+.textServicios i{
     font-family: Gelasio;
-    font-weight: bold;
 }
+
+.nombreService i{
+    font-family: Gelasio;
+}
+
+.nombreService{
+    margin-bottom: 2rem ;
+}
+
+.tiemposervice{
+    display: flex;
+    justify-content: center;
+}
+
 
 
