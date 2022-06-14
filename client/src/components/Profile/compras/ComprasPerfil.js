@@ -23,6 +23,8 @@ export const ComprasPerfil = () => {
     dispatch(crearCompra(user.id));
   }, [dispatch, id]);
 
+  
+
   console.log(compras.notification);
 
   return (
