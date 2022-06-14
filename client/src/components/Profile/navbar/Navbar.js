@@ -12,6 +12,7 @@ import {
 import sinImage from '../../../assets/sin-img.jpeg'
 import { fetchConTokenFiles } from "../../../helpers/fetch";
 import Swal from "sweetalert2";
+import { validarArchivo } from "../../../helpers/validar-archivo";
 
 export const Navbar = () => {
   const { user, isAuth, categories } = useSelector((state) => state);
@@ -29,21 +30,34 @@ export const Navbar = () => {
   }
   
   const changeImg = async({target}) => {
-    const resp = await fetchConTokenFiles(`upload/usuario/${user.id}`, target.files[0], 'POST');
-    const data = await resp.json();
+    console.log(target.files[0])
 
-    if(data.ok){
-      dispatch(revalidarAuth())
-      Swal.fire('Success', 'Imagen actualizada correctamente', 'success')
+    // validaciones
+    const arrType = target.files[0].type.split('/');
+    const extencion = arrType[arrType.length - 1];
+    const fileValido = validarArchivo(extencion)
+    console.log(fileValido)
+
+    if(fileValido === true){
+      const resp = await fetchConTokenFiles(`upload/usuario/${user.id}`, target.files[0], 'POST');
+      const data = await resp.json();
+  
+      if(data.ok){
+        dispatch(revalidarAuth())
+        Swal.fire('Success', 'Imagen actualizada correctamente', 'success')
+      }
+    }else{
+      Swal.fire('Error', fileValido, 'error')
     }
+
   }
 
   return (
     <nav className="navbar-profile">
       <div className="img-perfil" onClick={selectImage}>
         <img src={user.img ? user.img : sinImage} alt={user.name} />
-        <input type="file" id="img_user" onChange={changeImg} />
       </div>
+      <input type="file" id="img_user" onChange={changeImg} />
       <h1>{user.name}</h1>
 
       <ul className="mt-3 list-group list-group-flush">
@@ -90,6 +104,15 @@ export const Navbar = () => {
             Administrador
           </NavLink>
         )}
+        <NavLink
+          onClick={handleLogout}
+          exact
+          activeClassName="bg-warning"
+          className="list-group-item pointer"
+          to="/"
+        >
+          Logout
+        </NavLink>
       </ul>
     </nav>
   );
