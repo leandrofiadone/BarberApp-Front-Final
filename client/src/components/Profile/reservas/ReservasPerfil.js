@@ -78,7 +78,7 @@ export const ReservasPerfil = React.memo(() => {
                       Cancelar
                     </button>
                   ) : (
-                    <div></div>
+                    <div> </div>
                   )}
                 </div>
               </td>
