@@ -176,7 +176,9 @@ function Calendario({ date, setState, state }) {
   const isWeekday = (datex) => {
     // console.log("dentro de is weekda");
     const fecha = datex;
-    // const day = datex.getDay();
+    //const day = getDay(datex);
+
+    const day = datex.getDay();
     const datex2 = datex.getDate();
     const timex = datex.getTime();
     // console.log("dia:", datex.getDate());
@@ -196,7 +198,7 @@ function Calendario({ date, setState, state }) {
 
     // console.log("fechas ya:", fechasYa);
     // return day !== 0 && day !== 6;
-    return datex2 !== r;
+    return datex2 !== r && day !== 0;
   };
   // console.log("fecha", f);
   // console.log("fecha estado", state.date);
@@ -400,9 +402,11 @@ function Calendario({ date, setState, state }) {
         filterTime={filterPassedTime}
         showTimeSelect
         showTimeSelectOnly
-        timeIntervals={15}
+        timeIntervals={30}
         timeCaption="Time"
         locale="es"
+        minTime={setHours(setMinutes(new Date(), 0), 9)} //inicio 9:00
+        maxTime={setHours(setMinutes(new Date(), 30), 16)} //fin 9:30 para ilustrar
       />
     </div>
   );
