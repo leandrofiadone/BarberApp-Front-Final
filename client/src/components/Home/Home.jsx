@@ -95,26 +95,24 @@ export default function Home() {
           </button>
 
           <div className="collapse navbar-collapse" id="navbarSupportedContent">
-            <ul className="navbar-nav me-auto mb-2 mb-lg-0">
-              <li onClick={() => handleServicios(sectionServicios)}>
-                <a className="nav-link text-light botonServicios">Servicios</a>
-              </li>
-              <li onClick={() => handleQuienesSomos(quienesSomos)}>
-                <a className="nav-link text-light botonQuienes">
-                  Quienes Somos
-                </a>
-              </li>
-              <li className="nav-item" id="LinkTienda">
-                <Link className="nav-link text-light" to="/tienda">
-                  Tienda
-                </Link>
-              </li>
-
-              {/*   <li className="nav-item">
-                <Link className="nav-link text-light" to="/compras">
-                  Mis Compras
-                </Link>
-              </li> */}
+          <ul className="navbar-nav me-auto mb-2 mb-lg-0">
+            
+            <li onClick={() => handleServicios(sectionServicios)}>
+              <a className="nav-link text-light botonServicios">
+                Servicios
+              </a>
+            </li>
+            <li onClick={() => handleQuienesSomos(quienesSomos)} >
+              <a className="nav-link text-light botonQuienes" >
+                Quienes Somos
+              </a>
+            </li>
+            <li className="nav-item" id="LinkTienda">
+              <Link className="nav-link text-light" to="/tienda">
+                Tienda
+              </Link>
+            </li>
+          
 
               {!isAuth && (
                 <Link className="nav-item linkReserva" to="/auth/login">
@@ -133,8 +131,10 @@ export default function Home() {
                   </li>
                 </Link>
               )}
+
             </ul>
 
+            
             {isAuth && (
               <span className="linkReserva">
                 <button
@@ -166,8 +166,11 @@ export default function Home() {
               </Link>
             )}
           </div>
-        </div>
+          </div>
       </nav>
+      
+      
+      
       <div className="p-3 backdrop-blur-sm bg-white/30 ">
         <Carrousel />
       </div>

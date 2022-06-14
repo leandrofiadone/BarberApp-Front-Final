@@ -1,0 +1,23 @@
+.tituloproducto{
+    display: flex;
+    flex-direction: column;
+    flex-wrap: nowrap;
+    text-transform: capitalize;
+    margin-top: 4rem;
+    margin-bottom: 3rem;
+}
+
+.tituloproductoimg{
+    display: flex;
+    flex-direction: column;
+    flex-wrap: nowrap;
+    text-transform: capitalize;
+}
+
+.montototal{
+    font-size: 1.5rem;
+}
+
+.statusCompra{
+    text-transform: capitalize;
+}

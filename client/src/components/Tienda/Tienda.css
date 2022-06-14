@@ -6,10 +6,9 @@
 .contTituloTiendaWeb{
     display: flex;
     justify-content: flex-end;
-    width: 19em;
+    width: 18em;
     align-items: center;
     background-color: transparent;
-
 }
 
 .botonTiendaWeb{
@@ -30,16 +29,29 @@
     text-shadow: #d40000 -3px 0, cyan -4px 0;
 }
 
+.botonTiendaWeb > h5 {
+    margin-top: 10px;
+}
 
-
-.cardsTienda {
-    display: grid;
-    grid-auto-rows: 35rem;
-    grid-template-columns: repeat(auto-fill, minmax(25rem, 1fr));
+ .cardsTienda {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
     justify-content: center;
-    text-align: center;
-    align-items: center;
-    margin-top: 50px;
+    width: 100%;
+    gap: 7rem;
+    animation: move 2s;
+
+} 
+
+@keyframes move {
+    from{
+      opacity: 0;
+    }
+    to{
+      opacity: 1;
+    }
+    
 }
 
 .LinkDetail {
@@ -77,7 +89,6 @@
     color: white;
     border: none;
     margin-bottom: 2rem;
-    z-index: 2;
 }
 
 .buttonComprar {
@@ -121,9 +132,6 @@
     display: flex;
     float: right;
 }
-
-/* .buttonup{
-} */
 
 .buttonup > a{
     position: fixed;
@@ -177,60 +185,66 @@
     margin: 0;
 }
 
-.generalcont{
+/* .generalcont{
     display: flex;
     justify-content: space-around;
-}
+} */
 
 .searchbar{
     color: white;
 }
 
 .imagen-corazon-rojo{
-    width: 25px;
+    transform: translate(2rem,-36.5rem);
+    margin-left: 23rem;
+    width: 30px;
+    position: absolute;
+
 }
 
 .imagen-corazon-rojo:hover{
-    transform: scale(1.1);
     cursor: pointer;
 }
 
 .imagen-corazon-gris{
+    transform: translate(2rem, -36.5rem);
+    margin-left: 23rem;
     width: 36px;
+    position: absolute;
 }
 
 .imagen-corazon-gris:hover{
-    transform: scale(1.1);
     cursor: pointer;
+    z-index: 99999999;
 }
 
 .corazon-amarillo{
     margin: 0px;
-    margin-left: 20px;
+    margin-left: 5rem;
+    transform: translateY(1rem);
     width: 2rem;
 }
 
 .corazon-amarillo:hover{
-    transform: scale(1.2);
     cursor: pointer;
-}
-.botonChat{
-    z-index: 1;
-
 }
 
 .ulCarrito{
+
     padding: 0;
     margin: 0;
 }
 
 .ulCarrito > button{
+
     padding: 0;
     margin: 0;
 }
 
-.botonTiendaComprar {
-    padding: 2px;
-    width: 110px;
+.divCarritouno{
+    float: left;
+}
 
+.masinfo{
+    transform: translate(1rem, -2.5rem);
 }

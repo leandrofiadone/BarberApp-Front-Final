@@ -229,6 +229,7 @@ export function crearCita(payload) {
       console.log(data);
       dispatch({ type: CREAR_CITA, payload: data });
       dispatch(allCitas());
+      dispatch(allCitasAdmin());
     }
   };
 }
@@ -390,8 +391,10 @@ export function revalidarAuth() {
         dispatch(adminGetAllProducts());
         dispatch(getAllUsers());
         dispatch(getCategories());
+        dispatch(allCitasAdmin());
       }
       dispatch(allCitas());
+      dispatch(crearCompra(data.id))
 
       return dispatch({
         type: types.login,
@@ -460,7 +463,6 @@ export function deleteDate(id) {
     const data = await result.json();
     console.log(data);
     if (data.ok) {
-      Swal.fire("Success", "Cita cancelada", "success");
       dispatch(allCitas());
     }
   };
@@ -471,7 +473,7 @@ export const getFavourites = (idUser) => {
     try {
       const response = await fetchConToken(`favorite/${idUser}`);
       const json = await response.json();
-      console.log("Action",json)
+      console.log("Action", json);
       dispatch({ type: GET_FAVOURITES, payload: json });
     } catch (error) {
       console.error(error);
@@ -666,6 +668,17 @@ export function datesEmployee(idEmployee) {
         type: CITAS_EMPLEADO,
         payload: data.foundDatesEmployee,
       });
+    }
+  };
+}
+
+export function EliminarCita(id) {
+  return async function(dispatch) {
+    const result = await fetchConToken(`date/${id}`, {}, "DELETE");
+    const data = await result.json();
+
+    if (data.ok) {
+      dispatch(allCitasAdmin());
     }
   };
 }

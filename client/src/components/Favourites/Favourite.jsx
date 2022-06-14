@@ -2,11 +2,12 @@ import React, { useEffect, useState } from "react";
 import { paymentMPFavourites } from "../../helpers/functionsFavorites/favorites";
 import { useSelector } from "react-redux";
 import "./Favourites.css";
-import { deleteFavouriteApi } from "../../helpers/functionsFavorites/favorites";
+import { useLocation } from "react-router-dom";
+//import { deleteFavouriteApi } from "../../helpers/functionsFavorites/favorites";
 
-const Favourite = ({ idProduct, name, price, stock, img, categorie, setFavourites }) => {
+const Favourite = ({ idProduct, name, price, stock, img, categorie, setFavourites,handleDeleteFavourites,index }) => {
     const {user} = useSelector(state => state)
-    
+
   return (
     <React.Fragment>
       <div className="container-Card-Favourite">
@@ -32,17 +33,17 @@ const Favourite = ({ idProduct, name, price, stock, img, categorie, setFavourite
             >
               Comprar
             </button>
-            {/*<button
+            <button
               id="miBoton"
               type="button"
               className="btn btn-success bg-dark fw-bold"
-              onClick={()=>{ deleteFavouriteApi({idProduct, idUser: user.id});
+              onClick={()=>{handleDeleteFavourites(index,idProduct);
               setFavourites((f)=>{
                   return f.filter((fa)=>fa.id !== idProduct)
               }) }}
             >
               Quitar
-            </button>*/}
+            </button>
           </div>
         </div>
       </div>

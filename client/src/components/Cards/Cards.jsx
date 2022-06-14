@@ -1,8 +1,13 @@
 import "./Cards.css";
 import { useCart } from "react-use-cart";
 import Swal from "sweetalert2";
+import { useSelector } from "react-redux";
+import { Link } from "react-router-dom";
 
 const Cards = ({ name, stock, price, img, id, category, idProduct }) => {
+  const { isAuth, user } = useSelector((state) => state);
+
+
   const { addItem } = useCart();
 
   const ambos = () => {
@@ -15,6 +20,13 @@ const Cards = ({ name, stock, price, img, id, category, idProduct }) => {
     addItem({ name, stock, price, img, id, category, idProduct });
   };
 
+  const alertaReg = () => {
+    Swal.fire({
+      icon: "error",
+      title: "Debe ingresar o registrarse",
+    });
+  }
+
   return (
     <div className="containerCard">
       <div className="containerImg">
@@ -22,20 +34,39 @@ const Cards = ({ name, stock, price, img, id, category, idProduct }) => {
       </div>
 
       <div className="containerText">
-        <h5> {name}</h5>
-        <h5> ${price}</h5>
-        <h6> Stock: {stock}</h6>
-        <h6>Categoria: {category}</h6>
-        {/*    <h6>{id}</h6> */}
+        <h3> {name}</h3>
+        <br />
+        <h4><i><b>$ {price}</b></i></h4>
+        {/* <h6> Stock: {stock}</h6> */}
+        {/* <h6>Categoria: {category}</h6> */}
+           {/* <h6>{id}</h6> */}
         <div className="buttonComprar">
-          <button
+
+          {
+            isAuth && isAuth ? (
+              <button
             id="miBoton"
             type="button"
-            className="btn btn-success bg-dark fw-bold botonTiendaComprar"
+            className="btn btn-success fw-bold botonTiendaComprar"
             onClick={() => ambos()}
           >
             Comprar
           </button>
+            ) : (
+              <Link to="auth/login">
+              
+              <button
+            id="miBoton"
+            type="button"
+            className="btn btn-success fw-bold botonTiendaComprar"
+            onClick={() => alertaReg()}
+          >
+            Comprar
+          </button>
+              </Link>
+            )
+          }
+          
         </div>
       </div>
     </div>

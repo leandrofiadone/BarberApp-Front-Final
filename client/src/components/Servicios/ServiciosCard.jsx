@@ -12,12 +12,16 @@ export default function ServiciosCard({ name, detail, price, time, img  }) {
       <div className="divdetailserv " >
         <div className="face front">
           <img src={img} alt="Img not found"  />
-          <h3><i>{name}</i></h3>
+          <h3 className="nombreService"><i>{name}</i></h3>
         </div>
         <div className="textServicios face back">
-          <h2 ><i><b>$ {price}</b></i></h2>
-          <h4 ><i>{detail}</i></h4>
-          <h5 ><img className="imgReloj" src="https://i.ibb.co/w4R0hHz/Dise-o-sin-t-tulo.png"/>{time + " min"}</h5>
+          <h3 ><i>$ {price}</i></h3>
+          <h5 ><i>{detail}</i></h5>
+          <div className="tiemposervice">
+
+          <img className="imgReloj" src="https://i.ibb.co/w4R0hHz/Dise-o-sin-t-tulo.png" />
+          <h5 className="d-flex "><i >{time + " min"}</i></h5>
+          </div>
         </div>
       </div>
           

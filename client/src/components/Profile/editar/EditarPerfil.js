@@ -50,8 +50,9 @@ export const EditarPerfil = () => {
             <input
               className="borde"
               type="text"
-              readOnly
-              value={user.name}
+              name='name'
+              placeholder={user.name}
+              // value={formValues.name}
               onChange={handleInputChange}
             />
           </div>
@@ -70,11 +71,10 @@ export const EditarPerfil = () => {
             <input
               className="borde"
               type="text"
-              readOnly
               name="phone"
-              value={formValues.phone}
+              // value={formValues.phone}
               onChange={handleInputChange}
-              placeholder="Telefono"
+              placeholder={user.phone}
             />
           </div>
           <button

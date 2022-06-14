@@ -14,14 +14,16 @@
   overflow: hidden;
   margin-top: 30px;
   margin-left: 44px;
-  text-align: center;
+  cursor: pointer;
 }
 
 .navbar-profile .img-perfil img{
   position: relative;
-  left: -180px;
-  height: 150px;
-  width: 150px;
+  left: -192px !important;
+  top: -30px;
+  /* height: 150px;
+  width: 150px; */
+  border-radius: 100px;
 }
 
 .navbar-profile .mas-opciones{
@@ -55,4 +57,8 @@
 
 .profile-active-link{
   color: yellow;
+}
+
+#img_user{
+  display: none;
 }

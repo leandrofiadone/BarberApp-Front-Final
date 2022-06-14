@@ -1,37 +1,52 @@
+
+
+.containerCard{
+    transform: perspective(600px) rotateY(0deg);
+    box-shadow: 0 8px 10px #000;
+    background-color: rgba(0, 0, 0, 0.5);
+    width: 450px;
+    border-radius: 20px;
+    margin-top: 2rem;
+    position: relative;
+}
+
 .containerImg{
     width: 250px;
     display: flex;
     align-items: center;
     justify-content: center;
     text-align: center;
+    margin-bottom: 2rem;
 }
 
 img{
     height: auto;
     width: auto;
-    max-height: 300px;
+    max-height: 200px;
     max-width: 550px;
+    margin-top: 30px;
     margin-bottom: 20px;
-    margin-left: 11rem;
+    margin-left: 12rem;
     border-radius: 5px;
+    display: flex;
     justify-content: center;
     align-items: center;
 }
 
 .containerText{
+    font-family: Gelasio;
     display: flex;
     flex-direction: column;
-    justify-items: center;
-    margin-bottom: -2rem;
+    justify-content: center;
+    align-items: center;
 }
 
  .botonTiendaComprar {
     display: flex;
-    flex-direction: row;
-    margin-left: -2%;
+    flex-direction: column;
+    margin-top: 2rem;
     justify-content: center;
     align-items: center;
-    width: 20%;
-    height: 20px;
+    height: 3.5rem;
     margin-bottom: -2px;
 } 

@@ -8,19 +8,40 @@
     justify-content: center;
 }
 
-.botonAyuda {
-    transform: translateX(50%);
+/* .botonAyuda {
+    background-color: aqua;
 }
 
 .botonAyuda>button {
     float: right;
     border-radius: 100%;
-    margin-right: 50%;
     width: 5rem;
     border: none;
 }
 
 .botonAyuda>button>img {
-    margin-left: -55%;
+    z-index: 10;
+    margin-left: -2rem;
+    width: 7rem;
+} */
+
+.botonAyuda{
+    position: fixed;
+    right: 0rem;
+    bottom: 0;
+
+}
+
+.botonAyuda > button{
+    padding: 0;
+    width: 6rem;
+    border-radius: 100%;
+    font-weight: bold;
+    border: none;
+    background-color: transparent;
+}
+
+.botonAyuda > button > img{
+    transform: translateX(-175%);
     width: 7rem;
 }

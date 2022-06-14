@@ -20,9 +20,11 @@
 
 .navbar-admin .img-perfil img{
   position: relative;
-  left: -180px;
+  left: -192px !important;
+  top: -30px;
   height: 150px;
   width: 150px;
+  border-radius: 100px;
 }
 
 .navbar-admin .mas-opciones{

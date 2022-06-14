@@ -1,7 +1,9 @@
 @import url('https://fonts.googleapis.com/css2?family=Montserrat&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Gelasio&display=swap');
+
 
 body {
-    font-family: 'Montserrat', sans-serif;
+    font-family: 'Gelasio','Montserrat', sans-serif;
     overflow-x: hidden;
     color: white;
 }
@@ -109,6 +111,7 @@ body {
 .navbar-toggler-icon{
     border-color: white;
 }
+
 
 #LinkTienda{
     text-decoration: none;

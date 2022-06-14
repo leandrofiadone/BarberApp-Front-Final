@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { useParams } from "react-router-dom";
+import { useLocation, useParams } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { getFavourites } from "../../redux/actions";
 import Favourite from "./Favourite";
@@ -14,7 +14,9 @@ const Favourites = () => {
   const productosBarberia = useSelector((state) => state.productos);
   const dispatch = useDispatch();
   const [favouriteState, setFavourites] = useState([]);
-
+  const location = useLocation();
+  const {handleDeleteFavourites} = location.state
+  
   useEffect(() => {
     dispatch(getFavourites(id));
   },[id]);
@@ -24,14 +26,14 @@ const Favourites = () => {
   },[allFavorites])
 
 console.log("allFavorites --> favorites",allFavorites)
-
+console.log(favouriteState)
 
   return (
     <div className="container-General">
       <h1 className="title-Favoritos">Favoritos</h1>
       <div className="container-Favourites">
         {favouriteState
-          ? favouriteState.map((f) => {
+          ? favouriteState.map((f,i) => {
               return (
                 <Favourite
                   name={f.name}
@@ -42,6 +44,8 @@ console.log("allFavorites --> favorites",allFavorites)
                   idProduct={f.id}
                   allFavorites={allFavorites}
                   setFavourites={setFavourites}
+                  handleDeleteFavourites={handleDeleteFavourites}
+                  index={i}
                 />
               );
             })

@@ -110,13 +110,13 @@ state: true
   //////Favourites///////
 
   useEffect(() => {
-    console.log("GetFavorites")
+    console.log("Antes GetFavorites", allFavorites)
     user && dispatch(getFavourites(user.id));
+    
   }, [user,currentPage]);
 
   useEffect(() => {
     if (allFavorites && allFavorites.length) {
-      console.log("ENTRE")
       let favorites = [];
       for (let i = 0; i < allFavorites.length; i++) {
         //busca el indice del producto donde coincidan los ids
@@ -138,6 +138,13 @@ state: true
           } 
         }
       }
+      setFavourites(favorites);
+    }
+    if (allFavorites && !allFavorites.length){
+      let favorites = [];
+      for(let i = 0; i < 9; i++){
+        favorites.push({ newFavourite: false });
+      } 
       setFavourites(favorites);
     }
   }, [allFavorites, currentPage]);
@@ -180,7 +187,7 @@ state: true
             data-bs-toggle="collapse"
             data-bs-target="#navbarSupportedContent"
             aria-controls="navbarSupportedContent"
-            aria-expanded="false"
+            aria-expanded="true"
             aria-label="Toggle navigation"
           >
             <span class="navbar-toggler-icon"></span>
@@ -271,10 +278,18 @@ state: true
                 </Link>
               </div>
             </ul>
+
+
             <div className="searchbar">
               <SearchBar />
             </div>
+
+
             <ul className="ulCarrito">
+
+            <div className="divCarritouno">
+
+
               <button
                 onClick={() => registro()}
                 type="button"
@@ -291,37 +306,10 @@ state: true
                   <span class="visually-hidden"></span>
                 </span>
               </button>
+            </div>
 
-              {/* <li class="nav-item carritoContainer"> */}
-              {/* <button  className="" >
-                      <img className="imgCarrito" src="https://www.ubolosoft.com/Carrito/images/carrito.png" alt="" style={{height: "2rem", width: "2rem"}}/>
-                    </button> */}
-
-              {/* <button
-                  onClick={() => registro()}
-                  type="button"
-                  class="btn btn-dark position-relative botonCarrito"
-                >
-                  <img
-                    className="imgCarrito"
-                    src="https://www.ubolosoft.com/Carrito/images/carrito.png"
-                    alt=""
-                    style={{ height: "2rem", width: "2rem" }}
-                  />{" "}
-                  <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-secondary">
-                    {totalItems}
-                    <span class="visually-hidden"></span>
-                  </span>
-                </button> */}
-              {/* </li> */}
-              {/* <li className="numeroitems nav-item">
-                    {totalItems}
-              </li> */}
-
-              {/* <Link to={`/favourites/${user.id}`}>
-                </Link> */}
               {user.id && Object.keys(user).length && (
-                <Link to={`/favourites/${user.id}`}>
+                <Link to={{pathname:`/favourites/${user.id}`, state:{handleDeleteFavourites}}}>
                   <img className="corazon-amarillo" src={imgCorazonAmarillo} />
                 </Link>
               )}
@@ -357,11 +345,13 @@ state: true
       {/* </div> */}
 
       <div>
+        {/* <button disabled={currentPage -1 === 0 } onClick={() => paginado(currentPage - 1)}>PREV</button> */}
         <Paginado
           productsPerPage={productsPerPage}
           productosBarberia={productosBarberia.length}
           paginado={paginado}
         />
+        {/* <button disabled={productosBarberia.length < 9} onClick={() => paginado(currentPage + 1)}>NEXT</button> */}
       </div>
 
       <div className="cardsTienda">
@@ -369,6 +359,7 @@ state: true
           currentProducts?.map((e, index) => {
             return (
               <div>
+                
                 <Cards
                   key={index}
                   name={e.name}
@@ -379,26 +370,25 @@ state: true
                   id={e.id}
                   idProduct={e.id}
                 />
-                <Link to={`tienda/${e.id}`} className="LinkDetail">
-                  <button>+info</button>
+                <Link to={{pathname:`tienda/${e.id}`,state:{handleAddFavourites, handleDeleteFavourites, addFavourites, index, idCard:e.id}}}className="LinkDetail">
+                  <button className="masinfo">+info</button>
                 </Link>
 
-                {/*Renderizado de Corazones*/}
-               
                 { Object.keys(user).length ? addFavourites.length && !addFavourites[index].newFavourite ? (
-
-                  <img
-                    onClick={() => handleAddFavourites(e.id, index)}
-                    className="imagen-corazon-gris"
-                    src={imgCorazonGris}
-                  ></img>
-                ) : (
-                  <img
-                    onClick={() => handleDeleteFavourites(index, e.id)}
-                    className="imagen-corazon-rojo"
-                    src={imgCorazonRojo}
-                  ></img>
-                ) : null}
+    
+    <img
+      onClick={() => handleAddFavourites(e.id, index)}
+      className="imagen-corazon-gris"
+      src={imgCorazonGris}
+    ></img>
+  ) : (
+    <img
+      onClick={() => handleDeleteFavourites(index, e.id)}
+      className="imagen-corazon-rojo"
+      src={imgCorazonRojo}
+    ></img>
+  ) : null}
+               
               </div>
             );
           })
