@@ -15,8 +15,10 @@ export const ComprasPerfil = () => {
 
 
   useEffect(() => {
+
     dispatch(crearCompra(user.id))
   }, [dispatch]);
+
 
   return (
     <div>
