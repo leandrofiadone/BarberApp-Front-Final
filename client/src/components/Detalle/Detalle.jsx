@@ -1,7 +1,9 @@
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { useParams } from "react-router-dom";
+import { useLocation, useParams } from "react-router-dom";
 import { detalleDeProductos, eliminarInfoDetalle } from "../../redux/actions";
+import imgCorazonRojo from "../Tienda/img/corazon-rojo.png";
+import imgCorazonGris from "../Tienda/img/corazon-gris.png";
 
 import { Link } from "react-router-dom";
 
@@ -12,14 +14,13 @@ import "./Detalle.css";
 
 const Detalle = () => {
   const dispatch = useDispatch();
-
   const { id } = useParams();
-
   const { addItem } = useCart();
-
   const { user } = useSelector((state) => state);
   const productosId = useSelector((state) => state.detalle);
-
+  const [favorite, setFavorite] = useState({ newFavourite: false });
+  const location = useLocation();
+  const { handleAddFavourites, handleDeleteFavourites, addFavourites, index, idCard } = location.state;
   function addCartAlert() {
     Swal.fire({
       icon: "success",
@@ -30,6 +31,18 @@ const Detalle = () => {
   useEffect(() => {
     dispatch(detalleDeProductos(id));
   }, [dispatch]);
+
+  useEffect(() => {
+    if (addFavourites[index].newFavourite) {
+      setFavorite(() => {
+        return {
+          newFavourite: true,
+        };
+      });
+    }
+  }, [addFavourites, index]);
+
+  
 
   const detalleEliminar = () => {
     dispatch(eliminarInfoDetalle());
@@ -53,11 +66,7 @@ const Detalle = () => {
             </div>
             <div className="TextoClases">
               <div>
-
-                <p>
-                  {productosId.detail}
-                </p>
-
+                <p>{productosId.detail}</p>
               </div>
               <div>
                 <h2>
@@ -66,6 +75,21 @@ const Detalle = () => {
               </div>
               <div>
                 <span>Stock: {productosId.stock}</span>
+                {Object.keys(user).length ? (
+                  !favorite.newFavourite ? (
+                    <img
+                      onClick={() =>{ handleAddFavourites(idCard, index); setFavorite(()=>{return{newFavourite:true}})}}
+                      className="imagen-corazon-gris-detalle"
+                      src={imgCorazonGris}
+                    ></img>
+                  ) : (
+                    <img
+                      onClick={() =>{ handleDeleteFavourites(index, idCard); setFavorite(()=>{return{newFavourite:false}})}}
+                      className="imagen-corazon-rojo-detalle"
+                      src={imgCorazonRojo}
+                    ></img>
+                  )
+                ) : null}
               </div>
               <div>
                 <button
@@ -87,6 +111,7 @@ const Detalle = () => {
                 >
                   Agregar al carrito
                 </button>
+                
               </div>
             </div>
           </div>

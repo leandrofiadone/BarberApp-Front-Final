@@ -99,3 +99,25 @@
 .TextoClases div p {
   color: white;
 }
+
+.imagen-corazon-gris-detalle{
+    transform: translate(2rem, 1rem);
+    width: 30px;
+    margin:-10px;
+    margin-bottom: 15px;
+}
+
+.imagen-corazon-gris-detalle:hover{
+    cursor: pointer;
+}
+
+.imagen-corazon-rojo-detalle{
+    transform: translate(2rem, 1rem);
+    width: 30px;
+    margin:-10px;
+    margin-bottom: 15px;
+}
+
+.imagen-corazon-rojo-detalle:hover{
+    cursor: pointer;
+}

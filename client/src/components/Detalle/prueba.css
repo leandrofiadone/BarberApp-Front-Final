@@ -74,7 +74,7 @@ img.izquierda {
 
 .fotoBarber {
     grid-template-columns: repeat(2, 1fr);
-    grid-template-areas: 'col-login col-register''btn-volver btn-volver';
+    grid-template-areas: 'col-login col-register','btn-volver btn-volver';
     grid-template-rows: auto;
     justify-content: center !important;
     align-content: center;
