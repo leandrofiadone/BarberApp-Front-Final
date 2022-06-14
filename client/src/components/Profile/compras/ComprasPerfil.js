@@ -76,10 +76,12 @@ export const ComprasPerfil = () => {
                       <td className="text-light ">
                       {e.dataProducts.map(c => (
                         <img src={c.picture_url} className="text-light tituloproductoimg" style={{ height: "4rem" }} alt="img Not Found"/>
+                      ))}
                     </td>
-
+                      
                    
                   </tr>
+                  
                 ))}
               </tbody>
             </table>
