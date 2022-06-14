@@ -20,7 +20,13 @@ const Detalle = () => {
   const productosId = useSelector((state) => state.detalle);
   const [favorite, setFavorite] = useState({ newFavourite: false });
   const location = useLocation();
-  const { handleAddFavourites, handleDeleteFavourites, addFavourites, index, idCard } = location.state;
+  const {
+    handleAddFavourites,
+    handleDeleteFavourites,
+    addFavourites,
+    index,
+    idCard,
+  } = location.state;
   function addCartAlert() {
     Swal.fire({
       icon: "success",
@@ -41,8 +47,6 @@ const Detalle = () => {
       });
     }
   }, [addFavourites, index]);
-
-  
 
   const detalleEliminar = () => {
     dispatch(eliminarInfoDetalle());
@@ -78,20 +82,29 @@ const Detalle = () => {
                 {Object.keys(user).length ? (
                   !favorite.newFavourite ? (
                     <img
-                      onClick={() =>{ handleAddFavourites(idCard, index); setFavorite(()=>{return{newFavourite:true}})}}
+                      onClick={() => {
+                        handleAddFavourites(idCard, index);
+                        setFavorite(() => {
+                          return { newFavourite: true };
+                        });
+                      }}
                       className="imagen-corazon-gris-detalle"
                       src={imgCorazonGris}
                     ></img>
                   ) : (
                     <img
-                      onClick={() =>{ handleDeleteFavourites(index, idCard); setFavorite(()=>{return{newFavourite:false}})}}
+                      onClick={() => {
+                        handleDeleteFavourites(index, idCard);
+                        setFavorite(() => {
+                          return { newFavourite: false };
+                        });
+                      }}
                       className="imagen-corazon-rojo-detalle"
                       src={imgCorazonRojo}
                     ></img>
                   )
                 ) : null}
-              </div>
-              <div>
+                <div></div>
                 <button
                   className="botonDelCarrito"
                   type="button"
@@ -111,7 +124,6 @@ const Detalle = () => {
                 >
                   Agregar al carrito
                 </button>
-                
               </div>
             </div>
           </div>

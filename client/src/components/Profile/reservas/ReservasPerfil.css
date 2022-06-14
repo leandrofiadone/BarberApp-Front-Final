@@ -5,3 +5,14 @@
 
     height: 40px;
 }
+
+.botonReservaUsuario {
+    padding: 2px;
+    width: 110px;
+
+}
+
+.botonCancelar {
+    padding: 3px;
+
+}

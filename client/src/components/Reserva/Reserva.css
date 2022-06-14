@@ -35,7 +35,7 @@
     width: 900px;
     background-color: rgba(191, 224, 233, 0.101);
     border: 1px solid aliceblue;
-    border-radius: 90px;
+    border-radius: 40px;
     transition: transform 0.15s;
     margin: 0 auto; 
     backdrop-filter: blur(6px);

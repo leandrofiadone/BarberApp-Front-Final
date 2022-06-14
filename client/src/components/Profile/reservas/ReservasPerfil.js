@@ -1,7 +1,7 @@
 import React from "react";
 
 import { useSelector, useDispatch } from "react-redux";
-import { deleteDate } from "../../../redux/actions";
+import { deleteDate, EliminarCita } from "../../../redux/actions";
 
 import "./ReservasPerfil.css";
 
@@ -12,7 +12,6 @@ export const ReservasPerfil = React.memo(() => {
 
   const filtrado = citas.filter((e) => e.idUser === user.id);
 
-  console.log(filtrado);
   const cancelarCitas = (id) => {
     Swal.fire({
       title: "Estas seguro que quieres cancelar tu cita?",
@@ -43,6 +42,7 @@ export const ReservasPerfil = React.memo(() => {
             <th scope="col"> Hora</th>
             <th scope="col">Barbero</th>
             <th scope="col">Servicio</th>
+            <th scope="col">Estado</th>
             <th scope="col">Cancelar Cita</th>
           </tr>
         </thead>
@@ -58,13 +58,34 @@ export const ReservasPerfil = React.memo(() => {
               <td className="text-white"> {e.employee.name}</td>
               <td className="text-white">{e.services[0].name}</td>
               <td className="text-white">
-                <div className="btn-group" role="group" aria-label="acciones">
+                {e.state === true ? (
                   <button
-                    className="btn btn-outline-danger "
-                    onClick={() => cancelarCitas(e.id)}
+                    className="btn btn-warning botonReservaUsuario"
+                    disabled
                   >
-                    Cancelar
+                    Pendiente
                   </button>
+                ) : (
+                  <button
+                    className="btn btn-success botonReservaUsuario"
+                    disabled
+                  >
+                    Finalizada
+                  </button>
+                )}
+              </td>
+              <td className="text-white">
+                <div className="btn-group" role="group" aria-label="acciones">
+                  {e.state ? (
+                    <button
+                      className="btn btn-outline-danger botonCancelar"
+                      onClick={() => cancelarCitas(e.id)}
+                    >
+                      Cancelar cita
+                    </button>
+                  ) : (
+                    <div> </div>
+                  )}
                 </div>
               </td>
             </tr>
