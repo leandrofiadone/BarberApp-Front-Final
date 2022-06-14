@@ -55,7 +55,7 @@ export function Reserva() {
   };
   const [errors, setError] = useState({});
   const [state, setState] = useState({
-    date: new Date(),
+    date: "",
     service: "",
     idEmployee: "",
     barberos: "",
@@ -216,6 +216,7 @@ export function Reserva() {
               <div>
                 <label>Fecha y hora</label>
                 <Calendario
+                  className=""
                   name="date"
                   date={state.date}
                   value={state.date}

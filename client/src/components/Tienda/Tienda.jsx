@@ -40,8 +40,17 @@ export default function Tienda() {
 
   //Favourites:
   const allFavorites = useSelector((state) => state.favourites.allFavorites);
-  const [addFavourites, setFavourites] = useState([{newFavourite:false},{newFavourite:false},{newFavourite:false}
-    ,{newFavourite:false},{newFavourite:false},{newFavourite:false},{newFavourite:false},{newFavourite:false},{newFavourite:false}]);
+  const [addFavourites, setFavourites] = useState([
+    { newFavourite: false },
+    { newFavourite: false },
+    { newFavourite: false },
+    { newFavourite: false },
+    { newFavourite: false },
+    { newFavourite: false },
+    { newFavourite: false },
+    { newFavourite: false },
+    { newFavourite: false },
+  ]);
   //
 
   const [currentPage, setCurrentPage] = useState(1);
@@ -52,17 +61,6 @@ export default function Tienda() {
     indexOfFirstProduct,
     indexOfLastProduct
   );
-
-  /* let currentProducts = [{name:"shampo",stock: 285, price:300,
-  category:{categorie:"tinte",id:"06af9456-0655-42e9-be92-18ceadc454c4"},
-detail:"Shampoo Hombre",
-id: "04569726-3258-4add-a406-fafb743c1c2f",
-idCategorie: "06af9456-0655-42e9-be92-18ceadc454c4",
-img: "https://flyclipart.com/thumbs/2018-product-970x1400phenomenal-beard-hair-shampoo-1219848.png",
-name: "Shampoo Barbas",
-state: true
-}]*/
-  //console.log(productosBarberia)
 
   const paginado = (pageNumber) => {
     setCurrentPage(pageNumber);
@@ -110,10 +108,8 @@ state: true
   //////Favourites///////
 
   useEffect(() => {
-    console.log("Antes GetFavorites", allFavorites)
     user && dispatch(getFavourites(user.id));
-    
-  }, [user,currentPage]);
+  }, [user, currentPage]);
 
   useEffect(() => {
     if (allFavorites && allFavorites.length) {
@@ -123,28 +119,28 @@ state: true
         let found = currentProducts.findIndex(
           (f) => f.id === allFavorites[i].idProduct
         );
-        console.log(found)
+
         if (found > -1) {
           currentProducts.map((p) => favorites.push({ newFavourite: false }));
           favorites[found].newFavourite = true;
-          if(favorites.length < 9){
-            for(let i = favorites.length + 1; i < 10; i++){
+          if (favorites.length < 9) {
+            for (let i = favorites.length + 1; i < 10; i++) {
               favorites.push({ newFavourite: false });
             }
           }
-        }else{
-          for(let i = 0; i < 9; i++){
+        } else {
+          for (let i = 0; i < 9; i++) {
             favorites.push({ newFavourite: false });
-          } 
+          }
         }
       }
       setFavourites(favorites);
     }
-    if (allFavorites && !allFavorites.length){
+    if (allFavorites && !allFavorites.length) {
       let favorites = [];
-      for(let i = 0; i < 9; i++){
+      for (let i = 0; i < 9; i++) {
         favorites.push({ newFavourite: false });
-      } 
+      }
       setFavourites(favorites);
     }
   }, [allFavorites, currentPage]);
@@ -166,7 +162,7 @@ state: true
     for (let i = 0; i < addFavourites.length; i++) {
       if (index === i) {
         deleteFavouriteApi({ idProduct, idUser });
-        console.log(idProduct);
+
         let favorites = addFavourites.slice();
         favorites[i].newFavourite = false;
         setFavourites(favorites);
@@ -279,37 +275,37 @@ state: true
               </div>
             </ul>
 
-
             <div className="searchbar">
               <SearchBar />
             </div>
 
-
             <ul className="ulCarrito">
-
-            <div className="divCarritouno">
-
-
-              <button
-                onClick={() => registro()}
-                type="button"
-                class="btn btn-dark position-relative botonCarrito"
-              >
-                <img
-                  className="imgCarrito"
-                  src="https://www.ubolosoft.com/Carrito/images/carrito.png"
-                  alt=""
-                  style={{ height: "2rem", width: "2rem" }}
-                />{" "}
-                <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-secondary">
-                  {totalItems}
-                  <span class="visually-hidden"></span>
-                </span>
-              </button>
-            </div>
+              <div className="divCarritouno">
+                <button
+                  onClick={() => registro()}
+                  type="button"
+                  class="btn btn-dark position-relative botonCarrito"
+                >
+                  <img
+                    className="imgCarrito"
+                    src="https://www.ubolosoft.com/Carrito/images/carrito.png"
+                    alt=""
+                    style={{ height: "2rem", width: "2rem" }}
+                  />{" "}
+                  <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-secondary">
+                    {totalItems}
+                    <span class="visually-hidden"></span>
+                  </span>
+                </button>
+              </div>
 
               {user.id && Object.keys(user).length && (
-                <Link to={{pathname:`/favourites/${user.id}`, state:{handleDeleteFavourites}}}>
+                <Link
+                  to={{
+                    pathname: `/favourites/${user.id}`,
+                    state: { handleDeleteFavourites },
+                  }}
+                >
                   <img className="corazon-amarillo" src={imgCorazonAmarillo} />
                 </Link>
               )}
@@ -359,7 +355,6 @@ state: true
           currentProducts?.map((e, index) => {
             return (
               <div>
-                
                 <Cards
                   key={index}
                   name={e.name}
@@ -370,25 +365,37 @@ state: true
                   id={e.id}
                   idProduct={e.id}
                 />
-                <Link to={{pathname:`tienda/${e.id}`,state:{handleAddFavourites, handleDeleteFavourites, addFavourites, index, idCard:e.id}}}className="LinkDetail">
+                <Link
+                  to={{
+                    pathname: `tienda/${e.id}`,
+                    state: {
+                      handleAddFavourites,
+                      handleDeleteFavourites,
+                      addFavourites,
+                      index,
+                      idCard: e.id,
+                    },
+                  }}
+                  className="LinkDetail"
+                >
                   <button className="masinfo">+info</button>
                 </Link>
 
-                { Object.keys(user).length ? addFavourites.length && !addFavourites[index].newFavourite ? (
-    
-    <img
-      onClick={() => handleAddFavourites(e.id, index)}
-      className="imagen-corazon-gris"
-      src={imgCorazonGris}
-    ></img>
-  ) : (
-    <img
-      onClick={() => handleDeleteFavourites(index, e.id)}
-      className="imagen-corazon-rojo"
-      src={imgCorazonRojo}
-    ></img>
-  ) : null}
-               
+                {Object.keys(user).length ? (
+                  addFavourites.length && !addFavourites[index].newFavourite ? (
+                    <img
+                      onClick={() => handleAddFavourites(e.id, index)}
+                      className="imagen-corazon-gris"
+                      src={imgCorazonGris}
+                    ></img>
+                  ) : (
+                    <img
+                      onClick={() => handleDeleteFavourites(index, e.id)}
+                      className="imagen-corazon-rojo"
+                      src={imgCorazonRojo}
+                    ></img>
+                  )
+                ) : null}
               </div>
             );
           })

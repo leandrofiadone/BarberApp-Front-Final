@@ -1,5 +1,3 @@
-
-
 import React from "react";
 import ServiciosCard from "./ServiciosCard";
 
@@ -14,20 +12,17 @@ import "./Servicios.css";
 export function Servicios() {
   const dispatch = useDispatch();
   const allServices = useSelector((state) => state.servicios);
-  console.log(allServices)
 
   useEffect(() => {
     dispatch(getServices());
   }, [dispatch]);
 
-
   return (
     <div>
       <div className="flex justify-center " id="servicios">
-        <h1 className="tituloServicios" >Nuestros Servicios</h1>
+        <h1 className="tituloServicios">Nuestros Servicios</h1>
         <div className="serviciosCard">
-          {          
-          allServices?.map((s) => (
+          {allServices?.map((s) => (
             <ServiciosCard
               key={s.id}
               name={s.name}
@@ -42,4 +37,3 @@ export function Servicios() {
     </div>
   );
 }
-

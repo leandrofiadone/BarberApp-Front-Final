@@ -210,9 +210,14 @@ function Calendario({ date, setState, state }) {
         onChange={handleChange}
         timeInputLabel="Horario:"
         dateFormat="MM/dd/yyy"
+        // dateFormat="MM/dd/yyy"
+        // showTimeSelect //PODER SELECCIONAR UNA HORA
         filterDate={isWeekday}
         timeIntervals={15} //CADA CUANTOS MINUTOS QUIERO QUE SE PUEDA RESERVAR
         minDate={new Date()} //CANCELAR LOS DIAS QUE YA PASARON
+        // filterTime={filterPassedTime} // CANCELANDO LAS HORAS QUE YA PASARON
+        // minTime={setHours(setMinutes(new Date(), 0), 9)} //inicio 9:00
+        //  maxTime={setHours(setMinutes(new Date(), 30), 16)} //fin 9:30 para ilustrar
         locale="es"
       />
       <DatePicker

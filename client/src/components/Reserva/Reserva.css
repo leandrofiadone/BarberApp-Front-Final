@@ -60,3 +60,12 @@
     font-family:Verdana, Geneva, Tahoma, sans-serif;
     
 }
+
+.calendario{
+    position: relative;
+    align-items: center;
+    justify-content: center;
+top: 100px;
+left: 100px;
+right: 100px;
+}
