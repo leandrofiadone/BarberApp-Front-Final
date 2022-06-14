@@ -110,13 +110,13 @@ state: true
   //////Favourites///////
 
   useEffect(() => {
-    console.log("GetFavorites")
+    console.log("Antes GetFavorites", allFavorites)
     user && dispatch(getFavourites(user.id));
+    
   }, [user,currentPage]);
 
   useEffect(() => {
     if (allFavorites && allFavorites.length) {
-      console.log("ENTRE")
       let favorites = [];
       for (let i = 0; i < allFavorites.length; i++) {
         //busca el indice del producto donde coincidan los ids
@@ -138,6 +138,13 @@ state: true
           } 
         }
       }
+      setFavourites(favorites);
+    }
+    if (allFavorites && !allFavorites.length){
+      let favorites = [];
+      for(let i = 0; i < 9; i++){
+        favorites.push({ newFavourite: false });
+      } 
       setFavourites(favorites);
     }
   }, [allFavorites, currentPage]);
@@ -302,7 +309,7 @@ state: true
             </div>
 
               {user.id && Object.keys(user).length && (
-                <Link to={`/favourites/${user.id}`}>
+                <Link to={{pathname:`/favourites/${user.id}`, state:{handleDeleteFavourites}}}>
                   <img className="corazon-amarillo" src={imgCorazonAmarillo} />
                 </Link>
               )}
