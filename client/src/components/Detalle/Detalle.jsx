@@ -1,6 +1,6 @@
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { useParams } from "react-router-dom";
+import { useLocation, useParams } from "react-router-dom";
 import { detalleDeProductos, eliminarInfoDetalle } from "../../redux/actions";
 
 import { Link } from "react-router-dom";
@@ -11,14 +11,13 @@ import Swal from "sweetalert2";
 import "./Detalle.css";
 
 const Detalle = () => {
+  const location = useLocation()
   const dispatch = useDispatch();
-
   const { id } = useParams();
-
   const { addItem } = useCart();
-
   const { user } = useSelector((state) => state);
   const productosId = useSelector((state) => state.detalle);
+  const [favorite, setFavorite] = useState([{newFavourite:false}])
 
   function addCartAlert() {
     Swal.fire({
@@ -30,6 +29,19 @@ const Detalle = () => {
   useEffect(() => {
     dispatch(detalleDeProductos(id));
   }, [dispatch]);
+
+  useEffect(()=>{
+    const {addFavourites, index,} = location.state
+    if(addFavourites[index]){
+      setFavorite(()=>{
+        return{
+          newFavourite:true
+        }
+      });
+    }
+  },[]);
+
+
 
   const detalleEliminar = () => {
     dispatch(eliminarInfoDetalle());

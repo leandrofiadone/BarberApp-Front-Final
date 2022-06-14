@@ -350,6 +350,26 @@ state: true
           currentProducts?.map((e, index) => {
             return (
               <div>
+<<<<<<< HEAD
+=======
+                <Cards
+                  key={index}
+                  name={e.name}
+                  stock={e.stock}
+                  price={e.price}
+                  img={e.img}
+                  category={e.category.categorie}
+                  id={e.id}
+                  idProduct={e.id}
+                />
+                <Link to={{pathname:`tienda/${e.id}`,state:{addFavourites,setFavourites,handleAddFavourites,handleDeleteFavourites,index},  className:"LinkDetail"}}>
+                  <button>+info</button>
+                </Link>
+                
+
+                {/*Renderizado de Corazones*/}
+               
+>>>>>>> 176caee (agregando corazon a detalle)
                 { Object.keys(user).length ? addFavourites.length && !addFavourites[index].newFavourite ? (
     
                   <img
