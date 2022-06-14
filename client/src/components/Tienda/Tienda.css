@@ -46,9 +46,20 @@
     flex-wrap: wrap;
     justify-content: center;
     width: 100%;
-    gap: 10rem;
+    gap: 7rem;
+    animation: move 2s;
+
 } 
 
+@keyframes move {
+    from{
+      opacity: 0;
+    }
+    to{
+      opacity: 1;
+    }
+    
+}
 
 .LinkDetail {
     text-decoration: none;

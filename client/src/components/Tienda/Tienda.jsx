@@ -338,11 +338,13 @@ state: true
       {/* </div> */}
 
       <div>
+        {/* <button disabled={currentPage -1 === 0 } onClick={() => paginado(currentPage - 1)}>PREV</button> */}
         <Paginado
           productsPerPage={productsPerPage}
           productosBarberia={productosBarberia.length}
           paginado={paginado}
         />
+        {/* <button disabled={productosBarberia.length < 9} onClick={() => paginado(currentPage + 1)}>NEXT</button> */}
       </div>
 
       <div className="cardsTienda">
@@ -367,10 +369,10 @@ state: true
                 <Cards
                   key={index}
                   name={e.name}
-                  stock={e.stock}
+                  // stock={e.stock}
                   price={e.price}
                   img={e.img}
-                  category={e.category.categorie}
+                  // category={e.category.categorie}
                   id={e.id}
                   idProduct={e.id}
                 />
