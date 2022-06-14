@@ -195,7 +195,7 @@
 }
 
 .imagen-corazon-rojo{
-    transform: translate(2rem,-36.5rem);
+    transform: translate(2rem,-35.5rem);
     margin-left: 23rem;
     width: 30px;
     position: absolute;
@@ -207,7 +207,7 @@
 }
 
 .imagen-corazon-gris{
-    transform: translate(2rem, -36.5rem);
+    transform: translate(2rem, -35.5rem);
     margin-left: 23rem;
     width: 36px;
     position: absolute;
