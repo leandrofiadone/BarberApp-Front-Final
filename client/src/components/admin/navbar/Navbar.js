@@ -1,7 +1,7 @@
 import React from "react";
 import { NavLink, useHistory } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
-import "./navbar.css";
+import "./Navbar.css";
 import {
   getAdminAllEmpleados,
   getAdminAllServices,
