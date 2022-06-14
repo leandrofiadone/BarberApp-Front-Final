@@ -1,11 +1,30 @@
+
+
 .containerCard{
-    /* transform: perspective(600px) rotateY(0deg); */
+    transform: perspective(600px) rotateY(0deg);
     box-shadow: 0 8px 10px #000;
-    background-color: rgba(0, 0, 0, 0.400);
+    background-color: rgba(0, 0, 0, 0.5);
     width: 450px;
     border-radius: 20px;
     margin-top: -3rem;
 }
+
+
+
+/* .containerCard:before{
+    position: absolute;
+    content: "";
+    width: 100px;
+    height: 100%;
+    background-color: rgba(255, 255, 255, 0.2);
+    left: -300px;
+    transform: skewX(-30deg);
+    transition: all .3s;
+}
+
+.containerCard:hover:before{
+    left: 140%;
+} */
 
 .containerImg{
     width: 250px;
@@ -19,7 +38,7 @@
 img{
     height: auto;
     width: auto;
-    max-height: 300px;
+    max-height: 200px;
     max-width: 550px;
     margin-top: 30px;
     margin-bottom: 20px;
@@ -31,7 +50,7 @@ img{
 }
 
 .containerText{
-    font-family: Montserrat;
+    font-family: Gelasio;
     display: flex;
     flex-direction: column;
     justify-content: center;

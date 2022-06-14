@@ -1,3 +1,14 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Gelasio&display=swap');
+
+
+body {
+    font-family: 'Gelasio','Montserrat', sans-serif;
+    overflow-x: hidden;
+    color: white;
+}
+
+
 .serviciosCard{
     display: flex;
     flex-direction: row;
@@ -99,7 +110,6 @@
 
 .divdetailserv .front h3 {
     position: absolute;
-    font-family: Gelasio;
     bottom: 2.1rem;
     background-color: transparent;
     width: 100%;

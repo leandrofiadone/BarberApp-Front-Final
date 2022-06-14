@@ -47,13 +47,14 @@ export const ComprasPerfil = () => {
                 {
                   compras.map((e, index) => (
                   <tr key={index}>
-                    <td className="text-light fw-bold">$ {e.transaction_amount}</td>
-                    <td className="text-light">{e.status}</td>
+                    <td className="text-light fw-bold montototal">$ {e.transaction_amount}</td>
+                    <td className="text-light statusCompra">{e.status}</td>
                     <td className="text-light ">
                       {e.dataProducts.map(c => (
                         <td className="text-light tituloproducto">{c.title}</td>
                       ))}
                       </td>
+                      
                       <td className="text-light ">
                       {e.dataProducts.map(c => (
                         <td className="text-light tituloproducto">{c.quantity}</td>
@@ -67,7 +68,7 @@ export const ComprasPerfil = () => {
                       
                       <td className="text-light ">
                       {e.dataProducts.map(c => (
-                        <img src={c.picture_url} className="text-light tituloproductoimg" style={{ height: "2rem" }} alt="img Not Found"/>
+                        <img src={c.picture_url} className="text-light tituloproductoimg" style={{ height: "4rem" }} alt="img Not Found"/>
                       ))}
                       </td>
                   </tr>

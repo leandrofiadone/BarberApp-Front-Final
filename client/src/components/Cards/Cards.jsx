@@ -24,11 +24,10 @@ const Cards = ({ name, stock, price, img, id, category, idProduct }) => {
       <div className="containerText">
         <h3> {name}</h3>
         <br />
-        <h4><i><b>${price}</b></i></h4>
-        <br />
-        <h6> Stock: {stock}</h6>
-        <h6>Categoria: {category}</h6>
-        {/*    <h6>{id}</h6> */}
+        <h4><i><b>$ {price}</b></i></h4>
+        {/* <h6> Stock: {stock}</h6> */}
+        {/* <h6>Categoria: {category}</h6> */}
+           {/* <h6>{id}</h6> */}
         <div className="buttonComprar">
           <button
             id="miBoton"
