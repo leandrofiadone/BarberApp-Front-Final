@@ -5,7 +5,7 @@ import { useEffect, useState } from "react";
 import { crearCompra } from "../../../redux/actions";
 import { id } from "date-fns/locale";
 
-import './ComprasPerfil.css'
+import "./ComprasPerfil.css";
 
 export const ComprasPerfil = () => {
   const dispatch = useDispatch();
@@ -28,7 +28,9 @@ export const ComprasPerfil = () => {
   return (
     <div>
       <div>
-        <h1 className="row justify-content-center mt-4 text-light">Mis Compras</h1>
+        <h1 className="row justify-content-center mt-4 text-light">
+          Mis Compras
+        </h1>
       </div>
       <section className="py-4 container">
         <div className="row">
@@ -44,33 +46,39 @@ export const ComprasPerfil = () => {
                 </tr>
               </thead>
               <tbody>
-                {
-                  compras.map((e, index) => (
+                {compras.map((e, index) => (
                   <tr key={index}>
                     <td className="text-light fw-bold montototal">$ {e.transaction_amount}</td>
                     <td className="text-light statusCompra">{e.status}</td>
+                    
                     <td className="text-light ">
-                      {e.dataProducts.map(c => (
+                      {e.dataProducts.map((c) => (
                         <td className="text-light tituloproducto">{c.title}</td>
                       ))}
                       </td>
                       
-                      <td className="text-light ">
-                      {e.dataProducts.map(c => (
-                        <td className="text-light tituloproducto">{c.quantity}</td>
+                     
+                    <td className="text-light ">
+                      {e.dataProducts.map((c) => (
+                        <td className="text-light tituloproducto">
+                          {c.quantity}
+                        </td>
                       ))}
-                      </td>
-                      <td className="text-light ">
-                      {e.dataProducts.map(c => (
-                        <td className="text-light tituloproducto fw-bold">$ {c.unit_price}</td>
+                    </td>
+                    <td className="text-light ">
+                      {e.dataProducts.map((c) => (
+                        <td className="text-light tituloproducto fw-bold">
+                          $ {c.unit_price}
+                        </td>
                       ))}
                       </td>
                       
                       <td className="text-light ">
                       {e.dataProducts.map(c => (
                         <img src={c.picture_url} className="text-light tituloproductoimg" style={{ height: "4rem" }} alt="img Not Found"/>
-                      ))}
-                      </td>
+                    </td>
+
+                   
                   </tr>
                 ))}
               </tbody>

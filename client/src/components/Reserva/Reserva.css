@@ -7,15 +7,18 @@
 }
 
 .foto {  
- grid-template-columns: repeat(2, 1fr); 
- grid-template-areas: 'col-login   col-register' 'btn-volver btn-volver'; 
- grid-template-rows: auto; 
- justify-content: center !important; 
- align-content: center;  
+ 
+ 
  background-image: url('../../assets/ph.avif');
+ -webkit-background-size: cover;
+ -moz-background-size: cover;
+ -o-background-size: cover;
+ background-size: cover;
  width: 100vw;
  height: 100vh;
 }
+
+
 
 
 .foto>div {
@@ -32,24 +35,28 @@
     width: 900px;
     background-color: rgba(191, 224, 233, 0.101);
     border: 1px solid aliceblue;
-    border-radius: 14px;
+    border-radius: 90px;
     transition: transform 0.15s;
     margin: 0 auto; 
+    backdrop-filter: blur(6px);
 }
 
 
 .foto{
-   color: white;
-   font-family:Verdana, Geneva, Tahoma, sans-serif     
+   color: #e7a61a;
+   font-family:Verdana, Geneva, Tahoma, sans-serif;
+   font-size: 20px     
+   
 }
 
 .boton{
-    background-color: rgba(2, 2, 2, 0.573);
+    background-color: #e7a61a;
     border: none;
     padding: 14px;
     border-radius: 15px;
     color: rgba(248, 248, 248, 0.801);
     margin-top: 1rem;
     margin-left: 1rem;
-    font-family:Cambria, Cochin, Georgia, Times, 'Times New Roman', serif
+    font-family:Verdana, Geneva, Tahoma, sans-serif;
+    
 }

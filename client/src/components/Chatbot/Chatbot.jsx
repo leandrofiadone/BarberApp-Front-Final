@@ -63,7 +63,7 @@ export default function Contenido() {
                       id: "2",
                       user: true,
                       validator: (value) => {
-                        if (/^[a-z]{2,15}$/.test(value)) {
+                        if (/^[a-z]{2,15}$/.test(value.toLowerCase())) {
                           return true;
                         } else {
                           return "Ingrese sólo letras minusculas.";
