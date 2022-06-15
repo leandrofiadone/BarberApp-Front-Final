@@ -57,3 +57,7 @@ img{
 .containerText > h3 > i b{
     font-family: Gelasio;
 }
+
+.linkComprarTienda{
+    text-decoration: none;
+}

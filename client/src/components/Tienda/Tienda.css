@@ -9,7 +9,7 @@
 .contTituloTiendaWeb{
     display: flex;
     justify-content: flex-end;
-    width: 18em;
+    width: 16em;
     align-items: center;
     background-color: transparent;
 }
