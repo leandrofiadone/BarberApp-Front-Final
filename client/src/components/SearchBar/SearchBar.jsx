@@ -18,13 +18,11 @@ const SearchBar = () => {
   const handleChange = (e) => {
     e.preventDefault();
     setName(e.target.value.toLowerCase());
-    console.log(e.target.value);
   };
 
   const handleClick = (e) => {
     e.preventDefault();
     if (name.length > 3) {
-      console.log("enviado");
       setName("");
       dispatch(buscarProductos(name));
     } else {
