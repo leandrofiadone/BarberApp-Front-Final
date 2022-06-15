@@ -103,6 +103,12 @@ export function detalleDeProductos(id) {
   };
 }
 
+export function eliminarInfoDetalle() {
+  return {
+    type: ELIMINAR_INFO_DETALLE,
+  };
+}
+
 export function addProductos(product) {
   return async (dispatch) => {
     const resp = await fetchConToken("products", product, "POST");
@@ -120,180 +126,6 @@ export function addProductos(product) {
   };
 }
 
-export function eliminarInfoDetalle() {
-  return {
-    type: ELIMINAR_INFO_DETALLE,
-  };
-}
-
-export function getServices() {
-  return async function(dispatch) {
-    const resp = await fetchSinToken("services");
-    const data = await resp.json();
-
-    if (data.ok) {
-      return dispatch({
-        type: GET_SERVICES,
-        payload: data.services,
-      });
-    }
-  };
-}
-export function addEmployee(employee) {
-  return async (dispatch) => {
-    const resp = await fetchConToken("employee", employee, "POST");
-    const data = await resp.json();
-
-    if (data.ok) {
-      return dispatch({
-        type: ADD_EMPLOYEE,
-        payload: data.newEmployee,
-      });
-    }
-  };
-}
-
-export function getEmployee() {
-  return async function(dispatch) {
-    const resp = await fetchSinToken("employee");
-    const data = await resp.json();
-    console.log("data.employe:", data);
-    if (data.ok) {
-      return dispatch({
-        type: GET_EMPLOYEE,
-        payload: data.employees,
-      });
-    }
-  };
-}
-
-export function getCategories() {
-  return async (dispatch) => {
-    const resp = await fetchSinToken("categories");
-    const data = await resp.json();
-    if (data.ok) {
-      return dispatch({
-        type: GET_CATEGORIES,
-        payload: data.categories,
-      });
-    }
-  };
-}
-export function filterCategoriaProductos(payload) {
-  return {
-    type: FILTER_CATEGORIAS,
-    payload,
-  };
-}
-
-export function sortServices(order) {
-  return {
-    type: SORT,
-    payload: order,
-  };
-}
-
-export function sortName(payload) {
-  return {
-    type: SORT_NAME,
-    payload,
-  };
-}
-
-export function orderByPrecio(payload) {
-  return {
-    type: ORDER_PRECIO,
-    payload,
-  };
-}
-
-export function allCitas() {
-  return async (dispatch) => {
-    const resp = await fetchSinToken("date?all=true");
-    const data = await resp.json();
-
-    if (data.ok) {
-      dispatch({
-        type: ALL_CITAS,
-        payload: data.allDates,
-      });
-    }
-  };
-}
-
-export function crearCita(payload) {
-  return async (dispatch) => {
-    const respuesta = await fetchConToken("date", payload, "POST");
-    const data = await respuesta.json();
-    if (data.ok) {
-      dispatch({ type: CREAR_CITA, payload: data });
-      dispatch(allCitas());
-      dispatch(allCitasAdmin());
-    }
-  };
-}
-
-export function crearCompra(id) {
-  return async (dispatch) => {
-    const respuesta = await fetchConToken(`pago/${id}`, "GET");
-    const data = await respuesta.json();
-
-    if (data.ok) {
-      dispatch({ type: ALL_COMPRA, payload: data.notification });
-    }
-  };
-}
-
-export function filterPorPrecio(payload) {
-  return {
-    type: FILTER_RANGO_PRECIO,
-    payload,
-  };
-}
-
-export function allBarberos() {
-  return async (dispatch) => {
-    const resp = await fetchSinToken("employee?all=false");
-    const data = await resp.json();
-
-    if (data.ok) {
-      return dispatch({
-        type: ALL_BARBEROS,
-        payload: data.allEmployes,
-      });
-    }
-  };
-}
-
-// ACCIONES DE LOGIN !!!
-//-----------------------------------------------------------------------------------
-
-export function logout() {
-  localStorage.clear();
-  return {
-    type: types.logout,
-  };
-}
-
-export const userActive = (id) => {
-  return async (dispatch) => {
-    const resp = await fetchConToken(`users/${id}`);
-    const data = await resp.json();
-
-    if (data.ok) {
-      const payload = {
-        id: data.user.id,
-        email: data.user.email,
-        name: data.user.name,
-        rol: data.user.rol.rol,
-      };
-      dispatch({ type: types.userActive, payload });
-    }
-  };
-};
-
-//ACÁ TERMINAN LAS  ACCIONES DE LOGIN !!!
-//-----------------------------------------------------------------------------------
 export function deleteProduct(id) {
   return async function(dispatch) {
     let result = await fetchConToken(`products/${id}`, {}, "DELETE");
@@ -338,107 +170,174 @@ export function updateProductos(product) {
   };
 }
 
-export const paymentMP = async (items, user, navigate, emptyCart) => {
-  const carrito = [];
-
-  items.map((i) => {
-    carrito.push({
-      idUser: user.id,
-      idProduct: i.idProduct,
-
-      quantity: i.quantity,
-    });
-  });
-
-  const token = localStorage.getItem("token");
-  const response = await fetch(
-    "https://barber-app-henry.herokuapp.com/api/purchaseOrder",
-    {
-      method: "POST",
-      body: JSON.stringify(carrito),
-      headers: {
-        "Content-Type": "application/json",
-        "x-token": token,
-      },
-    }
-  );
-  const json = await response.json();
-  window.open(json.urlPayment, "_blank");
-  emptyCart();
-  navigate.push("/");
-};
-
-export const login = (payload) => ({ type: types.login, payload });
-
-export function revalidarAuth() {
-  return async (dispatch) => {
-    const resp = await fetchConToken("auth/renew");
+export function getServices() {
+  return async function(dispatch) {
+    const resp = await fetchSinToken("services");
     const data = await resp.json();
 
     if (data.ok) {
-      localStorage.setItem("token", data.token);
-      const payload = {
-        id: data.id,
-        email: data.email,
-        name: data.name,
-        rol: data.rol,
-        img: data.img,
-        phone: data.phone,
-      };
-
-      if (data.rol === "ADMIN") {
-        dispatch(adminGetAllProducts());
-        dispatch(getAllUsers());
-        dispatch(getCategories());
-        dispatch(allCitasAdmin());
-      }
-      dispatch(allCitas());
-
-
       return dispatch({
-        type: types.login,
-        payload,
+        type: GET_SERVICES,
+        payload: data.services,
       });
     }
   };
 }
 
-// ======================= estas acciones las agrego david por favor consultar conmigo para cualquier cambios =================================/
-// ======================================== ALERTA
-
-// esta accion sirve para banear y desbanear basicamente
-export const banearUser = (user) => {
-  return {
-    type: types.banearUser,
-    payload: user,
-  };
-};
-
-// esta accion le carga los usuarios para el administrador luego poder banearlos
-export const getAllUsers = () => {
-  return async (dispatch) => {
-    const resp = await fetchConToken("users");
-    const data = await resp.json();
-
+export function addService(service) {
+  return async function(dispatch) {
+    let result = await fetchConToken(`services`, service, "POST");
+    const data = await result.json();
     if (data.ok) {
-      return dispatch({ type: types.getAllUsers, payload: data.users });
+      Swal.fire("Success", "Servicio Agregado", "success");
+      return dispatch({
+        type: ADD_SERVICE,
+        payload: data.service,
+      });
     }
   };
-};
+}
 
-export const adminGetAllProducts = () => {
+export function filterPorPrecio(payload) {
+  return {
+    type: FILTER_RANGO_PRECIO,
+    payload,
+  };
+}
+
+export function filterCategoriaProductos(payload) {
+  return {
+    type: FILTER_CATEGORIAS,
+    payload,
+  };
+}
+
+export function sortServices(order) {
+  return {
+    type: SORT,
+    payload: order,
+  };
+}
+
+export function sortName(payload) {
+  return {
+    type: SORT_NAME,
+    payload,
+  };
+}
+
+export function orderByPrecio(payload) {
+  return {
+    type: ORDER_PRECIO,
+    payload,
+  };
+}
+
+export function addEmployee(employee) {
   return async (dispatch) => {
-    const resp = await fetchSinToken("products?all=true");
+    const resp = await fetchConToken("employee", employee, "POST");
     const data = await resp.json();
 
     if (data.ok) {
       return dispatch({
-        type: types.getAllProductsAdmin,
-        payload: data.products,
+        type: ADD_EMPLOYEE,
+        payload: data.newEmployee,
       });
     }
   };
+}
+
+export function getEmployee() {
+  return async function(dispatch) {
+    const resp = await fetchSinToken("employee");
+    const data = await resp.json();
+    console.log("data.employe:", data);
+    if (data.ok) {
+      return dispatch({
+        type: GET_EMPLOYEE,
+        payload: data.employees,
+      });
+    }
+  };
+}
+export function allBarberos() {
+  return async (dispatch) => {
+    const resp = await fetchSinToken("employee?all=false");
+    const data = await resp.json();
+
+    if (data.ok) {
+      return dispatch({
+        type: ALL_BARBEROS,
+        payload: data.allEmployes,
+      });
+    }
+  };
+}
+
+export function getCategories() {
+  return async (dispatch) => {
+    const resp = await fetchSinToken("categories");
+    const data = await resp.json();
+    if (data.ok) {
+      return dispatch({
+        type: GET_CATEGORIES,
+        payload: data.categories,
+      });
+    }
+  };
+}
+
+export function allCitas() {
+  return async (dispatch) => {
+    const resp = await fetchSinToken("date?all=true");
+    const data = await resp.json();
+
+    if (data.ok) {
+      dispatch({
+        type: ALL_CITAS,
+        payload: data.allDates,
+      });
+    }
+  };
+}
+
+export function deleteDate(id) {
+  return async function(dispatch) {
+    const result = await fetchConToken(`date/${id}`, {}, "DELETE");
+    const data = await result.json();
+
+    if (data.ok) {
+      dispatch(allCitas());
+      dispatch(allCitasAdmin());
+    }
+  };
+}
+
+export function crearCompra(id) {
+  return async (dispatch) => {
+    const respuesta = await fetchConToken(`pago/${id}`, "GET");
+    const data = await respuesta.json();
+
+    if (data.ok) {
+      dispatch({ type: ALL_COMPRA, payload: data.notification });
+    }
+  };
+}
+
+export const getFavourites = (idUser) => {
+  return async (dispatch) => {
+    try {
+      const response = await fetchConToken(`favorite/${idUser}`);
+      const json = await response.json();
+
+      dispatch({ type: GET_FAVOURITES, payload: json });
+    } catch (error) {
+      console.error(error);
+    }
+  };
 };
+
+// ------- ADMINISTRADOR PRODUCTOS ---------
 
 export const addProductosAdmin = (product) => ({
   type: types.addProductsAdmin,
@@ -455,63 +354,93 @@ export const activarProducto = (id) => {
     }
   };
 };
-
-export function deleteDate(id) {
-  return async function(dispatch) {
-    const result = await fetchConToken(`date/${id}`, {}, "DELETE");
-    const data = await result.json();
-    console.log(data);
-    if (data.ok) {
-      dispatch(allCitas());
-      dispatch(allCitasAdmin());
-    }
-  };
-}
-
-export const getFavourites = (idUser) => {
+export const adminGetAllProducts = () => {
   return async (dispatch) => {
-    try {
-      const response = await fetchConToken(`favorite/${idUser}`);
-      const json = await response.json();
-      console.log("Action", json);
-      dispatch({ type: GET_FAVOURITES, payload: json });
-    } catch (error) {
-      console.error(error);
+    const resp = await fetchSinToken("products?all=true");
+    const data = await resp.json();
+
+    if (data.ok) {
+      return dispatch({
+        type: types.getAllProductsAdmin,
+        payload: data.products,
+      });
     }
   };
 };
+// ------- ADMINISTRADOR PRODUCTOS ---------
 
-export function allCitasAdmin() {
+// ------- ADMINISTRADOR SERVICIOS ---------
+
+export function updateService(servicio) {
   return async (dispatch) => {
-    const resp = await fetchSinToken("date?all=true");
-    const data = await resp.json();
-
-    if (data.ok) {
-      return dispatch({
-        type: ALL_CITAS_ADMIN,
-        payload: data.allDates,
-      });
+    try {
+      const result = await fetchConToken(
+        `services/${servicio.id}`,
+        servicio,
+        "PUT"
+      );
+      const data = await result.json();
+      console.log("data update", data);
+      if (data.ok) {
+        Swal.fire("Success", "Servicio actualizado", "success");
+        return dispatch({
+          type: UPDATE_SERVICE,
+          payload: data.employee,
+        });
+      } else {
+        console.log(data);
+      }
+    } catch (err) {
+      console.log("error en modificacion:", err);
     }
   };
 }
 
-export function addCategorie(categorie) {
+export function detalleService(id) {
   return async (dispatch) => {
-    const resp = await fetchConToken("categories", categorie, "POST");
+    const resp = await fetchSinToken(`services/${id}`);
     const data = await resp.json();
+
     if (data.ok) {
-      Swal.fire("Success", "Categoria creado", "success");
       return dispatch({
-        type: ADD_CATEGORIE,
-        payload: {
-          id: data.id,
-          categorie: data.categorie,
-          products: [],
-        },
+        type: DETALLE_SERVICE,
+        payload: data.service,
       });
     }
   };
 }
+export function deleteService(idServicio) {
+  return async function(dispatch) {
+    console.log(idServicio);
+    let result = await fetchConToken(`services/${idServicio}`, {}, "DELETE");
+    const data = await result.json();
+    console.log(data);
+    if (data.ok) {
+      Swal.fire("Success", "Servicio eliminado", "success");
+      return dispatch({
+        type: DELETE_SERVICE,
+        payload: data.service,
+      });
+    }
+  };
+}
+export function getAdminAllServices() {
+  return async function(dispatch) {
+    const resp = await fetchSinToken("services?all=true");
+    const data = await resp.json();
+    console.log(data);
+    if (data.ok) {
+      return dispatch({
+        type: ADMIN_GET_ALL_SERVICES,
+        payload: data.allServices,
+      });
+    }
+  };
+}
+// ------- ADMINISTRADOR SERVICIOS ---------
+
+// ADMINISTRADOR EMPLEADOS ----
+
 export function detalleEmployee(id) {
   return async (dispatch) => {
     const resp = await fetchSinToken(`employee/${id}`);
@@ -566,86 +495,6 @@ export function deleteEmpleado(idEmployee) {
   };
 }
 
-export function addService(service) {
-  return async function(dispatch) {
-    let result = await fetchConToken(`services`, service, "POST");
-    const data = await result.json();
-    if (data.ok) {
-      Swal.fire("Success", "Servicio Agregado", "success");
-      return dispatch({
-        type: ADD_SERVICE,
-        payload: data.service,
-      });
-    }
-  };
-}
-
-export function updateService(servicio) {
-  return async (dispatch) => {
-    try {
-      const result = await fetchConToken(
-        `services/${servicio.id}`,
-        servicio,
-        "PUT"
-      );
-      const data = await result.json();
-      console.log("data update", data);
-      if (data.ok) {
-        Swal.fire("Success", "Servicio actualizado", "success");
-        return dispatch({
-          type: UPDATE_SERVICE,
-          payload: data.employee,
-        });
-      } else {
-        console.log(data);
-      }
-    } catch (err) {
-      console.log("error en modificacion:", err);
-    }
-  };
-}
-
-export function detalleService(id) {
-  return async (dispatch) => {
-    const resp = await fetchSinToken(`services/${id}`);
-    const data = await resp.json();
-    console.log("servicio:", data);
-    if (data.ok) {
-      return dispatch({
-        type: DETALLE_SERVICE,
-        payload: data.service,
-      });
-    }
-  };
-}
-export function deleteService(idServicio) {
-  return async function(dispatch) {
-    console.log(idServicio);
-    let result = await fetchConToken(`services/${idServicio}`, {}, "DELETE");
-    const data = await result.json();
-    console.log(data);
-    if (data.ok) {
-      Swal.fire("Success", "Servicio eliminado", "success");
-      return dispatch({
-        type: DELETE_SERVICE,
-        payload: data.service,
-      });
-    }
-  };
-}
-export function getAdminAllServices() {
-  return async function(dispatch) {
-    const resp = await fetchSinToken("services?all=true");
-    const data = await resp.json();
-    console.log(data);
-    if (data.ok) {
-      return dispatch({
-        type: ADMIN_GET_ALL_SERVICES,
-        payload: data.allServices,
-      });
-    }
-  };
-}
 export function getAdminAllEmpleados() {
   return async function(dispatch) {
     const resp = await fetchSinToken("employee?all=true");
@@ -674,6 +523,57 @@ export function datesEmployee(idEmployee) {
   };
 }
 
+// ADMINISTRADOR EMPLEADOS ----
+
+// ADMINISTRADOR CATEGORIAS ----
+
+export function addCategorie(categorie) {
+  return async (dispatch) => {
+    const resp = await fetchConToken("categories", categorie, "POST");
+    const data = await resp.json();
+    if (data.ok) {
+      Swal.fire("Success", "Categoria creado", "success");
+      return dispatch({
+        type: ADD_CATEGORIE,
+        payload: {
+          id: data.id,
+          categorie: data.categorie,
+          products: [],
+        },
+      });
+    }
+  };
+}
+// ADMINISTRADOR CATEGORIAS ----
+
+// ADMINISTRADOR CITAS ----
+
+export function crearCita(payload) {
+  return async (dispatch) => {
+    const respuesta = await fetchConToken("date", payload, "POST");
+    const data = await respuesta.json();
+    if (data.ok) {
+      dispatch({ type: CREAR_CITA, payload: data });
+      dispatch(allCitas());
+      dispatch(allCitasAdmin());
+    }
+  };
+}
+
+export function allCitasAdmin() {
+  return async (dispatch) => {
+    const resp = await fetchSinToken("date?all=true");
+    const data = await resp.json();
+
+    if (data.ok) {
+      return dispatch({
+        type: ALL_CITAS_ADMIN,
+        payload: data.allDates,
+      });
+    }
+  };
+}
+
 export function EliminarCita(id) {
   return async function(dispatch) {
     const result = await fetchConToken(`date/${id}`, {}, "DELETE");
@@ -682,6 +582,130 @@ export function EliminarCita(id) {
     if (data.ok) {
       dispatch(allCitasAdmin());
       dispatch(allCitas());
+    }
+  };
+}
+
+// ADMINISTRADOR CITAS ----
+
+// MERCADO PAGO ----
+
+export const paymentMP = async (items, user, navigate, emptyCart) => {
+  const carrito = [];
+
+  items.map((i) => {
+    carrito.push({
+      idUser: user.id,
+      idProduct: i.idProduct,
+
+      quantity: i.quantity,
+    });
+  });
+
+  const token = localStorage.getItem("token");
+  const response = await fetch(
+    "https://barber-app-henry.herokuapp.com/api/purchaseOrder",
+    {
+      method: "POST",
+      body: JSON.stringify(carrito),
+      headers: {
+        "Content-Type": "application/json",
+        "x-token": token,
+      },
+    }
+  );
+  const json = await response.json();
+  window.open(json.urlPayment, "_blank");
+  emptyCart();
+  navigate.push("/");
+};
+
+// MERCADO PAGO ----
+
+// ADMINISTRADOR USUARIO ----
+
+// esta accion sirve para banear y desbanear basicamente
+export const banearUser = (user) => {
+  return {
+    type: types.banearUser,
+    payload: user,
+  };
+};
+
+// esta accion le carga los usuarios para el administrador luego poder banearlos
+export const getAllUsers = () => {
+  return async (dispatch) => {
+    const resp = await fetchConToken("users");
+    const data = await resp.json();
+
+    if (data.ok) {
+      return dispatch({ type: types.getAllUsers, payload: data.users });
+    }
+  };
+};
+
+// ADMINISTRADOR USUARIO ----
+
+// ACCIONES DE LOGIN !!!
+//-----------------------------------------------------------------------------------
+
+export function logout() {
+  localStorage.clear();
+  return {
+    type: types.logout,
+  };
+}
+
+export const userActive = (id) => {
+  return async (dispatch) => {
+    const resp = await fetchConToken(`users/${id}`);
+    const data = await resp.json();
+
+    if (data.ok) {
+      const payload = {
+        id: data.user.id,
+        email: data.user.email,
+        name: data.user.name,
+        rol: data.user.rol.rol,
+      };
+      dispatch({ type: types.userActive, payload });
+    }
+  };
+};
+
+//ACÁ TERMINAN LAS  ACCIONES DE LOGIN !!!
+//-----------------------------------------------------------------------------------
+
+export const login = (payload) => ({ type: types.login, payload });
+
+export function revalidarAuth() {
+  return async (dispatch) => {
+    const resp = await fetchConToken("auth/renew");
+    const data = await resp.json();
+
+    if (data.ok) {
+      localStorage.setItem("token", data.token);
+      const payload = {
+        id: data.id,
+        email: data.email,
+        name: data.name,
+        rol: data.rol,
+        img: data.img,
+        phone: data.phone,
+      };
+
+      if (data.rol === "ADMIN") {
+        dispatch(adminGetAllProducts());
+        dispatch(getAllUsers());
+        dispatch(getCategories());
+        dispatch(allCitasAdmin());
+      }
+      dispatch(allCitas());
+
+      return dispatch({
+        type: types.login,
+        payload,
+      });
     }
   };
 }

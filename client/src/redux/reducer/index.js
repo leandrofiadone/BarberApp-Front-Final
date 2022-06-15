@@ -37,6 +37,7 @@ const initialState = {
 
 function rootReducer(state = initialState, action) {
   switch (action.type) {
+    // ---- PRODUCTOS ---
     case ACTIONS.ALL_PRODUCTOS:
       return {
         ...state,
@@ -56,6 +57,12 @@ function rootReducer(state = initialState, action) {
         detalle: action.payload,
       };
 
+    case ACTIONS.ELIMINAR_INFO_DETALLE:
+      return {
+        ...state,
+        detalle: [],
+      };
+
     case ACTIONS.DELETE_PRODUCT:
       const oldProduct = state.adminAllProducts.filter(
         (prod) => prod.id !== action.payload.id
@@ -69,204 +76,6 @@ function rootReducer(state = initialState, action) {
         productos: state.productos.filter(
           (prod) => prod.id !== action.payload.id
         ),
-      };
-
-    case ACTIONS.ELIMINAR_INFO_DETALLE:
-      return {
-        ...state,
-        detalle: [],
-      };
-
-    case ACTIONS.GET_SERVICES:
-      return {
-        ...state,
-        servicios: action.payload,
-        // categorias: action.payload,
-        allServicios: action.payload,
-      };
-    case ACTIONS.ADD_EMPLOYEE:
-      return {
-        ...state,
-        empleados: state.empleados.concat(action.payload),
-      };
-
-    case ACTIONS.GET_EMPLOYEE:
-      return {
-        ...state,
-        empleados: action.payload,
-        adminAllEmpleados: action.payload,
-        barberos: action.payload,
-      };
-
-    case ACTIONS.FILTER_CATEGORIAS:
-      const filterProductos = state.allProductos;
-
-      const infoCategoria =
-        action.payload === "All"
-          ? filterProductos
-          : filterProductos.filter(
-              (e) => e.category.categorie === action.payload
-            );
-
-      return {
-        ...state,
-        allProductos: infoCategoria,
-      };
-
-    case ACTIONS.GET_CATEGORIES:
-      return {
-        ...state,
-        categorias: action.payload,
-      };
-    case ACTIONS.ADD_CATEGORIE:
-      return {
-        ...state,
-        categorias: state.categorias.concat(action.payload),
-      };
-
-    case ACTIONS.SORT_NAME:
-      let orderName = [...state.productos];
-      orderName = orderName.sort((a, b) => {
-        if (a.name < b.name) {
-          return action.payload === "ASC" ? -1 : 1;
-        }
-        if (a.name > b.name) {
-          return action.payload === "ASC" ? 1 : -1;
-        }
-        return 0;
-      });
-      return {
-        ...state,
-        productos: action.payload === "Filter" ? state.productos : orderName,
-      };
-
-    case ACTIONS.SORT:
-      let orderedCharacters = [...state.allProductos];
-      orderedCharacters = orderedCharacters.sort((a, b) => {
-        if (a.price < b.price) {
-          return action.payload === "ASCENDENTE" ? -1 : 1;
-        }
-        if (a.price > b.price) {
-          return action.payload === "ASCENDENTE" ? 1 : -1;
-        }
-        return 0;
-      });
-      return {
-        ...state,
-        servicios:
-          action.payload === "Filtro" ? state.allServicios : orderedCharacters,
-      };
-
-    case ACTIONS.ORDER_PRECIO:
-      let ordenPrecio = [...state.productos];
-
-      const info =
-        action.payload === "All"
-          ? ordenPrecio
-          : action.payload === "max"
-          ? ordenPrecio.sort((a, b) => b.price - a.price)
-          : ordenPrecio.sort((a, b) => a.price - b.price);
-
-      return {
-        ...state,
-        productos: info,
-      };
-
-    case ACTIONS.FILTER_RANGO_PRECIO:
-      let productosFilter = state.productos;
-
-      const res = productosFilter.filter(
-        (e) => e.price >= action.payload[0] && e.price <= action.payload[1]
-      );
-
-      return {
-        ...state,
-        productos: res,
-      };
-
-    case ACTIONS.ALL_CITAS:
-      return {
-        ...state,
-        citas: action.payload,
-      };
-
-    case ACTIONS.CREAR_CITA:
-      return {
-        ...state,
-      };
-
-    case ACTIONS.ALL_COMPRA:
-      return {
-        ...state,
-        compras: action.payload,
-      };
-
-    case ACTIONS.ALL_BARBEROS:
-      return {
-        ...state,
-        barberos: action.payload,
-      };
-
-    // PARA EL LOGIN!!!!!
-
-    case types.login:
-      return {
-        ...state,
-        user: action.payload,
-        isAuth: true,
-      };
-
-    case types.logout:
-      return {
-        ...state,
-        user: {},
-        isAuth: false,
-      };
-
-    case types.getAllProductsAdmin:
-      return {
-        ...state,
-        adminAllProducts: action.payload,
-      };
-
-    case ACTIONS.DETALLE_EMPLOYEE:
-      return {
-        ...state,
-        detalleEmpleado: action.payload,
-      };
-
-    case ACTIONS.DETALLE_SERVICE:
-      return {
-        ...state,
-        detalleServicio: action.payload,
-      };
-    case ACTIONS.ADMIN_GET_ALL_SERVICES:
-      return {
-        ...state,
-        adminAllServices: action.payload,
-      };
-    case ACTIONS.ADMIN_GET_ALL_EMPLOYEE:
-      return {
-        ...state,
-        adminAllEmpleados: action.payload,
-      };
-    // CIERRA EL LOGIN!!!!!
-
-    // ===================ACCIONES DE DAVID=================
-    case types.getAllUsers:
-      return {
-        ...state,
-        adminAllUsers: action.payload,
-      };
-
-    case types.banearUser:
-      let users = state.adminAllUsers.filter(
-        (user) => user.id !== action.payload.id
-      );
-      let user = action.payload;
-      return {
-        ...state,
-        adminAllUsers: users.concat(user),
       };
 
     case types.getAllProductsAdmin:
@@ -331,22 +140,243 @@ function rootReducer(state = initialState, action) {
         adminAllProducts: OldProductosAdmin.concat(action.payload),
       };
 
-    case ACTIONS.ALL_CITAS_ADMIN:
+    // ---- PRODUCTOS ---
+
+    // --- SERVICIOS ----
+
+    case ACTIONS.DETALLE_SERVICE:
       return {
         ...state,
-        allCitas: action.payload,
+        detalleServicio: action.payload,
       };
-    case ACTIONS.GET_FAVOURITES:
+    case ACTIONS.ADMIN_GET_ALL_SERVICES:
       return {
         ...state,
-        favourites: action.payload,
+        adminAllServices: action.payload,
       };
+
+    case ACTIONS.GET_SERVICES:
+      return {
+        ...state,
+        servicios: action.payload,
+        // categorias: action.payload,
+        allServicios: action.payload,
+      };
+
+    // --- SERVICIOS ----
+
+    // --- ORDENAMIENTOS ---
+
+    case ACTIONS.SORT_NAME:
+      let orderName = [...state.productos];
+      orderName = orderName.sort((a, b) => {
+        if (a.name < b.name) {
+          return action.payload === "ASC" ? -1 : 1;
+        }
+        if (a.name > b.name) {
+          return action.payload === "ASC" ? 1 : -1;
+        }
+        return 0;
+      });
+      return {
+        ...state,
+        productos: action.payload === "Filter" ? state.productos : orderName,
+      };
+
+    case ACTIONS.SORT:
+      let orderedCharacters = [...state.allProductos];
+      orderedCharacters = orderedCharacters.sort((a, b) => {
+        if (a.price < b.price) {
+          return action.payload === "ASCENDENTE" ? -1 : 1;
+        }
+        if (a.price > b.price) {
+          return action.payload === "ASCENDENTE" ? 1 : -1;
+        }
+        return 0;
+      });
+      return {
+        ...state,
+        servicios:
+          action.payload === "Filtro" ? state.allServicios : orderedCharacters,
+      };
+
+    case ACTIONS.ORDER_PRECIO:
+      let ordenPrecio = [...state.productos];
+
+      const info =
+        action.payload === "All"
+          ? ordenPrecio
+          : action.payload === "max"
+          ? ordenPrecio.sort((a, b) => b.price - a.price)
+          : ordenPrecio.sort((a, b) => a.price - b.price);
+
+      return {
+        ...state,
+        productos: info,
+      };
+
+    case ACTIONS.FILTER_RANGO_PRECIO:
+      let productosFilter = state.productos;
+
+      const res = productosFilter.filter(
+        (e) => e.price >= action.payload[0] && e.price <= action.payload[1]
+      );
+
+      return {
+        ...state,
+        productos: res,
+      };
+    // --- ORDENAMIENTOS ---
+
+    // --- EMPLEADOS ---
 
     case ACTIONS.CITAS_EMPLEADO:
       return {
         ...state,
         citasEmpleado: action.payload,
       };
+
+    case ACTIONS.DETALLE_EMPLOYEE:
+      return {
+        ...state,
+        detalleEmpleado: action.payload,
+      };
+
+    case ACTIONS.ADMIN_GET_ALL_EMPLOYEE:
+      return {
+        ...state,
+        adminAllEmpleados: action.payload,
+      };
+
+    case ACTIONS.ADD_EMPLOYEE:
+      return {
+        ...state,
+        empleados: state.empleados.concat(action.payload),
+      };
+
+    case ACTIONS.GET_EMPLOYEE:
+      return {
+        ...state,
+        empleados: action.payload,
+        adminAllEmpleados: action.payload,
+        barberos: action.payload,
+      };
+
+    case ACTIONS.ALL_BARBEROS:
+      return {
+        ...state,
+        barberos: action.payload,
+      };
+
+    // --- EMPLEADOS ---
+
+    // --- CATEGORIAS ---
+
+    case ACTIONS.FILTER_CATEGORIAS:
+      const filterProductos = state.allProductos;
+
+      const infoCategoria =
+        action.payload === "All"
+          ? filterProductos
+          : filterProductos.filter(
+              (e) => e.category.categorie === action.payload
+            );
+
+      return {
+        ...state,
+        allProductos: infoCategoria,
+      };
+
+    case ACTIONS.GET_CATEGORIES:
+      return {
+        ...state,
+        categorias: action.payload,
+      };
+    case ACTIONS.ADD_CATEGORIE:
+      return {
+        ...state,
+        categorias: state.categorias.concat(action.payload),
+      };
+    // --- CATEGORIAS ---
+
+    // --- CITAS --
+
+    case ACTIONS.ALL_CITAS_ADMIN:
+      return {
+        ...state,
+        allCitas: action.payload,
+      };
+
+    case ACTIONS.ALL_CITAS:
+      return {
+        ...state,
+        citas: action.payload,
+      };
+
+    case ACTIONS.CREAR_CITA:
+      return {
+        ...state,
+      };
+
+    case ACTIONS.ALL_COMPRA:
+      return {
+        ...state,
+        compras: action.payload,
+      };
+
+    // --- CITAS --
+
+    // --- FAVORITOS ---
+
+    case ACTIONS.GET_FAVOURITES:
+      return {
+        ...state,
+        favourites: action.payload,
+      };
+    // --- FAVORITOS ---
+
+    // ===================ACCIONES DE DAVID=========USUARIOS========
+    case types.getAllUsers:
+      return {
+        ...state,
+        adminAllUsers: action.payload,
+      };
+
+    case types.banearUser:
+      let users = state.adminAllUsers.filter(
+        (user) => user.id !== action.payload.id
+      );
+      let user = action.payload;
+      return {
+        ...state,
+        adminAllUsers: users.concat(user),
+      };
+
+    // ===================ACCIONES DE DAVID=========USUARIOS========
+
+    // PARA EL LOGIN!!!!!
+
+    case types.login:
+      return {
+        ...state,
+        user: action.payload,
+        isAuth: true,
+      };
+
+    case types.logout:
+      return {
+        ...state,
+        user: {},
+        isAuth: false,
+      };
+
+    case types.getAllProductsAdmin:
+      return {
+        ...state,
+        adminAllProducts: action.payload,
+      };
+
+    // CIERRA EL LOGIN!!!!!
 
     default:
       return state;
