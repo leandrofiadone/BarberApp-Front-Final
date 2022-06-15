@@ -8,6 +8,7 @@
     border-radius: 100%;
     width: 4rem;
     height: 4rem;
+    z-index: 10000;
 }
 
 .divwsp>a>img {

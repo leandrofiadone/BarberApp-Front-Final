@@ -52,7 +52,7 @@ const Favourites = () => {
        
       </div>
       <Link to="/tienda">
-          <button className="boton">Volver </button>
+          <button className="botonVolverFav">Volver </button>
         </Link>
     </div>
   );

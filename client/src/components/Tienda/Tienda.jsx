@@ -255,11 +255,11 @@ console.log(productosBarberia)
                 >
 
                   
-                  <div className="contOrder">
+                  <div className="contOrder ">
                     <div>
                       <select
                         onChange={(e) => handleCategorias(e)}
-                        className="form-select form-select mb-3 mt-4"
+                        className="form-select form-select mb-3 mt-4 bg-dark text-light"
                       >
                         <option hidden>Categorias</option>
 
@@ -279,7 +279,7 @@ console.log(productosBarberia)
                       <select
                         name="select"
                         onChange={(e) => onSelectsChange(e)}
-                        className="form-select form-select mb-3"
+                        className="form-select form-select mb-3 bg-dark text-light"
                       >
                         <option hidden value="Filter">
                           A-Z
@@ -294,7 +294,7 @@ console.log(productosBarberia)
                       {productosBarberia ? (
                         <select
                           onChange={(e) => handlePrecio(e)}
-                          className="form-select form-select mb-3 dropdown-toggle"
+                          className="form-select form-select mb-3 dropdown-toggle bg-dark text-light"
                           
                         >
                           <option hidden>$$</option>
@@ -306,7 +306,7 @@ console.log(productosBarberia)
                     </div>
 
                     <div>
-                      <form>
+                      <form className="formRango">
                       <label className="label-min">Min:</label>
                       <input className="input-min" type={"text"} name={"min"} value={inputRango.min} onChange={(e)=>handleRange(e)}></input>
                       <label className="label-max">Max:</label>
@@ -321,7 +321,7 @@ console.log(productosBarberia)
               </li>
             </ul>
 
-            <ul class="navbar-nav me-auto mb-lg-0 ">
+            <ul class="navbar-nav me-auto mb-lg-0">
               <div className="contTituloTiendaWeb">
                 <Link to="/tienda">
                   <button

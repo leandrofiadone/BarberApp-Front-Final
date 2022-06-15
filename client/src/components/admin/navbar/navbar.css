@@ -56,3 +56,26 @@
 .admin-active-link {
     color: yellow;
 }
+
+.adminPaneltitulo{
+    display: flex;
+    justify-content: center;
+    transform: translateY(20rem);
+    color: wheat;
+}
+
+.adminPaneltitulo > h1{
+    font-size: 5rem;
+    font-family: Gelasio;
+    animation: admin .5s;
+}
+
+@keyframes admin {
+    from{
+        font-size: 10rem;
+        letter-spacing: 1rem;
+    }
+    to{
+        font-size: 5rem;
+    }
+}
