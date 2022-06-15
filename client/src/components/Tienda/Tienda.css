@@ -9,7 +9,7 @@
 .contTituloTiendaWeb{
     display: flex;
     justify-content: flex-end;
-    width: 16em;
+    width: 18em;
     align-items: center;
     background-color: transparent;
 }
@@ -28,6 +28,8 @@
     transition: text-shadow 200ms;
 }
 
+
+
 .botonTiendaWeb:hover{
     text-shadow: #d40000 -3px 0, cyan -4px 0;
 }
@@ -35,6 +37,8 @@
 .botonTiendaWeb > h5 {
     margin-top: 10px;
 }
+
+
 
  .cardsTienda {
     display: flex;
@@ -110,6 +114,11 @@
     color: white;
     font-weight: lighter;
     margin-left: 4em;
+}
+
+.ordenDrop{
+    transform: translateX(32%);
+    width: 100%;
 }
 
 .contOrder {
@@ -197,7 +206,7 @@
 }
 
 .imagen-corazon-rojo{
-    transform: translate(2rem,-36rem);
+    transform: translate(2rem,-36.5rem);
     margin-left: 23rem;
     width: 30px;
     position: absolute;
@@ -209,7 +218,7 @@
 }
 
 .imagen-corazon-gris{
-    transform: translate(2rem, -36rem);
+    transform: translate(2rem, -36.5rem);
     margin-left: 23rem;
     width: 36px;
     position: absolute;
@@ -260,23 +269,29 @@
     margin-right: 8px;
     margin-left: 15px;
     margin-top: 25px;
+    color: wheat;
 }
 
 .input-min{
-width: 45px;
-border-radius: 8px;
-margin-right: 10px;
+    width: 3rem;
+    border-radius: 5px;
+    height: 2rem;
+    margin-top: 1rem;
 }
 
 .label-max{
     font-size: 15px;
     margin-right: 8px;
+    margin-left: 15px;
+    margin-top: 25px;
+    color: wheat;
 }
 
 .input-max{
-    width: 45px;
-    border-radius: 8px;
-    margin-right: 10px;
+    width: 3rem;
+    border-radius: 5px;
+    height: 2rem;
+    margin-top: 1rem;
 }
 
 .filter-range-filtrar{
@@ -292,4 +307,10 @@ margin-right: 10px;
 .error{
     color: red;
     font-size: 10px;
+}
+
+.formRango{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
 }

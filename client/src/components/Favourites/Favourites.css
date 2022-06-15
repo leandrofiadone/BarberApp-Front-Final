@@ -5,6 +5,16 @@
     flex-direction: column;
     align-items: center;
     justify-content: center;
+    animation: favo 2s;
+}
+
+@keyframes favo {
+    from{
+        opacity: 0;
+      }
+      to{
+        opacity: 1;
+      }
 }
 .container-Favourites{
     display: flex;
@@ -18,6 +28,19 @@
     font-size: 3rem;
     margin-top: 35px;
     margin-bottom: 1rem ;
+    font-family: Gelasio;
+    font-style: italic;
+    animation: titleFav 1s;
+}
+
+@keyframes titleFav {
+    from{
+        font-size: 6rem;
+        letter-spacing: 2rem;
+      }
+      to{
+        font-size: 3rem;
+      }
 }
 
 
@@ -88,6 +111,23 @@
 .container-Text > h3 {
     font-family: Gelasio;
 }
+
+.botonVolverFav{
+    width: 8rem;
+    height: 3rem;
+    margin-top: 2rem;
+    border-radius: 10px;
+    background-color: #8F5800;
+    color: #fff;
+    transition: all .5s;
+}
+
+.botonVolverFav:hover{
+    background-color: #c07600;
+    border: none;
+}
+
+
 
 /* -------------------- */
 
