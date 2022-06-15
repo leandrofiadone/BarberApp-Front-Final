@@ -3,7 +3,6 @@ import { useSelector } from "react-redux";
 
 export const VentasBarras = () => {
   const ventas = useSelector((state) => state.ventas);
-  console.log(ventas);
   return (
     <div className="col" style={{ width: "100%", height: "520px" }}>
       <h3 className="text-center">Ventas Mas Recientes</h3>

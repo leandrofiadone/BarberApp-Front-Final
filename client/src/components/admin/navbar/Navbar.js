@@ -40,19 +40,19 @@ export const Navbar = () => {
           Inicio
         </NavLink>
 
-        <NavLink
+        <label
           className="list-group-item text-dark"
-          activeClassName="bg-warning"
+          // activeClassName="bg-warning"
           onClick={async () => {
             await dispatch(allProductos());
             await dispatch(getVentasUsuarios());
             await dispatch(getAllUsers());
             await dispatch(allCitasAdmin());
+            history.push("/admin/dashboard");
           }}
-          to={"/admin/dashboard"}
         >
           Dashboard
-        </NavLink>
+        </label>
         <NavLink
           className="list-group-item pointer"
           activeClassName="bg-warning"
