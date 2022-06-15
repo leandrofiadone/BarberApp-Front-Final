@@ -17,7 +17,7 @@ import "../NavBar/NavBar.css";
 
 /////////////////////////////////////////////////////
 
-//import Geolocalizacion from "../Geolocalizacion/Geolocalizacion";
+import Geolocalizacion from "../Geolocalizacion/Geolocalizacion";
 
 import "./Home.css";
 // import { MDBFooter } from "mdb-react-ui-kit";
@@ -215,9 +215,9 @@ export default function Home() {
               <div className="container text-center text-md-start mt-5">
                 <div className="row mt-3">
                   <div className="col-md-3 col-lg-4 col-xl-3 mx-auto mb-1">
+                  <Geolocalizacion />
                     <div style={{ marginBottom: "5px" }}></div>
                   </div>
-
                   <div className="col-md-6 col-lg- col-xl-8 mx-auto mb-3">
                     <div style={{ marginBottom: "40px", marginLeft: "35px" }}>
                       <div id="react-root" style={{ fontSize: "20px" }}>
