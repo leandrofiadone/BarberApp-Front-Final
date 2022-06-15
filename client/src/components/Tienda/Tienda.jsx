@@ -184,7 +184,7 @@ state: true
   };
   /////Favourites////
 
-  //Filtro Rango
+  //Filtro Rango de precio
   const handleRange = (e) =>{
 
     if(!e.target.value){
