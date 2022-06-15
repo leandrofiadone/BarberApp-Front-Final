@@ -12,7 +12,8 @@ import { Link } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { useEffect, useState } from "react";
 import Paginado from "../Paginado/Paginado";
-
+import { filterRange } from "../../redux/actions";
+import validateInput from "./validateInputRange";
 // import '../Paginado/Paginado.css'
 
 
@@ -46,6 +47,14 @@ export default function Tienda() {
   const [addFavourites, setFavourites] = useState([{newFavourite:false},{newFavourite:false},{newFavourite:false}
     ,{newFavourite:false},{newFavourite:false},{newFavourite:false},{newFavourite:false},{newFavourite:false},{newFavourite:false}]);
   //
+
+  //Filtro Rango
+
+  const [inputRango, setInputRango] = useState({
+    min:"",
+    max:""
+  })
+  const [error, setError] = useState({});
 
   const [currentPage, setCurrentPage] = useState(1);
   const [productsPerPage] = useState(9);
@@ -113,7 +122,6 @@ state: true
   //////Favourites///////
 
   useEffect(() => {
-    console.log("Antes GetFavorites", allFavorites)
     user && dispatch(getFavourites(user.id));
     
   }, [user,currentPage]);
@@ -126,7 +134,6 @@ state: true
         let found = currentProducts.findIndex(
           (f) => f.id === allFavorites[i].idProduct
         );
-        console.log(found)
         if (found > -1) {
           currentProducts.map((p) => favorites.push({ newFavourite: false }));
           favorites[found].newFavourite = true;
@@ -169,7 +176,6 @@ state: true
     for (let i = 0; i < addFavourites.length; i++) {
       if (index === i) {
         deleteFavouriteApi({ idProduct, idUser });
-        console.log(idProduct);
         let favorites = addFavourites.slice();
         favorites[i].newFavourite = false;
         setFavourites(favorites);
@@ -178,6 +184,35 @@ state: true
   };
   /////Favourites////
 
+  //Filtro Rango de precio
+  const handleRange = (e) =>{
+
+    if(!e.target.value){
+      e.target.value = 0
+    }
+    
+    setInputRango((range)=>{
+      return{
+        ...range,
+        [e.target.name]:parseInt(e.target.value)
+      }
+    })
+    setError(validateInput({ ...inputRango, [e.target.name]: parseInt(e.target.value) }));
+  }
+
+  const filterRangeProducts = (e) =>{
+    e.preventDefault()
+    dispatch(filterRange(inputRango))
+    setInputRango((input)=>{
+      return{
+        ...input,
+        min:"",
+        max:""
+      }
+    })
+  }
+  //Filtro Rango
+console.log(productosBarberia)
   return (
     <div>
       {/* =============================================================== */}
@@ -192,6 +227,7 @@ state: true
             aria-controls="navbarSupportedContent"
             aria-expanded="true"
             aria-label="Toggle navigation"
+
           >
             <span class="navbar-toggler-icon"></span>
           </button>
@@ -267,6 +303,18 @@ state: true
                           <option value="min"> Menor precio</option>
                         </select>
                       ) : null}
+                    </div>
+
+                    <div>
+                      <form>
+                      <label className="label-min">Min:</label>
+                      <input className="input-min" type={"text"} name={"min"} value={inputRango.min} onChange={(e)=>handleRange(e)}></input>
+                      <label className="label-max">Max:</label>
+                      <input className="input-max" type={"text"} name={"max"} value={inputRango.max} onChange={(e)=>handleRange(e)}></input>
+                      {error.min && <p className="error">{error.min}</p>}
+                      {error.max && <p className="error">{error.max}</p>}
+                      </form>
+                      <button className="filter-range-filtrar" onClick={(e)=>filterRangeProducts(e)}>Filtrar Rango</button>
                     </div>
                   </div>
                 </ul>

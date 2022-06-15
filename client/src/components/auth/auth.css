@@ -10,6 +10,23 @@
   align-content: center;
   width: 100vw;
   gap: 2rem;
+  width: 100%;
+  height: 100vh;
+  background-image: linear-gradient(
+    -45deg, 
+    rgb(227, 207, 59) 0%, 
+    rgba(134, 117, 12, 0.637) 25%, 
+    rgb(116, 121, 38) 51%, 
+    rgb(12, 14, 2) 100%
+); 
+
+animation: AnimateBG 20s ease infinite;
+}
+
+@keyframes AnimateBG { 
+  0%{background-position:0% 50%}
+  50%{background-position:100% 50%}
+  100%{background-position:0% 50%}
 }
 
 .main > div {
@@ -45,6 +62,7 @@
 
 .main .btn-volver:hover{
   background-color: rgba(0, 0, 0, .68);
+  
 }
 
 .main .btn-volver a {

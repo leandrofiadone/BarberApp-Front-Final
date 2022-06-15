@@ -3,10 +3,7 @@ import { NavLink, useHistory } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import "./Navbar.css";
 import {
-  getAdminAllEmpleados,
-  getAdminAllServices,
   logout,
-  getCategories,
   revalidarAuth,
 } from "../../../redux/actions";
 import sinImage from '../../../assets/sin-img.jpeg'
@@ -15,7 +12,7 @@ import Swal from "sweetalert2";
 import { validarArchivo } from "../../../helpers/validar-archivo";
 
 export const Navbar = () => {
-  const { user, isAuth, categories } = useSelector((state) => state);
+  const { user, isAuth } = useSelector((state) => state);
 
   const dispatch = useDispatch();
   const history = useHistory();
@@ -30,7 +27,6 @@ export const Navbar = () => {
   }
   
   const changeImg = async({target}) => {
-    console.log(target.files[0])
 
     // validaciones
     const arrType = target.files[0].type.split('/');

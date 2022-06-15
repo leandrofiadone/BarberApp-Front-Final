@@ -348,6 +348,14 @@ function rootReducer(state = initialState, action) {
         citasEmpleado: action.payload,
       };
 
+      case ACTIONS.FILTER_RANGE:
+        const {min,max} = action.payload
+        let range = state.allProductos.filter((producto)=>min <= producto.price && producto.price <= max)
+        return{
+          ...state,
+          productos: range
+        }
+
     default:
       return state;
   }

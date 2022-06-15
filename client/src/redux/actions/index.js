@@ -53,6 +53,8 @@ export const ADMIN_GET_ALL_EMPLOYEE = "ADMIN_GET_ALL_EMPLOYEE";
 
 export const CITAS_EMPLEADO = "CITAS_EMPLEADO";
 
+export const FILTER_RANGE = "FILTER_RANGE";
+
 // all products carga todos los productos que estan activos solo activos
 export function allProductos() {
   return async (dispatch) => {
@@ -157,7 +159,6 @@ export function getEmployee() {
   return async function(dispatch) {
     const resp = await fetchSinToken("employee");
     const data = await resp.json();
-    console.log("data.employe:", data);
     if (data.ok) {
       return dispatch({
         type: GET_EMPLOYEE,
@@ -300,7 +301,6 @@ export function deleteProduct(id) {
     const data = await result.json();
     if (data.ok) {
       Swal.fire("Success", "Producto eliminado", "success");
-      console.log(data);
       return dispatch({
         type: DELETE_PRODUCT,
         payload: data.producto,
@@ -460,7 +460,6 @@ export function deleteDate(id) {
   return async function(dispatch) {
     const result = await fetchConToken(`date/${id}`, {}, "DELETE");
     const data = await result.json();
-    console.log(data);
     if (data.ok) {
       dispatch(allCitas());
       dispatch(allCitasAdmin());
@@ -473,7 +472,6 @@ export const getFavourites = (idUser) => {
     try {
       const response = await fetchConToken(`favorite/${idUser}`);
       const json = await response.json();
-      console.log("Action", json);
       dispatch({ type: GET_FAVOURITES, payload: json });
     } catch (error) {
       console.error(error);
@@ -516,7 +514,6 @@ export function detalleEmployee(id) {
   return async (dispatch) => {
     const resp = await fetchSinToken(`employee/${id}`);
     const data = await resp.json();
-    console.log("empleadito:", data);
     if (data.ok) {
       return dispatch({
         type: DETALLE_EMPLOYEE,
@@ -552,10 +549,8 @@ export function updateEmpleados(employee) {
 
 export function deleteEmpleado(idEmployee) {
   return async function(dispatch) {
-    console.log(idEmployee);
     let result = await fetchConToken(`employee/${idEmployee}`, {}, "DELETE");
     const data = await result.json();
-    console.log(data);
     if (data.ok) {
       Swal.fire("Success", "Empleado eliminado", "success");
       return dispatch({
@@ -589,7 +584,6 @@ export function updateService(servicio) {
         "PUT"
       );
       const data = await result.json();
-      console.log("data update", data);
       if (data.ok) {
         Swal.fire("Success", "Servicio actualizado", "success");
         return dispatch({
@@ -609,7 +603,6 @@ export function detalleService(id) {
   return async (dispatch) => {
     const resp = await fetchSinToken(`services/${id}`);
     const data = await resp.json();
-    console.log("servicio:", data);
     if (data.ok) {
       return dispatch({
         type: DETALLE_SERVICE,
@@ -620,10 +613,8 @@ export function detalleService(id) {
 }
 export function deleteService(idServicio) {
   return async function(dispatch) {
-    console.log(idServicio);
     let result = await fetchConToken(`services/${idServicio}`, {}, "DELETE");
     const data = await result.json();
-    console.log(data);
     if (data.ok) {
       Swal.fire("Success", "Servicio eliminado", "success");
       return dispatch({
@@ -637,7 +628,6 @@ export function getAdminAllServices() {
   return async function(dispatch) {
     const resp = await fetchSinToken("services?all=true");
     const data = await resp.json();
-    console.log(data);
     if (data.ok) {
       return dispatch({
         type: ADMIN_GET_ALL_SERVICES,
@@ -650,7 +640,6 @@ export function getAdminAllEmpleados() {
   return async function(dispatch) {
     const resp = await fetchSinToken("employee?all=true");
     const data = await resp.json();
-    console.log(data);
     if (data.ok) {
       return dispatch({
         type: ADMIN_GET_ALL_EMPLOYEE,
@@ -684,4 +673,10 @@ export function EliminarCita(id) {
       dispatch(allCitas());
     }
   };
+}
+
+export const filterRange = (products) =>{
+  return (dispatch) =>{
+    dispatch({type: FILTER_RANGE, payload:products})
+  }
 }

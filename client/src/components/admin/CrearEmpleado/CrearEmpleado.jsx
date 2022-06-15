@@ -22,7 +22,6 @@ export default function CrearProducto() {
       ...employee,
       [name]: value,
     });
-    console.log(employee);
   };
   const handleSubmit = (e) => {
     e.preventDefault();

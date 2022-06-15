@@ -14,7 +14,6 @@ import "./Servicios.css";
 export function Servicios() {
   const dispatch = useDispatch();
   const allServices = useSelector((state) => state.servicios);
-  console.log(allServices)
 
   useEffect(() => {
     dispatch(getServices());

@@ -31,7 +31,6 @@ const SendMail = () => {
            });
 
            const json = await response.json();
-           console.log(json);
            setInput((input)=>{
                return{
                    ...input,
