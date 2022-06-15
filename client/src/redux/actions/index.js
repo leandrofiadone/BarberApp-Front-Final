@@ -53,14 +53,20 @@ export const ADMIN_GET_ALL_EMPLOYEE = "ADMIN_GET_ALL_EMPLOYEE";
 
 export const CITAS_EMPLEADO = "CITAS_EMPLEADO";
 
+
+export const CONSTOCK_SINSTOCK = "CONSTOCK_SINSTOCK";
+export const USUARIOS_BANEADOS = "USUARIOS_BANEADOS";
+export const VENTAS_TRANSACCION = "VENTAS_TRANSACCION";
+
 export const FILTER_RANGE = "FILTER_RANGE";
+
 
 // all products carga todos los productos que estan activos solo activos
 export function allProductos() {
   return async (dispatch) => {
     const resp = await fetchSinToken(`products?state=true`);
     const data = await resp.json();
-
+    await dispatch(getConStockSinStock(data.products, 0, 0));
     if (data.ok) {
       return dispatch({
         type: ALL_PRODUCTOS,
@@ -145,12 +151,14 @@ export function addEmployee(employee) {
   return async (dispatch) => {
     const resp = await fetchConToken("employee", employee, "POST");
     const data = await resp.json();
-
     if (data.ok) {
+      Swal.fire('Sucess', 'Empleado creado correctamente', 'success')
       return dispatch({
         type: ADD_EMPLOYEE,
         payload: data.newEmployee,
       });
+    }else{
+      Swal.fire('Error', data.msg, 'error')
     }
   };
 }
@@ -254,13 +262,13 @@ export function filterPorPrecio(payload) {
 
 export function allBarberos() {
   return async (dispatch) => {
-    const resp = await fetchSinToken("employee?all=false");
+    const resp = await fetchSinToken("employee");
     const data = await resp.json();
-
+    console.log(data)
     if (data.ok) {
       return dispatch({
         type: ALL_BARBEROS,
-        payload: data.allEmployes,
+        payload: data.employees,
       });
     }
   };
@@ -395,6 +403,9 @@ export function revalidarAuth() {
       dispatch(allCitas());
 
 
+
+
+
       return dispatch({
         type: types.login,
         payload,
@@ -419,7 +430,7 @@ export const getAllUsers = () => {
   return async (dispatch) => {
     const resp = await fetchConToken("users");
     const data = await resp.json();
-
+    await dispatch(getUsuariosBaneados(data.users, 0));
     if (data.ok) {
       return dispatch({ type: types.getAllUsers, payload: data.users });
     }
@@ -675,6 +686,50 @@ export function EliminarCita(id) {
   };
 }
 
+
+export function getConStockSinStock(productos, data1, data2) {
+  return async function(dispatch) {
+    productos.map((producto) => {
+      if (producto.stock !== 0) {
+        data1 = data1 + 1;
+      } else {
+        data2 = data2 + 1;
+      }
+    });
+    return dispatch({
+      type: CONSTOCK_SINSTOCK,
+      payload: data1,
+      payload1: data2,
+    });
+  };
+}
+
+export function getUsuariosBaneados(usuarios, data) {
+  return async function(dispatch) {
+    usuarios.map((usuario) => {
+      if (usuario.state === false) {
+        data++;
+      }
+    });
+    return dispatch({
+      type: USUARIOS_BANEADOS,
+      payload: data,
+    });
+  };
+}
+
+export function getVentasUsuarios() {
+  return async function(dispatch) {
+    let result = await fetchConToken(`pago`, {}, "GET");
+    const data = await result.json();
+    if (data.ok) {
+      return dispatch({
+        type: VENTAS_TRANSACCION,
+        payload: data.order,
+      });
+    }
+  };
+}
 export const filterRange = (products) =>{
   return (dispatch) =>{
     dispatch({type: FILTER_RANGE, payload:products})

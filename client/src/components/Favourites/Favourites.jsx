@@ -35,6 +35,7 @@ const Favourites = () => {
           ? favouriteState.map((f,i) => {
               return (
                 <Favourite
+                  key={i}
                   name={f.name}
                   price={f.price}
                   img={f.img}

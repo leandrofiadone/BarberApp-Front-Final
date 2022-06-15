@@ -16,6 +16,7 @@ import FormularioEmpleado from "../components/admin/Empleado/FormularioEmpleado"
 import Servicio from "../components/admin/Servicio/Servicio";
 import { CrearServicio } from "../components/admin/Servicio/CrearServicio";
 import { FormularioServicio } from "../components/admin/Servicio/FormularioServicio";
+import { Graficos } from "../components/admin/Dashboard/Graficos";
 
 export const AdminRoute = () => {
   return (
@@ -24,7 +25,6 @@ export const AdminRoute = () => {
       <Navbar />
       <section>
         <Switch>
-          <Route exact path="/admin/main" component={AdminPanel} />
           <Route exact path="/admin/product" component={Producto} />
           <Route exact path="/admin/product/add" component={CrearProducto} />
           <Route
@@ -54,9 +54,10 @@ export const AdminRoute = () => {
             path="/admin/service/:id"
             component={FormularioServicio}
           />
+          <Route exact path="/admin/dashboard" component={Graficos} />
           {/* aqui se definen las rutas de admin */}
 
-          <Redirect to="/admin/main" />
+          <Redirect to="/admin/dashboard" />
         </Switch>
       </section>
     </div>
