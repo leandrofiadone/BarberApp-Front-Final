@@ -88,9 +88,9 @@ body {
     display: flex;
     justify-content: center;
     text-align: center;
-    font-weight: bold;
+    /* font-weight: bold; */
     color: white;
-    font-family: Montserrat;
+    font-family: Gelasio;
     margin-bottom: 10px;
     letter-spacing: 10px;
     align-items: center;
@@ -102,7 +102,7 @@ body {
 }
 
 .tituloServicios:hover{
-    text-shadow: red -8px 0, cyan 6px 0;
+    text-shadow: #8F5800 -8px 0, rgb(184, 184, 184) 6px 0;
 }
 
 .divdetailserv{

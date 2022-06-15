@@ -53,8 +53,6 @@ export const AppRouter = () => {
     dispatch(allCitas());
 
     dispatch(allCitasAdmin());
-
-    dispatch(crearCompra(user.id));
   }, [dispatch]);
 
   return (

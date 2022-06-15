@@ -36,7 +36,7 @@ const Cards = ({ name, stock, price, img, id, category, idProduct }) => {
       <div className="containerText">
         <h3> {name}</h3>
         <br />
-        <h4><i><b>$ {price}</b></i></h4>
+        <h3><i><b>$ {price}</b></i></h3>
         {/* <h6> Stock: {stock}</h6> */}
         {/* <h6>Categoria: {category}</h6> */}
            {/* <h6>{id}</h6> */}
@@ -53,12 +53,12 @@ const Cards = ({ name, stock, price, img, id, category, idProduct }) => {
             Comprar
           </button>
             ) : (
-              <Link to="auth/login">
+              <Link to="auth/login" className="linkComprarTienda">
               
               <button
             id="miBoton"
             type="button"
-            className="btn btn-success fw-bold botonTiendaComprar"
+            className="btn btn-secondary fw-bold text-dark botonTiendaComprar"
             onClick={() => alertaReg()}
           >
             Comprar

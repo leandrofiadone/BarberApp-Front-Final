@@ -1,7 +1,5 @@
-import React, { useState } from "react";
-import { useDispatch, useSelector } from "react-redux";
-import { NavLink, Switch, Route, Redirect } from "react-router-dom";
-import { logout } from "../../redux/actions";
+import React from "react";
+import { Switch, Route, Redirect } from "react-router-dom";
 import { ComprasPerfil } from "./compras/ComprasPerfil";
 import { EditarPerfil } from "./editar/EditarPerfil";
 import { Navbar } from "./navbar/Navbar";
@@ -9,18 +7,6 @@ import "./Profile.css";
 import { ReservasPerfil } from "./reservas/ReservasPerfil";
 
 const Profile = () => {
-  const { user } = useSelector((state) => state);
-
-  const [section, setSection] = useState("editar");
-  const dispatch = useDispatch();
-
-  const handleLogout = () => {
-    dispatch(logout());
-  };
-
-  const selectSection = (section) => {
-    setSection(section);
-  };
 
   return (
     <div className="main-perfil">

@@ -1,3 +1,6 @@
+@import url('https://fonts.googleapis.com/css2?family=Gelasio&display=swap');
+
+
 .containernavbartienda{
     display: flex;
     justify-content: flex-end;
@@ -6,7 +9,7 @@
 .contTituloTiendaWeb{
     display: flex;
     justify-content: flex-end;
-    width: 18em;
+    width: 16em;
     align-items: center;
     background-color: transparent;
 }
@@ -107,7 +110,7 @@
     background-color: transparent;
     color: white;
     font-weight: lighter;
-    margin-left: 2em;
+    margin-left: 4em;
 }
 
 .contOrder {
@@ -195,7 +198,7 @@
 }
 
 .imagen-corazon-rojo{
-    transform: translate(2rem,-36.5rem);
+    transform: translate(2rem,-36rem);
     margin-left: 23rem;
     width: 30px;
     position: absolute;
@@ -207,7 +210,7 @@
 }
 
 .imagen-corazon-gris{
-    transform: translate(2rem, -36.5rem);
+    transform: translate(2rem, -36rem);
     margin-left: 23rem;
     width: 36px;
     position: absolute;
@@ -247,4 +250,47 @@
 
 .masinfo{
     transform: translate(1rem, -2.5rem);
+}
+
+.containernavbartienda{
+    background-color:rgba(0, 0, 0, 0.295);
+}
+
+.label-min{
+    font-size: 15px;
+    margin-right: 8px;
+    margin-left: 15px;
+    margin-top: 25px;
+}
+
+.input-min{
+width: 45px;
+border-radius: 8px;
+margin-right: 10px;
+}
+
+.label-max{
+    font-size: 15px;
+    margin-right: 8px;
+}
+
+.input-max{
+    width: 45px;
+    border-radius: 8px;
+    margin-right: 10px;
+}
+
+.filter-range-filtrar{
+    border-radius: 15px;
+    background-color: #eed220;
+    color: black;
+    padding: 5px;
+    margin-top: 20px;
+    margin-left: 45px;
+    
+}
+
+.error{
+    color: red;
+    font-size: 10px;
 }

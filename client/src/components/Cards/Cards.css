@@ -34,7 +34,6 @@ img{
 }
 
 .containerText{
-    font-family: Gelasio;
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -50,3 +49,15 @@ img{
     height: 3.5rem;
     margin-bottom: -2px;
 } 
+
+.containerText > h3 {
+    font-family: Gelasio;
+}
+
+.containerText > h3 > i b{
+    font-family: Gelasio;
+}
+
+.linkComprarTienda{
+    text-decoration: none;
+}

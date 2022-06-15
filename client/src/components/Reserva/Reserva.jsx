@@ -29,7 +29,6 @@ export function Reserva() {
   const subBarberos = useSelector((state) => state.barberos);
 
   const citasEmpleado = useSelector((state) => state.citasEmpleado);
-  console.log(citasEmpleado);
 
   const validate = (state) => {
     let errors = {};
@@ -64,20 +63,17 @@ export function Reserva() {
     idUser: user,
   });
 
-  console.log(state);
 
   const listadoCitaseEmp = citasEmpleado.map((e) => e.date);
-  console.log(listadoCitaseEmp);
 
   const fecha = citasEmpleado
     .map((e) => e.date)
     .find((e) => e === new Date(state.date).toLocaleString("en-US"));
   //console.log(fecha)
 
-  if (fecha) {
-    console.log("ya esta reservada");
-    //  alert("fecha reservada")
-  }
+  // if (fecha) {
+  //   //  alert("fecha reservada")
+  // }
 
   useEffect(() => {
     dispatch(getServices());
