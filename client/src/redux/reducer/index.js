@@ -98,7 +98,7 @@ function rootReducer(state = initialState, action) {
       return {
         ...state,
         empleados: action.payload,
-        adminAllEmpleados: action.payload,
+        // adminAllEmpleados: action.payload,
         barberos: action.payload,
       };
 

@@ -45,7 +45,7 @@ export default function Empleado() {
         <tbody>
           {adminAllEmpleados.map((empleado, index) => {
             return (
-              <tr key={index + 1}>
+              <tr key={empleado.id}>
                 <th scope="row">{index + 1}</th>
                 <td className="text-white"> {empleado.name}</td>
                 <td className="text-white"> {empleado.dni}</td>

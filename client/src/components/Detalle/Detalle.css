@@ -11,7 +11,7 @@
 }
 
 .letra{
-    font-family: Gelasio, 'Bungee', cursive;
+    font-family: 'Gelasio', 'Bungee', cursive;
 }
 
 .ContenedorTituloLetra{
@@ -105,10 +105,10 @@
 }
 
 .imagen-corazon-gris-detalle{
-    transform: translate(1.2rem, 1.5rem);
-    width: 60px;
+    transform: translate(1rem, 1rem);
+    width: 40px;
     margin:-10px;
-    margin-bottom: 15px;
+    margin-bottom: 20px;
 }
 
 .imagen-corazon-gris-detalle:hover{
@@ -116,8 +116,8 @@
 }
 
 .imagen-corazon-rojo-detalle{
-    transform: translate(1.2rem, 1.5rem);
-    width: 50px;
+    transform: translate(1rem, 1rem);
+    width: 40px;
     margin:-10px;
     margin-bottom: 20px;
 }
@@ -126,9 +126,11 @@
     cursor: pointer;
 }
 
-.buttonComprar {
-    position: relative;
-    left: 8rem;
+.buttonComprarDetalle {
+    /* position: relative; */
     display: grid;
+    /* left: -0.6rem; */
+    /* display: grid; */
+    margin-top: 0.5rem;
     grid-template-columns: 1fr 1fr;
 }

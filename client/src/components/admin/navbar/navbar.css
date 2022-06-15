@@ -3,7 +3,8 @@
     height: 100vh;
     overflow: hidden;
     text-align: center;
-    color: black
+    color: black;
+    overflow: scroll;
 }
 
 .navbar-admin .img-perfil {
@@ -19,9 +20,11 @@
 
 .navbar-admin .img-perfil img {
     position: relative;
-    left: -180px;
+    left: -194px;
+    top: -2rem;
     height: 150px;
     width: 150px;
+    border-radius: 100px;
 }
 
 .navbar-admin .mas-opciones {
