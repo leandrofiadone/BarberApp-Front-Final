@@ -14,15 +14,14 @@ const FormularioEmpleado = () => {
   const dispatch = useDispatch();
 
   const { id } = useParams();
+  const empleadoId = useSelector((state) => state.detalleEmpleado);
 
   const history = useHistory();
   const inicialState = {
     name: "",
-    dni: "",
-    availability: false,
+    id: empleadoId.id
   };
 
-  const empleadoId = useSelector((state) => state.detalleEmpleado);
   const [empleado, setEmpleado] = React.useState(inicialState);
 
   const handleInputChange = (e) => {
@@ -38,11 +37,7 @@ const FormularioEmpleado = () => {
     if (empleado.name.length === 0 || empleado.name === empleadoId.name) {
       delete empleado.name;
     }
-    if (empleado.dni.length === 0 || empleado.dni === empleadoId.dni) {
-      delete empleado.price;
-    }
     empleado["id"] = empleadoId.id;
-    console.log(empleado);
     await dispatch(updateEmpleados(empleado));
     await dispatch(getAdminAllEmpleados());
     await dispatch(getEmployee());

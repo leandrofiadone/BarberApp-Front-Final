@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { useDispatch } from "react-redux";
 import { useHistory } from "react-router-dom";
+import Swal from "sweetalert2";
 import {
   addEmployee,
   getAdminAllEmpleados,
@@ -24,6 +25,11 @@ export const CrearEmpleado = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+
+    if(form.dni.length > 10){
+      return Swal.fire('Error', 'El dni no puede tener mas de 10 numeros', 'error')
+    }
+
     await dispatch(addEmployee(form));
     await dispatch(getAdminAllEmpleados());
     await dispatch(getEmployee());
