@@ -186,6 +186,10 @@ state: true
 
   //Filtro Rango
   const handleRange = (e) =>{
+
+    if(!e.target.value){
+      e.target.value = 0
+    }
     
     setInputRango((range)=>{
       return{
