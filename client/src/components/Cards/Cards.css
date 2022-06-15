@@ -45,9 +45,11 @@ img{
     flex-direction: column;
     margin-top: 2rem;
     justify-content: center;
+    
     align-items: center;
     height: 3.5rem;
     margin-bottom: -2px;
+    margin-right: 60px;
 } 
 
 .containerText > h3 {
