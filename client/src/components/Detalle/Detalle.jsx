@@ -87,31 +87,7 @@ const Detalle = () => {
               </div>
               <div>
                 <span>Stock: {productosId.stock}</span>
-                {Object.keys(user).length ? (
-                  !favorite.newFavourite ? (
-                    <img
-                      onClick={() => {
-                        handleAddFavourites(idCard, index);
-                        setFavorite(() => {
-                          return { newFavourite: true };
-                        });
-                      }}
-                      className="imagen-corazon-gris-detalle"
-                      src={imgCorazonGris}
-                    ></img>
-                  ) : (
-                    <img
-                      onClick={() => {
-                        handleDeleteFavourites(index, idCard);
-                        setFavorite(() => {
-                          return { newFavourite: false };
-                        });
-                      }}
-                      className="imagen-corazon-rojo-detalle"
-                      src={imgCorazonRojo}
-                    ></img>
-                  )
-                ) : null}
+
 
 
                 {/* <button
@@ -136,44 +112,70 @@ const Detalle = () => {
 
                 <div className="buttonComprar">
 
-          {
-            isAuth && isAuth ? (
-              <button
-            id="miBoton"
-            type="button"
-            className="btn btn-success fw-bold botonDelCarrito"
-            onClick={() => {
-              addItem({
-                id: productosId,
-                price: productosId.price,
-                stock: productosId.stock,
-                name: productosId.name,
-                idProduct: productosId.id,
-                idUser: user.idUser,
-                detail: productosId.detail,
-                quantity: 1,
-              });
-              addCartAlert();
-            }}
-          >
-            Agregar al carrito
-          </button>
-            ) : (
-              <Link to="/auth/login">
-              
-              <button
-            id="miBoton"
-            type="button"
-            className="btn btn-success fw-bold botonDelCarrito"
-            onClick={() => alertaReg()}
-          >
-            Agregar al carrito
-          </button>
-              </Link>
-            )
-          }
-          
-        </div>
+                  {
+                    isAuth && isAuth ? (
+                      <button
+                        id="miBoton"
+                        type="button"
+                        className="btn btn-success fw-bold botonDelCarrito"
+                        onClick={() => {
+                          addItem({
+                            id: productosId,
+                            price: productosId.price,
+                            stock: productosId.stock,
+                            name: productosId.name,
+                            idProduct: productosId.id,
+                            idUser: user.idUser,
+                            detail: productosId.detail,
+                            quantity: 1,
+                          });
+                          addCartAlert();
+                        }}
+                      >
+                        Agregar al carrito
+                      </button>
+                    ) : (
+                      <Link to="/auth/login">
+
+                        <button
+                          id="miBoton"
+                          type="button"
+                          className="btn btn-success fw-bold botonDelCarrito"
+                          onClick={() => alertaReg()}
+                        >
+                          Agregar al carrito
+                        </button>
+                      </Link>
+                    )
+                  }
+
+                  {Object.keys(user).length ? (
+                    !favorite.newFavourite ? (
+                      <img
+                        onClick={() => {
+                          handleAddFavourites(idCard, index);
+                          setFavorite(() => {
+                            return { newFavourite: true };
+                          });
+                        }}
+                        className="imagen-corazon-gris-detalle"
+                        src={imgCorazonGris}
+                      ></img>
+                    ) : (
+                      <img
+                        onClick={() => {
+                          handleDeleteFavourites(index, idCard);
+                          setFavorite(() => {
+                            return { newFavourite: false };
+                          });
+                        }}
+                        className="imagen-corazon-rojo-detalle"
+                        src={imgCorazonRojo}
+                      ></img>
+                    )
+                  ) : null}
+
+                </div>
               </div>
             </div>
           </div>

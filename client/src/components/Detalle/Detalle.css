@@ -105,8 +105,8 @@
 }
 
 .imagen-corazon-gris-detalle{
-    transform: translate(2rem, 1rem);
-    width: 30px;
+    transform: translate(1.2rem, 1.5rem);
+    width: 60px;
     margin:-10px;
     margin-bottom: 15px;
 }
@@ -116,12 +116,19 @@
 }
 
 .imagen-corazon-rojo-detalle{
-    transform: translate(2rem, 1rem);
-    width: 40px;
-    margin:-20px;
+    transform: translate(1.2rem, 1.5rem);
+    width: 50px;
+    margin:-10px;
     margin-bottom: 20px;
 }
 
 .imagen-corazon-rojo-detalle:hover{
     cursor: pointer;
+}
+
+.buttonComprar {
+    position: relative;
+    left: 8rem;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
 }
