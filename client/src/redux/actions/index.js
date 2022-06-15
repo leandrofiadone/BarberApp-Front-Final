@@ -719,10 +719,8 @@ export function getUsuariosBaneados(usuarios, data) {
 
 export function getVentasUsuarios() {
   return async function(dispatch) {
-    console.log("entro");
     let result = await fetchConToken(`pago`, {}, "GET");
     const data = await result.json();
-    console.log("pago:", data);
     if (data.ok) {
       return dispatch({
         type: VENTAS_TRANSACCION,

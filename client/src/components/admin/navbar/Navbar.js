@@ -40,19 +40,19 @@ export const Navbar = () => {
           Inicio
         </NavLink>
 
-        <label
-          className="list-group-item pointer"
-          // activeClassName="bg-warning"
+        <NavLink
+          className="list-group-item text-dark"
+          activeClassName="bg-warning"
           onClick={async () => {
             await dispatch(allProductos());
-            await dispatch(allCitasAdmin());
             await dispatch(getVentasUsuarios());
             await dispatch(getAllUsers());
-            history.push("/admin/dashboard");
+            await dispatch(allCitasAdmin());
           }}
+          to={"/admin/dashboard"}
         >
           Dashboard
-        </label>
+        </NavLink>
         <NavLink
           className="list-group-item pointer"
           activeClassName="bg-warning"
@@ -68,36 +68,36 @@ export const Navbar = () => {
           Reservas Usuarios
         </NavLink>
 
-        <label
+        <NavLink
           className="list-group-item pointer"
-          // activeClassName="bg-warning"
+          activeClassName="bg-warning"
           onClick={() => {
             dispatch(getCategories());
-            history.push("/admin/categories");
           }}
+          to="/admin/categories"
         >
           Categorias
-        </label>
-        <label
+        </NavLink>
+        <NavLink
           className="list-group-item pointer"
-          // activeClassName="bg-warning"
+          activeClassName="bg-warning"
           onClick={() => {
             dispatch(getAdminAllEmpleados());
-            history.push("/admin/employee");
           }}
+          to="/admin/employee"
         >
           Empleados
-        </label>
-        <label
+        </NavLink>
+        <NavLink
           className="list-group-item pointer"
-          // activeClassName="bg-warning"
+          activeClassName="bg-warning"
           onClick={() => {
             dispatch(getAdminAllServices());
-            history.push("/admin/service");
           }}
+          to="/admin/service"
         >
           Servicios
-        </label>
+        </NavLink>
         <NavLink
           className="list-group-item"
           to="/admin/usuarios"

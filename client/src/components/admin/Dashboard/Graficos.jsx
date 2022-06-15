@@ -1,7 +1,5 @@
 import React from "react";
-import { useState } from "react";
-import { useDispatch, useSelector } from "react-redux";
-import { useHistory } from "react-router-dom";
+import { useSelector } from "react-redux";
 import { CategoriasPastel } from "./CategoriasPastel";
 import { ReservasBarras } from "./ReservasBarras";
 import { VentasBarras } from "./VentasBarras";
@@ -15,14 +13,6 @@ export const Graficos = () => {
     sinStock,
     ventas,
   } = useSelector((state) => state);
-  console.log(
-    adminAllUsers.length,
-    userBan,
-    conStock,
-    sinStock,
-    ventas.length,
-    allCitas.length
-  );
   return (
     <div>
       <div className="input-group mb-3 row">
@@ -121,7 +111,7 @@ export const Graficos = () => {
         <div className="col-xl-12 border  rounded bg-black">
           <div className="row mb-3 rounded">
             <div className="col-xl-6 col-sm-6 py-2 rounded ">
-              <div className="card_grafic  text-white h-100 rounded">
+              <div className="card_grafic  text-white h-400 rounded">
                 <div
                   className="card-body  rounded"
                   style={{ backgroundColor: "#151514 " }}
@@ -134,7 +124,7 @@ export const Graficos = () => {
               </div>
             </div>
             <div className="col-xl-6 col-sm-6 py-2  rounded">
-              <div className="card_grafic  text-white h-100 rounded">
+              <div className="card_grafic  text-white h-400 rounded">
                 <div
                   className="card-body rounded"
                   style={{ backgroundColor: "#151514 " }}

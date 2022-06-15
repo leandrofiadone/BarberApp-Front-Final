@@ -106,7 +106,6 @@ export const ReservasBarras = () => {
     responsive: true,
   };
   const handleChange = (e) => {
-    console.log("fecha:", new Date(e.target.value + " 00:00:00"));
     e.preventDefault();
     setDia({
       ...dia,

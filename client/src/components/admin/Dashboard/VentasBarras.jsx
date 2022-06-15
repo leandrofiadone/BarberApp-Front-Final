@@ -3,7 +3,7 @@ import { useSelector } from "react-redux";
 
 export const VentasBarras = () => {
   const ventas = useSelector((state) => state.ventas);
-  console.log("llego ventas:", ventas);
+  console.log(ventas);
   return (
     <div className="col" style={{ width: "100%", height: "520px" }}>
       <h3 className="text-center">Ventas Mas Recientes</h3>
@@ -22,9 +22,9 @@ export const VentasBarras = () => {
               {index < 10 ? (
                 <tr key={index}>
                   <th scope="row">{index + 1}</th>
-                  <td className="text-white"> {venta.date_approved}</td>
+                  <td className="text-white"> {venta.date}</td>
                   <td className="text-white"> {venta.name}</td>
-                  <td className="text-white"> {venta.transaction_amount}</td>
+                  <td className="text-white"> {venta.total}</td>
                 </tr>
               ) : (
                 <tr key={index}></tr>
