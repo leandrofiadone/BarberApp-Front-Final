@@ -289,3 +289,8 @@ margin-right: 10px;
     margin-left: 45px;
     
 }
+
+.error{
+    color: red;
+    font-size: 10px;
+}

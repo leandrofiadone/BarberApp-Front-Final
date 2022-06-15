@@ -13,7 +13,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { useEffect, useState } from "react";
 import Paginado from "../Paginado/Paginado";
 import { filterRange } from "../../redux/actions";
-
+import validateInput from "./validateInputRange";
 // import '../Paginado/Paginado.css'
 
 
@@ -54,6 +54,7 @@ export default function Tienda() {
     min:"",
     max:""
   })
+  const [error, setError] = useState({});
 
   const [currentPage, setCurrentPage] = useState(1);
   const [productsPerPage] = useState(9);
@@ -185,18 +186,19 @@ state: true
 
   //Filtro Rango
   const handleRange = (e) =>{
+    
     setInputRango((range)=>{
       return{
         ...range,
-        [e.target.name]:e.target.value
+        [e.target.name]:parseInt(e.target.value)
       }
     })
+    setError(validateInput({ ...inputRango, [e.target.name]: parseInt(e.target.value) }));
   }
 
   const filterRangeProducts = (e) =>{
     e.preventDefault()
-    let range = productosBarberia.filter((producto)=>inputRango.min <= producto.price && producto.price <= inputRango.max)
-    dispatch(filterRange(range))
+    dispatch(filterRange(inputRango))
     setInputRango((input)=>{
       return{
         ...input,
@@ -305,7 +307,8 @@ console.log(productosBarberia)
                       <input className="input-min" type={"text"} name={"min"} value={inputRango.min} onChange={(e)=>handleRange(e)}></input>
                       <label className="label-max">Max:</label>
                       <input className="input-max" type={"text"} name={"max"} value={inputRango.max} onChange={(e)=>handleRange(e)}></input>
-                      
+                      {error.min && <p className="error">{error.min}</p>}
+                      {error.max && <p className="error">{error.max}</p>}
                       </form>
                       <button className="filter-range-filtrar" onClick={(e)=>filterRangeProducts(e)}>Filtrar Rango</button>
                     </div>
