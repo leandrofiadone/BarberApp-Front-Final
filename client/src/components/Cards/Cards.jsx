@@ -53,12 +53,12 @@ const Cards = ({ name, stock, price, img, id, category, idProduct }) => {
             Comprar
           </button>
             ) : (
-              <Link to="auth/login">
+              <Link to="auth/login" className="linkComprarTienda">
               
               <button
             id="miBoton"
             type="button"
-            className="btn btn-success fw-bold botonTiendaComprar"
+            className="btn btn-secondary fw-bold text-dark botonTiendaComprar"
             onClick={() => alertaReg()}
           >
             Comprar

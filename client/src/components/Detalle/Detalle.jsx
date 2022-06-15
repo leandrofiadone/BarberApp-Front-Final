@@ -13,10 +13,11 @@ import Swal from "sweetalert2";
 import "./Detalle.css";
 
 const Detalle = () => {
+
   const dispatch = useDispatch();
   const { id } = useParams();
   const { addItem } = useCart();
-  const { user } = useSelector((state) => state);
+  const { user, isAuth } = useSelector((state) => state);
   const productosId = useSelector((state) => state.detalle);
   const [favorite, setFavorite] = useState({ newFavourite: false });
   const location = useLocation();
@@ -51,6 +52,13 @@ const Detalle = () => {
   const detalleEliminar = () => {
     dispatch(eliminarInfoDetalle());
   };
+
+  const alertaReg = () => {
+    Swal.fire({
+      icon: "error",
+      title: "Debe ingresar o registrarse",
+    });
+  }
 
   return (
     <div className="fotoBarber">
@@ -104,8 +112,9 @@ const Detalle = () => {
                     ></img>
                   )
                 ) : null}
-                <div></div>
-                <button
+
+
+                {/* <button
                   className="botonDelCarrito"
                   type="button"
                   onClick={() => {
@@ -123,7 +132,48 @@ const Detalle = () => {
                   }}
                 >
                   Agregar al carrito
-                </button>
+                </button> */}
+
+                <div className="buttonComprar">
+
+          {
+            isAuth && isAuth ? (
+              <button
+            id="miBoton"
+            type="button"
+            className="btn btn-success fw-bold botonDelCarrito"
+            onClick={() => {
+              addItem({
+                id: productosId,
+                price: productosId.price,
+                stock: productosId.stock,
+                name: productosId.name,
+                idProduct: productosId.id,
+                idUser: user.idUser,
+                detail: productosId.detail,
+                quantity: 1,
+              });
+              addCartAlert();
+            }}
+          >
+            Agregar al carrito
+          </button>
+            ) : (
+              <Link to="/auth/login">
+              
+              <button
+            id="miBoton"
+            type="button"
+            className="btn btn-success fw-bold botonDelCarrito"
+            onClick={() => alertaReg()}
+          >
+            Agregar al carrito
+          </button>
+              </Link>
+            )
+          }
+          
+        </div>
               </div>
             </div>
           </div>

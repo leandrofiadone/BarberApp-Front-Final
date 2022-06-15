@@ -380,20 +380,20 @@ state: true
                 </Link>
 
                 { Object.keys(user).length ? addFavourites.length && !addFavourites[index].newFavourite ? (
-    
-    <img
-      onClick={() => handleAddFavourites(e.id, index)}
-      className="imagen-corazon-gris"
-      src={imgCorazonGris}
-    ></img>
-  ) : (
-    <img
-      onClick={() => handleDeleteFavourites(index, e.id)}
-      className="imagen-corazon-rojo"
-      src={imgCorazonRojo}
-    ></img>
-  ) : null}
-               
+                    
+                    <img
+                      onClick={() => handleAddFavourites(e.id, index)}
+                      className="imagen-corazon-gris"
+                      src={imgCorazonGris}
+                    ></img>
+                  ) : (
+                    <img
+                      onClick={() => handleDeleteFavourites(index, e.id)}
+                      className="imagen-corazon-rojo"
+                      src={imgCorazonRojo}
+                    ></img>
+                  ) : null}
+                              
               </div>
             );
           })
