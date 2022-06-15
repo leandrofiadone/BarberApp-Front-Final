@@ -33,14 +33,8 @@ export const Navbar = () => {
 
       <ul className="mt-3 list-group list-group-flush">
         <NavLink
-          className="list-group-item text-dark"
           activeClassName="bg-warning"
-          to="/admin/main"
-        >
-          Inicio
-        </NavLink>
-        
-        <label
+          to='/admin/dashboard'
           className="list-group-item pointer"
           // activeClassName="bg-warning"
 
@@ -52,8 +46,8 @@ export const Navbar = () => {
             history.push("/admin/dashboard");
           }}
         >
-          Dashboard
-        </label>
+          Inicio
+        </NavLink>
         <NavLink
           className="list-group-item pointer"
           activeClassName="bg-warning"

@@ -25,7 +25,6 @@ export const AdminRoute = () => {
       <Navbar />
       <section>
         <Switch>
-          <Route exact path="/admin/main" component={AdminPanel} />
           <Route exact path="/admin/product" component={Producto} />
           <Route exact path="/admin/product/add" component={CrearProducto} />
           <Route
@@ -58,7 +57,7 @@ export const AdminRoute = () => {
           <Route exact path="/admin/dashboard" component={Graficos} />
           {/* aqui se definen las rutas de admin */}
 
-          <Redirect to="/admin/main" />
+          <Redirect to="/admin/dashboard" />
         </Switch>
       </section>
     </div>

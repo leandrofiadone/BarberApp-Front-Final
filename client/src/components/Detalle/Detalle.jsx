@@ -110,7 +110,7 @@ const Detalle = () => {
                   Agregar al carrito
                 </button> */}
 
-                <div className="buttonComprar">
+                <div className="buttonComprarDetalle">
 
                   {
                     isAuth && isAuth ? (

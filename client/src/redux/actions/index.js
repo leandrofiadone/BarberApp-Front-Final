@@ -151,12 +151,14 @@ export function addEmployee(employee) {
   return async (dispatch) => {
     const resp = await fetchConToken("employee", employee, "POST");
     const data = await resp.json();
-
     if (data.ok) {
+      Swal.fire('Sucess', 'Empleado creado correctamente', 'success')
       return dispatch({
         type: ADD_EMPLOYEE,
         payload: data.newEmployee,
       });
+    }else{
+      Swal.fire('Error', data.msg, 'error')
     }
   };
 }
@@ -260,13 +262,13 @@ export function filterPorPrecio(payload) {
 
 export function allBarberos() {
   return async (dispatch) => {
-    const resp = await fetchSinToken("employee?all=false");
+    const resp = await fetchSinToken("employee");
     const data = await resp.json();
-
+    console.log(data)
     if (data.ok) {
       return dispatch({
         type: ALL_BARBEROS,
-        payload: data.allEmployes,
+        payload: data.employees,
       });
     }
   };
@@ -400,7 +402,6 @@ export function revalidarAuth() {
       }
       dispatch(allCitas());
 
-      dispatch(crearCompra(data.id));
 
 
 
