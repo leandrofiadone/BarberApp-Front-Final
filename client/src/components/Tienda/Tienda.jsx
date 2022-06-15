@@ -214,7 +214,7 @@ state: true
 
 
                 <ul
-                  className="dropdown-menu bg-dark"
+                  className="dropdown-menu bg-dark ordenDrop"
                   aria-labelledby="dropdownMenuButton1"
                 >
 
@@ -223,7 +223,7 @@ state: true
                     <div>
                       <select
                         onChange={(e) => handleCategorias(e)}
-                        className="form-select form-select-lg mb-3"
+                        className="form-select form-select mb-3 mt-4"
                       >
                         <option hidden>Categorias</option>
 
@@ -243,7 +243,7 @@ state: true
                       <select
                         name="select"
                         onChange={(e) => onSelectsChange(e)}
-                        className="form-select form-select-lg mb-3"
+                        className="form-select form-select mb-3"
                       >
                         <option hidden value="Filter">
                           A-Z
@@ -258,7 +258,7 @@ state: true
                       {productosBarberia ? (
                         <select
                           onChange={(e) => handlePrecio(e)}
-                          className="form-select form-select-lg mb-3 dropdown-toggle"
+                          className="form-select form-select mb-3 dropdown-toggle"
                           
                         >
                           <option hidden>$$</option>

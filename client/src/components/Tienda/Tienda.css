@@ -113,6 +113,11 @@
     margin-left: 4em;
 }
 
+.ordenDrop{
+    transform: translateX(32%);
+    width: 100%;
+}
+
 .contOrder {
     position: relative;
 }
