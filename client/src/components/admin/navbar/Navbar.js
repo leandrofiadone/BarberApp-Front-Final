@@ -39,10 +39,11 @@ export const Navbar = () => {
         >
           Inicio
         </NavLink>
-
+        
         <label
-          className="list-group-item text-dark"
+          className="list-group-item pointer"
           // activeClassName="bg-warning"
+
           onClick={async () => {
             await dispatch(allProductos());
             await dispatch(getVentasUsuarios());
