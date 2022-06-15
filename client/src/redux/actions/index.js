@@ -53,6 +53,8 @@ export const ADMIN_GET_ALL_EMPLOYEE = "ADMIN_GET_ALL_EMPLOYEE";
 
 export const CITAS_EMPLEADO = "CITAS_EMPLEADO";
 
+export const FILTER_RANGE = "FILTER_RANGE";
+
 // all products carga todos los productos que estan activos solo activos
 export function allProductos() {
   return async (dispatch) => {
@@ -671,4 +673,10 @@ export function EliminarCita(id) {
       dispatch(allCitas());
     }
   };
+}
+
+export const filterRange = (products) =>{
+  return (dispatch) =>{
+    dispatch({type: FILTER_RANGE, payload:products})
+  }
 }

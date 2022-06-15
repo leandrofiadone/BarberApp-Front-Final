@@ -348,6 +348,12 @@ function rootReducer(state = initialState, action) {
         citasEmpleado: action.payload,
       };
 
+      case ACTIONS.FILTER_RANGE:
+        return{
+          ...state,
+          productos: action.payload
+        }
+
     default:
       return state;
   }
