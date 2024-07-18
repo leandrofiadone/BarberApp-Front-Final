@@ -1,19 +1,30 @@
+# BarberApp 💈
 
+## Description
 
+"BarberApp" is an application developed as the final group project for my bootcamp at [SoyHenry](https://www.soyhenry.com/). It is designed to manage barber shop appointments and services efficiently. ✂️🗓️
 
+## Features
 
-<h1 align="center">Nuestro proyecto se basa en una barbería en la cual se pueden reservas citas y comprar productos.</h1>
+- Appointment scheduling 📅
+- Service management 💇‍♂️
+- User-friendly interface 🖥️
 
-El usuario va a tener la opción de elegir el servicio, al barbero, la fecha y la hora que desee. Una vez creada la cita al usuario le llegara un mail de confirmación.
-Desde su perfil podrá ver las citas que tenga pendientes o las que ya hayan finalizado, y podrá cancelar una cita si así lo desea.
-La fecha y hora que ya estén reservadas automáticamente aparecerán ocupadas para otros usuario.
+## Deployment Status
 
-El usuario también podrá comprar productos de la barbería, tendrá la opción de agregar los productos a sus favoritos y volver a verlos cuando quiera.
-Utilizamos la plataforma de Mercado Pago para una mejor experiencia.
-Una vez hecha la compra le llegara un mail de confirmación.
-Y podrá ver los productos que haya comprado en su perfil, con toda la información detallada.
-Desde el lado del administrador, se podrá agregar, editar, activar/desactivar según su stock productos. También podremos agregar y editar servicios. 
-Podemos agregar, activar/desactivar empleados. Y activar o banear usuarios.
-Toda la información se podrá ver desde un Dashboard para tener un panorama mas general del mismo.
+The deployment for this project is currently deprecated due to changes in deployment services. 🚧
 
-![alt text](https://image.winudf.com/v2/image1/Y29tLmJhcmJlcnNob3Bsb2dvaWRlYXMuaGZ6aW5jX3NjcmVlbl8wXzE1OTIxNDkwMjhfMDU1/screen-0.jpg?fakeurl=1&type=.webp)
+## Usage
+
+Simply run the application locally to explore its features and functionalities.
+
+## License
+
+Distributed under the MIT License. See `LICENSE` for more information. 📄
+
+## Contact
+
+Leandro Fiadone - [leandrofiadone@gmail.com](mailto:leandrofiadone@gmail.com)
+
+Project Link: [https://github.com/leandrofiadone/BarberApp](https://github.com/leandrofiadone/BarberApp)
+
